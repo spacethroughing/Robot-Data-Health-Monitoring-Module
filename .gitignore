@@ -1,0 +1,22 @@
+# Catkin build outputs
+build/
+devel/
+install/
+logs/
+
+# Robot datasets and generated artifacts
+*.bag
+*.bag.active
+*.pcd
+*.lvx
+*.mcap
+*.mp4
+*.mkv
+*.zip
+
+# Runtime logs and local editor files
+*.log
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]

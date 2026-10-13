@@ -1,0 +1,22 @@
+<launch>
+  <arg name="bag" default="" />
+  <arg name="rate" default="1.0" />
+  <arg name="rviz" default="true" />
+  <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_v2_avia.yaml" />
+
+  <!-- Includes FAST-LIO, monitor, static TF and RViz; simulation time is set before nodes start. -->
+  <include file="$(find fastlio_health_monitor)/launch/visualization_testbench.launch">
+    <arg name="use_sim_time" value="true" />
+    <arg name="rviz" value="$(arg rviz)" />
+    <arg name="health_config" value="$(arg health_config)" />
+    <arg name="data_reference" value="$(arg bag)" />
+  </include>
+
+  <!-- Verify both named subscribers, then allow transport negotiation before playback. -->
+  <node pkg="fastlio_health_monitor" type="health_bag_playback_node" name="fastlio_bag_playback" output="screen">
+    <param name="bag" value="$(arg bag)" />
+    <param name="rate" value="$(arg rate)" />
+    <param name="connection_delay_sec" value="1.0" />
+    <param name="startup_timeout_sec" value="15.0" />
+  </node>
+</launch>

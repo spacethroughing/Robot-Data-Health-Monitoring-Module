@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1390" viewBox="0 0 1800 1390" role="img" aria-labelledby="title desc">
+  <title id="title">FAST-LIO 健康监控检测台启动与参数设置说明</title>
+  <desc id="desc">中文操作指南，说明 Bash 环境准备、rosbag 一键回放、Livox 实机启动、FAST-LIO 与健康阈值 YAML、状态查看和停止流程；完整安装步骤见真实设备安装配置手册。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3f7fc"/><stop offset="1" stop-color="#eaf1f9"/></linearGradient>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#143b68"/><stop offset="1" stop-color="#28638f"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#12304d" flood-opacity=".09"/></filter>
+    <style>
+      text{font-family:"Noto Sans CJK SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;fill:#18334d}
+      .title{font-size:32px;font-weight:700;fill:#fff}.sub{font-size:15px;fill:#dceafb}
+      .h{font-size:21px;font-weight:700}.h2{font-size:17px;font-weight:700}.body{font-size:15px}.small{font-size:13px;fill:#61778d}
+      .mono{font-family:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;font-size:14px;fill:#f1f6fb}
+      .mono-sm{font-family:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;font-size:12px;fill:#f1f6fb}
+      .box{fill:#fff;stroke:#d5e1ed;stroke-width:1.4}.code{fill:#172b40}.muted{fill:#60778d}
+      .blue{fill:#eaf3fc;stroke:#cbdced}.green{fill:#eaf7f1;stroke:#cae7d9}.gold{fill:#fff7e8;stroke:#efdbb8}.purple{fill:#f2eff9;stroke:#ded7ec}
+      .tag{font-size:12px;font-weight:700}.line{stroke:#dbe5ef;stroke-width:1.4}
+    </style>
+  </defs>
+  <rect width="1800" height="1390" rx="25" fill="url(#bg)"/>
+  <rect x="28" y="24" width="1744" height="105" rx="20" fill="url(#head)"/>
+  <text x="60" y="68" class="title">从开终端到看到地图：FAST-LIO 健康检测台使用说明</text>
+  <text x="62" y="100" class="sub">先准备 ROS 环境 → 选择输入模式 → 按需调整参数 → 查看 RViz 与健康状态</text>
+  <rect x="1453" y="48" width="280" height="42" rx="21" fill="#fff" opacity=".14"/>
+  <text x="1593" y="75" text-anchor="middle" class="body" fill="#fff" font-weight="700">ROS Noetic · Livox Avia 配置</text>
+
+  <!-- Step 1 -->
+  <rect x="48" y="153" width="1704" height="194" rx="18" class="box" filter="url(#shadow)"/>
+  <circle cx="83" cy="190" r="19" fill="#347bb6"/><text x="83" y="197" text-anchor="middle" class="h2" fill="#fff">1</text>
+  <text x="115" y="197" class="h">每个新终端：进入 Bash 并加载环境</text>
+  <rect x="75" y="216" width="360" height="86" rx="12" class="code"/>
+  <text x="95" y="245" class="mono">bash</text>
+  <text x="95" y="273" class="mono-sm"># zsh 下先单独输入 bash，回车</text>
+  <rect x="455" y="216" width="728" height="86" rx="12" class="code"/>
+  <text x="475" y="245" class="mono">source /opt/ros/noetic/setup.bash</text>
+  <text x="475" y="273" class="mono">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <rect x="1203" y="216" width="522" height="86" rx="12" fill="#f5f8fb" stroke="#dce6ef"/>
+  <text x="1225" y="245" class="h2">需要编译时</text>
+  <text x="1225" y="273" class="body">修改过 C++ 或首次运行：进入工作区执行</text>
+  <text x="1225" y="294" class="small" font-weight="700">cd $HOME/fastlio_ws &amp;&amp; catkin_make -j2</text>
+  <text x="77" y="329" class="small">source 通常不会打印提示；首次编译若 devel/setup.bash 不存在，先 source ROS、编译，再 source 工作区 setup。</text>
+
+  <!-- Step 2: input modes -->
+  <circle cx="83" cy="383" r="19" fill="#347bb6"/><text x="83" y="390" text-anchor="middle" class="h2" fill="#fff">2</text>
+  <text x="115" y="390" class="h">选择一种输入模式</text>
+  <rect x="48" y="412" width="828" height="423" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="48" y="412" width="828" height="55" rx="18" fill="#eaf3fc"/>
+  <path d="M48 448 Q48 467 67 467 H857 Q876 467 876 448" fill="#eaf3fc"/>
+  <text x="78" y="447" class="h">A · rosbag 一键回放（推荐）</text>
+  <rect x="75" y="483" width="774" height="78" rx="12" class="code"/>
+  <text x="96" y="514" class="mono">roslaunch fastlio_health_monitor \</text>
+  <text x="96" y="541" class="mono">  visualization_bag_testbench.launch</text>
+  <text x="79" y="590" class="body">一条命令启动：仿真时钟、FAST-LIO、监控器、静态 TF、RViz 和播放器。</text>
+  <text x="79" y="615" class="small">播放器等待 LiDAR/IMU 订阅连上后才播放，默认使用项目里的 outdoor bag。</text>
+  <text x="79" y="650" class="h2">自定义 bag、倍率或关闭 RViz</text>
+  <rect x="75" y="665" width="774" height="61" rx="11" class="code"/>
+  <text x="94" y="691" class="mono-sm">roslaunch fastlio_health_monitor visualization_bag_testbench.launch</text>
+  <text x="94" y="713" class="mono-sm">  bag:=/data/test.bag rate:=1.0 rviz:=true</text>
+  <rect x="75" y="744" width="774" height="67" rx="11" class="blue"/>
+  <text x="95" y="771" class="body" font-weight="700">参数：bag = 数据包路径　·　rate = 播放倍率　·　rviz = true/false</text>
+  <text x="95" y="794" class="small">bag 的话题/消息类型和传感器外参要匹配 Avia 配置。</text>
+
+  <rect x="900" y="412" width="852" height="423" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="900" y="412" width="852" height="55" rx="18" fill="#eaf7f1"/>
+  <path d="M900 448 Q900 467 919 467 H1733 Q1752 467 1752 448" fill="#eaf7f1"/>
+  <text x="930" y="447" class="h">B · 真实 Livox Avia 设备</text>
+  <rect x="930" y="483" width="790" height="112" rx="13" fill="#f5f8fb" stroke="#dce6ef"/>
+  <text x="953" y="512" class="h2">终端 1：启动 Livox 硬件驱动</text>
+  <text x="953" y="543" class="mono-sm" fill="#172b40">roslaunch livox_ros_driver livox_lidar_msg.launch bd_list:=""</text>
+  <text x="953" y="573" class="small">先配设备 JSON；启动命令附 bd_list:=""，以实际广播码连接。</text>
+  <rect x="930" y="610" width="790" height="103" rx="13" fill="#f5f8fb" stroke="#dce6ef"/>
+  <text x="953" y="640" class="h2">终端 2：启动 FAST-LIO + 监控 + RViz</text>
+  <text x="953" y="674" class="mono-sm" fill="#172b40">roslaunch fastlio_health_monitor visualization_testbench.launch</text>
+  <text x="953" y="698" class="small">真实设备模式使用 use_sim_time=false，组合启动不包含硬件驱动。</text>
+  <rect x="930" y="729" width="790" height="82" rx="12" class="gold"/>
+  <text x="952" y="758" class="body" font-weight="700">bag 回放和真实驱动二选一，不要同时发布同一组雷达/IMU topic。</text>
+  <text x="952" y="785" class="small">完整 ROS/SDK 安装、网卡与广播码配置见 09_真实设备安装与配置.md；实机联调待现场完成。</text>
+
+  <!-- Step 3: configuration -->
+  <circle cx="83" cy="872" r="19" fill="#347bb6"/><text x="83" y="879" text-anchor="middle" class="h2" fill="#fff">3</text>
+  <text x="115" y="879" class="h">改参数：先选“启动参数”还是“健康阈值”</text>
+  <rect x="48" y="901" width="828" height="350" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="48" y="901" width="828" height="54" rx="18" fill="#edf2fa"/>
+  <path d="M48 936 Q48 955 67 955 H857 Q876 955 876 936" fill="#edf2fa"/>
+  <text x="78" y="936" class="h">启动 / 显示参数（launch）</text>
+  <text x="79" y="987" class="body"><tspan font-weight="700">回放入口：</tspan>visualization_bag_testbench.launch</text>
+  <text x="99" y="1013" class="small">bag（数据包） · rate（倍率，默认 1.0） · rviz（显示，默认 true）</text>
+  <line x1="78" y1="1031" x2="846" y2="1031" class="line"/>
+  <text x="79" y="1060" class="body"><tspan font-weight="700">实时/设备入口：</tspan>visualization_testbench.launch</text>
+  <text x="99" y="1086" class="small">rviz · use_sim_time · rviz_config</text>
+  <line x1="78" y1="1104" x2="846" y2="1104" class="line"/>
+  <text x="79" y="1133" class="body"><tspan font-weight="700">FAST-LIO YAML：</tspan>src/FAST_LIO/config/avia.yaml</text>
+  <text x="99" y="1159" class="small">检查 topic、lidar_type/scan_line 和 mapping.extrinsic_T/R。</text>
+  <rect x="75" y="1180" width="774" height="47" rx="10" class="gold"/>
+  <text x="94" y="1209" class="small" font-weight="700">外参用现场标定值；YAML 与静态 TF 要同步。地图/PCD 和完整安装见 09 手册。</text>
+
+  <rect x="900" y="901" width="852" height="350" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="900" y="901" width="852" height="54" rx="18" fill="#eaf7f1"/>
+  <path d="M900 936 Q900 955 919 955 H1733 Q1752 955 1752 936" fill="#eaf7f1"/>
+  <text x="930" y="936" class="h">健康阈值（YAML）</text>
+  <text x="931" y="984" class="body" font-weight="700">Avia 检测台默认读取</text>
+  <rect x="930" y="996" width="790" height="38" rx="9" class="code"/>
+  <text x="947" y="1021" class="mono-sm">src/fastlio_health_monitor/config/avia.yaml</text>
+  <text x="931" y="1064" class="small">改 topic：lidar_topic / imu_topic / odometry_topic</text>
+  <text x="931" y="1089" class="small">Avia IMU 单位 imu_acceleration_unit="g"；阈值加速度按 m/s²</text>
+  <text x="931" y="1114" class="small">改质量阈值：minimum_valid_point_ratio、minimum_lidar_rate_hz</text>
+  <text x="931" y="1139" class="small">改断流时间：lidar_stale_warning_sec / lidar_stale_error_sec 等</text>
+  <text x="931" y="1164" class="body" font-weight="700">保存 YAML 后重启节点即可，无需重新编译 C++。</text>
+  <text x="931" y="1189" class="small">pointcloud2.yaml 是独立监控器的 PointCloud2 示例。</text>
+  <text x="931" y="1214" class="small">完整安装步骤见 09_真实设备安装与配置.md。</text>
+
+  <!-- Step 4 -->
+  <rect x="48" y="1274" width="1704" height="88" rx="18" fill="#183d63"/>
+  <circle cx="83" cy="1318" r="19" fill="#fff"/><text x="83" y="1325" text-anchor="middle" class="h2" fill="#285f91">4</text>
+  <text x="115" y="1310" class="h2" fill="#fff">运行后看这里</text>
+  <text x="115" y="1336" class="small" fill="#dceafb">RViz 右侧点云/地图；左侧面板看总状态和分项原因。</text>
+  <rect x="540" y="1293" width="104" height="48" rx="13" fill="#d9f0e3"/><text x="592" y="1323" text-anchor="middle" class="h2" fill="#16734d">0 · OK</text>
+  <rect x="658" y="1293" width="164" height="48" rx="13" fill="#fff0c9"/><text x="740" y="1323" text-anchor="middle" class="h2" fill="#94630b">1 · WARNING</text>
+  <rect x="836" y="1293" width="128" height="48" rx="13" fill="#fde0e0"/><text x="900" y="1323" text-anchor="middle" class="h2" fill="#a53f3f">2 · ERROR</text>
+  <text x="1000" y="1310" class="body" fill="#fff" font-weight="700">bag 播完后地图保留、健康变 ERROR 是预期断流提示。</text>
+  <text x="1000" y="1337" class="small" fill="#dceafb">按 Ctrl+C 关闭整套 launch；重播时整套重启，避免时间戳回退。</text>
+  <text x="48" y="1380" class="small">完整操作：[06_启动与操作说明.md] · 全部阈值：[04_代码说明.md] · 实机安装：[09_真实设备安装与配置.md] · 2026-10-10</text>
+</svg>

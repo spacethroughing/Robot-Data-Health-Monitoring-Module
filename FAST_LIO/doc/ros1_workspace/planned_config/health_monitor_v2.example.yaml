@@ -1,0 +1,239 @@
+# 健康监控 V2 设计模板 / 2026-10-12
+# 重要：这些嵌套字段、插件和控制接口尚未实现。不要直接传给当前 health_monitor.launch。
+# 所有阈值是开发示例，不是 ROS 标准/硬件规格/已完成标定；部署前核对平台与数据来源。
+# 警告边界采用 > 上界、< 下界；等于阈值不触发该规则。硬错误立即报错，不受软告警持续时间屏蔽。
+# 完整公式、状态和实现依赖见 ../11_导师要求与健康监控后续执行方案.md。
+schema_version: 2  # 新解析器必须检查版本、未知字段、插件存在性；旧节点不会解析本模板。
+
+monitor:
+  namespace: "/robot_health"  # 诊断/完整模块报告的命名空间；UI 按 module_id 接入。
+  publish_rate_hz: 5.0        # Hz；单调时钟调度的诊断频率，不随 /clock 暂停停止。
+  statistics_window_sec: 5.0  # s；接收窗口每次诊断都裁剪，没新数据也裁剪。
+  min_frequency_samples: 3    # 频率至少需 3 条样本；不足时 N/A，不当作频率已通过。
+  min_frequency_coverage_sec: 1.0  # s；至少覆盖 1 秒源/接收统计时长后启用频率阈值。
+  preserve_worst_event_per_period: true  # 每诊断周期保留最严重事件，正常样本不能覆盖掉异常。
+  soft_warning_hold_sec: 0.5  # s；软阈值持续超限再提升告警；候选异常仍记录日志。
+  recovery_hold_sec: 1.0      # s；恢复到正常区间并持续 1 秒后清除告警。
+  hard_errors_immediate: true # NaN/Inf、结构错误、必需字段不可用等立即报告。
+  legacy_inactive_status: 1   # 无明确硬错误时，旧UInt8非RUNNING映射WARNING；硬错误ERROR=2优先，禁止伪装有效OK。
+  require_all_required_active_for_valid: true  # 必需模块停止时 operational_valid=false，即使传感器正常。
+
+control:
+  state_topic: "/robot_runtime/module_state"  # 未来 C++ 管理端状态：意图、确认、实例、代际与心跳。
+  strict_intent: true          # 未知关闭原因不能自动认定正常；须接入控制端，接口尚未实现。
+  heartbeat_warning_sec: 1.0  # s；管理状态接收年龄 > 1 为警告。
+  heartbeat_error_sec: 3.0    # s；> 3 意图失效/UNKNOWN，必需模块业务有效性 false。
+  trust_latched_stop_without_heartbeat: false  # 不能无限相信管理端死前留下的 STOP。
+  expected_stop_wait_limit_sec: null  # null=确认停止且管理心跳正常时，可一直等待后续 RUN。
+
+# ConfigLoader 规划为：模块 stream/lifecycle 与下面公共默认值做明确的递归合并。
+# 这不是 ROS rosparam 自动提供的行为；有效合并结果必须写入 effective_config.yaml。
+stream_defaults:
+  stamp_domain: "device_relative"  # 本项目 bag 头时间戳约 597 秒；不能直接减 UTC 或 /clock。
+  frequency_basis: "source"        # source=头时间戳源频率；receive=单调接收频率。回放用 source。
+  stamp:
+    require_positive: true         # header.stamp 必须 > 0；仿真时间未初始化另走 STARTING。
+    duplicate_level: "WARNING"     # 同代际相同 stamp；累计事件，不跨重启比较。
+    regression_level: "ERROR"      # 未授权回退；授权新 epoch 先清历史，不算回退故障。
+    max_gap_warning_sec: 0.3       # s；相邻源时间间隔 > 0.3 的一般警告起点，可按模块覆盖。
+    max_gap_error_sec: 1.0         # s；> 1 的源间隔错误起点，不用于接收断流年龄。
+  transport_delay:
+    enabled: false                 # 当前相对设备时钟未映射；没有同域依据就禁用绝对传输延迟。
+    mapping_id: null               # 启用时必须指向有效时钟映射/同域声明；不可靠猜测常数偏移。
+    warning_above_sec: 0.2         # s；映射后接收时刻 - 源 stamp > 此值为 WARNING。
+    error_above_sec: 1.0           # s；> 此值为 ERROR；仅 enabled=true 且映射有效时检查。
+
+lifecycle_defaults:
+  startup_deadline_sec: 10.0       # s，单调时间；RUN 后 10 秒未完成 ready/样本条件为 STARTUP_TIMEOUT。
+  stop_deadline_sec: 5.0           # s；STOP 意图后 5 秒未确认停止为 STOP_FAILED，不无限宽限。
+  ready_consecutive_samples: 10    # 连续有效样本数；还须频率覆盖时长及适配器 ready 条件满足。
+  stop_display: "STOPPED"          # UI 灰显正常停止；数据不可用，不显示有效定位 OK。
+  reset_on_instance_change: true   # 新 producer_instance_id 清本模块历史与运动基线。
+  reset_on_frame_epoch_change: true # 授权坐标重置清运动基线，不跨坐标系算速度/加速度。
+  reject_old_latched_as_ready: true # 缓存旧地图/旧诊断不是新实例主动输出的 ready 证据。
+  invalidate_data_when_stopped: true # 即使留图也 operational_valid=false。
+
+logging:
+  enabled: true                   # 导师追溯验收要求启用；关闭时须显式标记日志覆盖不足。
+  directory: "$HOME/fastlio_ws/logs/robot_health" # 每 monitor_run_id 独立子目录；换机器需配置。
+  event_format: "jsonl"           # 每行一个合法 JSON；非有限数值用 null + raw_value_text。
+  metrics_period_sec: 1.0          # s；周期指标采样，不逐条抄录 200 Hz IMU 或全点云。
+  metrics_queue_capacity: 4096     # 有界普通指标队列；满时丢指标但统计 dropped_metrics。
+  critical_event_queue_capacity: 512 # 关键事件预留容量；满时 logs_incomplete 与自身告警。
+  single_event_writer: true        # 单写线程，事件 seq 确定顺序；不要假定多线程写入有序。
+  rotate_size_mb: 20               # 每个日志文件超过约 20 MB 轮转；参数单位 MB。
+  rotate_file_count: 10            # 滚动保留文件数；实际删除行为写清记录缺失范围。
+  total_budget_mb: 512             # 单次 run 的预算；manifest/config 不因轮转静默丢失。
+  flush_period_sec: 1.0            # s；普通 flush 间隔，不等于 fsync 持久化保证。
+  critical_commit_deadline_sec: 2.0 # s；停机等关键事件等待写线程确认的上限，超时另报日志错误。
+  commit_stop_events_before_ack: true # 协议要求关键记录确认；磁盘失败时不能伪称日志完整。
+  include_effective_config_hash: true # 日志关联解析/补默认后的配置 hash；也保留原文件 hash。
+  include_binary_hash: true        # 记录监控二进制 SHA-256 与源版本/dirty 信息，关联真实执行代码。
+  raw_data_policy: "reference_bag" # 原始数据由 bag/设备录制，事件日志保存路径/摘要和片段引用。
+
+modules:
+  - id: "lidar"                   # 唯一模块 ID，不能依赖固定 FAST-LIO 文本名称。
+    checker: "LidarChecker"        # 规划 C++ Checker 注册名，尚未实现此 V2 插件。
+    adapter: "LivoxCustomAdapter"  # 原始 CustomMsg → 统一样本；PointCloud2 使用另一已实现适配器。
+    topic: "/livox/lidar"          # 原始雷达输入，不能改成下采样地图后沿用本点数阈值。
+    required: true                 # 当前定位链路依赖雷达，未激活时业务有效性 false。
+    lifecycle:
+      control_binding: "sensors"  # 由传感器管理状态控制，定位停止不清雷达历史。
+    stream:
+      receive_age_sec:
+        warning_above: 0.5         # s；距最后接收 > 0.5 为 WARNING；沿用现有 Avia 起点。
+        error_above: 1.5           # s；> 1.5 为 ERROR，仅预期应输出时启用。
+      frequency:
+        warning_below_hz: 8.0      # Hz；源频率 < 8 持续为 WARNING；10 Hz 数据的开发例值。
+        error_below_hz: 5.0        # Hz；< 5 持续为 ERROR；部署须按实际设备频率标定。
+        warning_above_hz: 12.0     # Hz；> 12 持续为 WARNING，不能对 2 倍接收频率直接套此上界。
+        error_above_hz: 20.0       # Hz；> 20 持续为 ERROR。
+    quality:
+      structure:
+        enabled: true             # 字段、数组、buffer、尺寸乘加防溢出；错误立即 ERROR。
+        livox_count_mismatch_level: "ERROR" # point_num 超数组可能危及算法，坏数据拒绝转发。
+      points_total:
+        warning_below: 100         # 点/帧；总点数 < 100 WARNING；原工程已有的数量下界起点。
+        error_below: 1             # 点/帧；空扫描 ERROR；不是每个型号的硬件要求。
+      points_valid:
+        warning_below: 100         # 点/帧；有效点数量单独检查，不与总点数混淆。
+        error_below: 1             # 点/帧；无有效点 ERROR。
+      valid_ratio:
+        warning_below: 0.8         # [0,1]；坐标有效点/总点数 < 0.8 WARNING，沿用原阈值。
+        error_below: 0.5           # [0,1]；< 0.5 ERROR，新增开发例值，须用真实扫描校准。
+      range_m:
+        minimum: 0.0001           # m；> 最小距离且 <= 最大距离计为坐标有效；不等于 FAST-LIO blind。
+        maximum: 500.0            # m；超范围计无效点，沿用现有最大量程检查值。
+    adapter_options:
+      inspect_livox_line_tag: false # 二期按设备消息/规格实现；不能凭模板宣称已完成检查。
+      inspect_point_offset_time: false # 二期检查扫描内 offset_time 合法范围和排序。
+
+  - id: "imu"
+    checker: "ImuChecker"
+    adapter: "RosImuAdapter"
+    topic: "/livox/imu"
+    required: true
+    lifecycle:
+      control_binding: "sensors"  # 传感器与定位生命周期独立。
+    stream:
+      receive_age_sec:
+        warning_above: 0.15        # s；沿用当前 IMU 新鲜度阈值。
+        error_above: 0.6           # s；预期应运行且断流 > 0.6 ERROR。
+      frequency:
+        warning_below_hz: 160.0    # Hz；约 200 Hz 源频率的示例，现场确认采样率后配置。
+        error_below_hz: 50.0       # Hz；< 50 的严重低频例值；原参数 50 曾仅用于 WARNING。
+        warning_above_hz: 260.0    # Hz；高源频率阈值，不对 2 倍接收频率误报。
+        error_above_hz: 400.0      # Hz；开发例值。
+      stamp:
+        max_gap_warning_sec: 0.02  # s；约 200 Hz IMU 的相邻源间隔 > 20 ms WARNING。
+        max_gap_error_sec: 0.1     # s；> 100 ms ERROR；不替代接收断流检查。
+    quality:
+      acceleration_unit: "g"      # g / mps2；本机 Livox 输入为 g，乘 9.80665 后统一到 m/s²。
+      acceleration_content: "specific_force" # 当前含重力；若源已去重力需声明gravity_removed，静止基线不同。
+      angular_velocity_unit: "radps" # radps=rad/s；不自动猜测 deg/s，非标准单位另写适配。
+      required_measurements:
+        acceleration: true        # covariance 首项 -1 或适配器声明无该估计时，为缺必需字段。
+        angular_velocity: true    # 陀螺仪必须可用；姿态不是本阶段必需字段。
+        orientation: false        # 当前 Livox 不提供有效姿态，不能误判必需姿态缺失。
+      require_finite: true         # 原始分量、换算结果有限；NaN/Inf/溢出立即 ERROR。
+      acceleration_norm_mps2:
+        warning_above: 100.0       # m/s²；含重力的加速度模长上界，沿用原经验值，非设备规格。
+        error_above: 200.0         # m/s²；新增严重超限示例，需平台标定。
+      angular_velocity_norm_rps:
+        warning_above: 35.0        # rad/s；沿用原经验值。
+        error_above: 70.0          # rad/s；严重超限示例，不代表 Livox 量程。
+      covariance:
+        enabled: true             # 先处理 -1/全零含义，再处理被声明有效的矩阵。
+        required_for_valid: false   # 当前Avia未知协方差仅标记覆盖不足；不能当作零噪声通过。
+        unknown_policy: "report_only" # 全零是未知；当前 Avia 没有估计时只记录覆盖不足，不称零噪声。
+        acceleration_unit: "input_squared" # input_squared=输入单位平方(g²或(m/s²)²)；si_squared=已SI方差；按生产者契约。
+        require_symmetric: true    # 已知有效矩阵应对称，数值容差另配置。
+        require_psd: true          # 已知有效矩阵应半正定；-1 可用性标记不参与该检测。
+        numeric_tolerance: 0.000000001 # 矩阵对称/PSD的浮点容差，不是方差物理阈值。
+      stuck:
+        enabled: false             # 未标定默认关闭，静止的近零角速度不能直接作故障。
+        window_sec: 1.0           # s；长期重复检查窗口。
+        require_independent_motion_evidence: true # 需真实运动证据；/cmd_vel 指令本身不够。
+        axis_repeat_tolerance: 0.000001 # 输入SI数值差阈值，需按实际量化分辨率标定。
+        level: "WARNING"          # 可疑而非确定硬件坏掉。
+      noise:
+        enabled: false             # 先用静止/运动数据建立工况基线；模板不假造已标定阈值。
+        calibration_profile: null # 启用必须有设备/工况/采样率对应的标定配置。
+      saturation:
+        enabled: false             # 启用前填设备真实量程，不能把上面经验幅值当饱和规格。
+        sensor_full_scale_profile: null
+
+  - id: "localization"
+    checker: "LocalizationChecker"
+    adapter: "OdometryAdapter"
+    topic: "/Odometry"            # 换标准 Odometry 节点只需换本项及坐标/周期/契约。
+    required: true
+    depends_on: ["lidar", "imu"]  # 依赖图必须无环；正常停定位不自动停止这两项。
+    lifecycle:
+      control_binding: "localization" # 绑定定位管理端 STOP/RUN，不通过 Topic 缺失推断正常停机。
+      startup_deadline_sec: 10.0   # s；初始化过久报 ERROR，有正常数据前不输出定位有效。
+    stream:
+      receive_age_sec:
+        warning_above: 0.3         # s；仅 expected_active=true 时按输出断流检查。
+        error_above: 1.0           # s；沿用原定位新鲜度阈值。
+      frequency:
+        warning_below_hz: 5.0      # Hz；新增独立定位频率检查，例值需结合算法期望速率。
+        error_below_hz: 1.0        # Hz；< 1 的严重低频。
+        warning_above_hz: 15.0     # Hz；源频率上界例值。
+        error_above_hz: 30.0       # Hz；不得跨重定位/进程 epoch 统计。
+    quality:
+      expected_pose_frame: "camera_init" # 本工程当前坐标；接别的节点要按其frame和连续性契约改。
+      expected_child_frame: "body" # twist参考 child frame，不能直接混入世界坐标差分。
+      continuity: "continuous_odometry" # continuous_odometry / global_localization；后者允许授权全局修正。
+      quaternion_norm_error:
+        warning_above: 0.02        # abs(norm(q)-1) > 0.02 WARNING；原工程规则。
+        error_above: 0.1           # > 0.1 ERROR；零/非有限四元数立即错误。
+      kinematics:
+        velocity_source: "position_difference" # 当前 FAST-LIO 没有可信 twist；不把默认零twist当静止。
+        dt_min_sec: 0.001          # s；小于该源时间间隔不计算微分，标 N/A并记录原因。
+        dt_max_sec: 1.0            # s；大间隔重建基线，不跨数据缺口求加速度。
+        continuous_motion_topic: null # global_localization需连续odom或可信twist；缺少时不算物理运动。
+        speed_mps:
+          warning_above: 15.0      # m/s；差分速度向量模长；沿用原经验值，按平台最大速度标定。
+          error_above: 50.0        # m/s；严重超速。
+        acceleration_mps2:
+          warning_above: 10.0      # m/s²；速度向量差/速度中点时间差，新增开发例值。
+          error_above: 30.0        # m/s²；至少3个有效位置样本，同frame/epoch。
+        angular_speed_rps:
+          warning_above: 3.0       # rad/s；相邻单位四元数短弧角差/dt，q/-q相同不误报。
+          error_above: 10.0        # rad/s；需按实际机器人角速度标定。
+      covariance:
+        enabled: true
+        required_for_valid: false   # 若业务要求可信不确定度，设true；缺估计时禁止业务有效，而非假设为0。
+        zero_matrix_policy: "unknown_warning" # Odometry无通用-1契约；零未知是本适配器明确约定。
+        require_symmetric: true
+        require_psd: true
+        numeric_tolerance: 0.000000001
+        position_variance_m2:
+          warning_above: 1.0       # m²；x/y/z 对角线最大值；示例，不从混合100阈值直接换算。
+          error_above: 4.0         # m²；约对应2m标准差量级，阈值需算法/平台标定。
+        orientation_variance_rad2:
+          warning_above: 0.1       # rad²；旋转三对角最大值，不与位置方差混合。
+          error_above: 0.5         # rad²；示例阈值。
+      jump:
+        policy: "prediction_residual" # p_i-(p_(i-1)+v_(i-1)*dt)，非跨重启/重定位差分。
+        residual_warning_above_m: 0.5 # m；预测残差警告例值，需结合采样率和正常加速度标定。
+        residual_error_above_m: 2.0   # m；严重残差例值。
+        rotation_warning_above_rad: 0.3 # rad；姿态短弧角差；不能对 q/-q 当翻转。
+        rotation_error_above_rad: 1.0
+        require_explicit_reset_event: true # 正常坐标/重定位重置先有事件，再开新frame_epoch。
+
+# 扩展实例先禁用，待对应 C++ Adapter/业务 Checker 完成；不会凭字符串自动解析未知消息。
+extensions:
+  perception:
+    enabled: false
+    adapter: "DiagnosticRelayAdapter" # 接已有DiagnosticArray做统一诊断转发；不代表已评价识别精度。
+    topic: "/perception/diagnostics"
+    empty_detection_is_error: false # 没目标可以正常；几何/ID/准确率需另外的业务规则和真值。
+  planning:
+    enabled: false
+    adapter: "PathAndTaskStateAdapter" # 必须接Path+goal_id/任务状态，接口尚未实现。
+    path_topic: "/planner/path"
+    task_state_topic: "/planner/task_state"
+    check_result_only_when_goal_active: true # 无任务IDLE，不要求不断生成新路径。
+    result_deadline_sec: 2.0       # s；只在已有明确有效goal且计划应输出时启用，按规划周期标定。

@@ -1,0 +1,173 @@
+# 已实现的 C++ V2 配置；2026-10-12。后续完整规划模板不是本配置的替代品。
+# 阈值仅为开发/回放起点；部署前按设备、平台、源采样率标定。
+# 下限使用 <，上限使用 >；等于阈值不触发对应级别。NaN/结构错误立即 ERROR。
+schema_version: 2  # 未支持字段、拼错字段、单位或依赖环会导致启动失败。
+monitor:
+  data_reference: ""        # 可填实际bag绝对路径，日志记录SHA-256；实机无bag留空，不猜数据来源。
+  publish_rate_hz: 5.0        # Hz；SteadyTimer 发布，不随 bag /clock 暂停停止。
+  statistics_window_sec: 5.0 # s；每次诊断裁剪接收/源窗口，断流接收频率降为0。
+  min_frequency_samples: 3  # 至少3条消息后才判断频率；不足标 N/A。
+  min_frequency_coverage_sec: 1.0 # s；源或接收统计区间覆盖1秒后启用。
+  soft_warning_hold_sec: 0.5 # s；软告警持续0.5秒触发；NaN/结构错误/严重运动ERROR立即，候选事件仍记录。
+  recovery_hold_sec: 1.0     # s；有通过证据持续1秒恢复；本周期硬错误仍保留。
+  diagnostics_topic: "/fastlio_health_monitor/diagnostics" # 通用诊断，兼容现有RViz订阅。
+  status_topic: "/fastlio_health_monitor/status" # UInt8：0/1/2；停止/启动为1，硬错误优先2。
+control:
+  strict_intent: true        # 必须接独立运行控制器；无心跳为UNKNOWN/ERROR。
+  state_topic: "/robot_runtime/module_state" # 非latched RuntimeState，序号递增心跳。
+  heartbeat_warning_sec: 1.0 # s；已接入管理端后，接收年龄>1警告。
+  heartbeat_error_sec: 3.0   # s；>3意图失效UNKNOWN/ERROR，不永久信任旧STOP。
+stream_defaults:
+  stamp_domain: "device_relative" # 本bag头stamp约597秒，绝对传输延迟未实现/显示N/A。
+  frequency_basis: "source"  # source=头时间频率，与2倍播放无关；receive=单调接收频率。
+  stamp:
+    require_positive: true   # stamp必须>0；不自动猜测时钟单位。
+    duplicate_level: "WARNING" # 同代际重复，软持续告警。
+    regression_level: "ERROR" # 未授权回退立即错误；实例/RESET_FRAME先清历史。
+    max_gap_warning_sec: 0.3 # s；相邻源时间差>0.3警告；可分模块覆盖。
+    max_gap_error_sec: 1.0   # s；>1严重；不是接收年龄。
+lifecycle_defaults:
+  startup_deadline_sec: 10.0 # s；RUN后未达到ready期限报STARTUP_TIMEOUT。
+  stop_deadline_sec: 5.0     # s；STOP后未确认停止报STOP_FAILED。
+  ready_consecutive_samples: 10 # 连续无ERROR样本+频率覆盖+管理进程存活才RUNNING。
+logging:
+  enabled: true             # 事件JSONL+指标CSV+配置/版本/二进制hash。
+  directory: "/tmp/robot_health_monitor/robot_health" # 示例目录；部署时改为持久且可写路径。
+  metrics_period_sec: 1.0   # s；指标采样周期，不全量复制200Hz IMU。
+  metrics_queue_capacity: 4096 # 普通队列上限；满丢弃并计数。
+  critical_event_queue_capacity: 512 # 事件独立容量；满计数/日志ERROR。
+  rotate_size_mb: 20        # MB；每文件超过此大小轮转。
+  rotate_file_count: 10     # 每种日志保留数；删除旧文件计数，logs_incomplete=true。
+  total_budget_mb: 512      # MB；单次run累计写预算，超限停止写并报日志ERROR。
+  flush_period_sec: 1.0     # s；普通flush周期；关键启停事件fsync确认最多等待2秒。
+modules:
+  - id: "lidar"             # 唯一模块ID；核心逻辑不依赖FAST-LIO名称。
+    checker: "LidarChecker" # C++规则类，工厂注册。
+    adapter: "LivoxCustomAdapter" # 支持换为PointCloud2Adapter。
+    topic: "/livox/lidar"   # 原始输入，不是地图或下采样结果。
+    required: true          # 总体有效性需要本模块。
+    visualization_topic: "/fastlio_health_monitor/lidar_raw_visualization" # 原始点云桥接。
+    visualization_frame: "livox_raw" # 只改显示frame，不变换坐标；需正确静态TF。
+    lifecycle:
+      control_binding: "sensors" # 与定位独立，停定位不清除传感器历史。
+    stream:
+      receive_age_sec:
+        warning_above: 0.5  # s；距最后接收>0.5 WARNING。
+        error_above: 1.5    # s；>1.5 ERROR；确认STOPPED时暂停断流要求。
+      frequency:
+        warning_below_hz: 8.0 # Hz；10Hz源的开发阈值。
+        error_below_hz: 5.0
+        warning_above_hz: 12.0 # Hz；不能套在2倍接收频率上。
+        error_above_hz: 20.0
+    quality:
+      points_total:
+        warning_below: 100 # 点/帧；总数<100警告。
+        error_below: 1    # 空扫描立即ERROR
+      points_valid:
+        warning_below: 100 # 点/帧；数量与有效比例分开。
+        error_below: 1    # 无有效点立即ERROR。
+      valid_ratio:
+        warning_below: 0.8 # 有效/总数；不是FAST-LIO预处理可用率。
+        error_below: 0.5   # <0.5严重，需数据校准。
+      range_m:
+        minimum: 0.0001    # m；有效距离>min且<=max。
+        maximum: 500.0     # m；经验值，不代表硬件规格。
+  - id: "imu"
+    checker: "ImuChecker"
+    adapter: "RosImuAdapter"
+    topic: "/livox/imu"
+    required: true
+    lifecycle:
+      control_binding: "sensors"
+    stream:
+      receive_age_sec:
+        warning_above: 0.15 # s；接收年龄。
+        error_above: 0.6
+      frequency:
+        warning_below_hz: 160.0 # Hz；约200Hz输入。
+        error_below_hz: 50.0
+        warning_above_hz: 260.0
+        error_above_hz: 400.0
+      stamp:
+        max_gap_warning_sec: 0.02 # s；相邻源stamp>20ms。
+        max_gap_error_sec: 0.1
+    quality:
+      acceleration_unit: "g" # g乘9.80665；SI输入必须显式mps2。
+      angular_velocity_unit: "radps" # 只支持rad/s，其他单位拒绝。
+      acceleration_content: "specific_force" # 含重力；去重力输入声明gravity_removed。
+      required_measurements:
+        acceleration: true    # covariance[0]=-1为该估计不可用。
+        angular_velocity: true
+        orientation: false    # Avia不要求姿态估计。
+      acceleration_norm_mps2:
+        warning_above: 100.0  # m/s²；含重力模长；经验值待平台标定。
+        error_above: 200.0
+      angular_velocity_norm_rps:
+        warning_above: 35.0   # rad/s；不是传感器饱和量程。
+        error_above: 70.0
+      covariance:
+        enabled: true        # 处理未知/缺字段后，查有限/对称/半正定。
+        required_for_valid: false # 未知只显示覆盖不足，不冒充零噪声。
+        unknown_policy: "report_only" # report_only/warning/error；全零未知。
+        acceleration_unit: "input_squared" # g²协方差乘9.80665²；已SI方差用si_squared。
+        require_symmetric: true
+        require_psd: true
+        numeric_tolerance: 0.000000001 # 对称/PSD浮点容差。
+  - id: "localization"
+    checker: "LocalizationChecker"
+    adapter: "OdometryAdapter" # 还支持PoseStampedAdapter（协方差不可用）。
+    topic: "/Odometry"        # 可换其他定位算法的标准消息Topic。
+    required: true
+    depends_on: ["lidar", "imu"] # 依赖无环，依赖失效使定位业务有效false。
+    lifecycle:
+      control_binding: "localization"
+    stream:
+      receive_age_sec:
+        warning_above: 0.3   # s；STOPPED/STARTING按生命周期处理。
+        error_above: 1.0
+      frequency:
+        warning_below_hz: 5.0 # Hz；定位输出独立频率。
+        error_below_hz: 1.0
+        warning_above_hz: 15.0
+        error_above_hz: 30.0
+    quality:
+      expected_pose_frame: "camera_init" # 空字符串不限定；动态变frame仍需RESET_FRAME。
+      expected_child_frame: "body" # twist在child_frame，适配器旋转到pose参考系。
+      continuity: "continuous_odometry" # global_localization必须可信twist；禁止map差分求运动。
+      quaternion_norm_error:
+        warning_above: 0.02  # abs(norm(q)-1)；q与-q同姿态。
+        error_above: 0.1
+      kinematics:
+        velocity_source: "position_difference" # 可信twist用twist；FAST-LIO默认twist不可用。
+        dt_min_sec: 0.001    # s；过小/过大差分不算，显示N/A并重建基线。
+        dt_max_sec: 1.0
+        speed_mps:
+          warning_above: 15.0 # m/s；差分向量模长。
+          error_above: 50.0 # 严重速度ERROR立即，不等待soft hold。
+        acceleration_mps2:
+          warning_above: 10.0 # m/s²；速度向量差/速度中点时间差；至少3帧位置。
+          error_above: 30.0 # 严重运动ERROR立即。
+        angular_speed_rps:
+          warning_above: 3.0 # rad/s；短弧角差/dt，global模式不以map角差算运动。
+          error_above: 10.0
+      covariance:
+        enabled: true
+        required_for_valid: false # 业务需可信协方差时设true；未知阻止有效。
+        zero_matrix_policy: "unknown_warning" # 本适配器契约，不是Odometry标准-1定义。
+        require_symmetric: true
+        require_psd: true
+        numeric_tolerance: 0.000000001
+        position_variance_m2:
+          warning_above: 1.0 # m²；xyz对角最大值。
+          error_above: 4.0
+        orientation_variance_rad2:
+          warning_above: 0.1 # rad²；旋转三对角最大值，不能与m²混合。
+          error_above: 0.5
+      jump:
+        residual_m:
+          warning_above: 0.5 # m；p_i-(p_(i-1)+v_(i-1)*dt)。
+          error_above: 2.0
+        rotation_rad:
+          warning_above: 0.3 # rad；相邻姿态短弧角差。
+          error_above: 1.0
+# noise/stuck/saturation未标定，当前不提供启用字段；不能将运动方差等同噪声。

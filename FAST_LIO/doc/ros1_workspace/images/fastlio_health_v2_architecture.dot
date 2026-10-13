@@ -1,0 +1,76 @@
+digraph V2Architecture {
+  graph [rankdir=TB, bgcolor="#F8FAFC", pad="0.30", nodesep="0.34", ranksep="0.52", splines=ortho, compound=true, newrank=true, fontname="Noto Sans CJK SC", label="FAST-LIO 定位健康监控 V2｜项目技术架构\nROS Noetic · C++ 核心/适配器 · 生命周期管理 · 可追溯诊断", labelloc=t, fontsize=24, fontcolor="#0F172A"];
+  node [shape=box, style="rounded,filled", fontname="Noto Sans CJK SC", fontsize=12, color="#94A3B8", penwidth=1.2, margin="0.18,0.12", fontcolor="#0F172A"];
+  edge [color="#64748B", penwidth=1.25, arrowsize=0.72, fontname="Noto Sans CJK SC", fontsize=10, fontcolor="#475569"];
+
+  subgraph cluster_source {
+    label="数据来源"; color="#CBD5E1"; style="rounded,filled"; fillcolor="#F1F5F9"; fontsize=14; fontname="Noto Sans CJK SC";
+    bag [label="rosbag 数据\nLivox CustomMsg + sensor_msgs/Imu", fillcolor="#E0F2FE"];
+    device [label="真实传感器\nLivox 驱动 / 其他 ROS 数据源", fillcolor="#E0F2FE"];
+    {rank=same; bag; device;}
+  }
+
+  subgraph cluster_runtime {
+    label="运行入口与进程管理（C++）"; color="#BFDBFE"; style="rounded,filled"; fillcolor="#EFF6FF"; fontsize=14; fontname="Noto Sans CJK SC";
+    launch [label="managed_bag_testbench.launch\n组合配置、仿真时钟、TF、RViz", fillcolor="#DBEAFE"];
+    controller [label="RuntimeController\n按配置启动/停止子进程\nRUN · STOP · RESET_FRAME", fillcolor="#DBEAFE"];
+    player [label="BagPlaybackCoordinator\n先暂停 rosbag\n确认 FAST-LIO 与监控 TCPROS 连接后起播", fillcolor="#DBEAFE"];
+    {rank=same; launch; controller; player;}
+  }
+
+  subgraph cluster_mapping {
+    label="定位建图"; color="#A7F3D0"; style="rounded,filled"; fillcolor="#ECFDF5"; fontsize=14; fontname="Noto Sans CJK SC";
+    fastlio [label="FAST-LIO / laserMapping\nLiDAR + IMU → Odometry / TF\n注册点云 / 累积地图 / Path", fillcolor="#D1FAE5"];
+  }
+
+  subgraph cluster_monitor {
+    label="健康监控节点（ROS 接入 + ROS 无关 C++ 判定核心）"; color="#C4B5FD"; style="rounded,filled"; fillcolor="#F5F3FF"; fontsize=14; fontname="Noto Sans CJK SC";
+    config [label="YAML ConfigLoader / Validator\n严格校验规则、单位、依赖\n保存原始/有效配置与 hash", fillcolor="#EDE9FE"];
+    registry [label="HealthRegistry\n按 module_id 组装模块\n定位 / 感知 / 规划均可扩展", fillcolor="#EDE9FE"];
+    adapters [label="C++ InputAdapters\nLivox / PointCloud2 / IMU\nOdometry / Pose / 规划任务\n校验字段并统一单位、坐标语义", fillcolor="#EDE9FE"];
+    core [label="robot_health_core\nChecker + Stream / Kinematics / Covariance\n频率、时间戳、点数、IMU、定位运动/协方差", fillcolor="#DDD6FE"];
+    lifecycle [label="LifecycleTracker\n控制意图 + 管理心跳\ninstance_id / command_id / frame_epoch", fillcolor="#EDE9FE"];
+    aggregate [label="RuleLatch + DependencyAggregator\n异常持续/恢复门限\n模块等级、总体等级、业务有效性", fillcolor="#EDE9FE"];
+    {rank=same; config; registry;}
+    config -> registry [label="有效配置"];
+    registry -> adapters [label="实例化/订阅"];
+    adapters -> core [label="统一样本"];
+    lifecycle -> aggregate [label="运行状态/意图"];
+    core -> aggregate [label="规则结果"];
+  }
+
+  subgraph cluster_outputs {
+    label="结果、可视化与追溯"; color="#FBCFE8"; style="rounded,filled"; fillcolor="#FDF2F8"; fontsize=14; fontname="Noto Sans CJK SC";
+    diagnostics [label="ROS 输出\nDiagnosticArray：overall + modules\nUInt8：0 OK / 1 WARNING / 2 ERROR", fillcolor="#FCE7F3"];
+    rviz [label="RViz C++ Health Panel + 3D\n健康等级/指标/失联超时\n原始点云、注册点云、地图、Path、TF", fillcolor="#FCE7F3"];
+    recorder [label="EventRecorder / MetricsRecorder\nJSONL 事件 + CSV 周期指标\n配置/源码/二进制/数据引用 hash\n日志失败与丢失状态可见", fillcolor="#FCE7F3"];
+    files [label="运行归档目录\nmanifest.json · effective_config.yaml\nevents.*.jsonl · metrics.*.csv", fillcolor="#FFF1F2"];
+    {rank=same; diagnostics; recorder;}
+    diagnostics -> rviz [label="订阅诊断"];
+    recorder -> files [label="异步写入/轮转"];
+  }
+
+  rosapi [label="ROS 接口\n/robot_runtime/control 服务\n/robot_runtime/module_state 心跳", fillcolor="#FEF3C7"];
+
+  bag -> player [label="bag 文件"];
+  device -> fastlio [label="LiDAR / IMU"];
+  player -> fastlio [label="/clock + 数据回放"];
+  launch -> controller [label="启动配置"];
+  controller -> fastlio [label="监督定位进程"];
+  controller -> player [label="管理传感器回放"];
+  fastlio -> adapters [label="/Odometry + 输入旁路订阅"];
+  bag -> adapters [label="原始 LiDAR / IMU 旁路"];
+  device -> adapters [label="原始 LiDAR / IMU 旁路"];
+  controller -> lifecycle [label="RuntimeState 心跳"];
+  rosapi -> controller [dir=both, label="控制请求/状态"];
+  aggregate -> diagnostics [label="5 Hz"];
+  aggregate -> recorder [label="候选/触发/恢复事件"];
+  core -> recorder [label="指标样本"];
+  config -> recorder [label="配置快照/hash"];
+  fastlio -> rviz [label="点云 / 地图 / TF / Path"];
+  diagnostics -> rviz [label="健康状态"];
+
+  note [shape=note, label="边界：判定核心使用统一 C++ 数据结构，不直接依赖 ROS 消息；ROS 适配器负责解析与转换。当前部署包、节点、Topic、launch 和 RViz 仍运行于 ROS1。\nSTOPPED/PAUSED 只有收到有效管理意图才视为计划停用；非计划退出或管理心跳丢失会报错。", fillcolor="#FFFBEB", color="#F59E0B", fontsize=10];
+  {rank=sink; note;}
+  files -> note [style=invis];
+}

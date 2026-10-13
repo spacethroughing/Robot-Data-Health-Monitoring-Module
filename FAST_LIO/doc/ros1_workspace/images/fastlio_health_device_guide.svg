@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2380" viewBox="0 0 1800 2380" role="img" aria-labelledby="title desc">
+  <title id="title">FAST-LIO 定位健康监控设备与回放完整使用说明</title>
+  <desc id="desc">从 ROS Noetic 与 Livox SDK 安装、Catkin 工作空间编译、Livox Avia 网络和广播码配置、FAST-LIO 参数设置，到选择真实设备或 rosbag 回放、启动健康监控 RViz 检测台与检查数据的完整操作图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2f6fb"/><stop offset="1" stop-color="#e8eff7"/></linearGradient>
+    <linearGradient id="head" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#102f52"/><stop offset="1" stop-color="#28658e"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#14314d" flood-opacity=".09"/></filter>
+    <style>
+      text{font-family:"Noto Sans CJK SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;fill:#18334d}
+      .title{font-size:34px;font-weight:700;fill:#fff}.subtitle{font-size:17px;fill:#dbeafa}
+      .step{font-size:23px;font-weight:700}.head2{font-size:18px;font-weight:700}.body{font-size:16px}.small{font-size:14px;fill:#61778d}
+      .tiny{font-size:12px;fill:#61778d}.code{font-family:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;font-size:14px;fill:#f3f7fb}
+      .code-sm{font-family:"DejaVu Sans Mono","Noto Sans Mono CJK SC",monospace;font-size:12px;fill:#f3f7fb}
+      .box{fill:#fff;stroke:#d3dfeb;stroke-width:1.4}.terminal{fill:#172b40}.blue{fill:#eaf3fc;stroke:#cbdced}.green{fill:#eaf7f1;stroke:#cae7d9}.gold{fill:#fff7e8;stroke:#efdbb8}.purple{fill:#f3eff9;stroke:#ddd5ed}
+      .divider{stroke:#dce6ef;stroke-width:1.4}.label{font-size:13px;font-weight:700;fill:#fff}
+    </style>
+  </defs>
+  <rect width="1800" height="2240" rx="26" fill="url(#bg)"/>
+  <rect x="28" y="24" width="1744" height="130" rx="21" fill="url(#head)"/>
+  <text x="64" y="76" class="title">FAST-LIO 健康检测台｜真实设备完整使用说明</text>
+  <text x="66" y="111" class="subtitle">从配置电脑到看到实时地图：环境 → 编译 → 接雷达 → 配参数 → 启动检测台 → 检查状态</text>
+  <rect x="1400" y="52" width="330" height="46" rx="23" fill="#fff" opacity=".14"/>
+  <text x="1565" y="82" text-anchor="middle" class="body" fill="#fff" font-weight="700">Ubuntu 20.04 · ROS Noetic · Livox Avia</text>
+
+  <!-- Step 1 -->
+  <circle cx="78" cy="192" r="21" fill="#347bb6"/><text x="78" y="200" text-anchor="middle" class="head2" fill="#fff">1</text>
+  <text x="114" y="200" class="step">安装环境与驱动依赖（新机器做一次）</text>
+  <rect x="48" y="222" width="836" height="326" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="48" y="222" width="836" height="52" rx="18" fill="#eaf3fc"/>
+  <path d="M48 256 Q48 274 66 274 H866 Q884 274 884 256" fill="#eaf3fc"/>
+  <text x="78" y="257" class="head2">Ubuntu 20.04 / ROS Noetic</text>
+  <rect x="73" y="290" width="786" height="229" rx="12" class="terminal"/>
+  <text x="94" y="321" class="code">sudo apt install -y ros-noetic-desktop-full</text>
+  <text x="94" y="349" class="code-sm"># 先按 ROS 官方说明配置软件源；Noetic 已结束上游支持</text>
+  <text x="94" y="382" class="code-sm">sudo apt install -y build-essential cmake git python3-rosdep</text>
+  <text x="94" y="410" class="code-sm">sudo apt install -y libapr1-dev libboost-all-dev libeigen3-dev libpcl-dev</text>
+  <text x="94" y="443" class="code-sm">sudo rosdep init   # rosdep 首次使用时执行</text>
+  <text x="94" y="471" class="code-sm">rosdep update</text>
+  <text x="94" y="503" class="tiny" fill="#cbd9e7">已有本机环境可跳到第 2 步；新机器先装 Livox-SDK，再编译工作区。</text>
+
+  <rect x="910" y="222" width="842" height="326" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="910" y="222" width="842" height="52" rx="18" fill="#eaf7f1"/>
+  <path d="M910 256 Q910 274 928 274 H1734 Q1752 274 1752 256" fill="#eaf7f1"/>
+  <text x="940" y="257" class="head2">安装 Livox-SDK 到系统目录</text>
+  <rect x="935" y="290" width="792" height="229" rx="12" class="terminal"/>
+  <text x="956" y="321" class="code">cd /tmp</text>
+  <text x="956" y="349" class="code-sm">git clone https://github.com/Livox-SDK/Livox-SDK.git</text>
+  <text x="956" y="382" class="code">cd /tmp/Livox-SDK/build</text>
+  <text x="956" y="410" class="code">cmake ..</text>
+  <text x="956" y="438" class="code">make -j2</text>
+  <text x="956" y="466" class="code">sudo make install &amp;&amp; sudo ldconfig</text>
+  <text x="956" y="503" class="tiny" fill="#cbd9e7">若 /usr/local/lib/liblivox_sdk_static.a 已存在，可跳过 SDK 编译。</text>
+
+  <!-- Step 2 -->
+  <circle cx="78" cy="592" r="21" fill="#347bb6"/><text x="78" y="600" text-anchor="middle" class="head2" fill="#fff">2</text>
+  <text x="114" y="600" class="step">获取 Catkin 工作包并编译</text>
+  <rect x="48" y="622" width="1050" height="330" rx="18" class="box" filter="url(#shadow)"/>
+  <text x="78" y="660" class="head2">当前项目工作区（本机无需重新 clone）</text>
+  <rect x="74" y="679" width="1000" height="236" rx="12" class="terminal"/>
+  <text x="96" y="710" class="code">bash</text>
+  <text x="96" y="738" class="code">source /opt/ros/noetic/setup.bash</text>
+  <text x="96" y="766" class="code">cd $HOME/fastlio_ws</text>
+  <text x="96" y="794" class="code-sm">rosdep install --from-paths src --ignore-src -r -y --rosdistro noetic</text>
+  <text x="96" y="822" class="code">catkin_make -j2</text>
+  <text x="96" y="850" class="code">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="96" y="888" class="tiny" fill="#cbd9e7">每个新终端都 source ROS 与工作区；只改 YAML/launch 不需要重编译。</text>
+
+  <rect x="1120" y="622" width="632" height="330" rx="18" class="box" filter="url(#shadow)"/>
+  <text x="1150" y="660" class="head2">工作包在 src/ 下</text>
+  <rect x="1146" y="679" width="580" height="150" rx="12" class="blue"/>
+  <text x="1170" y="712" class="body" font-weight="700">FAST-LIO</text>
+  <text x="1170" y="738" class="small">src/FAST_LIO · ROS 包名 fast_lio</text>
+  <text x="1170" y="773" class="body" font-weight="700">Livox ROS Driver</text>
+  <text x="1170" y="799" class="small">src/livox_ros_driver/livox_ros_driver</text>
+  <text x="1150" y="866" class="body" font-weight="700">fastlio_health_monitor</text>
+  <text x="1150" y="892" class="small">src/fastlio_health_monitor · C++ 监控节点与 RViz 面板</text>
+  <text x="1150" y="926" class="tiny">新机器：clone 两个上游工程，再复制本项目监控包到 src/。</text>
+
+  <!-- Step 3 -->
+  <circle cx="78" cy="996" r="21" fill="#347bb6"/><text x="78" y="1004" text-anchor="middle" class="head2" fill="#fff">3</text>
+  <text x="114" y="1004" class="step">连接 Avia 并配置驱动</text>
+  <rect x="48" y="1026" width="836" height="350" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="73" y="1053" width="786" height="54" rx="11" class="blue"/>
+  <text x="95" y="1087" class="head2">① 查网卡地址，按 Avia 手册设到同一网段</text>
+  <rect x="73" y="1120" width="786" height="119" rx="11" class="terminal"/>
+  <text x="94" y="1150" class="code">ip -br link</text>
+  <text x="94" y="1178" class="code">ip -br addr</text>
+  <text x="94" y="1206" class="code-sm">sudo ip addr add &lt;电脑IP&gt;/&lt;前缀长度&gt; dev &lt;网卡名&gt;</text>
+  <text x="95" y="1267" class="small">地址/掩码按现场手册填写；临时 ip addr add 重启后失效。</text>
+  <text x="95" y="1296" class="small">可用 ping &lt;雷达IP&gt; 检查链路；不要猜固定 IP。</text>
+  <text x="95" y="1342" class="tiny">多机 ROS 才需设置 ROS_MASTER_URI 与各自 ROS_IP；单机通常不需要。</text>
+
+  <rect x="910" y="1026" width="842" height="350" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="935" y="1053" width="792" height="54" rx="11" class="green"/>
+  <text x="957" y="1087" class="head2">② JSON 填真实广播码（机身二维码下 15 位）</text>
+  <text x="958" y="1137" class="small">文件：src/livox_ros_driver/livox_ros_driver/config/</text>
+  <text x="958" y="1162" class="small" font-weight="700">livox_lidar_config.json</text>
+  <rect x="935" y="1180" width="792" height="108" rx="11" class="terminal"/>
+  <text x="957" y="1211" class="code-sm">"broadcast_code": "&lt;现场实际广播码&gt;",</text>
+  <text x="957" y="1239" class="code-sm">"enable_connect": true</text>
+  <text x="958" y="1320" class="small">本工程 JSON 的示例码默认未启用；按现场设备替换。</text>
+  <text x="958" y="1348" class="tiny">Avia 的 IMU 频率按设备/驱动实测，勿照抄其他型号参数。</text>
+
+  <!-- Step 4 -->
+  <circle cx="78" cy="1420" r="21" fill="#347bb6"/><text x="78" y="1428" text-anchor="middle" class="head2" fill="#fff">4</text>
+  <text x="114" y="1428" class="step">核对 FAST-LIO 和健康监控配置</text>
+  <rect x="48" y="1450" width="836" height="323" rx="18" class="box" filter="url(#shadow)"/>
+  <text x="78" y="1488" class="head2">FAST-LIO Avia 参数</text>
+  <text x="78" y="1520" class="small" font-weight="700">src/FAST_LIO/config/avia.yaml</text>
+  <line x1="78" y1="1541" x2="852" y2="1541" class="divider"/>
+  <text x="79" y="1573" class="body">common.lid_topic = /livox/lidar</text>
+  <text x="79" y="1602" class="body">common.imu_topic = /livox/imu</text>
+  <text x="79" y="1631" class="body">preprocess.lidar_type = 1 · scan_line = 6</text>
+  <text x="79" y="1660" class="body">mapping.extrinsic_T / extrinsic_R = 现场标定值</text>
+  <rect x="74" y="1680" width="786" height="65" rx="10" class="gold"/>
+  <text x="93" y="1707" class="small" font-weight="700">外参是 LiDAR 在 IMU/body 下的位姿；修改 YAML 后</text>
+  <text x="93" y="1731" class="small" font-weight="700">同步更新 visualization_testbench.launch 的静态 TF。</text>
+
+  <rect x="910" y="1450" width="842" height="323" rx="18" class="box" filter="url(#shadow)"/>
+  <text x="940" y="1488" class="head2">健康监控 Avia YAML</text>
+  <text x="940" y="1520" class="small" font-weight="700">src/fastlio_health_monitor/config/avia.yaml</text>
+  <line x1="940" y1="1541" x2="1722" y2="1541" class="divider"/>
+  <text x="941" y="1573" class="body">topic：/livox/lidar · /livox/imu · /Odometry</text>
+  <text x="941" y="1602" class="body">imu_acceleration_unit = "g"（Livox 原始输入）</text>
+  <text x="941" y="1631" class="body">C++ 监控内部换算为 m/s²；m/s² 输入用 "mps2"</text>
+  <text x="941" y="1660" class="body">阈值：频率、点云有效率、断流时间和运动跳变</text>
+  <rect x="936" y="1680" width="792" height="65" rx="10" class="purple"/>
+  <text x="956" y="1707" class="small" font-weight="700">保存 YAML 后重启 launch 即生效；不需要重编译。</text>
+  <text x="956" y="1731" class="small">Avia 外参请现场标定，不要直接把示例值当标定结果。</text>
+
+  <!-- Step 5 -->
+  <circle cx="78" cy="1817" r="21" fill="#347bb6"/><text x="78" y="1825" text-anchor="middle" class="head2" fill="#fff">5</text>
+  <text x="114" y="1825" class="step">选择实机或回放模式，再看状态和 RViz 实时结果</text>
+  <rect x="48" y="1847" width="836" height="185" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="73" y="1870" width="786" height="43" rx="10" class="blue"/>
+  <text x="95" y="1899" class="head2">终端 1 · Livox 驱动</text>
+  <rect x="73" y="1923" width="786" height="100" rx="10" class="terminal"/>
+  <text x="94" y="1948" class="code-sm">source /opt/ros/noetic/setup.bash</text>
+  <text x="94" y="1975" class="code-sm">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="94" y="2002" class="code-sm">roslaunch livox_ros_driver livox_lidar_msg.launch bd_list:=""</text>
+
+  <rect x="910" y="1847" width="842" height="185" rx="18" class="box" filter="url(#shadow)"/>
+  <rect x="935" y="1870" width="792" height="43" rx="10" class="green"/>
+  <text x="957" y="1899" class="head2">终端 2 · FAST-LIO + 健康监控 + RViz</text>
+  <rect x="935" y="1923" width="792" height="100" rx="10" class="terminal"/>
+  <text x="956" y="1948" class="code-sm">source /opt/ros/noetic/setup.bash</text>
+  <text x="956" y="1975" class="code-sm">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="956" y="2002" class="code-sm">roslaunch fastlio_health_monitor visualization_testbench.launch</text>
+
+  <rect x="48" y="2050" width="1704" height="118" rx="18" class="box" filter="url(#shadow)"/>
+  <text x="78" y="2083" class="head2">rosbag 回放模式（替代上面两终端实机流程）</text>
+  <rect x="78" y="2095" width="1040" height="53" rx="10" class="terminal"/>
+  <text x="96" y="2128" class="code-sm">roslaunch fastlio_health_monitor visualization_bag_testbench.launch</text>
+  <text x="1150" y="2099" class="small">默认播放项目 outdoor bag；自定义：bag:=/绝对路径/数据.bag rate:=1.0</text>
+  <text x="1150" y="2131" class="small" font-weight="700">一键启动播放器与检测台；不要同时启动 Livox 实机驱动。</text>
+
+  <rect x="48" y="2184" width="1704" height="145" rx="18" fill="#183d63"/>
+  <text x="78" y="2219" class="head2" fill="#fff">终端 3 检查</text>
+  <text x="78" y="2249" class="code-sm">rostopic type /livox/lidar · rostopic hz /livox/imu</text>
+  <text x="78" y="2277" class="code-sm">rostopic echo -n 1 /fastlio_health_monitor/status</text>
+  <text x="78" y="2305" class="code-sm">rosrun tf tf_echo camera_init livox_raw</text>
+  <line x1="820" y1="2205" x2="820" y2="2308" stroke="#7896b2" stroke-width="1.3"/>
+  <text x="854" y="2219" class="head2" fill="#fff">状态与停止</text>
+  <rect x="854" y="2235" width="95" height="37" rx="10" fill="#d9f0e3"/><text x="901" y="2260" text-anchor="middle" class="label" fill="#16734d">0 OK</text>
+  <rect x="960" y="2235" width="157" height="37" rx="10" fill="#fff0c9"/><text x="1038" y="2260" text-anchor="middle" class="label" fill="#94630b">1 WARNING</text>
+  <rect x="1128" y="2235" width="122" height="37" rx="10" fill="#fde0e0"/><text x="1189" y="2260" text-anchor="middle" class="label" fill="#a53f3f">2 ERROR</text>
+  <text x="1270" y="2259" class="small" fill="#dceafb">RViz Fixed Frame：camera_init</text>
+  <text x="854" y="2302" class="small" fill="#dceafb">关闭：bag 按 Ctrl+C；实机先关检测台，再关驱动。</text>
+
+  <text x="48" y="2357" class="tiny">详细步骤与故障处理：09_真实设备安装与配置.md · 06_启动与操作说明.md　|　实机网络、广播码与外参需现场填写；本图不代表实机已验收。</text>
+</svg>

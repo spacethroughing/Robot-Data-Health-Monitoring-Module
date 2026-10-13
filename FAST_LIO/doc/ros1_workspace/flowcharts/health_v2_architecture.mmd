@@ -1,0 +1,15 @@
+flowchart LR
+  YAML[配置 / ConfigLoader] --> Registry[HealthRegistry]
+  Input[ROS 原始消息 / 其他节点输出] --> Adapter[IInputAdapter / 类型和单位适配]
+  Adapter --> Checker[IHealthChecker / 雷达 IMU 定位及扩展]
+  Registry --> Adapter
+  Registry --> Checker
+  Runtime[独立 RuntimeController] --> Lifecycle[LifecycleTracker / 意图 实例 epoch]
+  Lifecycle --> Checker
+  Shared[StreamTracker / Kinematics / Covariance / IClock] --> Checker
+  Checker --> Latch[RuleLatch / 周期最严重事件]
+  Latch --> Aggregate[DependencyAggregator / 等级与业务有效性]
+  Aggregate --> Output[DiagnosticPublisher / 通用 HealthPanel]
+  Latch --> Log[EventRecorder / 可追溯日志]
+  Lifecycle --> Log
+  YAML --> Log

@@ -1,0 +1,25 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.5", ranksep="0.65", fontname="Noto Sans CJK SC", dpi=150];
+node [shape=box, style="rounded,filled", fillcolor="#edf4ff", color="#4771a3", penwidth=1.4, fontname="Noto Sans CJK SC", fontsize=17, margin="0.18,0.12"];
+edge [color="#53677f", fontname="Noto Sans CJK SC", fontsize=13, arrowsize=0.8];
+A [label="规则 / 生命周期 / 周期指标", fillcolor="#edf4ff", shape=box];
+B [label="关联 run、module、instance、epoch\nconfig hash / 来源和时间域", fillcolor="#edf4ff", shape=box];
+C [label="关键事件？", fillcolor="#fff4d9", shape=diamond];
+D [label="预留事件队列 / 单写线程\n单调事件序号", fillcolor="#edf4ff", shape=box];
+E [label="指标采样 / 有界队列\n满时丢指标并计数", fillcolor="#edf4ff", shape=box];
+F [label="JSONL / CSV / manifest\n配置与版本快照 / 轮转", fillcolor="#edf4ff", shape=box];
+G [label="写入正常？", fillcolor="#fff4d9", shape=diamond];
+H [label="关键记录有期限落盘确认\n按 ID 重建触发—恢复—启停时间线", fillcolor="#e5f6ee", shape=box];
+I [label="LOG_WRITE_FAILED\nlogs_incomplete / 丢失计数", fillcolor="#fde9e9", shape=box];
+J [label="自身健康告警 / 终端兜底\n不无限阻塞传感器回调", fillcolor="#fde9e9", shape=box];
+A -> B;
+B -> C;
+C -> D [label="是"];
+C -> E [label="否"];
+D -> F;
+E -> F;
+F -> G;
+G -> H [label="是"];
+G -> I [label="否"];
+I -> J;
+}

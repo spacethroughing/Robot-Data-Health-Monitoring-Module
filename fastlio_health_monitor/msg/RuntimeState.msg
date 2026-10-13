@@ -1,0 +1,16 @@
+std_msgs/Header header
+string binding
+string controller_id
+string producer_instance_id
+string command_id
+uint64 sequence
+uint64 frame_epoch
+string desired_state
+string observed_state
+string reason
+int32 exit_code
+string controller_run_id
+string controller_log_directory
+bool trace_healthy
+string data_reference
+string data_sha256

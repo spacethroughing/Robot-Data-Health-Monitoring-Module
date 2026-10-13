@@ -1,0 +1,7 @@
+<library path="lib/libfastlio_health_monitor_panel">
+  <class name="fastlio_health_monitor/HealthPanel"
+         type="fastlio_health_monitor::HealthPanel"
+         base_class_type="rviz::Panel">
+    <description>Configurable module health, lifecycle and trace logging panel with independent diagnostic timeout.</description>
+  </class>
+</library>

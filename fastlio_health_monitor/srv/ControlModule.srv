@@ -1,0 +1,7 @@
+string binding
+string command
+---
+bool accepted
+string command_id
+string producer_instance_id
+string reason
