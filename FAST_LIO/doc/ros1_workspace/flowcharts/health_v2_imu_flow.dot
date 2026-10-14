@@ -1,26 +1,12 @@
 digraph G {
-graph [rankdir=TB, bgcolor="white", pad="0.35", nodesep="0.5", ranksep="0.65", fontname="Noto Sans CJK SC", dpi=150];
-node [shape=box, style="rounded,filled", fillcolor="#edf4ff", color="#4771a3", penwidth=1.4, fontname="Noto Sans CJK SC", fontsize=17, margin="0.18,0.12"];
-edge [color="#53677f", fontname="Noto Sans CJK SC", fontsize=13, arrowsize=0.8];
-A [label="IMU 原始值 / 时间戳", fillcolor="#edf4ff", shape=box];
-B [label="按消息语义检查字段可用性\n全零协方差≠零噪声 / -1 表示无估计", fillcolor="#edf4ff", shape=box];
-C [label="必需字段可用\n且原始分量有限？", fillcolor="#fff4d9", shape=diamond];
-D [label="显式单位转换：g → m/s²\n原始值保留；角速度 rad/s", fillcolor="#edf4ff", shape=box];
-E [label="换算结果有限？", fillcolor="#fff4d9", shape=diamond];
-X [label="立即 ERROR\n记录字段与异常类型", fillcolor="#fde9e9", shape=box];
-F [label="幅值 / 时间戳 / 频率 / 年龄\n按 YAML 阈值判断", fillcolor="#edf4ff", shape=box];
-G [label="有依据并启用时才检查\n协方差 / 饱和 / 重复 / 噪声", fillcolor="#edf4ff", shape=box];
-H [label="持续 / 恢复 / 周期异常保留", fillcolor="#edf4ff", shape=box];
-Y [label="分项诊断 / 日志\n检查覆盖率与不可用原因", fillcolor="#e5f6ee", shape=box];
-A -> B;
-B -> C;
-C -> X [label="否"];
-C -> D [label="是"];
-D -> E;
-E -> X [label="否"];
-E -> F [label="是"];
-F -> G;
-G -> H;
-H -> Y;
-X -> Y;
+  graph [rankdir=TB, bgcolor="white", pad="0.3", nodesep="0.38", ranksep="0.48", fontname="Noto Sans CJK SC", dpi=150];
+  node [shape=box, style="rounded,filled", fillcolor="#F8FAFC", color="#94A3B8", penwidth=1.3, fontname="Noto Sans CJK SC", fontsize=16, margin="0.17,0.11"];
+  edge [color="#64748B", fontname="Noto Sans CJK SC", fontsize=12, arrowsize=0.8];
+  A [label="接收 IMU 消息", fillcolor="#E0F2FE", color="#0284C7"];
+  B [label="检查加速度计、陀螺仪和字段"];
+  C [label="按配置统一单位\n加速度 g → m/s²；角速度 rad/s"];
+  D [label="检查幅值、时间戳、频率和接收年龄"];
+  E [label="按 YAML 阈值判断\n输出 OK / WARNING / ERROR", fillcolor="#EDE9FE", color="#7C3AED"];
+  F [label="显示状态并记录原因\n未知协方差标为未知", fillcolor="#DCFCE7", color="#16A34A"];
+  A -> B -> C -> D -> E -> F;
 }

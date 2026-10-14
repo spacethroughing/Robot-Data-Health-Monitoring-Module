@@ -1,0 +1,12 @@
+flowchart TD
+  Config[启动监控<br/>读取 YAML 配置] --> Input[接收数据<br/>雷达 · IMU · 定位]
+  Input --> Adapter[整理数据<br/>统一消息格式、单位和坐标]
+  Adapter --> Lidar[雷达检查<br/>点数 · 有效率 · 频率 · 时间]
+  Adapter --> IMU[IMU 检查<br/>加速度 · 角速度 · 时间]
+  Adapter --> Loc[定位检查<br/>时间 · 速度 · 加速度 · 协方差 · 跳变]
+  Input --> Probe[时间探针<br/>持续计算距上次收到数据多久]
+  Lidar --> Summary[汇总健康状态<br/>OK · WARNING · ERROR]
+  IMU --> Summary
+  Loc --> Summary
+  Probe --> Summary
+  Summary --> Output[实时显示并保存记录<br/>RViz 面板 · ROS 诊断 · JSONL 事件 · CSV 指标]

@@ -14,6 +14,12 @@ V2 面板会同时显示总体健康等级、各模块状态、接收年龄、�
 
 ![V2 项目技术架构图](FAST_LIO/doc/ros1_workspace/images/fastlio_health_v2_architecture.png)
 
+### 健康监控主流程
+
+![健康监控主流程图](FAST_LIO/doc/ros1_workspace/images/health_v2_actual_monitoring_flow.png)
+
+主图概括配置、数据接入、分项检查、状态汇总和结果显示。定位正常停止与重启过程见[状态图](FAST_LIO/doc/ros1_workspace/images/health_v2_lifecycle_flow.png)。
+
 ## 目录结构
 
 | 路径 | 内容 |
@@ -166,7 +172,7 @@ python3 ~/fastlio_ws/src/Robot-Data-Health-Monitoring-Module/fastlio_health_moni
   --source "$BAG" --output "$FAULT_DIR" --duration 12
 ```
 
-分别回放导师指定的三类案例：
+分别回放三类故障案例：
 
 ```bash
 roslaunch fastlio_health_monitor visualization_bag_testbench.launch \
@@ -197,7 +203,7 @@ less "$LOG_ROOT/<monitor_run_id>/metrics.0.csv"
 ## 文档与代码入口
 
 - [ROS1 / FAST-LIO / V2 文档索引](FAST_LIO/doc/ros1_workspace/README.md)
-- [V2 设计与导师要求](FAST_LIO/doc/ros1_workspace/11_导师要求与健康监控后续执行方案.md)
+- [健康监控设计与实施方案](FAST_LIO/doc/ros1_workspace/11_健康监控后续实施方案.md)
 - [V2 重构与验证记录](FAST_LIO/doc/ros1_workspace/12_V2重构实施与测试记录.md)
 - [适配器设计说明](FAST_LIO/doc/ros1_workspace/13_适配器设计说明.md)
 - [演示与命令复现说明](FAST_LIO/doc/ros1_workspace/14_V2演示视频与命令复现.md)

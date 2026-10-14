@@ -1,16 +1,9 @@
 stateDiagram-v2
-  [*] --> UNKNOWN
-  UNKNOWN --> STARTING: 新鲜 RUN 意图和新实例
-  STARTING --> RUNNING: 有效样本 / ready / 统计窗口完成
-  STARTING --> FAULT: 初始化超时或启动失败
-  RUNNING --> STOPPING: 明确 STOP 请求
-  STOPPING --> STOPPED: 进程停止确认
-  STOPPING --> FAULT: 停机超时
-  STOPPED --> STARTING: 后续 RUN / 新实例 / 清基线
-  RUNNING --> FAULT: 非计划断流或进程丢失
-  FAULT --> STARTING: 新实例启动
-  FAULT --> RUNNING: 同实例恢复且持续通过
-  RUNNING --> PAUSED: 明确暂停事件
-  PAUSED --> STARTING: 恢复并重建统计窗口
-  STOPPED --> UNKNOWN: 管理端心跳失联
-  RUNNING --> UNKNOWN: 管理端心跳失联
+  [*] --> Unknown
+  Unknown --> Starting: 收到 RUN
+  Starting --> Running: 数据就绪
+  Starting --> Fault: 启动失败或超时
+  Running --> Stopped: 收到 STOP 并确认退出
+  Running --> Fault: 意外断流或进程退出
+  Stopped --> Starting: 再次 RUN，清除旧基线
+  Fault --> Starting: 重新启动
