@@ -1,0 +1,451 @@
+{
+  "file_open_mode": "rb",
+  "scan_sec": 18.00411286499002,
+  "complete_chunks": 4535,
+  "stop_offset": 5908981611,
+  "stop_error": "ROSBagException('expecting 1065647 bytes, read 18532')",
+  "topics": [
+    {
+      "topic": "/mavros/state",
+      "type": "mavros_msgs/State",
+      "messages": 28633,
+      "first": 1791962378.491622,
+      "last": 1791962664.851458
+    },
+    {
+      "topic": "/mavros/imu/data",
+      "type": "sensor_msgs/Imu",
+      "messages": 74110,
+      "first": 1791962378.49224,
+      "last": 1791962664.8539944
+    },
+    {
+      "topic": "/mavros/imu/data_raw",
+      "type": "sensor_msgs/Imu",
+      "messages": 56488,
+      "first": 1791962378.492274,
+      "last": 1791962664.853561
+    },
+    {
+      "topic": "/system/state",
+      "type": "std_msgs/Int32MultiArray",
+      "messages": 2843,
+      "first": 1791962380.5931535,
+      "last": 1791962664.8036082
+    },
+    {
+      "topic": "/air_ground_state",
+      "type": "std_msgs/Int32",
+      "messages": 56323,
+      "first": 1791962382.498807,
+      "last": 1791962664.8579314
+    },
+    {
+      "topic": "/emergency_action",
+      "type": "std_msgs/Int32",
+      "messages": 56321,
+      "first": 1791962382.498831,
+      "last": 1791962664.85227
+    },
+    {
+      "topic": "/battery_state",
+      "type": "battery_state/BatteryState",
+      "messages": 281,
+      "first": 1791962384.4756162,
+      "last": 1791962664.4658453
+    },
+    {
+      "topic": "/cpu_monitor/total_cpu",
+      "type": "std_msgs/Float32",
+      "messages": 278,
+      "first": 1791962386.9758525,
+      "last": 1791962663.9259474
+    },
+    {
+      "topic": "/cpu_monitor/cpu_usage_per_core_percent",
+      "type": "std_msgs/Float32MultiArray",
+      "messages": 278,
+      "first": 1791962386.9759061,
+      "last": 1791962663.9259703
+    },
+    {
+      "topic": "/cpu_monitor/cpu_freq_per_core_mhz",
+      "type": "std_msgs/Float32MultiArray",
+      "messages": 278,
+      "first": 1791962386.9759176,
+      "last": 1791962663.9261699
+    },
+    {
+      "topic": "/cpu_monitor/cpu_temp_per_sensor_c",
+      "type": "std_msgs/Float32MultiArray",
+      "messages": 278,
+      "first": 1791962386.9761739,
+      "last": 1791962663.9262216
+    },
+    {
+      "topic": "/cpu_monitor/udp_bridge/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9218578,
+      "last": 1791962663.9214108
+    },
+    {
+      "topic": "/cpu_monitor/status_topic2msg/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9219294,
+      "last": 1791962663.925588
+    },
+    {
+      "topic": "/cpu_monitor/rostopic_482057_1791962383669/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9219997,
+      "last": 1791962663.922078
+    },
+    {
+      "topic": "/cpu_monitor/rosout/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9221547,
+      "last": 1791962663.9221926
+    },
+    {
+      "topic": "/cpu_monitor/rofly_emergency_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9222074,
+      "last": 1791962663.9223306
+    },
+    {
+      "topic": "/cpu_monitor/mission_manager_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9222918,
+      "last": 1791962663.9225845
+    },
+    {
+      "topic": "/cpu_monitor/point_service_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9223692,
+      "last": 1791962663.9226265
+    },
+    {
+      "topic": "/cpu_monitor/mavros/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.922454,
+      "last": 1791962663.925614
+    },
+    {
+      "topic": "/cpu_monitor/record_1791962375312864839/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.922562,
+      "last": 1791962663.9239287
+    },
+    {
+      "topic": "/cpu_monitor/global_plan_return_manage_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9226472,
+      "last": 1791962663.921381
+    },
+    {
+      "topic": "/cpu_monitor/cpu_monitor/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.922725,
+      "last": 1791962663.9226565
+    },
+    {
+      "topic": "/cpu_monitor/battery_monitor/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 277,
+      "first": 1791962387.9228942,
+      "last": 1791962663.9225063
+    },
+    {
+      "topic": "/planner/planning_stop",
+      "type": "std_msgs/Bool",
+      "messages": 63114,
+      "first": 1791962388.5607884,
+      "last": 1791962664.8542573
+    },
+    {
+      "topic": "/ctrl_state",
+      "type": "std_msgs/Int32",
+      "messages": 63115,
+      "first": 1791962388.560954,
+      "last": 1791962664.855093
+    },
+    {
+      "topic": "/cpu_monitor/ctrl_fsm_planning_motor_airground_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 275,
+      "first": 1791962389.9386363,
+      "last": 1791962663.922214
+    },
+    {
+      "topic": "/cpu_monitor/fast_planner_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 274,
+      "first": 1791962390.9214518,
+      "last": 1791962663.9236677
+    },
+    {
+      "topic": "/cpu_monitor/plan_map_local_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 272,
+      "first": 1791962392.9213963,
+      "last": 1791962663.9239647
+    },
+    {
+      "topic": "/lidar_slam_status_topic",
+      "type": "std_msgs/Bool",
+      "messages": 2704,
+      "first": 1791962394.5471287,
+      "last": 1791962664.8469453
+    },
+    {
+      "topic": "/cpu_monitor/p_rlio_monitor/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 270,
+      "first": 1791962394.9213972,
+      "last": 1791962663.9236803
+    },
+    {
+      "topic": "/gps/fix",
+      "type": "sensor_msgs/NavSatFix",
+      "messages": 1341,
+      "first": 1791962396.661,
+      "last": 1791962664.7060335
+    },
+    {
+      "topic": "/cpu_monitor/grid_map_local/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 268,
+      "first": 1791962396.9214456,
+      "last": 1791962663.9225147
+    },
+    {
+      "topic": "/cpu_monitor/gps/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 268,
+      "first": 1791962396.921782,
+      "last": 1791962663.92204
+    },
+    {
+      "topic": "/cpu_monitor/cloud_acc3/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 266,
+      "first": 1791962398.9212704,
+      "last": 1791962663.9240077
+    },
+    {
+      "topic": "/cpu_monitor/p_go/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 266,
+      "first": 1791962398.921344,
+      "last": 1791962663.9242442
+    },
+    {
+      "topic": "/gnss_onboard_status_topic",
+      "type": "std_msgs/Bool",
+      "messages": 64855,
+      "first": 1791962399.5408194,
+      "last": 1791962664.8520527
+    },
+    {
+      "topic": "/cpu_monitor/p_gins/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 264,
+      "first": 1791962400.9439325,
+      "last": 1791962663.9245384
+    },
+    {
+      "topic": "/cpu_monitor/ntrip_ros/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 264,
+      "first": 1791962400.943979,
+      "last": 1791962663.9245236
+    },
+    {
+      "topic": "/cpu_monitor/go_switch_rlio_node2/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 263,
+      "first": 1791962401.9539301,
+      "last": 1791962663.9247296
+    },
+    {
+      "topic": "/cpu_monitor/map_integration/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 263,
+      "first": 1791962401.9539618,
+      "last": 1791962663.9241247
+    },
+    {
+      "topic": "/cpu_monitor/servo_action_server/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 261,
+      "first": 1791962403.9215894,
+      "last": 1791962663.9256632
+    },
+    {
+      "topic": "/cpu_monitor/servo_action_client/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 261,
+      "first": 1791962403.9217763,
+      "last": 1791962663.924738
+    },
+    {
+      "topic": "/fused_cloud",
+      "type": "sensor_msgs/PointCloud2",
+      "messages": 2603,
+      "first": 1791962404.6588488,
+      "last": 1791962664.8582442
+    },
+    {
+      "topic": "/rslidar_points",
+      "type": "sensor_msgs/PointCloud2",
+      "messages": 2421,
+      "first": 1791962422.7922182,
+      "last": 1791962664.8037841
+    },
+    {
+      "topic": "/cpu_monitor/odom_frequency_conversion/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 240,
+      "first": 1791962424.9510868,
+      "last": 1791962663.9242356
+    },
+    {
+      "topic": "/cpu_monitor/rslidar_sdk_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 240,
+      "first": 1791962424.9518206,
+      "last": 1791962663.9245827
+    },
+    {
+      "topic": "/cpu_monitor/pose_vel_filter_node/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 237,
+      "first": 1791962427.9515114,
+      "last": 1791962663.9239955
+    },
+    {
+      "topic": "/cpu_monitor/laserMapping/cpu",
+      "type": "std_msgs/Float32",
+      "messages": 236,
+      "first": 1791962428.9281602,
+      "last": 1791962663.9212837
+    },
+    {
+      "topic": "/localization_usage",
+      "type": "nav_msgs/Odometry",
+      "messages": 44363,
+      "first": 1791962442.3299503,
+      "last": 1791962664.8525305
+    },
+    {
+      "topic": "/cloud2",
+      "type": "sensor_msgs/PointCloud2",
+      "messages": 1992,
+      "first": 1791962442.3725579,
+      "last": 1791962664.812638
+    },
+    {
+      "topic": "/Odometry",
+      "type": "nav_msgs/Odometry",
+      "messages": 2223,
+      "first": 1791962442.6251416,
+      "last": 1791962664.8519976
+    },
+    {
+      "topic": "/cloud_registered",
+      "type": "sensor_msgs/PointCloud2",
+      "messages": 2223,
+      "first": 1791962442.6262112,
+      "last": 1791962664.8545067
+    },
+    {
+      "topic": "/cmd_state",
+      "type": "std_msgs/Int32",
+      "messages": 28587,
+      "first": 1791962540.0799482,
+      "last": 1791962664.8546743
+    },
+    {
+      "topic": "/debug_data",
+      "type": "rofly_airground_ctrl/MotionCtrlDebugAirgroundSeparate",
+      "messages": 28588,
+      "first": 1791962540.0799932,
+      "last": 1791962664.8551748
+    },
+    {
+      "topic": "/cmd_visual",
+      "type": "visualization_msgs/Marker",
+      "messages": 28517,
+      "first": 1791962540.0843995,
+      "last": 1791962664.8543706
+    },
+    {
+      "topic": "/original_target1",
+      "type": "nav_msgs/Odometry",
+      "messages": 26,
+      "first": 1791962548.708747,
+      "last": 1791962663.806791
+    },
+    {
+      "topic": "/fixed_target",
+      "type": "geometry_msgs/PointStamped",
+      "messages": 26,
+      "first": 1791962548.725811,
+      "last": 1791962663.8100564
+    },
+    {
+      "topic": "/target_odom",
+      "type": "nav_msgs/Odometry",
+      "messages": 26,
+      "first": 1791962548.7258115,
+      "last": 1791962663.8100998
+    },
+    {
+      "topic": "/planner/road_map",
+      "type": "nav_msgs/Path",
+      "messages": 71,
+      "first": 1791962548.738476,
+      "last": 1791962663.8855722
+    },
+    {
+      "topic": "/fast_planner_node/jps_path",
+      "type": "nav_msgs/Path",
+      "messages": 71,
+      "first": 1791962548.7467258,
+      "last": 1791962663.9368904
+    },
+    {
+      "topic": "/planner/traj_poly",
+      "type": "quadrotor_msgs/Polynome",
+      "messages": 70,
+      "first": 1791962548.7938347,
+      "last": 1791962664.087701
+    },
+    {
+      "topic": "/visualizer/mincoPath",
+      "type": "nav_msgs/Path",
+      "messages": 70,
+      "first": 1791962548.7941065,
+      "last": 1791962664.0863116
+    },
+    {
+      "topic": "/goal_occupied",
+      "type": "std_msgs/Bool",
+      "messages": 5,
+      "first": 1791962589.6081135,
+      "last": 1791962663.7211812
+    }
+  ],
+  "source_modified": false
+}

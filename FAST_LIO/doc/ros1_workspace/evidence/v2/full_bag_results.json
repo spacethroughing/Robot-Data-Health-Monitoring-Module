@@ -1,0 +1,378 @@
+{
+  "checks": {
+    "playback_completed": true,
+    "all_raw_inputs_received": true,
+    "monitor_received_all_inputs": true,
+    "localization_running": true,
+    "map_received": true,
+    "imu_si_conversion": true,
+    "fresh_covariance_available": true,
+    "eof_reports_stale": true,
+    "logs_healthy": true
+  },
+  "passed": true,
+  "counts": {
+    "/livox/lidar": 1414,
+    "/livox/imu": 28595
+  },
+  "expected": {
+    "/livox/lidar": 1414,
+    "/livox/imu": 28595
+  },
+  "diagnostic_samples": 370,
+  "maps": [
+    {
+      "received": 21138.803011123,
+      "points": 2381,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21139.892621517,
+      "points": 6254,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21140.85519778,
+      "points": 9015,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21141.857896298,
+      "points": 11044,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21142.909640643,
+      "points": 13159,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21143.95853571,
+      "points": 14470,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21145.052411346,
+      "points": 16596,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21146.053965071,
+      "points": 18483,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21147.055292836,
+      "points": 18886,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21148.098545413,
+      "points": 19517,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21149.161875523,
+      "points": 20395,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21150.202610661,
+      "points": 21670,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21151.25240986,
+      "points": 22836,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21152.252657791,
+      "points": 23961,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21153.253100531,
+      "points": 25435,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21154.302779619,
+      "points": 27354,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21155.305781357,
+      "points": 27715,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21156.356410314,
+      "points": 29271,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21157.450566868,
+      "points": 30176,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21158.4543471,
+      "points": 30539,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21159.503642658,
+      "points": 30741,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21160.501628751,
+      "points": 31255,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21161.505094927,
+      "points": 31632,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21162.55083015,
+      "points": 31930,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21163.552414322,
+      "points": 32042,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21164.555790044,
+      "points": 32158,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21165.557535356,
+      "points": 33226,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21166.559210595,
+      "points": 33618,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21167.610037291,
+      "points": 33894,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21168.650082933,
+      "points": 36083,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21169.652622989,
+      "points": 36539,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21170.699498798,
+      "points": 37147,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21171.701509416,
+      "points": 37300,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21172.702558194,
+      "points": 37466,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21173.760153857,
+      "points": 38383,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21174.802642602,
+      "points": 41268,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21175.802487932,
+      "points": 42525,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21176.850371054,
+      "points": 45315,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21177.85731716,
+      "points": 47123,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21178.912408674,
+      "points": 51990,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21179.959652835,
+      "points": 58318,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21181.006870736,
+      "points": 67223,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21182.117399828,
+      "points": 70970,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21183.156459066,
+      "points": 71878,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21184.156206949,
+      "points": 72341,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21185.156132546,
+      "points": 73017,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21186.157987025,
+      "points": 73684,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21187.207353846,
+      "points": 74352,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21188.214695917,
+      "points": 74969,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21189.262453039,
+      "points": 75586,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21190.275501642,
+      "points": 76654,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21191.308654797,
+      "points": 77800,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21192.31281584,
+      "points": 79554,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21193.317037241,
+      "points": 80766,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21194.361061181,
+      "points": 81981,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21195.410587856,
+      "points": 83619,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21196.457552247,
+      "points": 84648,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21197.460981757,
+      "points": 85812,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21198.461989262,
+      "points": 87021,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21199.563326626,
+      "points": 88066,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21200.562815553,
+      "points": 89073,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21201.603770667,
+      "points": 89249,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21202.608969238,
+      "points": 89562,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21203.612980071,
+      "points": 89909,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21204.661700731,
+      "points": 90237,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21205.705689855,
+      "points": 90413,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21206.764484805,
+      "points": 90504,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21207.812450934,
+      "points": 90630,
+      "frame": "camera_init"
+    },
+    {
+      "received": 21208.857177669,
+      "points": 90751,
+      "frame": "camera_init"
+    }
+  ],
+  "log_directory": "$HOME/fastlio_ws/logs/robot_health/1129b-18ddb7498de0be10-b4639ab",
+  "maximum_monitor_rss_kb": 23588,
+  "maximum_diagnostic_gap_sec": 0.2027102640022349,
+  "localization_running_levels": {
+    "0": 355,
+    "1": 0,
+    "2": 0
+  }
+}

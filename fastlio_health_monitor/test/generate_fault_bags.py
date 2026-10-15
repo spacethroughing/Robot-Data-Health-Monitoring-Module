@@ -12,7 +12,7 @@ def sha(p):
     return h.hexdigest()
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--source',default=str(Path.home()/'datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag'));ap.add_argument('--output',default=str(Path.home()/'datasets/fastlio/health_fault_cases'));ap.add_argument('--duration',type=float,default=12)
+    ap=argparse.ArgumentParser();ap.add_argument('--source',default='/home/lmw/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag');ap.add_argument('--output',default='/home/lmw/datasets/fastlio/health_fault_cases');ap.add_argument('--duration',type=float,default=12)
     a=ap.parse_args();source=Path(a.source).resolve();out=Path(a.output).resolve();out.mkdir(parents=True,exist_ok=True)
     assert source.parent!=out,'Use a separate fault_cases directory'
     original_hash=sha(source);records=[]

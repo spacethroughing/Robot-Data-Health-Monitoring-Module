@@ -1,0 +1,151 @@
+Panels:
+- Class: fastlio_health_monitor/HealthPanel
+  Name: FAST-LIO 健康检测台
+Preferences:
+  PromptSaveOnExit: false
+Visualization Manager:
+  Class: ''
+  Displays:
+  - Class: rviz/Grid
+    Enabled: true
+    Name: Grid
+    Plane: XY
+    Plane Cell Count: 40
+    Cell Size: 1
+    Color: 85; 91; 101
+    Alpha: 0.5
+    Reference Frame: <Fixed Frame>
+    Value: true
+  - Class: rviz/TF
+    Enabled: true
+    Name: TF
+    Frame Timeout: 15
+    Marker Scale: 0.5
+    Show Arrows: true
+    Show Axes: true
+    Show Names: true
+    Update Interval: 0
+    Value: true
+  - Class: rviz/PointCloud2
+    Enabled: true
+    Name: 雷达原始点云
+    Topic: /fastlio_health_monitor/lidar_raw_visualization
+    Queue Size: 2
+    Style: Points
+    Size (Pixels): 2
+    Size (m): 0.03
+    Color Transformer: Intensity
+    Channel Name: intensity
+    Autocompute Intensity Bounds: true
+    Use rainbow: true
+    Invert Rainbow: false
+    Alpha: 1
+    Decay Time: 0
+    Position Transformer: XYZ
+    Use Fixed Frame: true
+    Selectable: false
+    Value: true
+  - Class: rviz/PointCloud2
+    Enabled: true
+    Name: FAST-LIO 当前帧
+    Topic: /cloud_registered
+    Queue Size: 2
+    Style: Points
+    Size (Pixels): 2
+    Size (m): 0.03
+    Color Transformer: Intensity
+    Channel Name: intensity
+    Autocompute Intensity Bounds: true
+    Use rainbow: true
+    Invert Rainbow: false
+    Alpha: 1
+    Decay Time: 0
+    Position Transformer: XYZ
+    Use Fixed Frame: true
+    Selectable: false
+    Value: true
+  - Class: rviz/PointCloud2
+    Enabled: true
+    Name: FAST-LIO 累积地图
+    Topic: /Laser_map
+    Queue Size: 1
+    Style: Points
+    Size (Pixels): 1
+    Size (m): 0.03
+    Color Transformer: Intensity
+    Channel Name: intensity
+    Autocompute Intensity Bounds: false
+    Use rainbow: true
+    Invert Rainbow: false
+    Min Intensity: 0
+    Max Intensity: 152
+    Alpha: 1
+    Decay Time: 0
+    Position Transformer: XYZ
+    Use Fixed Frame: true
+    Selectable: false
+    Value: true
+  - Class: rviz/Odometry
+    Enabled: true
+    Name: 定位输出
+    Topic: /Odometry
+    Keep: 20
+    Shape:
+      Value: Axes
+      Axes Length: 0.5
+      Axes Radius: 0.04
+      Color: 70; 180; 255
+      Alpha: 1
+    Covariance:
+      Value: false
+    Value: true
+  - Class: rviz/Path
+    Enabled: true
+    Name: 定位轨迹
+    Topic: /path
+    Alpha: 1
+    Buffer Length: 1
+    Color: 255; 180; 30
+    Line Style: Lines
+    Line Width: 0.05
+    Pose Style: None
+    Value: true
+  - Class: rviz/Axes
+    Enabled: true
+    Name: 世界坐标系
+    Reference Frame: camera_init
+    Length: 1
+    Radius: 0.05
+    Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 34; 38; 45
+    Default Light: true
+    Fixed Frame: camera_init
+    Frame Rate: 30
+  Name: root
+  Tools:
+  - Class: rviz/Interact
+    Hide Inactive Objects: true
+  - Class: rviz/MoveCamera
+  - Class: rviz/Select
+  - Class: rviz/FocusCamera
+  - Class: rviz/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 60
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Pitch: 0.5
+      Target Frame: camera_init
+      Value: Orbit (rviz)
+      Yaw: 1.0
+Window Geometry:
+  Height: 1040
+  Width: 1900
+  Hide Left Dock: false
+  Hide Right Dock: false

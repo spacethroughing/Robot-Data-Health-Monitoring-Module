@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "all_running": true,
+    "early_player_shutdown_not_eof": true,
+    "no_false_stopped": true
+  },
+  "passed": true,
+  "diagnostic_samples": 317,
+  "runtime_samples": 86,
+  "health_log_directory": "$HOME/fastlio_ws/logs/robot_health/4456d-18de5d83e33060ef-da52e89d"
+}

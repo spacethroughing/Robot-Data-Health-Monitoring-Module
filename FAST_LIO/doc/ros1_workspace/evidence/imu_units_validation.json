@@ -1,0 +1,2452 @@
+{
+  "date": "2026-10-10",
+  "master_uri": "http://127.0.0.1:11325",
+  "gravity_mps2": 9.80665,
+  "synthetic_cases": [
+    {
+      "case": "normal_gravity",
+      "unit": "g",
+      "input_acceleration_z": 1.0,
+      "expected_sample_status": "OK",
+      "diagnostic": {
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "9.807",
+          "linear_acceleration_norm_raw": "1.000",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "260",
+          "age_sec": "0.001",
+          "rate_hz": "191.174",
+          "last_stamp_sec": "1791598638.075387",
+          "topic": "/imu_unit_g/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "normal_gravity",
+      "unit": "mps2",
+      "input_acceleration_z": 9.80665,
+      "expected_sample_status": "OK",
+      "diagnostic": {
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "9.807",
+          "linear_acceleration_norm_raw": "9.807",
+          "imu_acceleration_unit": "mps2",
+          "imu_acceleration_scale": "1.00000",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "326",
+          "age_sec": "0.003",
+          "rate_hz": "191.085",
+          "last_stamp_sec": "1791598638.421300",
+          "topic": "/imu_unit_mps2/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "above_100_mps2",
+      "unit": "g",
+      "input_acceleration_z": 20.0,
+      "expected_sample_status": "WARNING",
+      "diagnostic": {
+        "level": 1,
+        "message": "IMU magnitude exceeds configured physical range",
+        "values": {
+          "linear_acceleration_norm_mps2": "196.133",
+          "linear_acceleration_norm_raw": "20.000",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "WARNING",
+          "sample_message": "IMU magnitude exceeds configured physical range",
+          "message_count": "643",
+          "age_sec": "0.003",
+          "rate_hz": "191.458",
+          "last_stamp_sec": "1791598640.073818",
+          "topic": "/imu_unit_g/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "above_100_mps2",
+      "unit": "mps2",
+      "input_acceleration_z": 196.13299999999998,
+      "expected_sample_status": "WARNING",
+      "diagnostic": {
+        "level": 1,
+        "message": "IMU magnitude exceeds configured physical range",
+        "values": {
+          "linear_acceleration_norm_mps2": "196.133",
+          "linear_acceleration_norm_raw": "196.133",
+          "imu_acceleration_unit": "mps2",
+          "imu_acceleration_scale": "1.00000",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "WARNING",
+          "sample_message": "IMU magnitude exceeds configured physical range",
+          "message_count": "614",
+          "age_sec": "0.003",
+          "rate_hz": "191.516",
+          "last_stamp_sec": "1791598639.921352",
+          "topic": "/imu_unit_mps2/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "one_numeric_unit",
+      "unit": "g",
+      "input_acceleration_z": 1.0,
+      "expected_sample_status": "OK",
+      "diagnostic": {
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "9.807",
+          "linear_acceleration_norm_raw": "1.000",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "1026",
+          "age_sec": "0.004",
+          "rate_hz": "191.537",
+          "last_stamp_sec": "1791598642.072927",
+          "topic": "/imu_unit_g/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "one_numeric_unit",
+      "unit": "mps2",
+      "input_acceleration_z": 1.0,
+      "expected_sample_status": "OK",
+      "diagnostic": {
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "1.000",
+          "linear_acceleration_norm_raw": "1.000",
+          "imu_acceleration_unit": "mps2",
+          "imu_acceleration_scale": "1.00000",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "997",
+          "age_sec": "0.001",
+          "rate_hz": "191.500",
+          "last_stamp_sec": "1791598641.922767",
+          "topic": "/imu_unit_mps2/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "non_finite_nan",
+      "unit": "g",
+      "input_acceleration_z": "nan",
+      "expected_sample_status": "ERROR",
+      "diagnostic": {
+        "level": 2,
+        "message": "IMU acceleration or angular velocity is non-finite",
+        "values": {
+          "linear_acceleration_norm_mps2": "nan",
+          "linear_acceleration_norm_raw": "nan",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "ERROR",
+          "sample_message": "IMU acceleration or angular velocity is non-finite",
+          "message_count": "1313",
+          "age_sec": "0.004",
+          "rate_hz": "191.580",
+          "last_stamp_sec": "1791598643.573211",
+          "topic": "/imu_unit_g/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "non_finite_nan",
+      "unit": "mps2",
+      "input_acceleration_z": "nan",
+      "expected_sample_status": "ERROR",
+      "diagnostic": {
+        "level": 2,
+        "message": "IMU acceleration or angular velocity is non-finite",
+        "values": {
+          "linear_acceleration_norm_mps2": "nan",
+          "linear_acceleration_norm_raw": "nan",
+          "imu_acceleration_unit": "mps2",
+          "imu_acceleration_scale": "1.00000",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "ERROR",
+          "sample_message": "IMU acceleration or angular velocity is non-finite",
+          "message_count": "1380",
+          "age_sec": "0.001",
+          "rate_hz": "191.498",
+          "last_stamp_sec": "1791598643.923221",
+          "topic": "/imu_unit_mps2/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "non_finite_inf",
+      "unit": "g",
+      "input_acceleration_z": "inf",
+      "expected_sample_status": "ERROR",
+      "diagnostic": {
+        "level": 2,
+        "message": "IMU acceleration or angular velocity is non-finite",
+        "values": {
+          "linear_acceleration_norm_mps2": "inf",
+          "linear_acceleration_norm_raw": "inf",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "ERROR",
+          "sample_message": "IMU acceleration or angular velocity is non-finite",
+          "message_count": "1695",
+          "age_sec": "0.002",
+          "rate_hz": "191.227",
+          "last_stamp_sec": "1791598645.575140",
+          "topic": "/imu_unit_g/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "non_finite_inf",
+      "unit": "mps2",
+      "input_acceleration_z": "inf",
+      "expected_sample_status": "ERROR",
+      "diagnostic": {
+        "level": 2,
+        "message": "IMU acceleration or angular velocity is non-finite",
+        "values": {
+          "linear_acceleration_norm_mps2": "inf",
+          "linear_acceleration_norm_raw": "inf",
+          "imu_acceleration_unit": "mps2",
+          "imu_acceleration_scale": "1.00000",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "ERROR",
+          "sample_message": "IMU acceleration or angular velocity is non-finite",
+          "message_count": "1666",
+          "age_sec": "0.001",
+          "rate_hz": "191.226",
+          "last_stamp_sec": "1791598645.423486",
+          "topic": "/imu_unit_mps2/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "recovery",
+      "unit": "g",
+      "input_acceleration_z": 1.0,
+      "expected_sample_status": "OK",
+      "diagnostic": {
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "9.807",
+          "linear_acceleration_norm_raw": "1.000",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "1981",
+          "age_sec": "0.005",
+          "rate_hz": "191.043",
+          "last_stamp_sec": "1791598647.071722",
+          "topic": "/imu_unit_g/input/imu"
+        }
+      },
+      "passed": true
+    },
+    {
+      "case": "recovery",
+      "unit": "mps2",
+      "input_acceleration_z": 9.80665,
+      "expected_sample_status": "OK",
+      "diagnostic": {
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "9.807",
+          "linear_acceleration_norm_raw": "9.807",
+          "imu_acceleration_unit": "mps2",
+          "imu_acceleration_scale": "1.00000",
+          "angular_velocity_norm_rps": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "2047",
+          "age_sec": "0.003",
+          "rate_hz": "190.960",
+          "last_stamp_sec": "1791598647.420950",
+          "topic": "/imu_unit_mps2/input/imu"
+        }
+      },
+      "passed": true
+    }
+  ],
+  "invalid_unit": {
+    "exit_code": 1,
+    "fatal_message_seen": true,
+    "passed": true
+  },
+  "screenshot": {
+    "path": "images/imu_units_default_layout.png",
+    "window_id": "0x920000e",
+    "width": 1848,
+    "height": 1009,
+    "layout_note": "Default Displays dock takes height; some long label text is clipped."
+  },
+  "screenshot_diagnostic": {
+    "wall": 28404.96475725,
+    "statuses": [
+      {
+        "name": "FAST-LIO health",
+        "level": 0,
+        "message": "overall health: OK",
+        "values": {
+          "health_code": "0",
+          "health_name": "OK"
+        }
+      },
+      {
+        "name": "FAST-LIO LiDAR input",
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "points_total": "24000",
+          "points_valid": "23749",
+          "valid_ratio": "0.990",
+          "driver_point_num": "24000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "56",
+          "age_sec": "0.079",
+          "rate_hz": "9.996",
+          "last_stamp_sec": "602.999763",
+          "topic": "/livox/lidar"
+        }
+      },
+      {
+        "name": "FAST-LIO IMU input",
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "linear_acceleration_norm_mps2": "9.647",
+          "linear_acceleration_norm_raw": "0.984",
+          "imu_acceleration_unit": "g",
+          "imu_acceleration_scale": "9.80665",
+          "angular_velocity_norm_rps": "0.369",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "1132",
+          "age_sec": "0.078",
+          "rate_hz": "206.184",
+          "last_stamp_sec": "603.102782",
+          "topic": "/livox/imu"
+        }
+      },
+      {
+        "name": "FAST-LIO localization output",
+        "level": 0,
+        "message": "sample OK",
+        "values": {
+          "position_x_m": "-0.095",
+          "position_y_m": "0.058",
+          "position_z_m": "1.016",
+          "quaternion_norm": "1.000",
+          "linear_speed_mps": "0.382",
+          "maximum_pose_covariance": "0.000",
+          "sample_status": "OK",
+          "sample_message": "sample OK",
+          "message_count": "53",
+          "age_sec": "0.068",
+          "rate_hz": "10.001",
+          "last_stamp_sec": "603.099583",
+          "topic": "/Odometry"
+        }
+      }
+    ]
+  },
+  "bag": {
+    "path": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+    "rate": 1.0,
+    "completed": true,
+    "raw_imu_messages": 28595,
+    "diagnostic_messages": 287,
+    "paired_imu_diagnostics": 287,
+    "pair_samples": [
+      {
+        "stamp": "597.600844",
+        "source_norm_g": 1.0021117875257568,
+        "diagnostic_norm_mps2": 9.827,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "598.100810",
+        "source_norm_g": 1.0013160328201443,
+        "diagnostic_norm_mps2": 9.82,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "598.599815",
+        "source_norm_g": 0.9979683154266008,
+        "diagnostic_norm_mps2": 9.787,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "599.098830",
+        "source_norm_g": 0.9981953490659248,
+        "diagnostic_norm_mps2": 9.789,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "599.597833",
+        "source_norm_g": 0.9979932207565035,
+        "diagnostic_norm_mps2": 9.787,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "600.097884",
+        "source_norm_g": 1.0050726490392579,
+        "diagnostic_norm_mps2": 9.856,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "600.601824",
+        "source_norm_g": 1.0070019209012828,
+        "diagnostic_norm_mps2": 9.875,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "601.100828",
+        "source_norm_g": 1.146693833791494,
+        "diagnostic_norm_mps2": 11.245,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "601.594790",
+        "source_norm_g": 0.9574054050915363,
+        "diagnostic_norm_mps2": 9.389,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "602.099826",
+        "source_norm_g": 0.8030689433452777,
+        "diagnostic_norm_mps2": 7.875,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "602.598786",
+        "source_norm_g": 1.0205763046797713,
+        "diagnostic_norm_mps2": 10.008,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "603.102782",
+        "source_norm_g": 0.9836965186921028,
+        "diagnostic_norm_mps2": 9.647,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "603.597801",
+        "source_norm_g": 0.984104887196302,
+        "diagnostic_norm_mps2": 9.651,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "604.096786",
+        "source_norm_g": 0.9331016246122436,
+        "diagnostic_norm_mps2": 9.151,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "604.600781",
+        "source_norm_g": 0.9460766112771064,
+        "diagnostic_norm_mps2": 9.278,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "605.099817",
+        "source_norm_g": 1.0715031118195324,
+        "diagnostic_norm_mps2": 10.508,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "605.599789",
+        "source_norm_g": 1.024992246121886,
+        "diagnostic_norm_mps2": 10.052,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "606.098775",
+        "source_norm_g": 0.913326857135147,
+        "diagnostic_norm_mps2": 8.957,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "606.597809",
+        "source_norm_g": 1.167706520432908,
+        "diagnostic_norm_mps2": 11.451,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "607.096775",
+        "source_norm_g": 1.1104759191440534,
+        "diagnostic_norm_mps2": 10.89,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "607.596774",
+        "source_norm_g": 0.8257273973220811,
+        "diagnostic_norm_mps2": 8.098,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "608.100771",
+        "source_norm_g": 0.9500771000870968,
+        "diagnostic_norm_mps2": 9.317,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "608.599801",
+        "source_norm_g": 0.9231621840243563,
+        "diagnostic_norm_mps2": 9.053,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "609.099777",
+        "source_norm_g": 1.0334077356912417,
+        "diagnostic_norm_mps2": 10.134,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "609.598793",
+        "source_norm_g": 0.9543066650681727,
+        "diagnostic_norm_mps2": 9.359,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "610.097773",
+        "source_norm_g": 1.0829670762984311,
+        "diagnostic_norm_mps2": 10.62,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "610.601792",
+        "source_norm_g": 1.1687149312985081,
+        "diagnostic_norm_mps2": 11.461,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "611.096761",
+        "source_norm_g": 0.9941815560391911,
+        "diagnostic_norm_mps2": 9.75,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "611.600760",
+        "source_norm_g": 1.0299650763033568,
+        "diagnostic_norm_mps2": 10.101,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "612.099792",
+        "source_norm_g": 0.8875328464211422,
+        "diagnostic_norm_mps2": 8.704,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "612.598754",
+        "source_norm_g": 0.854649610398527,
+        "diagnostic_norm_mps2": 8.381,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "613.098754",
+        "source_norm_g": 0.9345103339808865,
+        "diagnostic_norm_mps2": 9.164,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "613.597788",
+        "source_norm_g": 0.9319544935695735,
+        "diagnostic_norm_mps2": 9.139,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "614.096753",
+        "source_norm_g": 0.9966994681918204,
+        "diagnostic_norm_mps2": 9.774,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "614.601804",
+        "source_norm_g": 0.9436979771403915,
+        "diagnostic_norm_mps2": 9.255,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "615.100745",
+        "source_norm_g": 1.0577116595643066,
+        "diagnostic_norm_mps2": 10.373,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "615.599785",
+        "source_norm_g": 1.0804684522478423,
+        "diagnostic_norm_mps2": 10.596,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "616.103781",
+        "source_norm_g": 1.0655685440044225,
+        "diagnostic_norm_mps2": 10.45,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "616.598745",
+        "source_norm_g": 0.9536808052561876,
+        "diagnostic_norm_mps2": 9.352,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "617.097777",
+        "source_norm_g": 1.0532470189645737,
+        "diagnostic_norm_mps2": 10.329,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "617.596739",
+        "source_norm_g": 0.9930817872068158,
+        "diagnostic_norm_mps2": 9.739,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "618.100738",
+        "source_norm_g": 0.9928419888921235,
+        "diagnostic_norm_mps2": 9.736,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "618.600758",
+        "source_norm_g": 1.0028317458113973,
+        "diagnostic_norm_mps2": 9.834,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "619.099741",
+        "source_norm_g": 0.8784259121989385,
+        "diagnostic_norm_mps2": 8.614,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "619.598729",
+        "source_norm_g": 0.9503708415740512,
+        "diagnostic_norm_mps2": 9.32,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "620.098729",
+        "source_norm_g": 1.0956821832729824,
+        "diagnostic_norm_mps2": 10.745,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "620.597761",
+        "source_norm_g": 0.9083528995090863,
+        "diagnostic_norm_mps2": 8.908,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "621.101779",
+        "source_norm_g": 1.1806552387887694,
+        "diagnostic_norm_mps2": 11.578,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "621.600725",
+        "source_norm_g": 0.9988513469213133,
+        "diagnostic_norm_mps2": 9.795,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "622.100723",
+        "source_norm_g": 0.8893028231350524,
+        "diagnostic_norm_mps2": 8.721,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "622.599759",
+        "source_norm_g": 0.8927147838941336,
+        "diagnostic_norm_mps2": 8.755,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "623.098719",
+        "source_norm_g": 1.0173465830125226,
+        "diagnostic_norm_mps2": 9.977,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "623.597751",
+        "source_norm_g": 1.0137029974096055,
+        "diagnostic_norm_mps2": 9.941,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "624.097752",
+        "source_norm_g": 0.8877732254152365,
+        "diagnostic_norm_mps2": 8.706,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "624.601767",
+        "source_norm_g": 0.9951204262821958,
+        "diagnostic_norm_mps2": 9.759,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "625.100709",
+        "source_norm_g": 1.2129487881394991,
+        "diagnostic_norm_mps2": 11.895,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "625.600714",
+        "source_norm_g": 0.9253465253062537,
+        "diagnostic_norm_mps2": 9.075,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "626.099746",
+        "source_norm_g": 1.0518247983174487,
+        "diagnostic_norm_mps2": 10.315,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "626.598713",
+        "source_norm_g": 0.9995818617312504,
+        "diagnostic_norm_mps2": 9.803,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "627.102699",
+        "source_norm_g": 0.8015518752801648,
+        "diagnostic_norm_mps2": 7.861,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "627.597738",
+        "source_norm_g": 1.058240863373045,
+        "diagnostic_norm_mps2": 10.378,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "628.096713",
+        "source_norm_g": 1.0137386217981665,
+        "diagnostic_norm_mps2": 9.941,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "628.600704",
+        "source_norm_g": 1.0613786795924636,
+        "diagnostic_norm_mps2": 10.409,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "629.099735",
+        "source_norm_g": 1.1044444799710627,
+        "diagnostic_norm_mps2": 10.831,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "629.599731",
+        "source_norm_g": 0.9610042165238487,
+        "diagnostic_norm_mps2": 9.424,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "630.098699",
+        "source_norm_g": 0.9550103501113739,
+        "diagnostic_norm_mps2": 9.365,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "630.597734",
+        "source_norm_g": 0.8820168241575352,
+        "diagnostic_norm_mps2": 8.65,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "631.097729",
+        "source_norm_g": 1.0305355561308533,
+        "diagnostic_norm_mps2": 10.106,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "631.601743",
+        "source_norm_g": 0.9191290889409072,
+        "diagnostic_norm_mps2": 9.014,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "632.100692",
+        "source_norm_g": 0.8542248647755887,
+        "diagnostic_norm_mps2": 8.377,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "632.599723",
+        "source_norm_g": 0.898450450600465,
+        "diagnostic_norm_mps2": 8.811,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "633.099725",
+        "source_norm_g": 0.9849656679637042,
+        "diagnostic_norm_mps2": 9.659,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "633.598683",
+        "source_norm_g": 1.2197735921966717,
+        "diagnostic_norm_mps2": 11.962,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "634.097720",
+        "source_norm_g": 1.104201136060591,
+        "diagnostic_norm_mps2": 10.829,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "634.601734",
+        "source_norm_g": 1.0273764582155345,
+        "diagnostic_norm_mps2": 10.075,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "635.096683",
+        "source_norm_g": 1.1082593124528877,
+        "diagnostic_norm_mps2": 10.868,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "635.600675",
+        "source_norm_g": 1.0239635831188947,
+        "diagnostic_norm_mps2": 10.042,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "636.099714",
+        "source_norm_g": 1.011318806263335,
+        "diagnostic_norm_mps2": 9.918,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "636.599710",
+        "source_norm_g": 0.9018195503805342,
+        "diagnostic_norm_mps2": 8.844,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "637.098674",
+        "source_norm_g": 1.0545316979949102,
+        "diagnostic_norm_mps2": 10.341,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "637.597706",
+        "source_norm_g": 0.7577685062435499,
+        "diagnostic_norm_mps2": 7.431,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "638.096671",
+        "source_norm_g": 0.9796901664719946,
+        "diagnostic_norm_mps2": 9.607,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "638.601726",
+        "source_norm_g": 0.7823799359703119,
+        "diagnostic_norm_mps2": 7.673,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "639.100666",
+        "source_norm_g": 0.8995857961508368,
+        "diagnostic_norm_mps2": 8.822,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "639.599700",
+        "source_norm_g": 1.0247629392955688,
+        "diagnostic_norm_mps2": 10.049,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "640.098666",
+        "source_norm_g": 1.1387016247221367,
+        "diagnostic_norm_mps2": 11.167,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "640.598662",
+        "source_norm_g": 1.0984896921626062,
+        "diagnostic_norm_mps2": 10.773,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "641.097693",
+        "source_norm_g": 1.0466351426909952,
+        "diagnostic_norm_mps2": 10.264,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "641.596659",
+        "source_norm_g": 1.1249392103538685,
+        "diagnostic_norm_mps2": 11.032,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "642.096659",
+        "source_norm_g": 1.0106499603041574,
+        "diagnostic_norm_mps2": 9.911,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "642.600660",
+        "source_norm_g": 1.1110339474627775,
+        "diagnostic_norm_mps2": 10.896,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "643.099688",
+        "source_norm_g": 0.9959546208621524,
+        "diagnostic_norm_mps2": 9.767,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "643.598651",
+        "source_norm_g": 1.0239388279427828,
+        "diagnostic_norm_mps2": 10.041,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "644.098655",
+        "source_norm_g": 1.0065107582706425,
+        "diagnostic_norm_mps2": 9.87,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "644.597682",
+        "source_norm_g": 1.0125545029462057,
+        "diagnostic_norm_mps2": 9.93,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "645.101696",
+        "source_norm_g": 1.002816417796994,
+        "diagnostic_norm_mps2": 9.834,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "645.601697",
+        "source_norm_g": 1.014285327777284,
+        "diagnostic_norm_mps2": 9.947,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "646.100647",
+        "source_norm_g": 0.9924572754452718,
+        "diagnostic_norm_mps2": 9.733,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "646.604641",
+        "source_norm_g": 0.9765287209943084,
+        "diagnostic_norm_mps2": 9.576,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "647.103675",
+        "source_norm_g": 0.9305087001546092,
+        "diagnostic_norm_mps2": 9.125,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "647.598636",
+        "source_norm_g": 1.0207491703013754,
+        "diagnostic_norm_mps2": 10.01,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "648.097680",
+        "source_norm_g": 0.9763227047213946,
+        "diagnostic_norm_mps2": 9.574,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "648.596637",
+        "source_norm_g": 0.9876994776688885,
+        "diagnostic_norm_mps2": 9.686,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "649.100635",
+        "source_norm_g": 1.064031097091936,
+        "diagnostic_norm_mps2": 10.435,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "649.600633",
+        "source_norm_g": 0.9672601239862563,
+        "diagnostic_norm_mps2": 9.486,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "650.099663",
+        "source_norm_g": 0.9815755079741448,
+        "diagnostic_norm_mps2": 9.626,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "650.598625",
+        "source_norm_g": 1.0778660197789647,
+        "diagnostic_norm_mps2": 10.57,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "651.098631",
+        "source_norm_g": 1.1106215020588392,
+        "diagnostic_norm_mps2": 10.891,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "651.597658",
+        "source_norm_g": 1.1826117971568006,
+        "diagnostic_norm_mps2": 11.597,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "652.096624",
+        "source_norm_g": 1.1245532670773104,
+        "diagnostic_norm_mps2": 11.028,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "652.595656",
+        "source_norm_g": 0.8803627646764868,
+        "diagnostic_norm_mps2": 8.633,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "653.095651",
+        "source_norm_g": 0.875123774797279,
+        "diagnostic_norm_mps2": 8.582,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "653.599654",
+        "source_norm_g": 0.9269460350711509,
+        "diagnostic_norm_mps2": 9.09,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "654.098616",
+        "source_norm_g": 1.006877250301205,
+        "diagnostic_norm_mps2": 9.874,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "654.597650",
+        "source_norm_g": 0.9116030788568138,
+        "diagnostic_norm_mps2": 8.94,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "655.097648",
+        "source_norm_g": 1.019971175622558,
+        "diagnostic_norm_mps2": 10.003,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "655.601665",
+        "source_norm_g": 0.8797217994815221,
+        "diagnostic_norm_mps2": 8.627,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "656.100610",
+        "source_norm_g": 0.8674406687354504,
+        "diagnostic_norm_mps2": 8.507,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "656.595636",
+        "source_norm_g": 1.0146901469667826,
+        "diagnostic_norm_mps2": 9.951,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "657.099640",
+        "source_norm_g": 1.1488092336050613,
+        "diagnostic_norm_mps2": 11.266,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "657.598605",
+        "source_norm_g": 1.0629639015211787,
+        "diagnostic_norm_mps2": 10.424,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "658.097636",
+        "source_norm_g": 1.152869912257381,
+        "diagnostic_norm_mps2": 11.306,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "658.597634",
+        "source_norm_g": 1.0712349919221,
+        "diagnostic_norm_mps2": 10.505,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "659.096600",
+        "source_norm_g": 1.0078189645946982,
+        "diagnostic_norm_mps2": 9.883,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "659.600597",
+        "source_norm_g": 0.9600362358254704,
+        "diagnostic_norm_mps2": 9.415,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "660.099628",
+        "source_norm_g": 0.8774521565360865,
+        "diagnostic_norm_mps2": 8.605,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "660.599632",
+        "source_norm_g": 0.8834432937134997,
+        "diagnostic_norm_mps2": 8.664,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "661.098594",
+        "source_norm_g": 0.8892903466318153,
+        "diagnostic_norm_mps2": 8.721,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "661.597627",
+        "source_norm_g": 1.00484362871712,
+        "diagnostic_norm_mps2": 9.854,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "662.097619",
+        "source_norm_g": 1.052909839988266,
+        "diagnostic_norm_mps2": 10.326,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "662.601637",
+        "source_norm_g": 0.9813919997759409,
+        "diagnostic_norm_mps2": 9.624,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "663.095626",
+        "source_norm_g": 1.076152999875822,
+        "diagnostic_norm_mps2": 10.553,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "663.599619",
+        "source_norm_g": 1.0503096401070244,
+        "diagnostic_norm_mps2": 10.3,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "664.099616",
+        "source_norm_g": 0.9750933557272103,
+        "diagnostic_norm_mps2": 9.562,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "664.598584",
+        "source_norm_g": 0.892446059403022,
+        "diagnostic_norm_mps2": 8.752,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "665.097610",
+        "source_norm_g": 1.1734036531616687,
+        "diagnostic_norm_mps2": 11.507,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "665.596582",
+        "source_norm_g": 1.0466429993848936,
+        "diagnostic_norm_mps2": 10.264,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "666.101631",
+        "source_norm_g": 1.0159815863536412,
+        "diagnostic_norm_mps2": 9.963,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "666.595610",
+        "source_norm_g": 1.056902243462493,
+        "diagnostic_norm_mps2": 10.365,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "667.099608",
+        "source_norm_g": 0.8498721851914478,
+        "diagnostic_norm_mps2": 8.334,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "667.614572",
+        "source_norm_g": 0.8133016810829444,
+        "diagnostic_norm_mps2": 7.976,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "668.098572",
+        "source_norm_g": 0.9219564096096219,
+        "diagnostic_norm_mps2": 9.041,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "668.602561",
+        "source_norm_g": 0.9815757043801406,
+        "diagnostic_norm_mps2": 9.626,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "669.096565",
+        "source_norm_g": 1.0302816155347876,
+        "diagnostic_norm_mps2": 10.104,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "669.601614",
+        "source_norm_g": 1.1589255932941909,
+        "diagnostic_norm_mps2": 11.365,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "670.100563",
+        "source_norm_g": 1.0832208794888496,
+        "diagnostic_norm_mps2": 10.623,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "670.599595",
+        "source_norm_g": 1.1916415674251566,
+        "diagnostic_norm_mps2": 11.686,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "671.099600",
+        "source_norm_g": 1.117459704440356,
+        "diagnostic_norm_mps2": 10.959,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "671.598559",
+        "source_norm_g": 0.9762452117543483,
+        "diagnostic_norm_mps2": 9.574,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "672.097591",
+        "source_norm_g": 1.0306581744920595,
+        "diagnostic_norm_mps2": 10.107,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "672.596582",
+        "source_norm_g": 0.9675178110760532,
+        "diagnostic_norm_mps2": 9.488,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "673.101579",
+        "source_norm_g": 0.9178029847813296,
+        "diagnostic_norm_mps2": 9.001,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "673.600554",
+        "source_norm_g": 0.9797903597904102,
+        "diagnostic_norm_mps2": 9.608,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "674.099553",
+        "source_norm_g": 0.9624443567020988,
+        "diagnostic_norm_mps2": 9.438,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "674.598574",
+        "source_norm_g": 1.0078663440819873,
+        "diagnostic_norm_mps2": 9.884,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "675.098575",
+        "source_norm_g": 0.9709645344633422,
+        "diagnostic_norm_mps2": 9.522,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "675.597553",
+        "source_norm_g": 0.9793714112419841,
+        "diagnostic_norm_mps2": 9.604,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "676.096572",
+        "source_norm_g": 1.0978241242862818,
+        "diagnostic_norm_mps2": 10.766,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "676.596543",
+        "source_norm_g": 0.9998511150057429,
+        "diagnostic_norm_mps2": 9.805,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "677.100563",
+        "source_norm_g": 0.9209065727063109,
+        "diagnostic_norm_mps2": 9.031,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "677.599571",
+        "source_norm_g": 0.9387788710623113,
+        "diagnostic_norm_mps2": 9.206,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "678.098520",
+        "source_norm_g": 1.0193476776168344,
+        "diagnostic_norm_mps2": 9.996,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "678.598537",
+        "source_norm_g": 1.0667160765946369,
+        "diagnostic_norm_mps2": 10.461,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "679.097570",
+        "source_norm_g": 0.9900521798201839,
+        "diagnostic_norm_mps2": 9.709,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "679.596559",
+        "source_norm_g": 1.1188585691314068,
+        "diagnostic_norm_mps2": 10.972,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "680.100531",
+        "source_norm_g": 0.9993810550020443,
+        "diagnostic_norm_mps2": 9.801,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "680.595567",
+        "source_norm_g": 0.8784456647182451,
+        "diagnostic_norm_mps2": 8.615,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "681.099562",
+        "source_norm_g": 0.84540637615898,
+        "diagnostic_norm_mps2": 8.291,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "681.603559",
+        "source_norm_g": 0.9661307599188103,
+        "diagnostic_norm_mps2": 9.475,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "682.098525",
+        "source_norm_g": 1.1486277371467446,
+        "diagnostic_norm_mps2": 11.264,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "682.597556",
+        "source_norm_g": 1.1175770579015027,
+        "diagnostic_norm_mps2": 10.96,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "683.101573",
+        "source_norm_g": 1.1110305134727185,
+        "diagnostic_norm_mps2": 10.895,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "683.600516",
+        "source_norm_g": 0.9640294494277823,
+        "diagnostic_norm_mps2": 9.454,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "684.100515",
+        "source_norm_g": 0.9951962137278079,
+        "diagnostic_norm_mps2": 9.76,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "684.599550",
+        "source_norm_g": 0.9299177432753408,
+        "diagnostic_norm_mps2": 9.119,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "685.103549",
+        "source_norm_g": 0.9249605873648933,
+        "diagnostic_norm_mps2": 9.071,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "685.597545",
+        "source_norm_g": 1.0256514176404095,
+        "diagnostic_norm_mps2": 10.058,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "686.097544",
+        "source_norm_g": 0.9661675800969822,
+        "diagnostic_norm_mps2": 9.475,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "686.596508",
+        "source_norm_g": 0.9434108972999153,
+        "diagnostic_norm_mps2": 9.252,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "687.100506",
+        "source_norm_g": 1.0791983417355149,
+        "diagnostic_norm_mps2": 10.583,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "687.600502",
+        "source_norm_g": 0.9428211136276412,
+        "diagnostic_norm_mps2": 9.246,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "688.099540",
+        "source_norm_g": 0.8258215497021313,
+        "diagnostic_norm_mps2": 8.099,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "688.598497",
+        "source_norm_g": 0.8906057335129284,
+        "diagnostic_norm_mps2": 8.734,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "689.097532",
+        "source_norm_g": 0.8858096792393425,
+        "diagnostic_norm_mps2": 8.687,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "689.597533",
+        "source_norm_g": 0.9209030404095963,
+        "diagnostic_norm_mps2": 9.031,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "690.101549",
+        "source_norm_g": 1.0282608001941937,
+        "diagnostic_norm_mps2": 10.084,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "690.600497",
+        "source_norm_g": 1.0142879481826326,
+        "diagnostic_norm_mps2": 9.947,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "691.099527",
+        "source_norm_g": 1.0081872922349073,
+        "diagnostic_norm_mps2": 9.887,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "691.599529",
+        "source_norm_g": 1.011236883499688,
+        "diagnostic_norm_mps2": 9.917,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "692.103526",
+        "source_norm_g": 1.0890081469765198,
+        "diagnostic_norm_mps2": 10.68,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "692.597522",
+        "source_norm_g": 1.1014242235601406,
+        "diagnostic_norm_mps2": 10.801,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "693.097521",
+        "source_norm_g": 1.149979471710107,
+        "diagnostic_norm_mps2": 11.277,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "693.601536",
+        "source_norm_g": 1.0242903758798334,
+        "diagnostic_norm_mps2": 10.045,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "694.100481",
+        "source_norm_g": 1.169183481132335,
+        "diagnostic_norm_mps2": 11.466,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "694.599517",
+        "source_norm_g": 1.0674511770381239,
+        "diagnostic_norm_mps2": 10.468,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "695.099513",
+        "source_norm_g": 1.0987091830986782,
+        "diagnostic_norm_mps2": 10.775,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "695.598478",
+        "source_norm_g": 1.075049713301141,
+        "diagnostic_norm_mps2": 10.543,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "696.097509",
+        "source_norm_g": 1.0117799769048677,
+        "diagnostic_norm_mps2": 9.922,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "696.601526",
+        "source_norm_g": 0.9098708114508471,
+        "diagnostic_norm_mps2": 8.923,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "697.096472",
+        "source_norm_g": 0.9085823023723083,
+        "diagnostic_norm_mps2": 8.91,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "697.600470",
+        "source_norm_g": 0.8440596153105555,
+        "diagnostic_norm_mps2": 8.277,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "698.099502",
+        "source_norm_g": 0.7887331843928486,
+        "diagnostic_norm_mps2": 7.735,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "698.599500",
+        "source_norm_g": 0.7788661078431129,
+        "diagnostic_norm_mps2": 7.638,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "699.098466",
+        "source_norm_g": 0.7462481778378898,
+        "diagnostic_norm_mps2": 7.318,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "699.597495",
+        "source_norm_g": 0.7423043051113175,
+        "diagnostic_norm_mps2": 7.28,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "700.096486",
+        "source_norm_g": 0.7418709459540126,
+        "diagnostic_norm_mps2": 7.275,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "700.601503",
+        "source_norm_g": 0.8561379170159872,
+        "diagnostic_norm_mps2": 8.396,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "701.100456",
+        "source_norm_g": 0.88968851713915,
+        "diagnostic_norm_mps2": 8.725,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "701.604457",
+        "source_norm_g": 1.0288380831310147,
+        "diagnostic_norm_mps2": 10.089,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "702.099489",
+        "source_norm_g": 1.1048355030260573,
+        "diagnostic_norm_mps2": 10.835,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "702.598454",
+        "source_norm_g": 1.235758305207869,
+        "diagnostic_norm_mps2": 12.119,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "703.097485",
+        "source_norm_g": 1.1013499464618748,
+        "diagnostic_norm_mps2": 10.801,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "703.601500",
+        "source_norm_g": 1.2606990056760061,
+        "diagnostic_norm_mps2": 12.363,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "704.096448",
+        "source_norm_g": 1.1960206044987982,
+        "diagnostic_norm_mps2": 11.729,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "704.600449",
+        "source_norm_g": 1.2674979522032763,
+        "diagnostic_norm_mps2": 12.43,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "705.099476",
+        "source_norm_g": 1.3743059069061891,
+        "diagnostic_norm_mps2": 13.477,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "705.599483",
+        "source_norm_g": 1.3965891302440203,
+        "diagnostic_norm_mps2": 13.696,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "706.098441",
+        "source_norm_g": 1.2060293719475825,
+        "diagnostic_norm_mps2": 11.827,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "706.602434",
+        "source_norm_g": 1.3502726119730342,
+        "diagnostic_norm_mps2": 13.242,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "707.101492",
+        "source_norm_g": 1.2492884386996388,
+        "diagnostic_norm_mps2": 12.251,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "707.606438",
+        "source_norm_g": 1.1004845182617373,
+        "diagnostic_norm_mps2": 10.792,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "708.100437",
+        "source_norm_g": 0.9766973528939153,
+        "diagnostic_norm_mps2": 9.578,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "708.599467",
+        "source_norm_g": 0.9684681087913497,
+        "diagnostic_norm_mps2": 9.497,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "709.098435",
+        "source_norm_g": 0.8903272748167055,
+        "diagnostic_norm_mps2": 8.731,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "709.598434",
+        "source_norm_g": 0.8633590473119658,
+        "diagnostic_norm_mps2": 8.467,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "710.102421",
+        "source_norm_g": 0.8026719565348246,
+        "diagnostic_norm_mps2": 7.872,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "710.596431",
+        "source_norm_g": 0.7697573551923802,
+        "diagnostic_norm_mps2": 7.549,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "711.096428",
+        "source_norm_g": 0.7910702418071335,
+        "diagnostic_norm_mps2": 7.758,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "711.600424",
+        "source_norm_g": 0.7659507652095332,
+        "diagnostic_norm_mps2": 7.511,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "712.099456",
+        "source_norm_g": 0.810433971250847,
+        "diagnostic_norm_mps2": 7.948,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "712.598423",
+        "source_norm_g": 0.8172853733673575,
+        "diagnostic_norm_mps2": 8.015,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "713.098421",
+        "source_norm_g": 0.9861420020097035,
+        "diagnostic_norm_mps2": 9.671,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "713.597446",
+        "source_norm_g": 1.058528774182973,
+        "diagnostic_norm_mps2": 10.381,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "714.101468",
+        "source_norm_g": 1.1380298586864446,
+        "diagnostic_norm_mps2": 11.16,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "714.600414",
+        "source_norm_g": 1.1294226087769403,
+        "diagnostic_norm_mps2": 11.076,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "715.100409",
+        "source_norm_g": 1.1567858650717466,
+        "diagnostic_norm_mps2": 11.344,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "715.599446",
+        "source_norm_g": 1.0637628044903502,
+        "diagnostic_norm_mps2": 10.432,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "716.098406",
+        "source_norm_g": 1.1629269715635722,
+        "diagnostic_norm_mps2": 11.404,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "716.598407",
+        "source_norm_g": 1.1546861379576314,
+        "diagnostic_norm_mps2": 11.324,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "717.097439",
+        "source_norm_g": 1.1631942494768859,
+        "diagnostic_norm_mps2": 11.407,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "717.596404",
+        "source_norm_g": 1.1353287310983238,
+        "diagnostic_norm_mps2": 11.134,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "718.100399",
+        "source_norm_g": 1.1685273334243698,
+        "diagnostic_norm_mps2": 11.459,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "718.600399",
+        "source_norm_g": 1.116172157114452,
+        "diagnostic_norm_mps2": 10.946,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "719.099445",
+        "source_norm_g": 1.0770027315917943,
+        "diagnostic_norm_mps2": 10.562,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "719.598397",
+        "source_norm_g": 1.1267064626515053,
+        "diagnostic_norm_mps2": 11.049,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "720.097429",
+        "source_norm_g": 1.13052443723539,
+        "diagnostic_norm_mps2": 11.087,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "720.597427",
+        "source_norm_g": 1.0795264796943007,
+        "diagnostic_norm_mps2": 10.587,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "721.101442",
+        "source_norm_g": 1.1283661645026601,
+        "diagnostic_norm_mps2": 11.065,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "721.600389",
+        "source_norm_g": 0.9911858137935585,
+        "diagnostic_norm_mps2": 9.72,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "722.100387",
+        "source_norm_g": 1.0738964909562883,
+        "diagnostic_norm_mps2": 10.531,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "722.599422",
+        "source_norm_g": 1.0917717904416737,
+        "diagnostic_norm_mps2": 10.707,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "723.103422",
+        "source_norm_g": 1.0789726903692956,
+        "diagnostic_norm_mps2": 10.581,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "723.597414",
+        "source_norm_g": 1.0604290539657382,
+        "diagnostic_norm_mps2": 10.399,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "724.097415",
+        "source_norm_g": 1.1445646240725724,
+        "diagnostic_norm_mps2": 11.224,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "724.596378",
+        "source_norm_g": 1.0120726514180698,
+        "diagnostic_norm_mps2": 9.925,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "725.100378",
+        "source_norm_g": 1.297497816799463,
+        "diagnostic_norm_mps2": 12.724,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "725.599410",
+        "source_norm_g": 1.1381538809492644,
+        "diagnostic_norm_mps2": 11.161,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "726.099407",
+        "source_norm_g": 1.1427307600175522,
+        "diagnostic_norm_mps2": 11.206,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "726.598377",
+        "source_norm_g": 1.153575106550182,
+        "diagnostic_norm_mps2": 11.313,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "727.097406",
+        "source_norm_g": 0.9210248073227402,
+        "diagnostic_norm_mps2": 9.032,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "727.597406",
+        "source_norm_g": 0.9557018911607326,
+        "diagnostic_norm_mps2": 9.372,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "728.101396",
+        "source_norm_g": 1.059252245872094,
+        "diagnostic_norm_mps2": 10.388,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "728.605376",
+        "source_norm_g": 0.9868001713091291,
+        "diagnostic_norm_mps2": 9.677,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "729.099409",
+        "source_norm_g": 0.9065662787862164,
+        "diagnostic_norm_mps2": 8.89,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "729.599395",
+        "source_norm_g": 0.9952735429073921,
+        "diagnostic_norm_mps2": 9.76,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "730.098361",
+        "source_norm_g": 1.086447666785168,
+        "diagnostic_norm_mps2": 10.654,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "730.597369",
+        "source_norm_g": 1.0173483530806338,
+        "diagnostic_norm_mps2": 9.977,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "731.097373",
+        "source_norm_g": 1.0090724720154338,
+        "diagnostic_norm_mps2": 9.896,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "731.596389",
+        "source_norm_g": 0.9913330868211074,
+        "diagnostic_norm_mps2": 9.722,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "732.100384",
+        "source_norm_g": 1.000047099633614,
+        "diagnostic_norm_mps2": 9.807,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "732.599390",
+        "source_norm_g": 1.0017561180142582,
+        "diagnostic_norm_mps2": 9.824,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "733.099357",
+        "source_norm_g": 0.9994102890786891,
+        "diagnostic_norm_mps2": 9.801,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "733.598376",
+        "source_norm_g": 0.9959235186634554,
+        "diagnostic_norm_mps2": 9.767,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "734.097359",
+        "source_norm_g": 0.9987840222074847,
+        "diagnostic_norm_mps2": 9.795,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "734.601377",
+        "source_norm_g": 0.9990675003821518,
+        "diagnostic_norm_mps2": 9.798,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "735.096377",
+        "source_norm_g": 0.993783636027288,
+        "diagnostic_norm_mps2": 9.746,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "735.600373",
+        "source_norm_g": 1.0041234949471314,
+        "diagnostic_norm_mps2": 9.847,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "736.099352",
+        "source_norm_g": 0.9929173699353069,
+        "diagnostic_norm_mps2": 9.737,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "736.599352",
+        "source_norm_g": 0.9924377538622798,
+        "diagnostic_norm_mps2": 9.732,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "737.098365",
+        "source_norm_g": 0.9968405248499748,
+        "diagnostic_norm_mps2": 9.776,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "737.597396",
+        "source_norm_g": 0.9914456604783344,
+        "diagnostic_norm_mps2": 9.723,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "738.101362",
+        "source_norm_g": 0.9966738168494315,
+        "diagnostic_norm_mps2": 9.774,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "738.601365",
+        "source_norm_g": 0.992497529825881,
+        "diagnostic_norm_mps2": 9.733,
+        "level": 0,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "738.900338",
+        "source_norm_g": 1.0028013759641805,
+        "diagnostic_norm_mps2": 9.834,
+        "level": 1,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "738.900338",
+        "source_norm_g": 1.0028013759641805,
+        "diagnostic_norm_mps2": 9.834,
+        "level": 2,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "738.900338",
+        "source_norm_g": 1.0028013759641805,
+        "diagnostic_norm_mps2": 9.834,
+        "level": 2,
+        "sample_status": "OK"
+      },
+      {
+        "stamp": "738.900338",
+        "source_norm_g": 1.0028013759641805,
+        "diagnostic_norm_mps2": 9.834,
+        "level": 2,
+        "sample_status": "OK"
+      }
+    ],
+    "map_messages": 132,
+    "last_map_points": 90524,
+    "overall_level_counts": {
+      "2": 4,
+      "1": 35,
+      "0": 248
+    },
+    "post_eof_overall": {
+      "name": "FAST-LIO health",
+      "level": 2,
+      "message": "overall health: ERROR",
+      "values": {
+        "health_code": "2",
+        "health_name": "ERROR"
+      }
+    },
+    "passed": true,
+    "unique_paired_imu_stamps": 284,
+    "maximum_conversion_error_mps2": 0.0004996705810427216,
+    "diagnostic_display_resolution_mps2": 0.001
+  },
+  "passed": true,
+  "readable_screenshot": {
+    "path": "images/imu_units_bag_testbench.png",
+    "width": 1848,
+    "height": 1009,
+    "layout": "A second RViz on the same isolated master, with Displays dock omitted; input topics, health thresholds, cloud layers and data unchanged.",
+    "visible_values": {
+      "overall": "OK",
+      "lidar": "OK",
+      "imu": "OK",
+      "odometry": "OK",
+      "imu_norm_mps2": 8.467,
+      "imu_norm_raw_g": 0.863,
+      "gyro_norm_rps": 0.305
+    },
+    "note": "Values read from the actual captured panel. Native and converted values are rounded separately; source-message comparisons use unrounded values."
+  },
+  "startup_logging_followup": {
+    "finding": "Invalid unit exits during constructor unwinding; logging only in main catch was not visible.",
+    "fix": "Emit FATAL before throwing, while NodeHandles and ROS logging are active.",
+    "rebuild_passed": true,
+    "invalid_unit_retest_passed": true
+  }
+}

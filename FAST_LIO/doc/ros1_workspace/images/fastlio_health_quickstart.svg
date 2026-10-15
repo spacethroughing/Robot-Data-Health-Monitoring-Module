@@ -32,11 +32,11 @@
   <text x="95" y="273" class="mono-sm"># zsh 下先单独输入 bash，回车</text>
   <rect x="455" y="216" width="728" height="86" rx="12" class="code"/>
   <text x="475" y="245" class="mono">source /opt/ros/noetic/setup.bash</text>
-  <text x="475" y="273" class="mono">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="475" y="273" class="mono">source /home/lmw/fastlio_ws/devel/setup.bash</text>
   <rect x="1203" y="216" width="522" height="86" rx="12" fill="#f5f8fb" stroke="#dce6ef"/>
   <text x="1225" y="245" class="h2">需要编译时</text>
   <text x="1225" y="273" class="body">修改过 C++ 或首次运行：进入工作区执行</text>
-  <text x="1225" y="294" class="small" font-weight="700">cd $HOME/fastlio_ws &amp;&amp; catkin_make -j2</text>
+  <text x="1225" y="294" class="small" font-weight="700">cd /home/lmw/fastlio_ws &amp;&amp; catkin_make -j2</text>
   <text x="77" y="329" class="small">source 通常不会打印提示；首次编译若 devel/setup.bash 不存在，先 source ROS、编译，再 source 工作区 setup。</text>
 
   <!-- Step 2: input modes -->

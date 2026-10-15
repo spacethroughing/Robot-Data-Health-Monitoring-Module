@@ -1,0 +1,7074 @@
+[
+  {
+    "t": 89537.851979421,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 8,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89537.851984072,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 9,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89537.90215343,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 11,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89537.902155859,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 12,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89537.96518465,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 14,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89537.965223828,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 15,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.021745242,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 17,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.021746918,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 18,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.081597576,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 20,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.081599787,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 21,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.179379533,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 23,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.17938187,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 24,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.207702338,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 26,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.207704197,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 27,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.266868897,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 29,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.266870378,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 30,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.326423694,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 32,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89538.32645006,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "STARTING",
+    "sequence": 33,
+    "reason": "waiting for both consumers and live transport"
+  },
+  {
+    "t": 89539.078910821,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 35,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.078912529,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 36,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.086497344,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 38,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.08649908,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 39,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.139056256,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 41,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.139058277,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 42,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.199019613,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 44,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.199051847,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 45,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.258951817,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 47,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.258994883,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 48,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.318971843,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 50,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.318973771,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 51,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.379048426,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 53,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.379050618,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 54,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.438968124,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 56,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.438970038,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 57,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.499070481,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 59,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.499111869,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 60,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.559084418,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 62,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.559118742,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 63,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.619146506,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 65,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.619182542,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 66,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.678985804,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 68,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.679030667,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 69,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.739120031,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 71,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.739150391,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 72,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.798972806,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 74,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.799018991,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 75,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.859020312,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 77,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.859066263,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 78,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.918963242,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 80,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.919006232,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 81,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.979017679,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 83,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89539.979046186,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 84,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.039066432,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 86,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.039097794,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 87,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.110406832,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 89,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.110440284,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 90,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.159118531,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 92,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.159151726,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 93,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.219052984,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 95,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.219086207,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 96,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.27893487,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 98,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.278978155,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 99,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.3390783,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 101,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.33912662,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 102,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.398972056,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 104,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.399004775,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 105,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.458872548,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 107,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.458904367,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 108,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89540.521808862,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 110,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.521841279,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 111,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.521877882,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 113,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.521878866,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 114,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.57901002,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 116,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.579045405,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 117,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.63908318,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 119,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.639113104,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 120,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.699077502,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 122,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.699132213,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 123,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.759144415,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 125,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.75917581,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 126,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.819093417,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 128,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.819125037,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 129,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.879193437,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 131,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.879227885,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 132,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.939255715,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 134,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.939282858,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 135,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.999245969,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 137,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89540.99927573,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 138,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.059243639,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 140,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.05927211,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 141,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.119188056,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 143,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.119215801,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 144,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.17911851,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 146,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.179148249,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 147,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.239131435,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 149,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.239158135,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 150,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.299007945,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 152,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.299036389,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 153,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.359085823,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 155,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.359112846,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 156,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.419026295,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 158,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.419057889,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 159,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.479023797,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 161,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.479061496,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 162,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.539105584,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 164,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.539143967,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 165,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.59919397,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 167,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.599225652,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 168,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.659046448,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 170,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.659073225,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 171,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.719192377,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 173,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.719194098,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 174,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.779049057,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 176,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.779050814,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 177,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.838936866,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 179,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.838962665,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 180,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.89900032,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 182,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.899026421,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 183,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.959124396,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 185,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89541.959126094,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 186,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.019016937,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 188,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.019044788,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 189,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.079088333,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 191,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.079112301,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 192,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.145674655,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 194,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.145699259,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 195,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.199083898,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 197,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.19911494,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 198,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.258981417,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 200,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.25901792,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 201,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.31907073,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 203,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.319098961,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 204,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.378934904,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 206,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.378959947,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 207,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.439036471,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 209,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.439062451,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 210,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.49897685,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 212,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.499002799,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 213,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.558925163,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 215,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.558949469,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 216,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.618898159,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 218,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.618922382,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 219,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.678976499,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 221,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.679001337,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 222,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.738974152,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 224,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.739000221,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 225,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.799061738,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 227,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.799099818,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 228,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.859098587,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 230,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.859124745,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 231,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.919035904,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 233,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.919061229,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 234,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.979013287,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 236,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89542.979040189,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 237,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.039182318,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 239,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.039216028,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 240,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.099166024,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 242,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.099194673,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 243,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.159099138,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 245,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.159126783,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 246,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.219124576,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 248,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.219149994,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 249,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.279109108,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 251,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.279148338,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 252,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.339173248,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 254,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.339207324,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 255,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.398958065,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 257,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.398983334,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 258,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.459015743,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 260,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.459040483,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 261,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.519188354,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 263,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.519214093,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 264,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.57913966,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 266,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.579166213,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 267,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.64586358,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 269,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.64589272,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 270,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.699072677,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 272,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.699102991,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 273,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.758877147,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 275,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.758908538,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 276,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.819022164,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 278,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.819050023,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 279,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.878973555,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 281,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.879005959,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 282,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.938944166,
+    "binding": "localization",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 284,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89543.938985856,
+    "binding": "sensors",
+    "desired": "PAUSE",
+    "observed": "PAUSED",
+    "sequence": 285,
+    "reason": "pause acknowledged; input and dependent output demand suspended"
+  },
+  {
+    "t": 89544.026198848,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 287,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.026200712,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 288,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.026248995,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 290,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.026249709,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 291,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.086181963,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 293,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.086209078,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 294,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.152831037,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 296,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.15285834,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 297,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.206180564,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 299,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.206209487,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 300,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.266035027,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 302,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.266060946,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 303,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.326181124,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 305,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.326206914,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 306,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.386082047,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 308,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.386132082,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 309,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.446145113,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 311,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.446189262,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 312,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.506171648,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 314,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.506216586,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 315,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.566148059,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 317,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.566189114,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 318,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.626083229,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 320,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.626123977,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 321,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.686164484,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 323,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.686204166,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 324,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.746203377,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 326,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.746242935,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 327,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.80617226,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 329,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.806218663,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 330,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.866076975,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 332,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.866115344,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 333,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.926250591,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 335,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.926290287,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 336,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.986272427,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 338,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89544.986323236,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 339,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.046137888,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 341,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.046188696,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 342,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.106158293,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 344,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.106214744,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 345,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.172905686,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 347,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.172952984,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 348,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.226133332,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 350,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.226171861,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 351,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.286274477,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 353,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.2863165,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 354,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.346181517,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 356,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.346224757,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 357,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.406157949,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 359,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.406194391,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 360,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.466158208,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 362,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.466195584,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 363,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.52616473,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 365,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.526205035,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 366,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.586102445,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 368,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.58614329,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 369,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.646157029,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 371,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.646188529,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 372,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.70619449,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 374,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.706225643,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 375,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.76607885,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 377,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.76611286,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 378,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.826136219,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 380,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.826178502,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 381,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.886127959,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 383,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.886173465,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 384,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.946200183,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 386,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89545.946236596,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 387,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.006147247,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 389,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.006188899,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 390,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.066122391,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 392,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.066162589,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 393,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.126174376,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 395,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.126215644,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 396,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.186204182,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 398,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.186244519,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 399,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.246128525,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 401,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.246164646,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 402,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.306208731,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 404,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.306251412,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 405,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.366125825,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 407,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.366166223,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 408,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.426272414,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 410,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.426312638,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 411,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.486314184,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 413,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.486354894,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 414,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.546272626,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 416,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.546309711,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 417,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.606139021,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 419,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.60618072,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 420,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.666081477,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 422,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.666118806,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 423,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.726212985,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 425,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.72625175,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 426,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.786024956,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 428,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.786060536,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 429,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.84620115,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 431,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.846244267,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 432,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.906105349,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 434,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.906151067,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 435,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.966160154,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 437,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89546.966199732,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 438,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.026075794,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 440,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.026115793,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 441,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.086108213,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 443,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.086165626,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 444,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.146144803,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 446,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.146184822,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 447,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.206180445,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 449,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.206224247,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 450,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.266277546,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 452,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.266326145,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 453,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.326073443,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 455,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.326118788,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 456,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.386086873,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 458,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.386133295,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 459,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.446032109,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 461,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.446081148,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 462,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.506085994,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 464,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.506136001,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 465,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.566099976,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 467,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.566146785,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 468,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.626131035,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 470,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.626174941,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 471,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.68605712,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 473,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.686099292,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 474,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.752793537,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 476,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.752838766,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 477,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.806056484,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 479,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.806100268,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 480,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.866126655,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 482,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.866179441,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 483,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.926087354,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 485,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.926126267,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 486,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.986147343,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 488,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89547.986188535,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 489,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.04656458,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 491,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.046613613,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 492,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.106221992,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 494,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.106263907,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 495,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.166074054,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 497,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.16611354,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 498,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.226733618,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 500,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.226782184,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 501,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.286071592,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 503,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.286111432,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 504,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.346073969,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 506,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.346117388,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 507,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.406268567,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 509,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.406310625,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 510,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.46613066,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 512,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.466170175,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 513,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.526215245,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 515,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.5262546,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 516,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.586255961,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 518,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.586298951,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 519,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.646204114,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 521,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.646240783,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 522,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.706151023,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 524,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.706184303,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 525,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.766185869,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 527,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.766234295,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 528,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.826206072,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 530,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.826250448,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 531,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.886218644,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 533,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.886264075,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 534,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.946168116,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 536,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89548.946221295,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 537,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.006297129,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 539,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.006353457,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 540,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.066255306,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 542,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.066302519,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 543,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.126154121,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 545,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.126198458,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 546,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.186191068,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 548,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.186232197,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 549,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.256937803,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 551,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.256981624,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 552,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.306246528,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 554,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.306282924,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 555,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.366201499,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 557,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.366258464,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 558,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.426399978,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 560,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.426447853,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 561,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.486253383,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 563,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.486299524,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 564,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.546250585,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 566,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.546303475,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 567,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.606223221,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 569,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.606274385,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 570,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.666194039,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 572,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.666245981,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 573,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.726184891,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 575,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.726236523,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 576,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.786133839,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 578,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.786182022,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 579,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.846088966,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 581,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.846133641,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 582,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.906051429,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 584,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.906098261,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 585,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.966086021,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 587,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89549.966129331,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 588,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.026117948,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 590,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.026166269,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 591,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.086160375,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 593,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.086211866,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 594,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.14616431,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 596,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.146208509,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 597,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.206093787,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 599,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.206139753,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 600,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.266324379,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 602,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.266373325,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 603,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.326241694,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 605,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.32629034,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 606,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.386258396,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 608,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.386308446,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 609,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.446084084,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 611,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.446129044,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 612,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.506269147,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 614,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.506309997,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 615,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.566347971,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 617,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.566396305,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 618,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.626291934,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 620,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.626337447,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 621,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.686145615,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 623,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.686188131,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 624,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.74614869,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 626,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.746191296,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 627,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.806110303,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 629,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.806151683,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 630,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.86631364,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 632,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.866355626,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 633,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.92607908,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 635,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.926121331,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 636,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.986065824,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 638,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89550.986109343,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 639,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.046179943,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 641,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.046226818,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 642,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.10609083,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 644,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.106134686,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 645,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.166109913,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 647,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.166138313,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 648,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.226164519,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 650,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.226200282,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 651,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.286075744,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 653,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.286105253,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 654,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.346201356,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 656,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.346260037,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 657,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.406247261,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 659,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.406299411,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 660,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.466165997,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 662,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.466216984,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 663,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.526095597,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 665,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.526132624,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 666,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.58618893,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 668,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.586238094,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 669,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.646229593,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 671,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.64628517,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 672,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.706218846,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 674,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.706269747,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 675,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.766187589,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 677,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.766239527,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 678,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.826032551,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 680,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.8260707,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 681,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.886145851,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 683,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.886200272,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 684,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.946148299,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 686,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89551.946196072,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 687,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.006230696,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 689,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.006281606,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 690,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.066285297,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 692,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.066334767,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 693,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.126264747,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 695,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.126306612,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 696,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.186305212,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 698,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.186349609,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 699,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.246418233,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 701,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.246462607,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 702,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.306222955,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 704,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.306268519,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 705,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.366174338,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 707,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.366219246,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 708,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.426224475,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 710,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.426282809,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 711,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.486146451,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 713,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.486187259,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 714,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.546215068,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 716,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.546267654,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 717,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.606259213,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 719,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.606309044,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 720,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.666207033,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 722,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.666251253,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 723,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.726274572,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 725,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.72631564,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 726,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.786224744,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 728,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.786269872,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 729,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.853094426,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 731,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.853143016,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 732,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.906146608,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 734,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.906189771,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 735,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.966203619,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 737,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89552.966244642,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 738,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.026163734,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 740,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.026208462,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 741,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.086134378,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 743,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.08618027,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 744,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.146096494,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 746,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.146147234,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 747,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.206079896,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 749,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.206130444,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 750,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.266103889,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 752,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.266152741,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 753,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.326074332,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 755,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.326126429,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 756,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.386075258,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 758,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.386116118,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 759,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.446080694,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 761,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.446125071,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 762,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.506142277,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 764,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.506170265,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 765,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.566169496,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 767,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.566196981,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 768,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.626189685,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 770,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.626231473,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 771,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.686225817,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 773,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.686269739,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 774,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.746310429,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 776,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.746339893,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 777,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.806332157,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 779,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.80636172,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 780,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.873442003,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 782,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.873484496,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 783,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.926273092,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 785,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.92631331,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 786,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.986329514,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 788,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89553.986372665,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 789,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.046280254,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 791,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.04632332,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 792,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.106217693,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 794,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.106265781,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 795,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.166263396,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 797,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.16631067,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 798,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.226176112,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 800,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.226216716,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 801,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.286085397,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 803,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.286115202,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 804,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.346047836,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 806,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.346074909,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 807,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.406186131,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 809,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.406213151,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 810,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.466177124,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 812,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.466203621,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 813,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.526067825,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 815,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.526093919,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 816,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.586131465,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 818,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.586172367,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 819,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.646227049,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 821,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.646253685,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 822,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.706282734,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 824,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.706312857,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 825,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.766121896,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 827,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.766153094,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 828,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.826266166,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 830,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.826305712,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 831,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.893777293,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 833,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.893819097,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 834,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.946268091,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 836,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89554.946298494,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 837,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.006244571,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 839,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.006270572,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 840,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.066196291,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 842,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.066224739,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 843,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.126324163,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 845,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.126349695,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 846,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.186130324,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 848,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.186170389,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 849,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.246027204,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 851,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.246066424,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 852,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.306010123,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 854,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.306042678,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 855,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.366227038,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 857,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.366261641,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 858,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.426144728,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 860,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.426179116,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 861,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.486129226,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 863,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.486161492,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 864,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.546192661,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 866,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.546228449,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 867,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.606331092,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 869,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.606364624,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 870,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.666103049,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 872,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.666135472,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 873,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.726185344,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 875,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.726219176,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 876,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.786157775,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 878,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.786189628,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 879,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.84624415,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 881,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.846277,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 882,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.91500929,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 884,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.915029903,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 885,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.966197792,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 887,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89555.966219005,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 888,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.026318006,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 890,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.02635047,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 891,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.086316994,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 893,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.086351414,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 894,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.14607106,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 896,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.146104968,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 897,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.206280348,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 899,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.206312149,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 900,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.266121852,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 902,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.266156429,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 903,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.326045202,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 905,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.326083575,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 906,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.38617455,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 908,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.386212055,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 909,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.446364124,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 911,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.446395057,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 912,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.506158887,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 914,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.506184975,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 915,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.56613413,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 917,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.566161972,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 918,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.626035348,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 920,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.626060111,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 921,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.686097064,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 923,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.686125586,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 924,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.746319902,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 926,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.746343704,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 927,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.806119505,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 929,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.806145572,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 930,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.866300516,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 932,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.866324069,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 933,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.935955199,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 935,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.935994272,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 936,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.986161804,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 938,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89556.986186412,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 939,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.046184276,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 941,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.046226321,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 942,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.106175593,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 944,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.106230467,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 945,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.166276983,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 947,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.166320184,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 948,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.226340526,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 950,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.226368757,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 951,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.286150243,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 953,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.286192856,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 954,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.346146601,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 956,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.346186118,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 957,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.406342051,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 959,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.406373121,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 960,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.466254676,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 962,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.466284417,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 963,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.526324986,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 965,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.526359438,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 966,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.586349903,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 968,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.586397515,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 969,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.64627333,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 971,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.646328231,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 972,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.706099161,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 974,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.706127948,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 975,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.766232084,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 977,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.766262723,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 978,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.826231109,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 980,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.826258751,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 981,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.886172847,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 983,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.88620022,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 984,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.946205282,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 986,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89557.946230734,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 987,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.006094872,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 989,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.006126406,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 990,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.066113922,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 992,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.066152795,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 993,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.126255806,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 995,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.126288453,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 996,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.186169451,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 998,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.186201847,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 999,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.246189994,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1001,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.246225825,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1002,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.306147491,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1004,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.306179776,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1005,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.366363834,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1007,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.366395394,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1008,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.438085525,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1010,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.438121868,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1011,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.486130815,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1013,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.486166136,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1014,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.546200244,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1016,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.546228345,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1017,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.606260988,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1019,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.606293074,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1020,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.666290412,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1022,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.666325085,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1023,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.726375265,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1025,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.726406185,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1026,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.786376993,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1028,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.786417386,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1029,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.846198619,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1031,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.846244002,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1032,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.906159331,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1034,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.906215256,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1035,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.966173908,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1037,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89558.966231899,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1038,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.026120216,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1040,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.026176641,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1041,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.086201011,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1043,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.086253477,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1044,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.146291375,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1046,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.146327353,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1047,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.206345464,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1049,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.206384318,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1050,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.266298523,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1052,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.266333935,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1053,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.326280797,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1055,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.326318084,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1056,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.386203243,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1058,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.386239178,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1059,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.446284576,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1061,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.446336179,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1062,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.506210452,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1064,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.506265847,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1065,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.566167263,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1067,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.566217589,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1068,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.626139194,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1070,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.626190271,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1071,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.686240976,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1073,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.686296267,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1074,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.746295974,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1076,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.746346497,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1077,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.806222337,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1079,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.806260543,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1080,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.866381519,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1082,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.866419677,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1083,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.926338157,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1085,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.92637806,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1086,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.986152953,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1088,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89559.986204134,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1089,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.04609592,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1091,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.046140315,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1092,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.106172374,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1094,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.106224842,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1095,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.166163845,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1097,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.166215149,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1098,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.226091019,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1100,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.226144708,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1101,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.286034403,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1103,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.286085479,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1104,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.346298423,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1106,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.34633726,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1107,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.40609185,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1109,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.406144875,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1110,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.466339849,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1112,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.466407779,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1113,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.526170444,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1115,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.526221303,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1116,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.586248313,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1118,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.586300952,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1119,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.646459124,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1121,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.646510595,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1122,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.706513765,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1124,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.706570411,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1125,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.766213,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1127,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.766269471,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1128,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.826204083,
+    "binding": "localization",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1130,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.826260209,
+    "binding": "sensors",
+    "desired": "RUN",
+    "observed": "RUNNING",
+    "sequence": 1131,
+    "reason": "resume acknowledged; consumers must regain data readiness"
+  },
+  {
+    "t": 89560.846359439,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPING",
+    "sequence": 1133,
+    "reason": "player exited; verifying its clock reached the file end"
+  },
+  {
+    "t": 89560.846414022,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPING",
+    "sequence": 1134,
+    "reason": "player exited; verifying its clock reached the file end"
+  },
+  {
+    "t": 89560.846490293,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1136,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89560.84649236,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1137,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89560.886207906,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1139,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89560.886256882,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1140,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89560.946235586,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1142,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89560.946287819,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1143,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.016111762,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1145,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.016134416,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1146,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.066233246,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1148,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.066259916,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1149,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.126102361,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1151,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.126130847,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1152,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.186199966,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1154,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.186229274,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1155,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.246126183,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1157,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.246164695,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1158,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.306191431,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1160,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.306225051,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1161,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.366141088,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1163,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.366174905,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1164,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.426126384,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1166,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.426149745,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1167,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.486246003,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1169,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.486272454,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1170,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.546372619,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1172,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.546399521,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1173,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.606163297,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1175,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.606182881,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1176,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.666314687,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1178,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.666341034,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1179,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.726255778,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1181,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.726281852,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1182,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.786206391,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1184,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.786231616,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1185,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.846459394,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1187,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.846486309,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1188,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.906369627,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1190,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.906395691,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1191,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.966284777,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1193,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89561.966311284,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1194,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.026299493,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1196,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.026330891,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1197,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.086300278,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1199,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.086325937,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1200,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.146186321,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1202,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.146215248,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1203,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.206303264,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1205,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.206330483,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1206,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.266159387,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1208,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.266184611,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1209,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.326214683,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1211,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.326241118,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1212,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.386202111,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1214,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.386227755,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1215,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.446113667,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1217,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.446141569,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1218,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.506182624,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1220,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.506210085,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1221,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.566377421,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1223,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.566409591,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1224,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.626308573,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1226,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.626335463,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1227,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.686293155,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1229,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.686323671,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1230,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.74650243,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1232,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.746530709,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1233,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.806122333,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1235,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.806148706,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1236,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.866437354,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1238,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.866465947,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1239,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.926322128,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1241,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.926352483,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1242,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.986129664,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1244,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89562.986157856,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1245,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.054132842,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1247,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.054167126,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1248,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.1064208,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1250,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.106452062,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1251,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.166332393,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1253,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.166364161,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1254,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.226343405,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1256,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.226372003,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1257,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.286131425,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1259,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.286161543,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1260,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.346242964,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1262,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.346283927,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1263,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.406296998,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1265,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.406330482,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1266,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.466174004,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1268,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.466210457,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1269,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.526487747,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1271,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.52651998,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1272,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.58646203,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1274,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.586495159,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1275,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.64643043,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1277,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.646462493,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1278,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.706474778,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1280,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.706508871,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1281,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.766464992,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1283,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.766492629,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1284,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.826348473,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1286,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.826380121,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1287,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.886362725,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1289,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.886396226,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1290,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.946323022,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1292,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89563.946348282,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1293,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.006506047,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1295,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.006537072,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1296,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.073246891,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1298,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.073278046,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1299,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.126404873,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1301,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.126430434,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1302,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.186330764,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1304,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.186358859,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1305,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.24644045,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1307,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.246473121,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1308,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.306373196,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1310,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.306426113,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1311,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.366109985,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1313,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.366164895,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1314,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.426407868,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1316,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.426452852,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1317,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.486285336,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1319,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.486329005,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1320,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.546435766,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1322,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.546473889,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1323,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.606222899,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1325,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.60627287,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1326,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.666335705,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1328,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.666386933,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1329,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.72658528,
+    "binding": "localization",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1331,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  },
+  {
+    "t": 89564.726644168,
+    "binding": "sensors",
+    "desired": "STOP",
+    "observed": "STOPPED",
+    "sequence": 1332,
+    "reason": "clean EOF verified; data demand stopped, map and node retained"
+  }
+]

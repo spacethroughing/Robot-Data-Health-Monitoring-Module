@@ -1,0 +1,30 @@
+{
+  "video": "$HOME/Desktop/FAST-LIO_健康监控_V2_错误Bag_RViz实时检测_2026-10-13.mp4",
+  "size_bytes": 52784424,
+  "sha256": "f0c1ce8c58aff6b8622fd3f4a8f66022c4f667529ab65d7ed31ff251e07e3b5d",
+  "width": 1920,
+  "height": 1080,
+  "fps": 15.000712864834039,
+  "frame_count_header": 1473,
+  "decoded_frames": 1473,
+  "duration_seconds": 98.19533333333332,
+  "fourcc": "avc1",
+  "test_passed": 3,
+  "test_total": 3,
+  "source_unchanged": true,
+  "live_rviz_diagnostics_visible": {
+    "imu_stamp_regression": true,
+    "lidar_dropout": true,
+    "localization_jump": true
+  },
+  "expected_rules": {
+    "imu_stamp_regression": "STAMP_REGRESSION",
+    "lidar_dropout": "RECEIVE_AGE",
+    "localization_jump": "LOC_SPEED"
+  },
+  "rviz_screenshots": {
+    "imu_stamp_regression": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/images/imu_stamp_regression_rviz_live.png",
+    "lidar_dropout": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/images/lidar_dropout_rviz_live.png",
+    "localization_jump": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/images/localization_jump_rviz_live.png"
+  }
+}

@@ -99,8 +99,59 @@ std::string csv(const std::string& text) {
   return s + '"';
 }
 const char* header =
-    "wall_time_utc,steady_elapsed_sec,module_id,producer_instance_id,epoch,"
-    "operating_state,health_level,operational_valid,metrics_json\n";
+    "bag_elapsed_sec,source_stamp_sec,steady_elapsed_sec,module_id,"
+    "producer_instance_id,epoch,operating_state,health_level,operational_valid,metrics_json\n";
+// Source nanoseconds remain internal for exact decimal formatting. Only the
+// three selected time fields are serialized; diagnostic durations stay intact.
+Values loggedValues(Values values) {
+  values.erase("last_stamp_sec");
+  values.erase("source_stamp_ns");
+  values.erase("source_stamp_sec");
+  return values;
+}
+std::string nsSeconds(uint64_t ns) {
+  std::ostringstream out;
+  out << ns / 1000000000ULL << '.' << std::setw(9) << std::setfill('0')
+      << ns % 1000000000ULL;
+  return out.str();
+}
+struct BagFields {
+  bool valid = false;
+  std::string elapsed;
+};
+BagFields bagFields(const LogTimeline& timeline) {
+  BagFields fields;
+  if (!timeline.current_ns) return fields;
+  const auto ns = timeline.current_ns();
+  if (!ns || ns < timeline.begin_ns || ns > timeline.end_ns) return fields;
+  fields.valid = true;
+  fields.elapsed = nsSeconds(ns - timeline.begin_ns);
+  return fields;
+}
+std::pair<std::string, std::string> sourceFields(const Values& values) {
+  auto ns = values.find("source_stamp_ns");
+  if (ns != values.end()) {
+    try {
+      size_t used = 0;
+      const uint64_t value = std::stoull(ns->second, &used);
+      if (used == ns->second.size() && !ns->second.empty() && ns->second[0] != '-')
+        return {nsSeconds(value), ns->second};
+    } catch (const std::exception&) {}
+  }
+  auto seconds = values.find("source_stamp_sec");
+  if (seconds != values.end()) {
+    try {
+      size_t used = 0;
+      const double value = std::stod(seconds->second, &used);
+      if (used == seconds->second.size() && std::isfinite(value)) {
+        std::ostringstream out;
+        out << std::setprecision(17) << value;
+        return {out.str(), ""};
+      }
+    } catch (const std::exception&) {}
+  }
+  return {"null", ""};
+}
 bool syncFile(const std::string& path) {
   int fd = open(path.c_str(), O_RDONLY | O_CLOEXEC);
   if (fd < 0) return false;
@@ -109,8 +160,9 @@ bool syncFile(const std::string& path) {
   return ok;
 }
 }  // namespace
-EventRecorder::EventRecorder(const MonitorConfig& c)
+EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline)
     : config_(c),
+      timeline_(timeline),
       run_id_(uniqueId()),
       config_hash_(sha256Text(c.effective_text)),
       started_(steadyNow()) {
@@ -131,14 +183,13 @@ EventRecorder::EventRecorder(const MonitorConfig& c)
     if (len > 0) exe[len] = 0;
     Values manifest{
         {"monitor_run_id", run_id_},
-        {"wall_time_utc", utcNow()},
         {"config_source_path", c.source_path},
         {"config_source_sha256", sha256Text(c.source_text)},
         {"effective_config_sha256", config_hash_},
         {"binary_sha256", len > 0 ? sha256File(exe) : "unavailable"},
         {"binary_path", len > 0 ? exe : "unavailable"},
         {"time_policy",
-         "steady watchdog; source derivatives; UTC presentation"},
+         "bag_elapsed_sec from /clock minus bag start; source_stamp_sec from header; steady_elapsed_sec from recorder start"},
         {"source_build_manifest",
          "source_build_manifest.json (compiled source hashes and Git "
          "state)"}};
@@ -156,6 +207,10 @@ EventRecorder::EventRecorder(const MonitorConfig& c)
     data_hash_ =
         c.data_reference.empty() ? "unspecified" : sha256File(c.data_reference);
     manifest["data_sha256"] = data_hash_;
+    manifest["bag_time_available"] = timeline_.current_ns ? "true" : "false";
+    manifest["bag_start_time_sec"] = timeline_.current_ns ? nsSeconds(timeline_.begin_ns) : "unavailable";
+    manifest["bag_end_time_sec"] = timeline_.current_ns ? nsSeconds(timeline_.end_ns) : "unavailable";
+    manifest["log_time_fields"] = "bag_elapsed_sec,source_stamp_sec,steady_elapsed_sec";
     write("manifest.json", jsonValues(manifest));
     write("source_build_manifest.json", robot_health_source_manifest);
     writer_ = std::thread(&EventRecorder::worker, this);
@@ -169,18 +224,28 @@ EventRecorder::EventRecorder(const MonitorConfig& c)
   }
 }
 EventRecorder::~EventRecorder() {
-  if (writer_.joinable()) {
-    Finding f;
-    f.id = "RUN";
-    f.reason = "monitor stopping";
-    event("RUN_END", "monitor", "", 0, f, 0, 0, {}, true);
-    {
-      std::lock_guard<std::mutex> lock(mutex_);
-      stopping_ = true;
+  finish("node shutdown");
+}
+bool EventRecorder::finish(const std::string& reason, const Values& context) {
+  std::lock_guard<std::mutex> finish_lock(finish_mutex_);
+  if (finished_) return healthy();
+  bool queued = true;
+  {
+    std::unique_lock<std::mutex> lock(mutex_);
+    finish_reason_ = reason;
+    stopping_ = true;
+    if (writer_.joinable()) {
+      Finding f;
+      f.id = "RUN";
+      f.reason = reason;
+      queued = enqueueEvent("RUN_END", "monitor", "", 0, f, 0, 0,
+                            context, true, lock);
     }
-    available_.notify_all();
-    writer_.join();
   }
+  available_.notify_all();
+  if (writer_.joinable()) writer_.join();
+  finished_ = true;
+  return queued && healthy();
 }
 bool EventRecorder::event(const std::string& type, const std::string& module,
                           const std::string& instance, uint64_t epoch,
@@ -188,16 +253,28 @@ bool EventRecorder::event(const std::string& type, const std::string& module,
                           const Values& context, bool durable) {
   if (!config_.logging) return false;
   std::unique_lock<std::mutex> lock(mutex_);
+  if (stopping_ || finished_) return healthy();
+  return enqueueEvent(type, module, instance, epoch, f, before, after,
+                      context, durable, lock);
+}
+bool EventRecorder::enqueueEvent(const std::string& type, const std::string& module,
+                                const std::string& instance, uint64_t epoch,
+                                const Finding& f, int before, int after,
+                                const Values& context, bool durable,
+                                std::unique_lock<std::mutex>& lock) {
   if (failed_ || !writer_.joinable()) {
     ++dropped_events_;
     return false;
   }
   uint64_t seq = ++sequence_;
+  const auto bag = bagFields(timeline_);
+  const auto source = sourceFields(context);
   std::string value = std::isfinite(f.value) ? number(f.value) : "null";
   std::string row =
       "{\"event_seq\":" + std::to_string(seq) +
       ",\"monitor_run_id\":" + jsonString(run_id_) +
-      ",\"wall_time_utc\":" + jsonString(utcNow()) +
+      ",\"bag_elapsed_sec\":" + (bag.valid ? bag.elapsed : "null") +
+      ",\"source_stamp_sec\":" + source.first +
       ",\"steady_elapsed_sec\":" + number(steadyNow() - started_) +
       ",\"event_type\":" + jsonString(type) +
       ",\"module_id\":" + jsonString(module) +
@@ -215,7 +292,7 @@ bool EventRecorder::event(const std::string& type, const std::string& module,
       ",\"to_level\":" + jsonString(levelName(after)) +
       ",\"reason\":" + jsonString(f.reason) +
       ",\"effective_config_sha256\":" + jsonString(config_hash_) +
-      ",\"context\":" + jsonValues(context) + "}\n";
+      ",\"context\":" + jsonValues(loggedValues(context)) + "}\n";
   if (events_.size() >= config_.event_capacity) {
     ++dropped_events_;
     committed_.notify_all();
@@ -236,12 +313,16 @@ bool EventRecorder::event(const std::string& type, const std::string& module,
 }
 void EventRecorder::metrics(const ModuleReport& r, double now) {
   if (!config_.logging || failed_) return;
+  std::lock_guard<std::mutex> lock(mutex_);
+  if (stopping_ || finished_) return;
+  const auto bag = bagFields(timeline_);
+  const auto source = sourceFields(r.values);
   std::ostringstream out;
-  out << csv(utcNow()) << ',' << number(now - started_) << ',' << csv(r.id)
+  out << bag.elapsed << ',' << (source.first == "null" ? "" : source.first)
+      << ',' << number(now - started_) << ',' << csv(r.id)
       << ',' << csv(r.instance) << ',' << r.epoch << ',' << csv(r.state) << ','
       << r.level << ',' << (r.valid ? "true" : "false") << ','
-      << csv(jsonValues(r.values)) << '\n';
-  std::lock_guard<std::mutex> lock(mutex_);
+      << csv(jsonValues(loggedValues(r.values))) << '\n';
   if (metrics_.size() >= config_.metrics_capacity) {
     ++dropped_metrics_;
     return;
@@ -250,6 +331,7 @@ void EventRecorder::metrics(const ModuleReport& r, double now) {
   available_.notify_one();
 }
 Values EventRecorder::status() const {
+  std::lock_guard<std::mutex> lock(mutex_);
   const bool incomplete =
       failed_ || dropped_events_ || dropped_metrics_ || rotated_files_;
   return {{"data_reference", config_.data_reference},
@@ -257,6 +339,10 @@ Values EventRecorder::status() const {
           {"monitor_run_id", run_id_},
           {"log_directory", directory_},
           {"logs_enabled", config_.logging ? "true" : "false"},
+          {"logs_recording", config_.logging && !stopping_ && !failed_ ? "true" : "false"},
+          {"logs_finished", finished_ ? "true" : "false"},
+          {"log_recording_state", !config_.logging ? "DISABLED" : failed_ ? "FAILED" : finished_ ? "FINISHED" : stopping_ ? "FINISHING" : "RECORDING"},
+          {"log_finish_reason", finish_reason_},
           {"logs_normal", config_.logging && !incomplete ? "true" : "false"},
           {"logs_incomplete", incomplete ? "true" : "false"},
           {"log_write_failed", failed_ ? "true" : "false"},
@@ -342,6 +428,9 @@ void EventRecorder::worker() {
     events.flush();
     metrics.flush();
     if (!events || !metrics) throw std::runtime_error("final log flush failed");
+    if (!syncFile(directory_ + "/events." + std::to_string(ei) + ".jsonl") ||
+        !syncFile(directory_ + "/metrics." + std::to_string(mi) + ".csv"))
+      throw std::runtime_error("final log fsync failed");
   } catch (const std::exception& e) {
     failed_ = true;
     committed_.notify_all();

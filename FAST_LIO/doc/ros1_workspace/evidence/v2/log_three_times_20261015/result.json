@@ -1,0 +1,502 @@
+{
+  "integrity_before": [
+    {
+      "path": "$HOME/Desktop/2026-10-14-15-19-35.bag.active",
+      "size": 5909000192,
+      "mtime_ns": 1792024402700279765,
+      "sha256": "ed0e8c1eb5312a43713df81a8f6c5ea0faf7ba581d1068298a96550792baec5f"
+    },
+    {
+      "path": "$HOME/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag",
+      "size": 5910132911,
+      "mtime_ns": 1792028423440293479,
+      "sha256": "63686d0788674a1122ac2a51594aecd2bb90f73739b60f2257257b61dd1bd86c"
+    }
+  ],
+  "bag_start_sec": 1791962378.491622,
+  "bag_end_sec": 1791962664.8582442,
+  "bag_duration_sec": 286.36662220954895,
+  "rate": 1.0,
+  "expected_counts": {
+    "imu": 56488,
+    "lidar": 2421,
+    "localization": 2223
+  },
+  "first_record": {
+    "imu": {
+      "bag_elapsed_sec": 0.0006520748138427734,
+      "source_stamp_sec": 1791962378.4919896
+    },
+    "lidar": {
+      "bag_elapsed_sec": 44.30059623718262,
+      "source_stamp_sec": 0.0
+    },
+    "localization": {
+      "bag_elapsed_sec": 64.13351964950562,
+      "source_stamp_sec": 1791962442.576653
+    }
+  },
+  "pause": {
+    "bag_elapsed_sec": 90.01742839813232,
+    "observed_hold_sec": 3.3977020810125396,
+    "states": {
+      "imu": {
+        "level": 1,
+        "message": "PAUSED",
+        "values": {
+          "ACCEL_covariance": "AVAILABLE",
+          "GYRO_covariance": "AVAILABLE",
+          "age_sec": "4.08857597201",
+          "angular_velocity_norm_rps": "0.00412310562562",
+          "checker": "ImuChecker",
+          "checks_available": "finite,units,time,amplitude; noise/stuck/saturation uncalibrated",
+          "control_reason": "pause acknowledged; input and dependent output demand suspended",
+          "data_health_level": "N/A",
+          "expected_active": "false",
+          "frequency_status": "WARMING_UP_OR_STALE",
+          "has_data_health": "false",
+          "imu_acceleration_scale": "1",
+          "imu_acceleration_unit": "mps2",
+          "last_stamp_sec": "1791962468.51",
+          "linear_acceleration_norm_mps2": "9.81665258511",
+          "linear_acceleration_norm_raw": "9.81665258511",
+          "message_count": "18668",
+          "module_epoch": "2",
+          "module_id": "imu",
+          "operating_state": "PAUSED",
+          "operational_valid": "false",
+          "producer_instance_id": "80145-18de96fdf642fa1d-f4213710",
+          "rate_hz": "N/A",
+          "receive_rate_hz": "35",
+          "required": "true",
+          "required_checks_available": "true",
+          "sample_message": "PAUSED",
+          "sample_status": "OK",
+          "source_frame": "base_link",
+          "source_rate_hz": "190.491637837",
+          "source_stamp_ns": "1791962468507353576",
+          "source_stamp_sec": "1791962468.507353576",
+          "stamp_domain": "ros_time",
+          "topic": "/mavros/imu/data_raw",
+          "transport_delay_sec": "N/A (no verified clock mapping)"
+        }
+      },
+      "lidar": {
+        "level": 1,
+        "message": "PAUSED",
+        "values": {
+          "age_sec": "4.10033613502",
+          "checker": "LidarChecker",
+          "control_reason": "pause acknowledged; input and dependent output demand suspended",
+          "data_health_level": "N/A",
+          "expected_active": "false",
+          "frequency_status": "WARMING_UP_OR_STALE",
+          "has_data_health": "false",
+          "last_stamp_sec": "1791962468.39",
+          "message_count": "458",
+          "module_epoch": "2",
+          "module_id": "lidar",
+          "operating_state": "PAUSED",
+          "operational_valid": "false",
+          "points_total": "46309",
+          "points_valid": "46309",
+          "producer_instance_id": "80145-18de96fdf642fa1d-f4213710",
+          "rate_hz": "N/A",
+          "receive_rate_hz": "1.8",
+          "required": "true",
+          "sample_message": "PAUSED",
+          "sample_status": "OK",
+          "source_frame": "rslidar",
+          "source_rate_hz": "10.0043029219",
+          "source_stamp_ns": "1791962468388131380",
+          "source_stamp_sec": "1791962468.388131380",
+          "stamp_domain": "ros_time",
+          "topic": "/rslidar_points",
+          "transport_delay_sec": "N/A (no verified clock mapping)",
+          "valid_ratio": "1"
+        }
+      },
+      "localization": {
+        "level": 1,
+        "message": "PAUSED",
+        "values": {
+          "age_sec": "4.179787706",
+          "angular_speed_rps": "0.0466012470553",
+          "checker": "LocalizationChecker",
+          "checks_available": "pose,motion,covariance",
+          "control_reason": "pause acknowledged; input and dependent output demand suspended",
+          "covariance_status": "AVAILABLE",
+          "data_health_level": "N/A",
+          "dependency_imu": "unavailable",
+          "dependency_lidar": "unavailable",
+          "expected_active": "false",
+          "frequency_status": "WARMING_UP_OR_STALE",
+          "has_data_health": "false",
+          "last_stamp_sec": "1791962468.38",
+          "linear_acceleration_mps2": "0.738390992765",
+          "linear_speed_mps": "0.0899230043958",
+          "message_count": "259",
+          "module_epoch": "2",
+          "module_id": "localization",
+          "operating_state": "PAUSED",
+          "operational_valid": "false",
+          "orientation_variance_rad2": "9.73191866238e-06",
+          "position_variance_m2": "0.00079540441821",
+          "position_x_m": "3.41710037778",
+          "position_y_m": "4.2039238343",
+          "position_z_m": "-0.136814258942",
+          "prediction_residual_m": "0.0073853920959",
+          "producer_instance_id": "80145-18de96fdf642fa1d-f4213710",
+          "quaternion_norm": "1",
+          "rate_hz": "N/A",
+          "receive_rate_hz": "1.8",
+          "required": "true",
+          "required_checks_available": "true",
+          "sample_message": "PAUSED",
+          "sample_status": "OK",
+          "source_frame": "camera_init",
+          "source_rate_hz": "9.99984860649",
+          "source_stamp_ns": "1791962468376794100",
+          "source_stamp_sec": "1791962468.376794100",
+          "stamp_domain": "ros_time",
+          "topic": "/Odometry",
+          "transport_delay_sec": "N/A (no verified clock mapping)"
+        }
+      }
+    }
+  },
+  "health_log_directory": "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e",
+  "playback_log_directory": "$HOME/fastlio_ws/logs/robot_playback/80145-18de96fe036689e9-71f3c2eb",
+  "final_state": {
+    "observed": "STOPPED",
+    "desired": "STOP",
+    "reason": "clean EOF verified; data demand stopped, map and node retained",
+    "exit_code": 0
+  },
+  "final_diagnostics": {
+    "overall": {
+      "level": 1,
+      "message": "WARNING | operational_valid=false",
+      "values": {
+        "all_required_modules_active": "false",
+        "data_reference": "$HOME/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag",
+        "data_sha256": "63686d0788674a1122ac2a51594aecd2bb90f73739b60f2257257b61dd1bd86c",
+        "dropped_events": "0",
+        "dropped_metrics": "0",
+        "effective_config_sha256": "48aaed0fbfbbc92e7ab4f6def7e2444233089bb83d4b03fc4aeeb14457f5bd74",
+        "log_directory": "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e",
+        "log_finish_reason": "verified bag playback completed; log sealed",
+        "log_recording_state": "FINISHED",
+        "log_write_failed": "false",
+        "logs_enabled": "true",
+        "logs_finished": "true",
+        "logs_incomplete": "false",
+        "logs_normal": "true",
+        "logs_recording": "false",
+        "module_id": "overall",
+        "monitor_run_id": "80143-18de96fe03a13164-61cfe4e",
+        "operating_state": "STOPPED",
+        "operational_valid": "false",
+        "rotated_files_removed": "0"
+      }
+    },
+    "imu": {
+      "level": 1,
+      "message": "STOPPED",
+      "values": {
+        "ACCEL_covariance": "AVAILABLE",
+        "GYRO_covariance": "AVAILABLE",
+        "age_sec": "0.517948149994",
+        "angular_velocity_norm_rps": "0.447692975151",
+        "checker": "ImuChecker",
+        "checks_available": "finite,units,time,amplitude; noise/stuck/saturation uncalibrated",
+        "control_reason": "clean EOF verified; data demand stopped, map and node retained",
+        "data_health_level": "N/A",
+        "expected_active": "false",
+        "frequency_status": "WARMING_UP_OR_STALE",
+        "has_data_health": "false",
+        "imu_acceleration_scale": "1",
+        "imu_acceleration_unit": "mps2",
+        "last_stamp_sec": "1791962664.85",
+        "linear_acceleration_norm_mps2": "10.0819802569",
+        "linear_acceleration_norm_raw": "10.0819802569",
+        "message_count": "56488",
+        "module_epoch": "2",
+        "module_id": "imu",
+        "operating_state": "STOPPED",
+        "operational_valid": "false",
+        "producer_instance_id": "80145-18de96fdf642fa1d-f4213710",
+        "rate_hz": "N/A",
+        "receive_rate_hz": "166.8",
+        "required": "true",
+        "required_checks_available": "true",
+        "sample_message": "STOPPED",
+        "sample_status": "OK",
+        "source_frame": "base_link",
+        "source_rate_hz": "186.079952186",
+        "source_stamp_ns": "1791962664849933504",
+        "source_stamp_sec": "1791962664.849933504",
+        "stamp_domain": "ros_time",
+        "topic": "/mavros/imu/data_raw",
+        "transport_delay_sec": "N/A (no verified clock mapping)"
+      }
+    },
+    "lidar": {
+      "level": 1,
+      "message": "STOPPED",
+      "values": {
+        "age_sec": "0.567355368985",
+        "checker": "LidarChecker",
+        "control_reason": "clean EOF verified; data demand stopped, map and node retained",
+        "data_health_level": "N/A",
+        "expected_active": "false",
+        "frequency_status": "WARMING_UP_OR_STALE",
+        "has_data_health": "false",
+        "last_stamp_sec": "1791962664.69",
+        "message_count": "2421",
+        "module_epoch": "2",
+        "module_id": "lidar",
+        "operating_state": "STOPPED",
+        "operational_valid": "false",
+        "points_total": "38858",
+        "points_valid": "38858",
+        "producer_instance_id": "80145-18de96fdf642fa1d-f4213710",
+        "rate_hz": "N/A",
+        "receive_rate_hz": "9",
+        "required": "true",
+        "sample_message": "STOPPED",
+        "sample_status": "OK",
+        "source_frame": "rslidar",
+        "source_rate_hz": "10.0012342936",
+        "source_stamp_ns": "1791962664689638376",
+        "source_stamp_sec": "1791962664.689638376",
+        "stamp_domain": "ros_time",
+        "topic": "/rslidar_points",
+        "transport_delay_sec": "N/A (no verified clock mapping)",
+        "valid_ratio": "1"
+      }
+    },
+    "localization": {
+      "level": 1,
+      "message": "STOPPED",
+      "values": {
+        "age_sec": "0.519634473982",
+        "angular_speed_rps": "0.396027826409",
+        "checker": "LocalizationChecker",
+        "checks_available": "pose,motion,covariance",
+        "control_reason": "clean EOF verified; data demand stopped, map and node retained",
+        "covariance_status": "AVAILABLE",
+        "data_health_level": "N/A",
+        "dependency_imu": "unavailable",
+        "dependency_lidar": "unavailable",
+        "expected_active": "false",
+        "frequency_status": "WARMING_UP_OR_STALE",
+        "has_data_health": "false",
+        "last_stamp_sec": "1791962664.79",
+        "linear_acceleration_mps2": "1.99335018153",
+        "linear_speed_mps": "0.937743242434",
+        "message_count": "2223",
+        "module_epoch": "2",
+        "module_id": "localization",
+        "operating_state": "STOPPED",
+        "operational_valid": "false",
+        "orientation_variance_rad2": "1.45514563304e-05",
+        "position_variance_m2": "0.000363261472654",
+        "position_x_m": "21.1353925947",
+        "position_y_m": "-34.1394729681",
+        "position_z_m": "-0.122536095871",
+        "prediction_residual_m": "0.0198251524785",
+        "producer_instance_id": "80145-18de96fdf642fa1d-f4213710",
+        "quaternion_norm": "1",
+        "rate_hz": "N/A",
+        "receive_rate_hz": "9",
+        "required": "true",
+        "required_checks_available": "true",
+        "sample_message": "STOPPED",
+        "sample_status": "OK",
+        "source_frame": "camera_init",
+        "source_rate_hz": "10.0001520483",
+        "source_stamp_ns": "1791962664789190531",
+        "source_stamp_sec": "1791962664.789190531",
+        "stamp_domain": "ros_time",
+        "topic": "/Odometry",
+        "transport_delay_sec": "N/A (no verified clock mapping)"
+      }
+    },
+    "Robot health/logging": {
+      "level": 0,
+      "message": "trace logging finished",
+      "values": {
+        "data_reference": "$HOME/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag",
+        "data_sha256": "63686d0788674a1122ac2a51594aecd2bb90f73739b60f2257257b61dd1bd86c",
+        "dropped_events": "0",
+        "dropped_metrics": "0",
+        "effective_config_sha256": "48aaed0fbfbbc92e7ab4f6def7e2444233089bb83d4b03fc4aeeb14457f5bd74",
+        "log_directory": "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e",
+        "log_finish_reason": "verified bag playback completed; log sealed",
+        "log_recording_state": "FINISHED",
+        "log_write_failed": "false",
+        "logs_enabled": "true",
+        "logs_finished": "true",
+        "logs_incomplete": "false",
+        "logs_normal": "true",
+        "logs_recording": "false",
+        "monitor_run_id": "80143-18de96fe03a13164-61cfe4e",
+        "rotated_files_removed": "0"
+      }
+    }
+  },
+  "run_wall_elapsed_sec": 297.0392980670149,
+  "actual_counts": {
+    "imu": 56488,
+    "lidar": 2421,
+    "localization": 2223
+  },
+  "seal_probe": {
+    "before": {
+      "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e/events.0.jsonl": {
+        "size": 92602,
+        "mtime_ns": 1792036016230848679
+      },
+      "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e/metrics.0.csv": {
+        "size": 971400,
+        "mtime_ns": 1792036016234848753
+      },
+      "$HOME/fastlio_ws/logs/robot_playback/80145-18de96fe036689e9-71f3c2eb/events.0.jsonl": {
+        "size": 5273,
+        "mtime_ns": 1792036016226848604
+      },
+      "$HOME/fastlio_ws/logs/robot_playback/80145-18de96fe036689e9-71f3c2eb/metrics.0.csv": {
+        "size": 149,
+        "mtime_ns": 1792035723634169270
+      }
+    },
+    "after": {
+      "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e/events.0.jsonl": {
+        "size": 92602,
+        "mtime_ns": 1792036016230848679
+      },
+      "$HOME/fastlio_ws/logs/robot_health/80143-18de96fe03a13164-61cfe4e/metrics.0.csv": {
+        "size": 971400,
+        "mtime_ns": 1792036016234848753
+      },
+      "$HOME/fastlio_ws/logs/robot_playback/80145-18de96fe036689e9-71f3c2eb/events.0.jsonl": {
+        "size": 5273,
+        "mtime_ns": 1792036016226848604
+      },
+      "$HOME/fastlio_ws/logs/robot_playback/80145-18de96fe036689e9-71f3c2eb/metrics.0.csv": {
+        "size": 149,
+        "mtime_ns": 1792035723634169270
+      }
+    },
+    "diagnostic_messages": 1001,
+    "playback_heartbeats": 167
+  },
+  "health_log_summary": {
+    "event_rows": 81,
+    "metric_rows": 879,
+    "last_event": {
+      "event_seq": 81,
+      "monitor_run_id": "80143-18de96fe03a13164-61cfe4e",
+      "bag_elapsed_sec": 286.358924141,
+      "source_stamp_sec": null,
+      "steady_elapsed_sec": 296.768061564,
+      "event_type": "RUN_END",
+      "module_id": "monitor",
+      "producer_instance_id": "",
+      "module_epoch": 0,
+      "rule_id": "RUN",
+      "metric": "",
+      "value": 0,
+      "raw_value_text": "0",
+      "unit": "",
+      "threshold": 0,
+      "from_level": "OK",
+      "to_level": "OK",
+      "reason": "verified bag playback completed; log sealed",
+      "effective_config_sha256": "48aaed0fbfbbc92e7ab4f6def7e2444233089bb83d4b03fc4aeeb14457f5bd74",
+      "context": {
+        "completion": "verified_eof",
+        "controller_run_id": "80145-18de96fe036689e9-71f3c2eb",
+        "producer_instance_id": "80145-18de96fdf642fa1d-f4213710"
+      }
+    }
+  },
+  "playback_log_summary": {
+    "event_rows": 8,
+    "metric_rows": 0,
+    "last_event": {
+      "event_seq": 8,
+      "monitor_run_id": "80145-18de96fe036689e9-71f3c2eb",
+      "bag_elapsed_sec": 286.358924141,
+      "source_stamp_sec": null,
+      "steady_elapsed_sec": 296.766054086,
+      "event_type": "RUN_END",
+      "module_id": "monitor",
+      "producer_instance_id": "",
+      "module_epoch": 0,
+      "rule_id": "RUN",
+      "metric": "",
+      "value": 0,
+      "raw_value_text": "0",
+      "unit": "",
+      "threshold": 0,
+      "from_level": "OK",
+      "to_level": "OK",
+      "reason": "verified bag playback completed; log sealed",
+      "effective_config_sha256": "6bedae0881d2ba51b451f437efb9e44b7911b35611791cd840627a192b05a5aa",
+      "context": {
+        "completion": "verified_eof",
+        "producer_instance_id": "80145-18de96fdf642fa1d-f4213710"
+      }
+    }
+  },
+  "integrity_after": [
+    {
+      "path": "$HOME/Desktop/2026-10-14-15-19-35.bag.active",
+      "size": 5909000192,
+      "mtime_ns": 1792024402700279765,
+      "sha256": "ed0e8c1eb5312a43713df81a8f6c5ea0faf7ba581d1068298a96550792baec5f"
+    },
+    {
+      "path": "$HOME/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag",
+      "size": 5910132911,
+      "mtime_ns": 1792028423440293479,
+      "sha256": "63686d0788674a1122ac2a51594aecd2bb90f73739b60f2257257b61dd1bd86c"
+    }
+  ],
+  "checks": {
+    "pause_ack": true,
+    "pause_clock_frozen": true,
+    "pause_ui_and_watchdog_alive": true,
+    "pause_modules_paused": true,
+    "pause_log_still_recording": true,
+    "resume_ack": true,
+    "all_final_stopped": true,
+    "all_messages_received": true,
+    "logs_normal": true,
+    "health_finished": true,
+    "sealed_files_unchanged_10sec": true,
+    "diagnostics_continue_after_seal": true,
+    "playback_heartbeat_continues_after_seal": true,
+    "health_three_time_fields": true,
+    "health_csv_three_time_fields": true,
+    "health_one_run_end": true,
+    "health_eof_seal_reason": true,
+    "health_bag_elapsed_within_range": true,
+    "playback_three_time_fields": true,
+    "playback_csv_three_time_fields": true,
+    "playback_one_run_end": true,
+    "playback_eof_seal_reason": true,
+    "playback_bag_elapsed_within_range": true,
+    "shutdown_no_log_append": true,
+    "both_bags_unchanged": true
+  },
+  "screenshots": {
+    "paused": true,
+    "live": true,
+    "late_live": true,
+    "finished": true
+  },
+  "passed": true
+}

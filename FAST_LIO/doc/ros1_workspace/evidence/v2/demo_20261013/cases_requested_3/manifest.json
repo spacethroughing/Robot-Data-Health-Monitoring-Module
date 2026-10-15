@@ -1,0 +1,48 @@
+{
+  "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+  "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+  "duration_sec": 12,
+  "synthetic_odometry": {
+    "topic": "/health_test/odom",
+    "purpose": "deterministic health-rule fixture; not localization ground truth",
+    "speed_mps": 0.5,
+    "rate_hz": 10
+  },
+  "cases": [
+    {
+      "name": "imu_stamp_regression",
+      "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_stamp_regression.bag",
+      "bag_sha256": "37152300e28ee26fa64364f236484f1b46c88fc588ebabf920f5132d80435ea5",
+      "expected_rule": "STAMP_REGRESSION",
+      "mutated_or_dropped_messages": 1,
+      "fault_interval_sec": [
+        5,
+        6
+      ]
+    },
+    {
+      "name": "lidar_dropout",
+      "bag": "$HOME/datasets/fastlio/health_fault_cases/lidar_dropout.bag",
+      "bag_sha256": "a2e0078b549433cb381578d302fed69ff5f96085996914884a545a913423df57",
+      "expected_rule": "RECEIVE_AGE",
+      "mutated_or_dropped_messages": 30,
+      "fault_interval_sec": [
+        5,
+        8
+      ]
+    },
+    {
+      "name": "localization_jump",
+      "bag": "$HOME/datasets/fastlio/health_fault_cases/localization_jump.bag",
+      "bag_sha256": "8efb85868694119966b87f64584b526f7d33d607f4d1d70404b62c2bc7413772",
+      "expected_rule": "LOC_SPEED",
+      "mutated_or_dropped_messages": 10,
+      "fault_interval_sec": [
+        5,
+        6
+      ]
+    }
+  ],
+  "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+  "bag_start_time_sec": 1608799080.611561
+}

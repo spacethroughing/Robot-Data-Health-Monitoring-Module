@@ -16,6 +16,8 @@ logs/
 
 # Runtime logs and local editor files
 *.log
+events.*.jsonl
+metrics.*.csv
 .vscode/
 .idea/
 __pycache__/

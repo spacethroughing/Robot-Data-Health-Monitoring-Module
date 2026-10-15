@@ -1,0 +1,9 @@
+{
+  "core_tests": 30,
+  "fault_bag_passed": 13,
+  "adapter_checks_passed": 24,
+  "managed_checks_passed": 11,
+  "full_bag_passed": true,
+  "source_bag_unchanged": true,
+  "all_test_processes_stopped": true
+}

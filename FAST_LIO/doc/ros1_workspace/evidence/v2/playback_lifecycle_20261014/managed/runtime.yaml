@@ -1,0 +1,33 @@
+state_topic: /robot_runtime/module_state
+log_directory: $HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/playback_lifecycle_20261014/managed/controller_logs
+groups:
+- binding: localization
+  supervised_ros_node: /laserMapping
+  autostart: true
+  stop_timeout_sec: 5.0
+  clean_exit_is_task_completion: false
+  command:
+  - roslaunch
+  - fast_lio
+  - mapping_avia.launch
+  - rviz:=false
+  - path_en:=true
+  - pcd_save_en:=false
+  - map_pub_en:=true
+  - map_pub_interval_sec:=1.0
+- binding: sensors
+  playback_state_topic: /managed_bag_playback/state
+  suspend_output_bindings:
+  - localization
+  autostart: true
+  stop_timeout_sec: 5.0
+  clean_exit_is_task_completion: true
+  command:
+  - rosrun
+  - fastlio_health_monitor
+  - health_bag_playback_node
+  - __name:=managed_bag_playback
+  - _bag:=$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_source_scheduled_silence_1s_150ms.bag
+  - _rate:=1.0
+  - _connection_delay_sec:=1.0
+  - _log_directory:=$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/playback_lifecycle_20261014/managed/playback_logs

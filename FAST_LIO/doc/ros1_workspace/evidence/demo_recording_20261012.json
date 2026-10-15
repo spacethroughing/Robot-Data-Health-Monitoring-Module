@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-12",
+  "video": "$HOME/Desktop/FAST-LIO_定位健康监控_使用Demo_2026-10-12.mp4",
+  "master_port": 11327,
+  "playback_rate": 2.0,
+  "recording": "actual X11 screen, H.264 MP4, Chinese captions, no narration",
+  "duration_wall_seconds": 90.68507432200022,
+  "diagnostic_messages": 164,
+  "overall_levels": {
+    "2": 22,
+    "1": 18,
+    "0": 124
+  },
+  "map_messages": 69,
+  "last_map_points": 90736,
+  "last_diagnostic": [
+    {
+      "name": "FAST-LIO health",
+      "level": 2,
+      "message": "overall health: ERROR",
+      "values": {
+        "health_code": "2",
+        "health_name": "ERROR"
+      }
+    },
+    {
+      "name": "FAST-LIO LiDAR input",
+      "level": 2,
+      "message": "LiDAR data stale",
+      "values": {
+        "points_total": "24000",
+        "points_valid": "12644",
+        "valid_ratio": "0.527",
+        "driver_point_num": "24000",
+        "sample_status": "WARNING",
+        "sample_message": "LiDAR valid-point ratio below configured minimum",
+        "message_count": "1414",
+        "age_sec": "10.829",
+        "rate_hz": "20.015",
+        "last_stamp_sec": "738.799495",
+        "topic": "/livox/lidar"
+      }
+    },
+    {
+      "name": "FAST-LIO IMU input",
+      "level": 2,
+      "message": "IMU data stale",
+      "values": {
+        "linear_acceleration_norm_mps2": "9.834",
+        "linear_acceleration_norm_raw": "1.003",
+        "imu_acceleration_unit": "g",
+        "imu_acceleration_scale": "9.80665",
+        "angular_velocity_norm_rps": "0.006",
+        "sample_status": "OK",
+        "sample_message": "sample OK",
+        "message_count": "28595",
+        "age_sec": "10.829",
+        "rate_hz": "408.831",
+        "last_stamp_sec": "738.900338",
+        "topic": "/livox/imu"
+      }
+    },
+    {
+      "name": "FAST-LIO localization output",
+      "level": 2,
+      "message": "Odometry data stale",
+      "values": {
+        "position_x_m": "0.003",
+        "position_y_m": "-0.016",
+        "position_z_m": "0.034",
+        "quaternion_norm": "1.000",
+        "linear_speed_mps": "0.063",
+        "maximum_pose_covariance": "0.000",
+        "sample_status": "OK",
+        "sample_message": "sample OK",
+        "message_count": "1410",
+        "age_sec": "10.863",
+        "rate_hz": "20.002",
+        "last_stamp_sec": "738.799482",
+        "topic": "/Odometry"
+      }
+    }
+  ],
+  "bag_completed": true,
+  "temporary_rviz_layout": "HealthPanel only; original cloud layers; orbit distance 90, focus x20.",
+  "video_bytes": 48195166,
+  "recording_success": true,
+  "encoding": {
+    "width": 1920,
+    "height": 1080,
+    "frames": 1813,
+    "fps": 20.00176518611681,
+    "duration_seconds": 90.64200000000001,
+    "bytes": 48195166
+  },
+  "caption_postprocess": "Chinese Bash preparation note added during first 8 seconds; live data and panel values unaltered."
+}

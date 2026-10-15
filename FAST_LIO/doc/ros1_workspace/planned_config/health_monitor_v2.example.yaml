@@ -2,7 +2,7 @@
 # 重要：这些嵌套字段、插件和控制接口尚未实现。不要直接传给当前 health_monitor.launch。
 # 所有阈值是开发示例，不是 ROS 标准/硬件规格/已完成标定；部署前核对平台与数据来源。
 # 警告边界采用 > 上界、< 下界；等于阈值不触发该规则。硬错误立即报错，不受软告警持续时间屏蔽。
-# 完整公式、状态和实现依赖见 ../11_健康监控后续实施方案.md。
+# 完整公式、状态和实现依赖见 ../11_导师要求与健康监控后续执行方案.md。
 schema_version: 2  # 新解析器必须检查版本、未知字段、插件存在性；旧节点不会解析本模板。
 
 monitor:
@@ -54,8 +54,8 @@ lifecycle_defaults:
   invalidate_data_when_stopped: true # 即使留图也 operational_valid=false。
 
 logging:
-  enabled: true                   # 建议启用完整日志；关闭时应标明日志覆盖不足。
-  directory: "$HOME/fastlio_ws/logs/robot_health" # 每 monitor_run_id 独立子目录；换机器需配置。
+  enabled: true                   # 导师追溯验收要求启用；关闭时须显式标记日志覆盖不足。
+  directory: "/home/lmw/fastlio_ws/logs/robot_health" # 每 monitor_run_id 独立子目录；换机器需配置。
   event_format: "jsonl"           # 每行一个合法 JSON；非有限数值用 null + raw_value_text。
   metrics_period_sec: 1.0          # s；周期指标采样，不逐条抄录 200 Hz IMU 或全点云。
   metrics_queue_capacity: 4096     # 有界普通指标队列；满时丢指标但统计 dropped_metrics。

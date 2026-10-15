@@ -1,13 +1,17 @@
 <launch>
-  <arg name="bag" default="" />
+  <arg name="bag"
+       default="/home/lmw/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag" />
   <arg name="rate" default="1.0" />
   <arg name="rviz" default="true" />
+  <arg name="health_v2" default="true" />
   <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_v2_avia.yaml" />
+  <arg name="playback_log_directory" default="/home/lmw/fastlio_ws/logs/robot_playback" />
 
   <!-- Includes FAST-LIO, monitor, static TF and RViz; simulation time is set before nodes start. -->
   <include file="$(find fastlio_health_monitor)/launch/visualization_testbench.launch">
     <arg name="use_sim_time" value="true" />
     <arg name="rviz" value="$(arg rviz)" />
+    <arg name="health_v2" value="$(arg health_v2)" />
     <arg name="health_config" value="$(arg health_config)" />
     <arg name="data_reference" value="$(arg bag)" />
   </include>
@@ -18,5 +22,8 @@
     <param name="rate" value="$(arg rate)" />
     <param name="connection_delay_sec" value="1.0" />
     <param name="startup_timeout_sec" value="15.0" />
+    <param name="publish_lifecycle" value="$(arg health_v2)" />
+    <param name="lifecycle_config_file" value="$(arg health_config)" />
+    <param name="log_directory" value="$(arg playback_log_directory)" />
   </node>
 </launch>

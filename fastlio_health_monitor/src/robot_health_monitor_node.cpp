@@ -1,5 +1,6 @@
 #include <diagnostic_msgs/DiagnosticArray.h>
 #include <fastlio_health_monitor/RuntimeState.h>
+#include <fastlio_health_monitor/bag_log_timeline.h>
 #include <fastlio_health_monitor/event_recorder.h>
 #include <fastlio_health_monitor/health_core.h>
 #include <fastlio_health_monitor/input_adapters.h>
@@ -68,6 +69,19 @@ class HealthRegistry {
     for (auto& r : reports) dependencies(r);
     return reports;
   }
+  bool ownedByPlayback(const std::string& controller, const std::string& run,
+                       const std::string& instance) const {
+    bool have_required = false;
+    for (const auto& kv : modules_) {
+      if (!kv.second->config().required) continue;
+      have_required = true;
+      const auto& u = kv.second->runtime();
+      if (u.controller != controller || u.controller_run_id != run ||
+          u.instance != instance || u.observed != "STOPPED" || u.desired != "STOP")
+        return false;
+    }
+    return have_required;
+  }
 
  private:
   void control(
@@ -116,8 +130,18 @@ class RobotHealthMonitor {
   RobotHealthMonitor()
       : private_("~"),
         config_(load()),
-        logs_(config_),
+        logs_(config_, bagLogTimeline(config_.data_reference)),
         registry_(nh_, config_, logs_) {
+    private_.param<bool>("finish_log_on_playback_complete", finish_on_complete_, false);
+    private_.param<std::string>("playback_state_topic", playback_state_topic_, "");
+    if (finish_on_complete_) {
+      if (playback_state_topic_.empty() || config_.data_reference.empty())
+        throw std::invalid_argument("automatic log finish requires playback_state_topic and data_reference");
+      playback_state_topic_ = nh_.resolveName(playback_state_topic_);
+      expected_playback_node_ = playback_state_topic_.substr(0, playback_state_topic_.find_last_of('/'));
+      playback_sub_ = nh_.subscribe(playback_state_topic_, 20,
+                                    &RobotHealthMonitor::playbackState, this);
+    }
     diagnostics_ = nh_.advertise<diagnostic_msgs::DiagnosticArray>(
         config_.diagnostics_topic, 10);
     status_ = nh_.advertise<std_msgs::UInt8>(config_.status_topic, 1, true);
@@ -129,6 +153,25 @@ class RobotHealthMonitor {
   }
 
  private:
+  void playbackState(const ros::MessageEvent<fastlio_health_monitor::RuntimeState const>& event) {
+    if (logs_.finished()) return;
+    const auto& header = *event.getConnectionHeaderPtr();
+    const auto caller = header.find("callerid"), latch = header.find("latching");
+    if (caller == header.end() || caller->second != expected_playback_node_ ||
+        (latch != header.end() && latch->second == "1")) return;
+    const auto m = event.getMessage();
+    if (m->data_reference != config_.data_reference || m->controller_id.empty() ||
+        m->controller_run_id.empty() || m->producer_instance_id.empty()) return;
+    // A manual STOP, PAUSED, FAULT or process exit alone is not verified EOF.
+    const bool completed = m->desired_state == "STOP" && m->observed_state == "STOPPED" &&
+                           m->exit_code == 0 && m->reason.find("clean EOF verified;") == 0;
+    if (completed) {
+      completed_controller_ = m->controller_id;
+      completed_run_ = m->controller_run_id;
+      completed_instance_ = m->producer_instance_id;
+      finish_pending_ = true;
+    } else finish_pending_ = false;
+  }
   MonitorConfig load() {
     std::string file;
     private_.param<std::string>("config_file", file, "");
@@ -175,10 +218,15 @@ class RobotHealthMonitor {
     array.header.stamp = ros::Time::now();
     int overall = OK;
     bool valid = true, all_active = true;
+    bool all_paused = true, all_stopped = true;
+    unsigned required_count = 0;
     Values summary = logs_.status();
     for (const auto& r : reports) {
       array.status.push_back(diagnostic(r));
       if (r.required) {
+        ++required_count;
+        all_paused = all_paused && r.state == "PAUSED";
+        all_stopped = all_stopped && r.state == "STOPPED";
         overall = std::max(overall, r.level);
         valid = valid && r.valid;
         all_active = all_active && (r.state == "RUNNING" || r.state == "IDLE");
@@ -192,6 +240,8 @@ class RobotHealthMonitor {
     summary["module_id"] = "overall";
     summary["operational_valid"] = valid ? "true" : "false";
     summary["all_required_modules_active"] = all_active ? "true" : "false";
+    if (required_count && (all_paused || all_stopped))
+      summary["operating_state"] = all_paused ? "PAUSED" : "STOPPED";
     diagnostic_msgs::DiagnosticStatus s;
     s.name = "Robot health/overall";
     s.hardware_id = "monitor";
@@ -210,7 +260,7 @@ class RobotHealthMonitor {
     logging.hardware_id = "logger";
     logging.level = !logs_.healthy() ? ERROR : logs_.enabled() ? OK : WARNING;
     logging.message = logs_.healthy()
-                          ? logs_.enabled() ? "trace logging active"
+                          ? logs_.enabled() ? (logs_.finished() ? "trace logging finished" : "trace logging active")
                                             : "trace logging disabled"
                           : "LOG_WRITE_FAILED or critical events dropped";
     for (const auto& kv : logs_.status()) {
@@ -224,9 +274,22 @@ class RobotHealthMonitor {
     std_msgs::UInt8 legacy;
     legacy.data = overall;
     status_.publish(legacy);
-    if (now - last_metrics_ >= config_.metrics_period) {
+    bool seal = finish_on_complete_ && finish_pending_ && !logs_.finished() &&
+                registry_.ownedByPlayback(completed_controller_, completed_run_, completed_instance_);
+    for (const auto& r : reports)
+      if (r.required && (r.state != "STOPPED" || r.instance != completed_instance_)) seal = false;
+    if (!logs_.finished() && (seal || now - last_metrics_ >= config_.metrics_period)) {
       for (const auto& r : reports) logs_.metrics(r, now);
       last_metrics_ = now;
+    }
+    if (seal) {
+      const bool ok = logs_.finish("verified bag playback completed; log sealed",
+                                   {{"controller_run_id", completed_run_},
+                                    {"producer_instance_id", completed_instance_},
+                                    {"completion", "verified_eof"}});
+      finish_pending_ = false;
+      if (ok) ROS_INFO_STREAM("Health log finished at verified EOF: " << logs_.directory());
+      else ROS_ERROR_STREAM("Health log finalization failed: " << logs_.directory());
     }
   }
   ros::NodeHandle nh_, private_;
@@ -234,7 +297,11 @@ class RobotHealthMonitor {
   EventRecorder logs_;
   HealthRegistry registry_;
   ros::Publisher diagnostics_, status_;
+  ros::Subscriber playback_sub_;
   ros::SteadyTimer timer_;
+  std::string playback_state_topic_, expected_playback_node_;
+  std::string completed_controller_, completed_run_, completed_instance_;
+  bool finish_on_complete_ = false, finish_pending_ = false;
   double last_metrics_ = 0;
 };
 }  // namespace robot_health

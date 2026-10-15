@@ -27,7 +27,8 @@
   <depend>livox_ros_driver</depend>
   <depend>pluginlib</depend>
   <depend>rviz</depend>
-  <exec_depend>rosbag</exec_depend>
+  <depend>rosbag</depend>
+  <depend>rosgraph_msgs</depend>
   <exec_depend>tf2_ros</exec_depend>
 
   <export>

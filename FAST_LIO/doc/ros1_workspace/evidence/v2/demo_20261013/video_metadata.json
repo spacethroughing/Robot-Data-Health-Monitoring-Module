@@ -1,0 +1,14 @@
+{
+  "file": "$HOME/Desktop/FAST-LIO_健康监控_V2_演示_2026-10-13.mp4",
+  "size_bytes": 36987939,
+  "sha256": "8e6abbedf2ce009bfe3fd643dc9a72a66131d5458e5effe32f95697b441d2159",
+  "duration_seconds": 118.0,
+  "fps": 15.0,
+  "width": 1920,
+  "height": 1080,
+  "fourcc": "mp4v",
+  "managed_stop_run": "PASS: STOPPED 30.649 s, RUNNING after 1.603 s",
+  "fault_cases": "3/3 PASS: imu_stamp_regression, lidar_dropout, localization_jump",
+  "normal_test_result": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/demo_20261013/managed_cli_run/managed_bag_results.json",
+  "fault_test_result": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/demo_20261013/faults_selected_run/fault_bag_results.json"
+}

@@ -1,0 +1,74 @@
+{
+  "source_unchanged": true,
+  "results": [
+    {
+      "name": "imu_stamp_regression",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "STAMP_REGRESSION",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT",
+        "STAMP_REGRESSION"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/full_runtime_20261013/faults/runtime_logs/1a4dd-18ddf47d36cf503c-f207afba",
+      "fault_bag_sha256": "37152300e28ee26fa64364f236484f1b46c88fc588ebabf920f5132d80435ea5"
+    },
+    {
+      "name": "lidar_dropout",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "RECEIVE_AGE",
+      "triggered_rules": [
+        "FREQUENCY_LOW",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/full_runtime_20261013/faults/runtime_logs/1a51d-18ddf47f3625c3a2-12a427ea",
+      "fault_bag_sha256": "a2e0078b549433cb381578d302fed69ff5f96085996914884a545a913423df57"
+    },
+    {
+      "name": "localization_jump",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LOC_SPEED",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "LOC_ACCELERATION",
+        "LOC_JUMP",
+        "LOC_SPEED",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/full_runtime_20261013/faults/runtime_logs/1a56f-18ddf4812fbd47ec-a17f0dc",
+      "fault_bag_sha256": "8efb85868694119966b87f64584b526f7d33d607f4d1d70404b62c2bc7413772"
+    }
+  ],
+  "passed": 3,
+  "total": 3
+}

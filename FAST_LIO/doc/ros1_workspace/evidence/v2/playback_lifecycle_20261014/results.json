@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "all_running": true,
+    "space_pause_acknowledged": true,
+    "pause_no_false_error": true,
+    "overall_paused": true,
+    "pause_screenshot": true,
+    "space_resume_running": true,
+    "resume_screenshot": true,
+    "injected_dropout_still_error": true,
+    "normal_eof_stopped": true,
+    "eof_heartbeat_remains_valid": true,
+    "overall_stopped": true,
+    "eof_screenshot": true,
+    "effective_config_monitor_fixed": true,
+    "replay_heartbeat_loss_is_error": true
+  },
+  "passed": true,
+  "diagnostic_samples": 3002,
+  "runtime_samples": 884,
+  "health_log_directory": "$HOME/fastlio_ws/logs/robot_health/43bfd-18de5d28d73e3f85-590d6b6e"
+}

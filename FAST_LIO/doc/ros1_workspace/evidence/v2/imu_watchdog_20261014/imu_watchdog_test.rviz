@@ -1,0 +1,60 @@
+Panels:
+- Class: fastlio_health_monitor/HealthPanel
+  Name: V2 错误 bag 实时检测
+  DiagnosticsTopic: /fastlio_health_monitor/diagnostics
+Preferences:
+  PromptSaveOnExit: false
+Visualization Manager:
+  Class: ''
+  Displays:
+  - Class: rviz/PointCloud2
+    Enabled: true
+    Name: 雷达原始点云
+    Topic: /fastlio_health_monitor/lidar_raw_visualization
+    Queue Size: 2
+    Style: Points
+    Size (Pixels): 2
+    Size (m): 0.03
+    Color Transformer: Intensity
+    Channel Name: intensity
+    Autocompute Intensity Bounds: true
+    Use rainbow: true
+    Invert Rainbow: false
+    Alpha: 1
+    Decay Time: 0
+    Position Transformer: XYZ
+    Use Fixed Frame: true
+    Selectable: false
+    Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 34; 38; 45
+    Default Light: true
+    Fixed Frame: livox_raw
+    Frame Rate: 30
+  Name: root
+  Tools:
+  - Class: rviz/Interact
+    Hide Inactive Objects: true
+  - Class: rviz/MoveCamera
+  - Class: rviz/Select
+  - Class: rviz/FocusCamera
+  - Class: rviz/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 45
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Pitch: 0.5
+      Target Frame: livox_raw
+      Value: Orbit (rviz)
+      Yaw: 1.0
+Window Geometry:
+  Height: 1040
+  Width: 1900
+  Hide Left Dock: false
+  Hide Right Dock: false

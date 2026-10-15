@@ -294,7 +294,9 @@ TEST(Logging, DurableEventAndManifest) {
   EXPECT_TRUE(boost::filesystem::exists(folder + "/manifest.json"));
 }
 TEST(Config, RealConfigAndUnknownFieldRejected) {
-  auto c = ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/health_v2_avia.yaml");
+  auto c = ConfigLoader::load(
+      "/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/"
+      "health_v2_avia.yaml");
   EXPECT_EQ(c.modules.size(), 3u);
   auto root = YAML::Load(c.source_text);
   root["monitor"]["typo"] = 1;
@@ -345,7 +347,9 @@ TEST(Lifecycle, RetiredInstanceAndFrameEpochCannotReturn) {
   EXPECT_FALSE(l.controlAccepted());
 }
 TEST(Module, StartupHardErrorVisibleAndControlHealthSeparate) {
-  auto config = ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/health_v2_avia.yaml");
+  auto config = ConfigLoader::load(
+      "/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/"
+      "health_v2_avia.yaml");
   config.strict_control = true;
   auto c = config.modules[1];
   ModuleMonitor module(c, config, {}, 0);
@@ -413,7 +417,9 @@ TEST(Logging, WriteBudgetFailureIsReported) {
   EXPECT_FALSE(recorder.healthy());
 }
 TEST(Config, ThresholdUnitsAndDependencyValidation) {
-  auto base = ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/health_v2_avia.yaml");
+  auto base = ConfigLoader::load(
+      "/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/"
+      "health_v2_avia.yaml");
   auto reject = [&](const YAML::Node& root) {
     std::ofstream out("/tmp/robot_health_config_reject.yaml");
     out << root;

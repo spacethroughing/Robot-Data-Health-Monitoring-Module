@@ -18,8 +18,8 @@
 <text text-anchor="start" x="366.5" y="-1256.1" font-family="Noto Sans CJK SC" font-weight="bold" font-size="18.00">① 首次使用或源码更新后：加载环境并编译</text>
 <text text-anchor="start" x="366.5" y="-1215.1" font-family="Noto Sans Mono CJK SC" font-size="13.00">bash</text>
 <text text-anchor="start" x="366.5" y="-1177.1" font-family="Noto Sans Mono CJK SC" font-size="13.00">source /opt/ros/noetic/setup.bash</text>
-<text text-anchor="start" x="366.5" y="-1139.1" font-family="Noto Sans Mono CJK SC" font-size="13.00">cd $HOME/fastlio_ws &amp;&amp; catkin_make &#45;j2</text>
-<text text-anchor="start" x="366.5" y="-1101.1" font-family="Noto Sans Mono CJK SC" font-size="13.00">source $HOME/fastlio_ws/devel/setup.bash</text>
+<text text-anchor="start" x="366.5" y="-1139.1" font-family="Noto Sans Mono CJK SC" font-size="13.00">cd /home/lmw/fastlio_ws &amp;&amp; catkin_make &#45;j2</text>
+<text text-anchor="start" x="366.5" y="-1101.1" font-family="Noto Sans Mono CJK SC" font-size="13.00">source /home/lmw/fastlio_ws/devel/setup.bash</text>
 <text text-anchor="start" x="366.5" y="-1063.9" font-family="Noto Sans CJK SC" font-size="12.00">每个新终端都要 source；仅运行已编译版本时可跳过编译。</text>
 <polygon fill="none" stroke="#93c5fd" points="353.5,-1048 353.5,-1283 725.5,-1283 725.5,-1048 353.5,-1048"/>
 </g>
@@ -100,9 +100,9 @@
 <title>logs</title>
 <polygon fill="#fce7f3" stroke="transparent" points="158.5,-210 158.5,-254 921.5,-254 921.5,-210 158.5,-210"/>
 <text text-anchor="start" x="170.5" y="-228.6" font-family="Noto Sans CJK SC" font-weight="bold" font-size="18.00">⑥ 查可追溯日志、复现故障 bag，最后正常退出</text>
-<text text-anchor="start" x="170.5" y="-188.4" font-family="Noto Sans CJK SC" font-size="12.00">监控日志：$HOME/fastlio_ws/logs/robot_health/&lt;run_id&gt;/；控制日志：$HOME/fastlio_ws/logs/robot_runtime/&lt;run_id&gt;/。</text>
+<text text-anchor="start" x="170.5" y="-188.4" font-family="Noto Sans CJK SC" font-size="12.00">监控日志：/home/lmw/fastlio_ws/logs/robot_health/&lt;run_id&gt;/；控制日志：/home/lmw/fastlio_ws/logs/robot_runtime/&lt;run_id&gt;/。</text>
 <text text-anchor="start" x="170.5" y="-151.4" font-family="Noto Sans CJK SC" font-size="12.00">核对 manifest、effective_config、events JSONL、metrics CSV；用 instance_id / command_id / module_epoch 串联启停与异常。</text>
-<text text-anchor="start" x="170.5" y="-114.4" font-family="Noto Sans Mono CJK SC" font-size="12.00">python3 $HOME/fastlio_ws/src/fastlio_health_monitor/test/run_fault_bag_tests.py</text>
+<text text-anchor="start" x="170.5" y="-114.4" font-family="Noto Sans Mono CJK SC" font-size="12.00">python3 /home/lmw/fastlio_ws/src/fastlio_health_monitor/test/run_fault_bag_tests.py</text>
 <text text-anchor="start" x="170.5" y="-77.4" font-family="Noto Sans CJK SC" font-size="12.00">回放结束后按 Ctrl+C 关闭整套 launch。原始 bag 保持不变；错误样例为独立副本。</text>
 <polygon fill="none" stroke="#f9a8d4" points="157,-61 157,-255 922,-255 922,-61 157,-61"/>
 </g>

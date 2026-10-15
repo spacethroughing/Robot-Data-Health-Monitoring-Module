@@ -1,15 +1,18 @@
 # C++管理端与监控常驻，分别管理定位和bag传感器输入。修改本文件command替换任意节点。
 state_topic: "/robot_runtime/module_state" # 非latched，5Hz心跳。
-log_directory: "/tmp/robot_health_monitor/robot_runtime" # 示例目录；部署时改为持久且可写路径。
+log_directory: "/home/lmw/fastlio_ws/logs/robot_runtime" # 控制意图和确认单独可追溯日志。
 groups:
   - binding: "localization" # 对应监控lifecycle.control_binding。
+    supervised_ros_node: "/laserMapping" # 同时确认实际节点存活；不能只看外层roslaunch进程。
     autostart: true         # 启动时运行定位；后续通过service STOP/RUN。
     stop_timeout_sec: 5.0   # s；等待退出超期强制终止并报FAULT，不伪装正常。
     clean_exit_is_task_completion: false # 定位自行退出不是正常STOP。
     command: ["roslaunch", "fast_lio", "mapping_avia.launch", "rviz:=false", "path_en:=true", "pcd_save_en:=false", "map_pub_en:=true", "map_pub_interval_sec:=1.0"]
   - binding: "sensors"      # LiDAR/IMU共用控制组，与定位启停独立。
+    playback_state_topic: "/managed_bag_playback/state" # 回放器确认的暂停/恢复/完成心跳。
+    suspend_output_bindings: ["localization"] # 计划暂停/结束时，定位输出要求也暂停；进程故障仍优先ERROR。
     autostart: true
     stop_timeout_sec: 5.0
     clean_exit_is_task_completion: true # 仅此bag任务：退出0明确配置为完成，传感器STOPPED。
     # C++协调器确认mapping/monitor双方已订阅后起播；更换bag/rate修改下面私有参数。
-    command: ["rosrun", "fastlio_health_monitor", "health_bag_playback_node", "__name:=managed_bag_playback", "_bag:=/path/to/your.bag", "_rate:=1.0", "_connection_delay_sec:=1.0"]
+    command: ["rosrun", "fastlio_health_monitor", "health_bag_playback_node", "__name:=managed_bag_playback", "_bag:=/home/lmw/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag", "_rate:=1.0", "_connection_delay_sec:=1.0"]

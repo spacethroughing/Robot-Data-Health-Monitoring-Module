@@ -10,7 +10,9 @@
 #include <sensor_msgs/point_cloud2_iterator.h>
 
 #include <cstring>
+#include <iomanip>
 #include <limits>
+#include <sstream>
 
 namespace robot_health {
 namespace {
@@ -49,7 +51,13 @@ class AdapterBase : public IInputAdapter {
     s.stamp = header.stamp.toSec();
     s.received = steadyNow();
     s.frame = header.frame_id;
-    s.values["source_stamp_sec"] = number(s.stamp);
+    // Keep the exact ROS header time; 12 significant digits lose fractional
+    // detail at modern Unix epoch values. Core derivatives still use seconds.
+    std::ostringstream stamp;
+    stamp << header.stamp.sec << '.' << std::setw(9) << std::setfill('0')
+          << header.stamp.nsec;
+    s.values["source_stamp_sec"] = stamp.str();
+    s.values["source_stamp_ns"] = std::to_string(header.stamp.toNSec());
     s.values["source_frame"] = header.frame_id;
     return s;
   }

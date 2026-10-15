@@ -1,0 +1,88 @@
+{
+  "review_date": "2026-10-13",
+  "scope": "$HOME/Desktop/fastlio_health_monitor_v2_2026-10-13",
+  "type": "static_review",
+  "tests_executed": false,
+  "files": {
+    "src/bag_playback_node.cpp": {
+      "sha256": "c838ce73792d2c1431c94f4d638d7430c1d1bb43f5fe6d65b04af52b449f06e4",
+      "workspace_same": true
+    },
+    "src/event_recorder.cpp": {
+      "sha256": "7bd6e635d15a34dcfa923941816eb7824e2d82c1427c7497f41b69ed1c35157e",
+      "workspace_same": true
+    },
+    "src/health_core.cpp": {
+      "sha256": "dec9dd9e5057166c4cdb36126a822649c93c2acd1a2ba4835db04c82d1f2b807",
+      "workspace_same": true
+    },
+    "src/health_panel.cpp": {
+      "sha256": "cde19b145cc272083154a758cc8c4833e2ea1a8378099c2023d952bfca937e41",
+      "workspace_same": true
+    },
+    "src/input_adapters.cpp": {
+      "sha256": "f6bbf393020c940f496db7c3b7e0258db1870302be79e617725182a809708225",
+      "workspace_same": true
+    },
+    "src/robot_health_monitor_node.cpp": {
+      "sha256": "d904fd542a7d3fffff10a392e63ca91e06599041cfc780a82da053602037da41",
+      "workspace_same": true
+    },
+    "src/runtime_controller_node.cpp": {
+      "sha256": "ae60f68be102023f6a3885e471f5996ab734c1305299af5cefe1ea79124703f4",
+      "workspace_same": true
+    },
+    "include/fastlio_health_monitor/event_recorder.h": {
+      "sha256": "c5141a127f07909685c202638016b6ca04020bcb3ee3c989a11515b45a4a508d",
+      "workspace_same": true
+    },
+    "include/fastlio_health_monitor/health_core.h": {
+      "sha256": "ced47ccc8959a9ba224141e091de4bb9a6f3443c0b29c3fcbe2ebd70f6b19ad3",
+      "workspace_same": true
+    },
+    "include/fastlio_health_monitor/health_panel.h": {
+      "sha256": "88e583c7489685f2435aaac086336c6e485e839ebb67fef663643bb59933ece1",
+      "workspace_same": true
+    },
+    "include/fastlio_health_monitor/input_adapters.h": {
+      "sha256": "7de80dd749dbbf5fc4938c0fdc674d49446aa57d5e2afbd370b0b42abe84a667",
+      "workspace_same": true
+    },
+    "config/health_v2_avia.yaml": {
+      "sha256": "9d1058299d16cbc2757bef0a587bbf709530960f355ccd778dcadf166c3ac089",
+      "workspace_same": true
+    },
+    "config/health_v2_extensions.yaml": {
+      "sha256": "9b0e47bdab4351a4953b9a8bcaff04d92df9cd44c58fa4c56b31fce883a8ae01",
+      "workspace_same": true
+    },
+    "config/health_v2_managed.yaml": {
+      "sha256": "fdc6ee55da0e54b53e85b18b9ef82757def37e62696086549286bae30f074657",
+      "workspace_same": true
+    },
+    "config/health_v2_pointcloud2.yaml": {
+      "sha256": "618d5ee5d66c366d59310e9ad183e9f5100a926b7b798d4b71155e559215366e",
+      "workspace_same": true
+    },
+    "config/runtime_bag.yaml": {
+      "sha256": "e55f567edf95f18526a85d90780da84062d7c8383ef5c0a10f04cf49399fdf05",
+      "workspace_same": true
+    },
+    "launch/health_monitor_v2.launch": {
+      "sha256": "be659f4c917e176b8d1080cef03afeae270c36f149e03fc4ace9286ad2469575",
+      "workspace_same": true
+    },
+    "launch/managed_bag_testbench.launch": {
+      "sha256": "92262f375d72355bde12aedebd265524ebaf50e2a54f8800ec103d498c4d44f9",
+      "workspace_same": true
+    },
+    "launch/visualization_bag_testbench.launch": {
+      "sha256": "f0380a63a38ce2edefbf1625c533914004c592ac1ac981375fbbe1d6c8927a5a",
+      "workspace_same": false
+    },
+    "launch/visualization_testbench.launch": {
+      "sha256": "a1214e70b22e903fce3a144c4664d225e3ffc950cfe3d44851bf6acbf23bd73c",
+      "workspace_same": false
+    }
+  }
+}

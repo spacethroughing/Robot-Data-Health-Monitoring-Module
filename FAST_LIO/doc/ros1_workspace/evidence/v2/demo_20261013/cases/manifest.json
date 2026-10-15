@@ -1,0 +1,37 @@
+{
+  "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+  "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+  "duration_sec": 12,
+  "synthetic_odometry": {
+    "topic": "/health_test/odom",
+    "purpose": "deterministic health-rule fixture; not localization ground truth",
+    "speed_mps": 0.5,
+    "rate_hz": 10
+  },
+  "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+  "bag_start_time_sec": 1608799080.611561,
+  "cases": [
+    {
+      "name": "imu_nan_single",
+      "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_nan_single.bag",
+      "bag_sha256": "83eaaa6beda5525f135df6a8b85b5956b8c27796bab922ddbf20ffb07f6128b3",
+      "expected_rule": "IMU_ACCEL_FINITE",
+      "mutated_or_dropped_messages": 1,
+      "fault_interval_sec": [
+        5,
+        6
+      ]
+    },
+    {
+      "name": "localization_jump",
+      "bag": "$HOME/datasets/fastlio/health_fault_cases/localization_jump.bag",
+      "bag_sha256": "8efb85868694119966b87f64584b526f7d33d607f4d1d70404b62c2bc7413772",
+      "expected_rule": "LOC_SPEED",
+      "mutated_or_dropped_messages": 10,
+      "fault_interval_sec": [
+        5,
+        6
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "source": "$HOME/fastlio_ws/logs/robot_health/7af80-18de92d97c8b2be0-2536610f/events.0.jsonl",
+  "source_sha256": "a3d21a311ad29a137824cd7f6355dd997e6ca3e1b946c8955ca8f147826e0cb0",
+  "line_count": 82,
+  "event_type_counts": {
+    "RUN_BEGIN": 1,
+    "STATE_CHANGED": 13,
+    "INSTANCE_RESET": 3,
+    "CONTROL_INTENT": 9,
+    "WARNING_CANDIDATE": 23,
+    "RULE_TRIGGERED": 18,
+    "RULE_RECOVERED": 14,
+    "RUN_END": 1
+  },
+  "formal_triggers_by_context": {
+    "startup_missing_data": 6,
+    "message_quality": 5,
+    "EOF_transition": 7
+  },
+  "quality_rules": {
+    "imu/STAMP_GAP": {
+      "candidate_records": [
+        {
+          "line": 12,
+          "value": 0.0210385322571,
+          "steady_elapsed_sec": 19.552549128
+        },
+        {
+          "line": 14,
+          "value": 0.0227508544922,
+          "steady_elapsed_sec": 20.567405871
+        },
+        {
+          "line": 15,
+          "value": 0.020051240921,
+          "steady_elapsed_sec": 20.851259438
+        },
+        {
+          "line": 30,
+          "value": 0.0228631496429,
+          "steady_elapsed_sec": 20.967714165
+        },
+        {
+          "line": 31,
+          "value": 0.0230793952942,
+          "steady_elapsed_sec": 21.287462323
+        },
+        {
+          "line": 33,
+          "value": 0.0234408378601,
+          "steady_elapsed_sec": 33.803820819
+        },
+        {
+          "line": 36,
+          "value": 0.0224027633667,
+          "steady_elapsed_sec": 48.23162965
+        }
+      ],
+      "episodes": [
+        {
+          "trigger_line": 13,
+          "trigger_value": 0.0210385322571,
+          "recovery_line": 32,
+          "latched_duration_sec": 2.745880864
+        },
+        {
+          "trigger_line": 34,
+          "trigger_value": 0.0234408378601,
+          "recovery_line": 35,
+          "latched_duration_sec": 1.0123966379999985
+        },
+        {
+          "trigger_line": 37,
+          "trigger_value": 0.0224027633667,
+          "recovery_line": 38,
+          "latched_duration_sec": 1.002086926000004
+        }
+      ],
+      "note": "candidate records and formal alarm episodes are not an exhaustive count of all violating messages; durations include recovery hold."
+    },
+    "lidar/STAMP_INVALID": {
+      "candidate_records": [
+        {
+          "line": 39,
+          "value": 0,
+          "steady_elapsed_sec": 55.15402439
+        }
+      ],
+      "episodes": [
+        {
+          "trigger_line": 40,
+          "trigger_value": 0,
+          "recovery_line": 42,
+          "latched_duration_sec": 1.2013762360000015
+        }
+      ],
+      "note": "candidate records and formal alarm episodes are not an exhaustive count of all violating messages; durations include recovery hold."
+    },
+    "localization/LOC_ACCELERATION": {
+      "candidate_records": [
+        {
+          "line": 46,
+          "value": 12.5425146689,
+          "steady_elapsed_sec": 75.584025979
+        },
+        {
+          "line": 48,
+          "value": 14.7315661984,
+          "steady_elapsed_sec": 75.877941485
+        }
+      ],
+      "episodes": [
+        {
+          "trigger_line": 47,
+          "trigger_value": 12.5425146689,
+          "recovery_line": 53,
+          "latched_duration_sec": 1.4962160560000086
+        }
+      ],
+      "note": "candidate records and formal alarm episodes are not an exhaustive count of all violating messages; durations include recovery hold."
+    }
+  },
+  "imu_watchdog_at_EOF": {
+    "warning_line": 55,
+    "warning_age_sec": 0.108384049003,
+    "error_line": 57,
+    "error_age_sec": 0.208436968009,
+    "event_delta_sec": 0.10004565000002685,
+    "unchanged_source_stamp": true,
+    "source_stamp": "1791962664.85",
+    "recovery_lines": [
+      79,
+      80,
+      81
+    ],
+    "recovery_reason": "data demand suspended; not newly received samples"
+  }
+}

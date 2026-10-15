@@ -1,6 +1,7 @@
 <launch>
   <arg name="rviz" default="true" />
   <arg name="use_sim_time" default="false" />
+  <arg name="health_v2" default="true" />
   <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_v2_avia.yaml" />
   <arg name="data_reference" default="" />
   <arg name="rviz_config"
@@ -16,10 +17,11 @@
     <arg name="map_pub_interval_sec" value="1.0" />
   </include>
 
-  <include file="$(find fastlio_health_monitor)/launch/health_monitor_v2.launch">
+  <include if="$(arg health_v2)" file="$(find fastlio_health_monitor)/launch/health_monitor_v2.launch">
     <arg name="config" value="$(arg health_config)" />
     <arg name="data_reference" value="$(arg data_reference)" />
   </include>
+  <include unless="$(arg health_v2)" file="$(find fastlio_health_monitor)/launch/health_monitor.launch" />
 
   <!-- Avia config/avia.yaml extrinsic_T, extrinsic_R (identity rotation). -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="body_to_livox_raw"

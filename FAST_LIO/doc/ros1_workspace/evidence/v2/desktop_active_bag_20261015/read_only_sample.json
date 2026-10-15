@@ -1,0 +1,479 @@
+{
+  "read_only": true,
+  "file_mode": "rb",
+  "scope": "first 8 chunks only; not a complete bag validation",
+  "complete_chunks": 8,
+  "scan_error": null,
+  "connections": [
+    {
+      "topic": "/mavros/state",
+      "datatype": "mavros_msgs/State",
+      "md5sum": "65cd0a9fff993b062b91e354554ec7e9"
+    },
+    {
+      "topic": "/mavros/imu/data",
+      "datatype": "sensor_msgs/Imu",
+      "md5sum": "6a62c6daae103f4ff57a132d6f95cec2"
+    },
+    {
+      "topic": "/mavros/imu/data_raw",
+      "datatype": "sensor_msgs/Imu",
+      "md5sum": "6a62c6daae103f4ff57a132d6f95cec2"
+    },
+    {
+      "topic": "/system/state",
+      "datatype": "std_msgs/Int32MultiArray",
+      "md5sum": "1d99f79f8b325b44fee908053e9c945b"
+    },
+    {
+      "topic": "/air_ground_state",
+      "datatype": "std_msgs/Int32",
+      "md5sum": "da5909fbe378aeaf85e547e830cc1bb7"
+    },
+    {
+      "topic": "/emergency_action",
+      "datatype": "std_msgs/Int32",
+      "md5sum": "da5909fbe378aeaf85e547e830cc1bb7"
+    },
+    {
+      "topic": "/battery_state",
+      "datatype": "battery_state/BatteryState",
+      "md5sum": "558c3bdb015992ebb46207922fbc783b"
+    },
+    {
+      "topic": "/cpu_monitor/total_cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_usage_per_core_percent",
+      "datatype": "std_msgs/Float32MultiArray",
+      "md5sum": "6a40e0ffa6a17a503ac3f8616991b1f6"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_freq_per_core_mhz",
+      "datatype": "std_msgs/Float32MultiArray",
+      "md5sum": "6a40e0ffa6a17a503ac3f8616991b1f6"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_temp_per_sensor_c",
+      "datatype": "std_msgs/Float32MultiArray",
+      "md5sum": "6a40e0ffa6a17a503ac3f8616991b1f6"
+    },
+    {
+      "topic": "/cpu_monitor/udp_bridge/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/status_topic2msg/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/rostopic_482057_1791962383669/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/rosout/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/rofly_emergency_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/mission_manager_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/point_service_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/mavros/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/record_1791962375312864839/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/global_plan_return_manage_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_monitor/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/battery_monitor/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/planner/planning_stop",
+      "datatype": "std_msgs/Bool",
+      "md5sum": "8b94c1b53db61fb6aed406028ad6332a"
+    },
+    {
+      "topic": "/ctrl_state",
+      "datatype": "std_msgs/Int32",
+      "md5sum": "da5909fbe378aeaf85e547e830cc1bb7"
+    },
+    {
+      "topic": "/cpu_monitor/ctrl_fsm_planning_motor_airground_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/fast_planner_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/plan_map_local_node/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/lidar_slam_status_topic",
+      "datatype": "std_msgs/Bool",
+      "md5sum": "8b94c1b53db61fb6aed406028ad6332a"
+    },
+    {
+      "topic": "/cpu_monitor/p_rlio_monitor/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/gps/fix",
+      "datatype": "sensor_msgs/NavSatFix",
+      "md5sum": "2d3a8cd499b9b4a0249fb98fd05cfa48"
+    },
+    {
+      "topic": "/cpu_monitor/grid_map_local/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/gps/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/cloud_acc3/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/p_go/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/gnss_onboard_status_topic",
+      "datatype": "std_msgs/Bool",
+      "md5sum": "8b94c1b53db61fb6aed406028ad6332a"
+    },
+    {
+      "topic": "/cpu_monitor/p_gins/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/ntrip_ros/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/go_switch_rlio_node2/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/map_integration/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/servo_action_server/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/cpu_monitor/servo_action_client/cpu",
+      "datatype": "std_msgs/Float32",
+      "md5sum": "73fcbf46b49191e672908e50842a83d4"
+    },
+    {
+      "topic": "/fused_cloud",
+      "datatype": "sensor_msgs/PointCloud2",
+      "md5sum": "1158d486dd51d683ce2f1be655c3c181"
+    }
+  ],
+  "samples": [
+    {
+      "topic": "/mavros/state",
+      "record_time": 1791962378.491622,
+      "message_type": "mavros_msgs/State",
+      "stamp": 1791962378.4848435,
+      "frame": ""
+    },
+    {
+      "topic": "/mavros/imu/data",
+      "record_time": 1791962378.49224,
+      "message_type": "sensor_msgs/Imu",
+      "stamp": 1791962378.4918492,
+      "frame": "base_link",
+      "acceleration": [
+        0.0,
+        -0.1078731499999988,
+        9.80665
+      ],
+      "angular_velocity": [
+        0.00046763161662966013,
+        -0.005794066470116377,
+        -0.0008827614365145556
+      ]
+    },
+    {
+      "topic": "/mavros/imu/data_raw",
+      "record_time": 1791962378.492274,
+      "message_type": "sensor_msgs/Imu",
+      "stamp": 1791962378.4919896,
+      "frame": "base_link",
+      "acceleration": [
+        -0.04903325,
+        -0.0490332499999988,
+        9.83606995
+      ],
+      "angular_velocity": [
+        0.0,
+        -0.005,
+        6.123233995736766e-19
+      ]
+    },
+    {
+      "topic": "/system/state",
+      "record_time": 1791962380.5931535,
+      "message_type": "std_msgs/Int32MultiArray"
+    },
+    {
+      "topic": "/air_ground_state",
+      "record_time": 1791962382.498807,
+      "message_type": "std_msgs/Int32"
+    },
+    {
+      "topic": "/emergency_action",
+      "record_time": 1791962382.498831,
+      "message_type": "std_msgs/Int32"
+    },
+    {
+      "topic": "/battery_state",
+      "record_time": 1791962384.4756162,
+      "message_type": "battery_state/BatteryState"
+    },
+    {
+      "topic": "/cpu_monitor/total_cpu",
+      "record_time": 1791962386.9758525,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_usage_per_core_percent",
+      "record_time": 1791962386.9759061,
+      "message_type": "std_msgs/Float32MultiArray"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_freq_per_core_mhz",
+      "record_time": 1791962386.9759176,
+      "message_type": "std_msgs/Float32MultiArray"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_temp_per_sensor_c",
+      "record_time": 1791962386.9761739,
+      "message_type": "std_msgs/Float32MultiArray"
+    },
+    {
+      "topic": "/cpu_monitor/udp_bridge/cpu",
+      "record_time": 1791962387.9218578,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/status_topic2msg/cpu",
+      "record_time": 1791962387.9219294,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/rostopic_482057_1791962383669/cpu",
+      "record_time": 1791962387.9219997,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/rosout/cpu",
+      "record_time": 1791962387.9221547,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/rofly_emergency_node/cpu",
+      "record_time": 1791962387.9222074,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/mission_manager_node/cpu",
+      "record_time": 1791962387.9222918,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/point_service_node/cpu",
+      "record_time": 1791962387.9223692,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/mavros/cpu",
+      "record_time": 1791962387.922454,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/record_1791962375312864839/cpu",
+      "record_time": 1791962387.922562,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/global_plan_return_manage_node/cpu",
+      "record_time": 1791962387.9226472,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/cpu_monitor/cpu",
+      "record_time": 1791962387.922725,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/battery_monitor/cpu",
+      "record_time": 1791962387.9228942,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/planner/planning_stop",
+      "record_time": 1791962388.5607884,
+      "message_type": "std_msgs/Bool"
+    },
+    {
+      "topic": "/ctrl_state",
+      "record_time": 1791962388.560954,
+      "message_type": "std_msgs/Int32"
+    },
+    {
+      "topic": "/cpu_monitor/ctrl_fsm_planning_motor_airground_node/cpu",
+      "record_time": 1791962389.9386363,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/fast_planner_node/cpu",
+      "record_time": 1791962390.9214518,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/plan_map_local_node/cpu",
+      "record_time": 1791962392.9213963,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/lidar_slam_status_topic",
+      "record_time": 1791962394.5471287,
+      "message_type": "std_msgs/Bool"
+    },
+    {
+      "topic": "/cpu_monitor/p_rlio_monitor/cpu",
+      "record_time": 1791962394.9213972,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/gps/fix",
+      "record_time": 1791962396.661,
+      "message_type": "sensor_msgs/NavSatFix",
+      "stamp": 1791962396.600414,
+      "frame": "navsat_link"
+    },
+    {
+      "topic": "/cpu_monitor/grid_map_local/cpu",
+      "record_time": 1791962396.9214456,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/gps/cpu",
+      "record_time": 1791962396.921782,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/cloud_acc3/cpu",
+      "record_time": 1791962398.9212704,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/p_go/cpu",
+      "record_time": 1791962398.921344,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/gnss_onboard_status_topic",
+      "record_time": 1791962399.5408194,
+      "message_type": "std_msgs/Bool"
+    },
+    {
+      "topic": "/cpu_monitor/p_gins/cpu",
+      "record_time": 1791962400.9439325,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/ntrip_ros/cpu",
+      "record_time": 1791962400.943979,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/go_switch_rlio_node2/cpu",
+      "record_time": 1791962401.9539301,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/map_integration/cpu",
+      "record_time": 1791962401.9539618,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/servo_action_server/cpu",
+      "record_time": 1791962403.9215894,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/cpu_monitor/servo_action_client/cpu",
+      "record_time": 1791962403.9217763,
+      "message_type": "std_msgs/Float32"
+    },
+    {
+      "topic": "/fused_cloud",
+      "record_time": 1791962404.6588488,
+      "message_type": "sensor_msgs/PointCloud2",
+      "stamp": 1791962404.656072,
+      "frame": "world",
+      "width": 23468,
+      "height": 1,
+      "fields": [
+        "x",
+        "y",
+        "z",
+        "intensity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+path: $HOME/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag
+version: 2.0
+duration: 286.366622
+start: 1791962378.491622
+end: 1791962664.858244
+size: 5910132911
+messages: 621134
+indexed: True
+compression: none
+types:
+    - type: battery_state/BatteryState
+      md5: 558c3bdb015992ebb46207922fbc783b
+    - type: geometry_msgs/PointStamped
+      md5: c63aecb41bfdfd6b7e1fac37c7cbe7bf
+    - type: mavros_msgs/State
+      md5: 65cd0a9fff993b062b91e354554ec7e9
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: nav_msgs/Path
+      md5: 6227e2b7e9cce15051f669a5e197bbf7
+    - type: quadrotor_msgs/Polynome
+      md5: 1a3ce164aba626c2c89ac2d03fc5876d
+    - type: rofly_airground_ctrl/MotionCtrlDebugAirgroundSeparate
+      md5: 350f58140d8c2ad45157c6da93852b0b
+    - type: sensor_msgs/Imu
+      md5: 6a62c6daae103f4ff57a132d6f95cec2
+    - type: sensor_msgs/NavSatFix
+      md5: 2d3a8cd499b9b4a0249fb98fd05cfa48
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: std_msgs/Bool
+      md5: 8b94c1b53db61fb6aed406028ad6332a
+    - type: std_msgs/Float32
+      md5: 73fcbf46b49191e672908e50842a83d4
+    - type: std_msgs/Float32MultiArray
+      md5: 6a40e0ffa6a17a503ac3f8616991b1f6
+    - type: std_msgs/Int32
+      md5: da5909fbe378aeaf85e547e830cc1bb7
+    - type: std_msgs/Int32MultiArray
+      md5: 1d99f79f8b325b44fee908053e9c945b
+    - type: visualization_msgs/Marker
+      md5: 4048c9de2a16f4ae8e0538085ebf1b97
+topics:
+    - topic: /Odometry
+      type: nav_msgs/Odometry
+      messages: 2223
+    - topic: /air_ground_state
+      type: std_msgs/Int32
+      messages: 56323
+    - topic: /battery_state
+      type: battery_state/BatteryState
+      messages: 281
+    - topic: /cloud2
+      type: sensor_msgs/PointCloud2
+      messages: 1992
+    - topic: /cloud_registered
+      type: sensor_msgs/PointCloud2
+      messages: 2223
+    - topic: /cmd_state
+      type: std_msgs/Int32
+      messages: 28587
+    - topic: /cmd_visual
+      type: visualization_msgs/Marker
+      messages: 28517
+    - topic: /cpu_monitor/battery_monitor/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/cloud_acc3/cpu
+      type: std_msgs/Float32
+      messages: 266
+    - topic: /cpu_monitor/cpu_freq_per_core_mhz
+      type: std_msgs/Float32MultiArray
+      messages: 278
+    - topic: /cpu_monitor/cpu_monitor/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/cpu_temp_per_sensor_c
+      type: std_msgs/Float32MultiArray
+      messages: 278
+    - topic: /cpu_monitor/cpu_usage_per_core_percent
+      type: std_msgs/Float32MultiArray
+      messages: 278
+    - topic: /cpu_monitor/ctrl_fsm_planning_motor_airground_node/cpu
+      type: std_msgs/Float32
+      messages: 275
+    - topic: /cpu_monitor/fast_planner_node/cpu
+      type: std_msgs/Float32
+      messages: 274
+    - topic: /cpu_monitor/global_plan_return_manage_node/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/go_switch_rlio_node2/cpu
+      type: std_msgs/Float32
+      messages: 263
+    - topic: /cpu_monitor/gps/cpu
+      type: std_msgs/Float32
+      messages: 268
+    - topic: /cpu_monitor/grid_map_local/cpu
+      type: std_msgs/Float32
+      messages: 268
+    - topic: /cpu_monitor/laserMapping/cpu
+      type: std_msgs/Float32
+      messages: 236
+    - topic: /cpu_monitor/map_integration/cpu
+      type: std_msgs/Float32
+      messages: 263
+    - topic: /cpu_monitor/mavros/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/mission_manager_node/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/ntrip_ros/cpu
+      type: std_msgs/Float32
+      messages: 264
+    - topic: /cpu_monitor/odom_frequency_conversion/cpu
+      type: std_msgs/Float32
+      messages: 240
+    - topic: /cpu_monitor/p_gins/cpu
+      type: std_msgs/Float32
+      messages: 264
+    - topic: /cpu_monitor/p_go/cpu
+      type: std_msgs/Float32
+      messages: 266
+    - topic: /cpu_monitor/p_rlio_monitor/cpu
+      type: std_msgs/Float32
+      messages: 270
+    - topic: /cpu_monitor/plan_map_local_node/cpu
+      type: std_msgs/Float32
+      messages: 272
+    - topic: /cpu_monitor/point_service_node/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/pose_vel_filter_node/cpu
+      type: std_msgs/Float32
+      messages: 237
+    - topic: /cpu_monitor/record_1791962375312864839/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/rofly_emergency_node/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/rosout/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/rostopic_482057_1791962383669/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/rslidar_sdk_node/cpu
+      type: std_msgs/Float32
+      messages: 240
+    - topic: /cpu_monitor/servo_action_client/cpu
+      type: std_msgs/Float32
+      messages: 261
+    - topic: /cpu_monitor/servo_action_server/cpu
+      type: std_msgs/Float32
+      messages: 261
+    - topic: /cpu_monitor/status_topic2msg/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /cpu_monitor/total_cpu
+      type: std_msgs/Float32
+      messages: 278
+    - topic: /cpu_monitor/udp_bridge/cpu
+      type: std_msgs/Float32
+      messages: 277
+    - topic: /ctrl_state
+      type: std_msgs/Int32
+      messages: 63115
+    - topic: /debug_data
+      type: rofly_airground_ctrl/MotionCtrlDebugAirgroundSeparate
+      messages: 28588
+    - topic: /emergency_action
+      type: std_msgs/Int32
+      messages: 56321
+    - topic: /fast_planner_node/jps_path
+      type: nav_msgs/Path
+      messages: 71
+    - topic: /fixed_target
+      type: geometry_msgs/PointStamped
+      messages: 26
+    - topic: /fused_cloud
+      type: sensor_msgs/PointCloud2
+      messages: 2603
+    - topic: /gnss_onboard_status_topic
+      type: std_msgs/Bool
+      messages: 64855
+    - topic: /goal_occupied
+      type: std_msgs/Bool
+      messages: 5
+    - topic: /gps/fix
+      type: sensor_msgs/NavSatFix
+      messages: 1341
+    - topic: /lidar_slam_status_topic
+      type: std_msgs/Bool
+      messages: 2704
+    - topic: /localization_usage
+      type: nav_msgs/Odometry
+      messages: 44363
+    - topic: /mavros/imu/data
+      type: sensor_msgs/Imu
+      messages: 74110
+    - topic: /mavros/imu/data_raw
+      type: sensor_msgs/Imu
+      messages: 56488
+    - topic: /mavros/state
+      type: mavros_msgs/State
+      messages: 28633
+    - topic: /original_target1
+      type: nav_msgs/Odometry
+      messages: 26
+    - topic: /planner/planning_stop
+      type: std_msgs/Bool
+      messages: 63114
+    - topic: /planner/road_map
+      type: nav_msgs/Path
+      messages: 71
+    - topic: /planner/traj_poly
+      type: quadrotor_msgs/Polynome
+      messages: 70
+    - topic: /rslidar_points
+      type: sensor_msgs/PointCloud2
+      messages: 2421
+    - topic: /system/state
+      type: std_msgs/Int32MultiArray
+      messages: 2843
+    - topic: /target_odom
+      type: nav_msgs/Odometry
+      messages: 26
+    - topic: /visualizer/mincoPath
+      type: nav_msgs/Path
+      messages: 70

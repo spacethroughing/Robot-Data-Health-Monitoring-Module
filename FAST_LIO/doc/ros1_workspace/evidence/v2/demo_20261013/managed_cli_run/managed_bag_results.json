@@ -1,0 +1,69 @@
+{
+  "checks": {
+    "initial_running": true,
+    "stopped_at_least_30_seconds": true,
+    "no_false_error_during_stop": true,
+    "sensors_keep_running": true,
+    "new_instance": true,
+    "no_cross_instance_jump": true,
+    "map_published": true,
+    "log_files_present": true
+  },
+  "passed": true,
+  "marks": {
+    "initial_ready": 31513.77353541,
+    "stopped": 31517.747635763,
+    "stop_wait_end": 31548.396311871,
+    "restart_request": 31549.404609684,
+    "restart_ready": 31551.00767025
+  },
+  "diagnostic_samples": 221,
+  "maps": [
+    {
+      "received": 31512.638097262,
+      "points": 2381,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31513.683866959,
+      "points": 5070,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31514.879590455,
+      "points": 6329,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31515.89052721,
+      "points": 7436,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31516.921886992,
+      "points": 9246,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31549.876321043,
+      "points": 1851,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31550.975985822,
+      "points": 3170,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31552.083414301,
+      "points": 3657,
+      "frame": "camera_init"
+    },
+    {
+      "received": 31553.178056158,
+      "points": 4202,
+      "frame": "camera_init"
+    }
+  ],
+  "monitor_log_directory": "$HOME/fastlio_ws/logs/robot_health/1915f-18ddf35aa571bf44-5dbc3fcd"
+}

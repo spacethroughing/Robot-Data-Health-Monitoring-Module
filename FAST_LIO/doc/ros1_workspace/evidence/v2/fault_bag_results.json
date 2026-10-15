@@ -1,0 +1,291 @@
+{
+  "source_unchanged": true,
+  "results": [
+    {
+      "name": "baseline_short",
+      "passed": true,
+      "checks": {
+        "imu_running_ok": true,
+        "localization_running_ok": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "baseline",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/1122f-18ddb74973651dd0-f81a7714",
+      "fault_bag_sha256": "ed869c659b56a3a9ff3ea942f4c05d6e2ce4af3d785c02c9736b027488e8babb"
+    },
+    {
+      "name": "imu_nan_single",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "IMU_ACCEL_FINITE",
+      "triggered_rules": [
+        "IMU_ACCEL_FINITE",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/1137e-18ddb74b6ed692bc-479819f",
+      "fault_bag_sha256": "83eaaa6beda5525f135df6a8b85b5956b8c27796bab922ddbf20ffb07f6128b3"
+    },
+    {
+      "name": "imu_overlimit",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "IMU_ACCEL_NORM",
+      "triggered_rules": [
+        "IMU_ACCEL_NORM",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/113c7-18ddb74d645d45da-7a7e08c6",
+      "fault_bag_sha256": "41b04c64c37dabca2bf9ca49c91b8571960845248555d629903298a57933d90a"
+    },
+    {
+      "name": "imu_unavailable",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "IMU_ACCEL_AVAILABLE",
+      "triggered_rules": [
+        "IMU_ACCEL_AVAILABLE",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/1141b-18ddb74f5d557ce4-ac4ec3aa",
+      "fault_bag_sha256": "38d52adf47013f70e3bc0205a9a72f6546df13277ee0c429fec504c3dc33b6b3"
+    },
+    {
+      "name": "imu_bad_covariance",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "IMU_ACCEL_COV_INVALID",
+      "triggered_rules": [
+        "IMU_ACCEL_COV_INVALID",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/11465-18ddb7514d35b310-20267139",
+      "fault_bag_sha256": "cb0dd710be00dc7c1697c8c891145ce50692dba6f6690de5c758801646028266"
+    },
+    {
+      "name": "imu_stamp_regression",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "STAMP_REGRESSION",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT",
+        "STAMP_REGRESSION"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/114d0-18ddb75349888cef-118dc3d3",
+      "fault_bag_sha256": "37152300e28ee26fa64364f236484f1b46c88fc588ebabf920f5132d80435ea5"
+    },
+    {
+      "name": "lidar_empty",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LIDAR_EMPTY",
+      "triggered_rules": [
+        "LIDAR_COUNT_TOTAL",
+        "LIDAR_COUNT_VALID",
+        "LIDAR_EMPTY",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/11532-18ddb75545ae975d-35c6877d",
+      "fault_bag_sha256": "19dee16251ea95d4b00317904be02df870be7f4911d2f25c3c63d50ae0b5dc0f"
+    },
+    {
+      "name": "lidar_count_mismatch",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LIDAR_STRUCTURE",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "LIDAR_STRUCTURE",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/1159a-18ddb75742dfa1c8-ce5b8c0a",
+      "fault_bag_sha256": "65ac43570cb3b72b33e574487ef44123bf2c03bcb91160e502b1d1c85eb0f9fe"
+    },
+    {
+      "name": "lidar_dropout",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "RECEIVE_AGE",
+      "triggered_rules": [
+        "FREQUENCY_LOW",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/115e3-18ddb7593d988fef-eaa2341",
+      "fault_bag_sha256": "a2e0078b549433cb381578d302fed69ff5f96085996914884a545a913423df57"
+    },
+    {
+      "name": "lidar_low_frequency",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "FREQUENCY_LOW",
+      "triggered_rules": [
+        "FREQUENCY_LOW",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT",
+        "STAMP_GAP"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/11640-18ddb75b3f51df41-46e4c62b",
+      "fault_bag_sha256": "2415050c837c2c3fd8cda4a0cbdb2eca123887b520b44d92f0bcf8c0bb0114e5"
+    },
+    {
+      "name": "localization_jump",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LOC_SPEED",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "LOC_ACCELERATION",
+        "LOC_JUMP",
+        "LOC_SPEED",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/1167c-18ddb75d3c9d4082-eaccaed9",
+      "fault_bag_sha256": "8efb85868694119966b87f64584b526f7d33d607f4d1d70404b62c2bc7413772"
+    },
+    {
+      "name": "localization_covariance",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LOC_COVARIANCE_INVALID",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "LOC_COVARIANCE_INVALID",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/116c8-18ddb75f3f059a79-fd9b0c71",
+      "fault_bag_sha256": "88d57fb22e1024de7547cafe9bfba0ab487c05bab56b061f50996e692f65ad3e"
+    },
+    {
+      "name": "quaternion_sign_valid",
+      "passed": true,
+      "checks": {
+        "no_sign_jump": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "must_not_trigger_rotation_jump",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 41,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs/11702-18ddb7613ea1c910-cb6913bd",
+      "fault_bag_sha256": "a227f101710dfb77caff2a4454fe3334150022536355afaabc6f2525a447ea18"
+    }
+  ],
+  "passed": 13,
+  "total": 13
+}

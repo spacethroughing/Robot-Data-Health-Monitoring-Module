@@ -1,0 +1,400 @@
+{
+  "date": "2026-10-14",
+  "type": "real_bag_real_cpp_real_rviz_unedited_screen_recording",
+  "video": "$HOME/Desktop/FAST-LIO_V2_IMU时间探针_完整错误Bag测试_2026-10-14.mp4",
+  "bag_manifest": {
+    "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+    "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+    "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+    "source_unchanged": true,
+    "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_source_scheduled_silence_1s_150ms.bag",
+    "bag_sha256": "788a31648f7d5af721e725d8fb4b054e51a82c80a9b2a55e112bafa6b0ca1316",
+    "bag_start_time_sec": 1608799080.611561,
+    "requested_duration_sec": 18.0,
+    "written_messages": {
+      "/livox/imu": 3410,
+      "/livox/lidar": 181
+    },
+    "faults": [
+      {
+        "id": "long_1s",
+        "topic": "/livox/imu",
+        "interval_sec": [
+          6.0,
+          7.0
+        ],
+        "removed_messages": 203,
+        "source_stamp_before_sec": 603.50278095,
+        "source_stamp_after_sec": 604.51078314
+      },
+      {
+        "id": "short_150ms",
+        "topic": "/livox/imu",
+        "interval_sec": [
+          12.0,
+          12.15
+        ],
+        "removed_messages": 30,
+        "source_stamp_before_sec": 609.50380302,
+        "source_stamp_after_sec": 609.65878885
+      }
+    ],
+    "mutation": "Remove IMU records only; preserve lidar and source header stamps",
+    "imu_bag_record_schedule": "source_stamp_relative_to_first"
+  },
+  "source_config_sha256": "aff42d45e0b7c54c0866ca28875e9713fe0fce2e232e5b57c9c6932ab266fbbd",
+  "master_port": 33514,
+  "latency_policy": "diagnostic observer monotonic time minus last IMU observer receipt; includes observer/transport overhead",
+  "acceptance_limits_ms": {
+    "warning": [
+      98,
+      150
+    ],
+    "error": [
+      198,
+      250
+    ]
+  },
+  "exact_100ms_200ms_guarantee": false,
+  "results": [
+    {
+      "name": "A_5hz_hold500ms",
+      "frequency_hz": 5.0,
+      "soft_hold_sec": 0.5,
+      "config": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/A_5hz_hold500ms.yaml",
+      "bag_manifest": {
+        "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+        "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_unchanged": true,
+        "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_source_scheduled_silence_1s_150ms.bag",
+        "bag_sha256": "788a31648f7d5af721e725d8fb4b054e51a82c80a9b2a55e112bafa6b0ca1316",
+        "bag_start_time_sec": 1608799080.611561,
+        "requested_duration_sec": 18.0,
+        "written_messages": {
+          "/livox/imu": 3410,
+          "/livox/lidar": 181
+        },
+        "faults": [
+          {
+            "id": "long_1s",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              6.0,
+              7.0
+            ],
+            "removed_messages": 203,
+            "source_stamp_before_sec": 603.50278095,
+            "source_stamp_after_sec": 604.51078314
+          },
+          {
+            "id": "short_150ms",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              12.0,
+              12.15
+            ],
+            "removed_messages": 30,
+            "source_stamp_before_sec": 609.50380302,
+            "source_stamp_after_sec": 609.65878885
+          }
+        ],
+        "mutation": "Remove IMU records only; preserve lidar and source header stamps",
+        "imu_bag_record_schedule": "source_stamp_relative_to_first"
+      },
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/runtime_logs/3cd04-18de5853fb622acb-cba83c12",
+      "faults": [
+        {
+          "fault_id": "long_1s",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84233.83232245,
+          "next_input_monotonic": 84234.840279446,
+          "observed_gap_ms": 1007.956995992572,
+          "source_stamp_gap_sec": 1.0080021899999565,
+          "warning_latency_ms": null,
+          "error_latency_ms": 223.7914259894751,
+          "warning_before_next_imu": false,
+          "error_before_next_imu": true,
+          "warning_timely_150ms": false,
+          "error_timely_250ms": true
+        },
+        {
+          "fault_id": "short_150ms",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84239.833351508,
+          "next_input_monotonic": 84239.988415156,
+          "observed_gap_ms": 155.06364799512085,
+          "source_stamp_gap_sec": 0.1549858299999869,
+          "warning_latency_ms": null,
+          "error_latency_ms": null,
+          "warning_before_next_imu": false,
+          "error_before_next_imu": false,
+          "warning_timely_150ms": false,
+          "error_timely_250ms": false,
+          "no_receive_error_before_resume": true
+        }
+      ],
+      "diagnostic_count": 108,
+      "imu_count": 3410,
+      "warning_outside_injected_faults": 0,
+      "has_receive_age_trigger_event": true
+    },
+    {
+      "name": "B_100hz_hold500ms",
+      "frequency_hz": 100.0,
+      "soft_hold_sec": 0.5,
+      "config": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/B_100hz_hold500ms.yaml",
+      "bag_manifest": {
+        "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+        "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_unchanged": true,
+        "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_source_scheduled_silence_1s_150ms.bag",
+        "bag_sha256": "788a31648f7d5af721e725d8fb4b054e51a82c80a9b2a55e112bafa6b0ca1316",
+        "bag_start_time_sec": 1608799080.611561,
+        "requested_duration_sec": 18.0,
+        "written_messages": {
+          "/livox/imu": 3410,
+          "/livox/lidar": 181
+        },
+        "faults": [
+          {
+            "id": "long_1s",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              6.0,
+              7.0
+            ],
+            "removed_messages": 203,
+            "source_stamp_before_sec": 603.50278095,
+            "source_stamp_after_sec": 604.51078314
+          },
+          {
+            "id": "short_150ms",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              12.0,
+              12.15
+            ],
+            "removed_messages": 30,
+            "source_stamp_before_sec": 609.50380302,
+            "source_stamp_after_sec": 609.65878885
+          }
+        ],
+        "mutation": "Remove IMU records only; preserve lidar and source header stamps",
+        "imu_bag_record_schedule": "source_stamp_relative_to_first"
+      },
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/runtime_logs/3cd89-18de58599d55ee37-a7c8e823",
+      "faults": [
+        {
+          "fault_id": "long_1s",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84257.860444574,
+          "next_input_monotonic": 84258.868381859,
+          "observed_gap_ms": 1007.9372850013897,
+          "source_stamp_gap_sec": 1.0080021899999565,
+          "warning_latency_ms": null,
+          "error_latency_ms": 209.1116429946851,
+          "warning_before_next_imu": false,
+          "error_before_next_imu": true,
+          "warning_timely_150ms": false,
+          "error_timely_250ms": true
+        },
+        {
+          "fault_id": "short_150ms",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84263.861426187,
+          "next_input_monotonic": 84264.016455046,
+          "observed_gap_ms": 155.02885900787078,
+          "source_stamp_gap_sec": 0.1549858299999869,
+          "warning_latency_ms": null,
+          "error_latency_ms": null,
+          "warning_before_next_imu": false,
+          "error_before_next_imu": false,
+          "warning_timely_150ms": false,
+          "error_timely_250ms": false,
+          "no_receive_error_before_resume": true
+        }
+      ],
+      "diagnostic_count": 2155,
+      "imu_count": 3410,
+      "warning_outside_injected_faults": 0,
+      "has_receive_age_trigger_event": true
+    },
+    {
+      "name": "C_100hz_hold0",
+      "frequency_hz": 100.0,
+      "soft_hold_sec": 0.0,
+      "config": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/C_100hz_hold0.yaml",
+      "bag_manifest": {
+        "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+        "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_unchanged": true,
+        "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_source_scheduled_silence_1s_150ms.bag",
+        "bag_sha256": "788a31648f7d5af721e725d8fb4b054e51a82c80a9b2a55e112bafa6b0ca1316",
+        "bag_start_time_sec": 1608799080.611561,
+        "requested_duration_sec": 18.0,
+        "written_messages": {
+          "/livox/imu": 3410,
+          "/livox/lidar": 181
+        },
+        "faults": [
+          {
+            "id": "long_1s",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              6.0,
+              7.0
+            ],
+            "removed_messages": 203,
+            "source_stamp_before_sec": 603.50278095,
+            "source_stamp_after_sec": 604.51078314
+          },
+          {
+            "id": "short_150ms",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              12.0,
+              12.15
+            ],
+            "removed_messages": 30,
+            "source_stamp_before_sec": 609.50380302,
+            "source_stamp_after_sec": 609.65878885
+          }
+        ],
+        "mutation": "Remove IMU records only; preserve lidar and source header stamps",
+        "imu_bag_record_schedule": "source_stamp_relative_to_first"
+      },
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/runtime_logs/3ce7f-18de585f35bf14c1-f393657",
+      "faults": [
+        {
+          "fault_id": "long_1s",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84281.938742413,
+          "next_input_monotonic": 84282.946914095,
+          "observed_gap_ms": 1008.1716819986468,
+          "source_stamp_gap_sec": 1.0080021899999565,
+          "warning_latency_ms": 109.05312500835862,
+          "error_latency_ms": 221.9503060041461,
+          "warning_before_next_imu": true,
+          "error_before_next_imu": true,
+          "warning_timely_150ms": true,
+          "error_timely_250ms": true
+        },
+        {
+          "fault_id": "short_150ms",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84287.939658947,
+          "next_input_monotonic": 84288.095014732,
+          "observed_gap_ms": 155.35578499839175,
+          "source_stamp_gap_sec": 0.1549858299999869,
+          "warning_latency_ms": 107.9595750052249,
+          "error_latency_ms": null,
+          "warning_before_next_imu": true,
+          "error_before_next_imu": false,
+          "warning_timely_150ms": true,
+          "error_timely_250ms": false,
+          "no_receive_error_before_resume": true
+        }
+      ],
+      "diagnostic_count": 2160,
+      "imu_count": 3410,
+      "warning_outside_injected_faults": 0,
+      "has_receive_age_trigger_event": true
+    },
+    {
+      "name": "D_original_record_times",
+      "frequency_hz": 100.0,
+      "soft_hold_sec": 0.0,
+      "config": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/D_original_record_times.yaml",
+      "bag_manifest": {
+        "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+        "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+        "source_unchanged": true,
+        "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_silence_1s_150ms.bag",
+        "bag_sha256": "663578c0212670829397d748e474ff4f56efc371b7f8f787fd20bc012ee5b311",
+        "bag_start_time_sec": 1608799080.611561,
+        "requested_duration_sec": 18.0,
+        "written_messages": {
+          "/livox/imu": 3458,
+          "/livox/lidar": 181
+        },
+        "faults": [
+          {
+            "id": "long_1s",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              6.0,
+              7.0
+            ],
+            "removed_messages": 184
+          },
+          {
+            "id": "short_150ms",
+            "topic": "/livox/imu",
+            "interval_sec": [
+              12.0,
+              12.15
+            ],
+            "removed_messages": 20
+          }
+        ],
+        "mutation": "Remove IMU records only; preserve lidar and source header stamps"
+      },
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/imu_watchdog_20261014/runtime_logs/3ced3-18de5864cfab4f60-88b9de89",
+      "faults": [
+        {
+          "fault_id": "long_1s",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84305.965912138,
+          "next_input_monotonic": 84306.967778535,
+          "observed_gap_ms": 1001.8663970113266,
+          "source_stamp_gap_sec": 0.912981909999985,
+          "warning_latency_ms": 134.5991960115498,
+          "error_latency_ms": 204.0592350094812,
+          "warning_before_next_imu": true,
+          "error_before_next_imu": true,
+          "warning_timely_150ms": true,
+          "error_timely_250ms": true
+        },
+        {
+          "fault_id": "short_150ms",
+          "baseline_imu_running_ok": true,
+          "last_input_monotonic": 84311.965124835,
+          "next_input_monotonic": 84312.165846657,
+          "observed_gap_ms": 200.7218219951028,
+          "source_stamp_gap_sec": 0.10500940999997965,
+          "warning_latency_ms": 127.41947700851597,
+          "error_latency_ms": null,
+          "warning_before_next_imu": true,
+          "error_before_next_imu": false,
+          "warning_timely_150ms": true,
+          "error_timely_250ms": false,
+          "no_receive_error_before_resume": true
+        }
+      ],
+      "diagnostic_count": 2154,
+      "imu_count": 3458,
+      "warning_outside_injected_faults": 81,
+      "has_receive_age_trigger_event": true
+    }
+  ],
+  "checks": {
+    "two_fault_windows_measured": true,
+    "long_gap_baseline_running_ok": true,
+    "long_warning_before_next_imu": true,
+    "long_error_before_next_imu": true,
+    "long_warning_by_150ms": true,
+    "long_error_by_250ms": true,
+    "short_warning_before_next_imu": true,
+    "short_no_receive_error_before_resume": true,
+    "configuration_not_modified": true,
+    "original_bag_unchanged": true,
+    "fault_bag_matches_manifest": true
+  },
+  "passed": true,
+  "recording_duration_sec": 116.95467628800543,
+  "video_sha256": "dc2bd2a6529c4ac0b3797d0215ea686c670bbc5ea768716ee083c3362443e9d6"
+}

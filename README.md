@@ -16,7 +16,7 @@ V2 面板会同时显示总体健康等级、各模块状态、接收年龄、�
 
 ### 健康监控主流程
 
-![健康监控主流程图](FAST_LIO/doc/ros1_workspace/images/health_v2_actual_monitoring_flow.png)
+![健康监控主流程图](FAST_LIO/doc/ros1_workspace/images/health_v2_actual_monitoring_flow.svg)
 
 主图概括配置、数据接入、分项检查、状态汇总和结果显示。定位正常停止与重启过程见[状态图](FAST_LIO/doc/ros1_workspace/images/health_v2_lifecycle_flow.png)。
 
@@ -27,7 +27,15 @@ V2 面板会同时显示总体健康等级、各模块状态、接收年龄、�
 | `FAST_LIO/` | FAST-LIO ROS 包、Avia 配置、启动文件和当前工程修改 |
 | `fastlio_health_monitor/` | V2 C++ 监控核心、ROS 适配器、生命周期控制、日志记录和 RViz 面板 |
 | `livox_ros_driver/` | Livox ROS Driver 2 源码 |
-| `FAST_LIO/doc/ros1_workspace/` | 设计、配置、启动、验证和项目进度文档；截图位于 `images/` |
+| `FAST_LIO/doc/ros1_workspace/` | 设计、配置、启动、验证和项目进度文档；流程图在 `images/`，验证截图在 `images/` 与 `evidence/` |
+
+## 当前版本增量
+
+- `recorded_bag_health.launch` 提供包内已有雷达、IMU 和定位结果的独立回放检测入口，适配配置示例见 `health_v2_rslidar_mavros.yaml`。启动时通过 `bag:=/path/to/data.bag` 指定本机数据包。
+- 健康和回放日志只记录 `bag_elapsed_sec`、`source_stamp_sec`、`steady_elapsed_sec` 三种时间；验证通过正常 EOF 后自动封存本次日志。
+- 回放暂停、恢复和正常结束使用 `PAUSED`、`RUNNING`、`STOPPED` 生命周期状态。详细说明与结果见[回放生命周期记录](FAST_LIO/doc/ros1_workspace/17_回放暂停恢复与正常结束优化.md)、[自采包验证记录](FAST_LIO/doc/ros1_workspace/19_自采Bag副本修复与原生回放测试.md)和[三时间字段分析](FAST_LIO/doc/ros1_workspace/21_三时间字段回放实测与日志分析.md)。
+
+仓库保留可分享的截图和精简结果摘要。原始 bag、逐消息运行日志及本机生成的诊断大文件不纳入 Git。
 
 ## 运行环境
 
@@ -84,11 +92,12 @@ source ~/fastlio_ws/devel/setup.bash
 | `health_v2_pointcloud2.yaml` | PointCloud2 与 SI 单位 IMU 的适配器配置 |
 | `health_v2_extensions.yaml` | 感知 diagnostics、规划 Path/TaskState 扩展模块示例 |
 | `health_v2_managed.yaml` | 需要运行控制器心跳和生命周期状态的 managed 配置 |
+| `health_v2_rslidar_mavros.yaml` | RSLiDAR PointCloud2、MAVROS IMU 和 Odometry 示例配置 |
 | `runtime_bag.yaml` | managed 模式下定位进程、传感器回放命令和控制器日志目录 |
 
 雷达、IMU、定位的输入话题和阈值在各 YAML 的 `modules` 下配置。IMU 单位通过 `quality.acceleration_unit` 声明；Livox Avia 原始输入使用 `g`，标准 SI 输入使用 `mps2`。无数据告警阈值在 `stream.receive_age_sec.warning_above` 和 `error_above`；它根据本机单调时钟的接收年龄判定，不等待下一条消息的源时间戳。调整阈值前按目标设备的实际频率和规格标定。
 
-日志路径在每个配置文件的 `logging.directory` 中。示例配置使用 `/tmp/robot_health_monitor/...` 便于快速启动；需要长期留存时，请改成目标机器上有写权限且空间充足的绝对路径。managed 控制器的日志目录单独由 `runtime_bag.yaml` 的 `log_directory` 配置。
+日志路径由各 YAML 的 `logging.directory` 配置；managed 控制器日志路径由 `runtime_bag.yaml` 的 `log_directory` 配置。当前配置示例部分沿用开发机 `/home/lmw/fastlio_ws/logs` 路径；克隆到其他机器时请改成该机器有写权限且空间充足的目录。`recorded_bag_health.launch` 的 `bag` 参数也应指向本机的数据包。
 
 FAST-LIO 的雷达型号、IMU 与雷达外参和地图参数位于 `FAST_LIO/config/avia.yaml`。组合启动文件为 `fastlio_health_monitor/launch/visualization_testbench.launch`；bag 一键回放使用 `visualization_bag_testbench.launch`。
 
@@ -137,6 +146,15 @@ roslaunch fastlio_health_monitor visualization_bag_testbench.launch \
 ```
 
 `bag` 参数必须指向实际存在的 Livox bag；`rate` 为回放倍速。若只看监控诊断，可使用 `rviz:=false`。
+
+若 bag 已含 RSLiDAR 原始点云、MAVROS IMU 和定位输出，可使用不启动 FAST-LIO 的结果检测入口：
+
+```bash
+roslaunch fastlio_health_monitor recorded_bag_health.launch \
+  bag:="$HOME/path/to/your_recording.bag" rate:=1.0 rviz:=true
+```
+
+该入口的配置源为 `fastlio_health_monitor/config/health_v2_rslidar_mavros.yaml`；完整启动和检查说明见[19 号验证记录](FAST_LIO/doc/ros1_workspace/19_自采Bag副本修复与原生回放测试.md)。
 
 ### 4. managed 模式的正常停止与重启
 
@@ -203,11 +221,15 @@ less "$LOG_ROOT/<monitor_run_id>/metrics.0.csv"
 ## 文档与代码入口
 
 - [ROS1 / FAST-LIO / V2 文档索引](FAST_LIO/doc/ros1_workspace/README.md)
-- [健康监控设计与实施方案](FAST_LIO/doc/ros1_workspace/11_健康监控后续实施方案.md)
+- [导师要求与健康监控后续执行方案](FAST_LIO/doc/ros1_workspace/11_导师要求与健康监控后续执行方案.md)
 - [V2 重构与验证记录](FAST_LIO/doc/ros1_workspace/12_V2重构实施与测试记录.md)
 - [适配器设计说明](FAST_LIO/doc/ros1_workspace/13_适配器设计说明.md)
 - [演示与命令复现说明](FAST_LIO/doc/ros1_workspace/14_V2演示视频与命令复现.md)
 - [V2 工程优化评审](FAST_LIO/doc/ros1_workspace/15_V2工程优化评审.md)
+- [IMU 时间探针实测](FAST_LIO/doc/ros1_workspace/16_IMU时间探针错误Bag测试与视频.md)
+- [回放生命周期与正常结束](FAST_LIO/doc/ros1_workspace/17_回放暂停恢复与正常结束优化.md)
+- [自采 bag 修复与原生回放](FAST_LIO/doc/ros1_workspace/19_自采Bag副本修复与原生回放测试.md)
+- [三时间字段日志分析](FAST_LIO/doc/ros1_workspace/21_三时间字段回放实测与日志分析.md)
 
 程序包内的主要 C++ 文件：`health_core.cpp` 实现规则、时间流和状态汇总；`input_adapters.cpp` 将 ROS 消息适配为通用样本；`robot_health_monitor_node.cpp` 提供 ROS 节点入口；`event_recorder.cpp` 负责事件和指标日志；`runtime_controller_node.cpp` 管理受控子进程和运行状态。
 

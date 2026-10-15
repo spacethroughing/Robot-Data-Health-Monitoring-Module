@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "health_exact_csv_header": true,
+    "health_preclock_bag_time_is_null": true,
+    "health_steady_nondecreasing": true,
+    "source_zero_preserved": true,
+    "paused_csv_samples_present": true,
+    "paused_csv_bag_progress_frozen": true,
+    "paused_csv_steady_time_advances": true,
+    "playback_exact_csv_header": true,
+    "playback_preclock_bag_time_is_null": true,
+    "playback_steady_nondecreasing": true,
+    "imu_final_source_matches_bag_exact_decimal": true,
+    "imu_final_metric_stopped": true,
+    "lidar_final_source_matches_bag_exact_decimal": true,
+    "lidar_final_metric_stopped": true,
+    "localization_final_source_matches_bag_exact_decimal": true,
+    "localization_final_metric_stopped": true
+  },
+  "details": {
+    "imu": {
+      "bag_header_exact": "1791962664.849933504",
+      "final_csv_source_stamp_sec": "1791962664.849933504"
+    },
+    "lidar": {
+      "bag_header_exact": "1791962664.689638376",
+      "final_csv_source_stamp_sec": "1791962664.689638376"
+    },
+    "localization": {
+      "bag_header_exact": "1791962664.789190531",
+      "final_csv_source_stamp_sec": "1791962664.789190531"
+    }
+  },
+  "passed": true
+}

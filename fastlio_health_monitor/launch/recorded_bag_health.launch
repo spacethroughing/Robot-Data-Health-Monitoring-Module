@@ -1,0 +1,38 @@
+<launch>
+  <!-- Review recorded sensor/localization outputs; no mapping process or invented extrinsics. -->
+  <arg name="bag" default="/home/lmw/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag" />
+  <arg name="rate" default="1.0" />
+  <arg name="rviz" default="true" />
+  <!-- Finish this run's JSONL/CSV after verified EOF; keep the UI and heartbeat. -->
+  <arg name="finish_log_on_playback_complete" default="true" />
+  <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_v2_rslidar_mavros.yaml" />
+  <arg name="rviz_config" default="$(find fastlio_health_monitor)/rviz/rslidar_recorded_health.rviz" />
+  <!-- If topic names are changed in YAML, update these readiness arguments as well. -->
+  <arg name="lidar_topic" default="/rslidar_points" />
+  <arg name="imu_topic" default="/mavros/imu/data_raw" />
+  <arg name="localization_topic" default="/Odometry" />
+  <arg name="playback_log_directory" default="/home/lmw/fastlio_ws/logs/robot_playback" />
+
+  <param name="/use_sim_time" value="true" />
+  <include file="$(find fastlio_health_monitor)/launch/health_monitor_v2.launch">
+    <arg name="config" value="$(arg health_config)" />
+    <arg name="data_reference" value="$(arg bag)" />
+    <arg name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <arg name="playback_state_topic" value="/recorded_bag_playback/state" />
+  </include>
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="recorded_bag_health_rviz"
+        args="-d $(arg rviz_config)" output="screen" />
+  <node pkg="fastlio_health_monitor" type="health_bag_playback_node" name="recorded_bag_playback" output="screen">
+    <param name="bag" value="$(arg bag)" />
+    <param name="rate" value="$(arg rate)" />
+    <param name="publish_lifecycle" value="true" />
+    <param name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <param name="lifecycle_config_file" value="$(arg health_config)" />
+    <param name="require_mapping_node" value="false" />
+    <rosparam param="required_input_topics" subst_value="true">["$(arg lidar_topic)", "$(arg imu_topic)", "$(arg localization_topic)"]</rosparam>
+    <param name="monitor_node" value="/fastlio_health_monitor" />
+    <param name="startup_timeout_sec" value="60.0" />
+    <param name="connection_delay_sec" value="1.0" />
+    <param name="log_directory" value="$(arg playback_log_directory)" />
+  </node>
+</launch>

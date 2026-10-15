@@ -12,9 +12,8 @@ def stop(p):
         except subprocess.TimeoutExpired:os.killpg(p.pid,signal.SIGKILL);p.wait()
 
 def main():
-    repo_root=Path(__file__).resolve().parents[2]
-    ap=argparse.ArgumentParser();ap.add_argument('--cases',default=str(Path.home()/'datasets/fastlio/health_fault_cases'));ap.add_argument('--evidence',default=str(repo_root/'FAST_LIO/doc/ros1_workspace/evidence/v2'));a=ap.parse_args();out=Path(a.evidence);out.mkdir(parents=True,exist_ok=True)
-    config_path=Path(__file__).resolve().parents[1]/'config/health_v2_avia.yaml';manifest=json.loads((Path(a.cases)/'manifest.json').read_text())
+    ap=argparse.ArgumentParser();ap.add_argument('--cases',default='/home/lmw/datasets/fastlio/health_fault_cases');ap.add_argument('--evidence',default='/home/lmw/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2');a=ap.parse_args();out=Path(a.evidence);out.mkdir(parents=True,exist_ok=True)
+    config_path=Path('/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/health_v2_avia.yaml');manifest=json.loads((Path(a.cases)/'manifest.json').read_text())
     rospy.init_node('v2_fault_bag_test',anonymous=True,disable_signals=True)
     rospy.set_param('/use_sim_time',True)
     snapshots=[]

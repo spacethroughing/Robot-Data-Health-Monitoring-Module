@@ -1,0 +1,19 @@
+{
+  "checks": {
+    "all_running": true,
+    "space_pause_acknowledged": true,
+    "pause_no_false_error": true,
+    "overall_paused": true,
+    "space_resume_running": true,
+    "injected_dropout_still_error": true,
+    "normal_eof_stopped": true,
+    "eof_heartbeat_remains_valid": true,
+    "overall_stopped": true,
+    "effective_config_monitor_fixed": true,
+    "mapping_failure_not_hidden_by_eof": true
+  },
+  "passed": true,
+  "diagnostic_samples": 2794,
+  "runtime_samples": 1044,
+  "health_log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/playback_lifecycle_20261014/managed/health_logs/444dc-18de5d839b703639-dfe54c6f"
+}

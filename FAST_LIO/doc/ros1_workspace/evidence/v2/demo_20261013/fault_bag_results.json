@@ -1,0 +1,53 @@
+{
+  "source_unchanged": true,
+  "results": [
+    {
+      "name": "imu_nan_single",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "IMU_ACCEL_FINITE",
+      "triggered_rules": [
+        "IMU_ACCEL_FINITE",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/demo_20261013/runtime_logs/17f70-18ddf2bcb842990c-ccb83098",
+      "fault_bag_sha256": "83eaaa6beda5525f135df6a8b85b5956b8c27796bab922ddbf20ffb07f6128b3"
+    },
+    {
+      "name": "localization_jump",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LOC_SPEED",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "LOC_ACCELERATION",
+        "LOC_JUMP",
+        "LOC_SPEED",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/demo_20261013/runtime_logs/17fb4-18ddf2beb1495613-347f8ea3",
+      "fault_bag_sha256": "8efb85868694119966b87f64584b526f7d33d607f4d1d70404b62c2bc7413772"
+    }
+  ],
+  "passed": 2,
+  "total": 2
+}

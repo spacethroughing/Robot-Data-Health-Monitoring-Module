@@ -1,0 +1,434 @@
+{
+  "checks": {
+    "all_selected_readable_messages_published": true,
+    "cpp_monitor_received_all_lidar": true,
+    "cpp_monitor_received_all_imu": false,
+    "cpp_monitor_received_all_localization": true,
+    "all_three_were_ok_running_together": true,
+    "zero_lidar_stamp_detected": true,
+    "truncated_tail_not_normal_stop": true,
+    "trace_logging_healthy_in_saved_diagnostics": true,
+    "screenshots_saved": true,
+    "original_unchanged": true
+  },
+  "passed": false,
+  "lidar_first_valid_header": {
+    "stamp": 1791962422.7878435,
+    "record_time": 1791962422.8960505
+  },
+  "lidar_average_positive_header_hz": 9.999925800036682,
+  "timing_note": "average source frequency excludes nonpositive stamps; maximum gaps including invalid stamps are separate",
+  "rule_trigger_counts": [
+    {
+      "module": "imu",
+      "rule": "STAMP_GAP",
+      "level": "WARNING",
+      "count": 3
+    },
+    {
+      "module": "lidar",
+      "rule": "RECEIVE_AGE",
+      "level": "ERROR",
+      "count": 2
+    },
+    {
+      "module": "lidar",
+      "rule": "RUNTIME_FAULT",
+      "level": "ERROR",
+      "count": 2
+    },
+    {
+      "module": "lidar",
+      "rule": "STARTUP_TIMEOUT",
+      "level": "ERROR",
+      "count": 1
+    },
+    {
+      "module": "localization",
+      "rule": "RECEIVE_AGE",
+      "level": "ERROR",
+      "count": 2
+    },
+    {
+      "module": "localization",
+      "rule": "RUNTIME_FAULT",
+      "level": "ERROR",
+      "count": 2
+    },
+    {
+      "module": "localization",
+      "rule": "STARTUP_TIMEOUT",
+      "level": "ERROR",
+      "count": 1
+    },
+    {
+      "module": "imu",
+      "rule": "RECEIVE_AGE",
+      "level": "WARNING",
+      "count": 3
+    },
+    {
+      "module": "lidar",
+      "rule": "STAMP_INVALID",
+      "level": "ERROR",
+      "count": 1
+    },
+    {
+      "module": "localization",
+      "rule": "LOC_ACCELERATION",
+      "level": "WARNING",
+      "count": 1
+    },
+    {
+      "module": "imu",
+      "rule": "RUNTIME_FAULT",
+      "level": "ERROR",
+      "count": 1
+    },
+    {
+      "module": "imu",
+      "rule": "RECEIVE_AGE",
+      "level": "ERROR",
+      "count": 1
+    },
+    {
+      "module": "lidar",
+      "rule": "RECEIVE_AGE",
+      "level": "WARNING",
+      "count": 1
+    },
+    {
+      "module": "localization",
+      "rule": "RECEIVE_AGE",
+      "level": "WARNING",
+      "count": 1
+    }
+  ],
+  "metric_sample_ranges": {
+    "lidar": {
+      "scope": "metrics CSV samples, operating_state RUNNING, monitor elapsed >=80 s",
+      "samples": 210,
+      "ranges": {
+        "rate_hz": {
+          "minimum": 9.9393257876,
+          "maximum": 10.0128041732
+        },
+        "points_total": {
+          "minimum": 18579.0,
+          "maximum": 56857.0
+        },
+        "points_valid": {
+          "minimum": 18579.0,
+          "maximum": 56857.0
+        },
+        "valid_ratio": {
+          "minimum": 1.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "imu": {
+      "scope": "metrics CSV samples, operating_state RUNNING, monitor elapsed >=80 s",
+      "samples": 210,
+      "ranges": {
+        "rate_hz": {
+          "minimum": 175.436918878,
+          "maximum": 210.250376399
+        },
+        "angular_velocity_norm_rps": {
+          "minimum": 0.0,
+          "maximum": 1.95326137524
+        }
+      }
+    },
+    "localization": {
+      "scope": "metrics CSV samples, operating_state RUNNING, monitor elapsed >=80 s",
+      "samples": 210,
+      "ranges": {
+        "rate_hz": {
+          "minimum": 9.95991124126,
+          "maximum": 10.0318681266
+        },
+        "linear_speed_mps": {
+          "minimum": 0.00600022821931,
+          "maximum": 1.64764274535
+        },
+        "linear_acceleration_mps2": {
+          "minimum": 0.0297910320418,
+          "maximum": 6.89517336045
+        },
+        "position_variance_m2": {
+          "minimum": 0.000262391697267,
+          "maximum": 0.00081395431417
+        }
+      }
+    }
+  },
+  "events": [
+    {
+      "line": 10,
+      "event_seq": 10,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 14.088499766,
+      "module_id": "imu",
+      "rule_id": "STAMP_GAP",
+      "value": 0.0210385322571,
+      "threshold": 0.02,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 14,
+      "event_seq": 14,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 15.391437863,
+      "module_id": "lidar",
+      "rule_id": "RECEIVE_AGE",
+      "value": 10.013179421,
+      "threshold": 0.5,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 16,
+      "event_seq": 16,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 15.391491052,
+      "module_id": "lidar",
+      "rule_id": "RUNTIME_FAULT",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 18,
+      "event_seq": 18,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 15.391543285,
+      "module_id": "lidar",
+      "rule_id": "STARTUP_TIMEOUT",
+      "value": 10.003551326,
+      "threshold": 10,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 21,
+      "event_seq": 21,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 15.391630232,
+      "module_id": "localization",
+      "rule_id": "RECEIVE_AGE",
+      "value": 10.010145964,
+      "threshold": 1,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 23,
+      "event_seq": 23,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 15.391688103,
+      "module_id": "localization",
+      "rule_id": "RUNTIME_FAULT",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 25,
+      "event_seq": 25,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 15.391742149,
+      "module_id": "localization",
+      "rule_id": "STARTUP_TIMEOUT",
+      "value": 10.003485958,
+      "threshold": 10,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 31,
+      "event_seq": 31,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 20.491324098,
+      "module_id": "imu",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.102099810989,
+      "threshold": 0.1,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 34,
+      "event_seq": 34,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 28.339612625,
+      "module_id": "imu",
+      "rule_id": "STAMP_GAP",
+      "value": 0.0234408378601,
+      "threshold": 0.02,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 37,
+      "event_seq": 37,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 42.767659875,
+      "module_id": "imu",
+      "rule_id": "STAMP_GAP",
+      "value": 0.0224027633667,
+      "threshold": 0.02,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 39,
+      "event_seq": 39,
+      "event_type": "WARNING_CANDIDATE",
+      "steady_elapsed_sec": 49.69063286,
+      "module_id": "lidar",
+      "rule_id": "STAMP_INVALID",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 40,
+      "event_seq": 40,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 49.690679076,
+      "module_id": "lidar",
+      "rule_id": "STAMP_INVALID",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 42,
+      "event_seq": 42,
+      "event_type": "RULE_RECOVERED",
+      "steady_elapsed_sec": 50.89213028,
+      "module_id": "lidar",
+      "rule_id": "STAMP_INVALID",
+      "value": 1791962423.89,
+      "threshold": 0,
+      "to_level": "OK"
+    },
+    {
+      "line": 47,
+      "event_seq": 47,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 70.119689471,
+      "module_id": "localization",
+      "rule_id": "LOC_ACCELERATION",
+      "value": 12.5425146689,
+      "threshold": 10,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 55,
+      "event_seq": 55,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 105.491321564,
+      "module_id": "imu",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.106157150003,
+      "threshold": 0.1,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 58,
+      "event_seq": 58,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 291.751291627,
+      "module_id": "imu",
+      "rule_id": "RUNTIME_FAULT",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 61,
+      "event_seq": 61,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 291.751405299,
+      "module_id": "lidar",
+      "rule_id": "RUNTIME_FAULT",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 64,
+      "event_seq": 64,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 291.751512351,
+      "module_id": "localization",
+      "rule_id": "RUNTIME_FAULT",
+      "value": 0,
+      "threshold": 0,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 67,
+      "event_seq": 67,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 291.851396074,
+      "module_id": "imu",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.101848079998,
+      "threshold": 0.1,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 69,
+      "event_seq": 69,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 291.951344331,
+      "module_id": "imu",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.201798158989,
+      "threshold": 0.2,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 71,
+      "event_seq": 71,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 292.001358956,
+      "module_id": "lidar",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.301563123008,
+      "threshold": 0.3,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 73,
+      "event_seq": 73,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 292.051327777,
+      "module_id": "localization",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.30366365501,
+      "threshold": 0.3,
+      "to_level": "WARNING"
+    },
+    {
+      "line": 75,
+      "event_seq": 75,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 292.20134226,
+      "module_id": "lidar",
+      "rule_id": "RECEIVE_AGE",
+      "value": 0.501506197004,
+      "threshold": 0.5,
+      "to_level": "ERROR"
+    },
+    {
+      "line": 77,
+      "event_seq": 77,
+      "event_type": "RULE_TRIGGERED",
+      "steady_elapsed_sec": 292.751338695,
+      "module_id": "localization",
+      "rule_id": "RECEIVE_AGE",
+      "value": 1.00362769901,
+      "threshold": 1,
+      "to_level": "ERROR"
+    }
+  ],
+  "diagnostic_rows_saved": 300
+}

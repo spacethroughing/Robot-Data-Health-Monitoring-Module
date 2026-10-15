@@ -1,0 +1,11 @@
+{
+  "original": "$HOME/Desktop/2026-10-14-15-19-35.bag.active",
+  "recovered": "$HOME/Desktop/2026-10-14-15-19-35_\u4fee\u590d\u526f\u672c/2026-10-14-15-19-35.recovered.bag",
+  "complete_chunk_region_begin": 4109,
+  "complete_chunk_region_end": 5908981611,
+  "original_region_sha256": "e54785cf8cd5f51c859db1751833413a32b23dd4b9a0d3cbadc514355ba71e7f",
+  "recovered_region_sha256": "e54785cf8cd5f51c859db1751833413a32b23dd4b9a0d3cbadc514355ba71e7f",
+  "complete_chunk_bytes_identical": true,
+  "original_incomplete_region_bytes": 18581,
+  "recovered_size": 5910132911
+}

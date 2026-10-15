@@ -59,10 +59,10 @@
   <rect x="74" y="679" width="1000" height="236" rx="12" class="terminal"/>
   <text x="96" y="710" class="code">bash</text>
   <text x="96" y="738" class="code">source /opt/ros/noetic/setup.bash</text>
-  <text x="96" y="766" class="code">cd $HOME/fastlio_ws</text>
+  <text x="96" y="766" class="code">cd /home/lmw/fastlio_ws</text>
   <text x="96" y="794" class="code-sm">rosdep install --from-paths src --ignore-src -r -y --rosdistro noetic</text>
   <text x="96" y="822" class="code">catkin_make -j2</text>
-  <text x="96" y="850" class="code">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="96" y="850" class="code">source /home/lmw/fastlio_ws/devel/setup.bash</text>
   <text x="96" y="888" class="tiny" fill="#cbd9e7">每个新终端都 source ROS 与工作区；只改 YAML/launch 不需要重编译。</text>
 
   <rect x="1120" y="622" width="632" height="330" rx="18" class="box" filter="url(#shadow)"/>
@@ -136,7 +136,7 @@
   <text x="95" y="1899" class="head2">终端 1 · Livox 驱动</text>
   <rect x="73" y="1923" width="786" height="100" rx="10" class="terminal"/>
   <text x="94" y="1948" class="code-sm">source /opt/ros/noetic/setup.bash</text>
-  <text x="94" y="1975" class="code-sm">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="94" y="1975" class="code-sm">source /home/lmw/fastlio_ws/devel/setup.bash</text>
   <text x="94" y="2002" class="code-sm">roslaunch livox_ros_driver livox_lidar_msg.launch bd_list:=""</text>
 
   <rect x="910" y="1847" width="842" height="185" rx="18" class="box" filter="url(#shadow)"/>
@@ -144,7 +144,7 @@
   <text x="957" y="1899" class="head2">终端 2 · FAST-LIO + 健康监控 + RViz</text>
   <rect x="935" y="1923" width="792" height="100" rx="10" class="terminal"/>
   <text x="956" y="1948" class="code-sm">source /opt/ros/noetic/setup.bash</text>
-  <text x="956" y="1975" class="code-sm">source $HOME/fastlio_ws/devel/setup.bash</text>
+  <text x="956" y="1975" class="code-sm">source /home/lmw/fastlio_ws/devel/setup.bash</text>
   <text x="956" y="2002" class="code-sm">roslaunch fastlio_health_monitor visualization_testbench.launch</text>
 
   <rect x="48" y="2050" width="1704" height="118" rx="18" class="box" filter="url(#shadow)"/>

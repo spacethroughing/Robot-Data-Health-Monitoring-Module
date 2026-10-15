@@ -1,0 +1,336 @@
+{
+  "health_run": "$HOME/fastlio_ws/logs/robot_health/86d3f-18de9f9c7fcc08f8-76ffe11e",
+  "playback_run": "$HOME/fastlio_ws/logs/robot_playback/86d41-18de9f9c7ef4f236-88d18b9",
+  "health_events": 61,
+  "event_types": {
+    "RUN_BEGIN": 1,
+    "STATE_CHANGED": 12,
+    "INSTANCE_RESET": 3,
+    "CONTROL_INTENT": 9,
+    "WARNING_CANDIDATE": 14,
+    "RULE_TRIGGERED": 13,
+    "RULE_RECOVERED": 8,
+    "RUN_END": 1
+  },
+  "trigger_count": 13,
+  "triggers": [
+    {
+      "event_seq": 13,
+      "module_id": "lidar",
+      "rule_id": "RECEIVE_AGE",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 9.894783967,
+      "steady_elapsed_sec": 15.563558101,
+      "value": 11.308325788,
+      "unit": "s",
+      "threshold": 0.5,
+      "source_stamp_sec": null,
+      "reason": "outside configured range"
+    },
+    {
+      "event_seq": 15,
+      "module_id": "lidar",
+      "rule_id": "RUNTIME_FAULT",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 9.894783967,
+      "steady_elapsed_sec": 15.563604425,
+      "value": 0,
+      "unit": "",
+      "threshold": 0,
+      "source_stamp_sec": null,
+      "reason": "startup/process/output/stop failure"
+    },
+    {
+      "event_seq": 17,
+      "module_id": "lidar",
+      "rule_id": "STARTUP_TIMEOUT",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 9.894783967,
+      "steady_elapsed_sec": 15.563646912,
+      "value": 10.002933731,
+      "unit": "s",
+      "threshold": 10,
+      "source_stamp_sec": null,
+      "reason": "required output not ready by deadline"
+    },
+    {
+      "event_seq": 20,
+      "module_id": "localization",
+      "rule_id": "RECEIVE_AGE",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 9.894783967,
+      "steady_elapsed_sec": 15.563724995,
+      "value": 11.311853264,
+      "unit": "s",
+      "threshold": 1,
+      "source_stamp_sec": null,
+      "reason": "outside configured range"
+    },
+    {
+      "event_seq": 22,
+      "module_id": "localization",
+      "rule_id": "RUNTIME_FAULT",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 9.894783967,
+      "steady_elapsed_sec": 15.563770508,
+      "value": 0,
+      "unit": "",
+      "threshold": 0,
+      "source_stamp_sec": null,
+      "reason": "startup/process/output/stop failure"
+    },
+    {
+      "event_seq": 24,
+      "module_id": "localization",
+      "rule_id": "STARTUP_TIMEOUT",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 9.894783967,
+      "steady_elapsed_sec": 15.563813251,
+      "value": 10.003026603,
+      "unit": "s",
+      "threshold": 10,
+      "source_stamp_sec": null,
+      "reason": "required output not ready by deadline"
+    },
+    {
+      "event_seq": 27,
+      "module_id": "lidar",
+      "rule_id": "STAMP_INVALID",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 44.294002096,
+      "steady_elapsed_sec": 49.96401588,
+      "value": 0,
+      "unit": "s",
+      "threshold": 0,
+      "source_stamp_sec": 0.0,
+      "reason": "zero/nonfinite timestamp"
+    },
+    {
+      "event_seq": 34,
+      "module_id": "localization",
+      "rule_id": "LOC_ACCELERATION",
+      "to_level": "WARNING",
+      "bag_elapsed_sec": 64.727764109,
+      "steady_elapsed_sec": 70.393254902,
+      "value": 12.5425146689,
+      "unit": "m/s^2",
+      "threshold": 10,
+      "source_stamp_sec": 1791962443.1765673,
+      "reason": "outside configured range"
+    },
+    {
+      "event_seq": 42,
+      "module_id": "imu",
+      "rule_id": "RECEIVE_AGE",
+      "to_level": "WARNING",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.12372271,
+      "value": 0.100913317001,
+      "unit": "s",
+      "threshold": 0.1,
+      "source_stamp_sec": 1791962664.8499334,
+      "reason": "outside configured range"
+    },
+    {
+      "event_seq": 44,
+      "module_id": "imu",
+      "rule_id": "RECEIVE_AGE",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.223758866,
+      "value": 0.20091210102,
+      "unit": "s",
+      "threshold": 0.2,
+      "source_stamp_sec": 1791962664.8499334,
+      "reason": "outside configured range"
+    },
+    {
+      "event_seq": 46,
+      "module_id": "imu",
+      "rule_id": "RUNTIME_FAULT",
+      "to_level": "ERROR",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.223858574,
+      "value": 0,
+      "unit": "",
+      "threshold": 0,
+      "source_stamp_sec": 1791962664.8499334,
+      "reason": "startup/process/output/stop failure"
+    },
+    {
+      "event_seq": 49,
+      "module_id": "lidar",
+      "rule_id": "RECEIVE_AGE",
+      "to_level": "WARNING",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.273713829,
+      "value": 0.300331776001,
+      "unit": "s",
+      "threshold": 0.3,
+      "source_stamp_sec": 1791962664.6896384,
+      "reason": "outside configured range"
+    },
+    {
+      "event_seq": 51,
+      "module_id": "localization",
+      "rule_id": "RECEIVE_AGE",
+      "to_level": "WARNING",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.323756044,
+      "value": 0.302529189008,
+      "unit": "s",
+      "threshold": 0.3,
+      "source_stamp_sec": 1791962664.7891905,
+      "reason": "outside configured range"
+    }
+  ],
+  "metric_rows": 864,
+  "metric_rows_by_module": {
+    "imu": 288,
+    "lidar": 288,
+    "localization": 288
+  },
+  "bag_duration_sec": 286.366622158,
+  "bag_elapsed_at_eof_sec": 286.359704288,
+  "logger_run_begin_steady_sec": 3.99782152701,
+  "logger_run_end_steady_sec": 292.443878008,
+  "player_effective_config": "node: /recorded_bag_playback\nbag: $HOME/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag\nrate: 1\nrequire_mapping_node: false\nfinish_log_on_playback_complete: true\nrequired_input_topics:\n  - /rslidar_points\n  - /mavros/imu/data_raw\n  - /Odometry\nstate_policy: explicit pause acknowledgement; clean EOF stopped; unexpected exit fault",
+  "playback_events": [
+    {
+      "event_seq": 1,
+      "event_type": "RUN_BEGIN",
+      "bag_elapsed_sec": null,
+      "steady_elapsed_sec": 4.011926985,
+      "reason": "monitor started",
+      "context": {}
+    },
+    {
+      "event_seq": 2,
+      "event_type": "PLAYBACK_STARTING",
+      "bag_elapsed_sec": null,
+      "steady_elapsed_sec": 4.19634963298,
+      "reason": "RUN / STARTING / waiting for required consumers and live transport",
+      "context": {
+        "command_id": "86d41-18de9f9d7913e0d7-10faff47",
+        "exit_code": "0",
+        "native_player_exit_code": "-1"
+      }
+    },
+    {
+      "event_seq": 3,
+      "event_type": "PLAYBACK_RESUMED",
+      "bag_elapsed_sec": null,
+      "steady_elapsed_sec": 5.57437928498,
+      "reason": "RUN / RUNNING / resume acknowledged; consumers must regain data readiness",
+      "context": {
+        "command_id": "86d41-18de9f9dcb371600-a0a997de",
+        "exit_code": "0",
+        "native_player_exit_code": "-1"
+      }
+    },
+    {
+      "event_seq": 4,
+      "event_type": "PLAYBACK_VERIFYING_EOF",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.454712798,
+      "reason": "STOP / STOPPING / player exited; verifying its clock reached the file end",
+      "context": {
+        "command_id": "86d41-18de9fe0969d7442-797f263d",
+        "exit_code": "0",
+        "native_player_exit_code": "0"
+      }
+    },
+    {
+      "event_seq": 5,
+      "event_type": "PLAYBACK_COMPLETED",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.454762302,
+      "reason": "STOP / STOPPED / clean EOF verified; data demand stopped, map and node retained",
+      "context": {
+        "command_id": "86d41-18de9fe0969e6542-95a6d3cc",
+        "exit_code": "0",
+        "native_player_exit_code": "0"
+      }
+    },
+    {
+      "event_seq": 6,
+      "event_type": "RUN_END",
+      "bag_elapsed_sec": 286.359704288,
+      "steady_elapsed_sec": 292.454793192,
+      "reason": "verified bag playback completed; log sealed",
+      "context": {
+        "completion": "verified_eof",
+        "producer_instance_id": "86d41-18de9f9c736ea9d7-dbfffe84"
+      }
+    }
+  ],
+  "module_counts": {
+    "imu": 56488,
+    "lidar": 2421,
+    "localization": 2223
+  },
+  "midrun_stats": {
+    "imu": {
+      "source_rate_hz": {
+        "min": 175.03500732,
+        "max": 214.919801163
+      },
+      "receive_rate_hz": {
+        "min": 104.664122111,
+        "max": 215.0
+      },
+      "linear_acceleration_norm_mps2": {
+        "min": 4.411968131,
+        "max": 18.7776708873
+      },
+      "angular_velocity_norm_rps": {
+        "min": 0.0,
+        "max": 1.14641615481
+      }
+    },
+    "lidar": {
+      "source_rate_hz": {
+        "min": 9.97788804394,
+        "max": 10.0166457289
+      },
+      "receive_rate_hz": {
+        "min": 2.8,
+        "max": 10.2
+      },
+      "points_total": {
+        "min": 18427.0,
+        "max": 57231.0
+      },
+      "valid_ratio": {
+        "min": 1.0,
+        "max": 1.0
+      }
+    },
+    "localization": {
+      "source_rate_hz": {
+        "min": 9.95676567562,
+        "max": 10.0266699868
+      },
+      "receive_rate_hz": {
+        "min": 3.4,
+        "max": 10.2
+      },
+      "linear_speed_mps": {
+        "min": 0.0108970274325,
+        "max": 1.44842161862
+      },
+      "linear_acceleration_mps2": {
+        "min": 0.129948557511,
+        "max": 8.67243729012
+      },
+      "position_variance_m2": {
+        "min": 0.000264500674455,
+        "max": 0.000946716651658
+      },
+      "orientation_variance_rad2": {
+        "min": 5.27217439416e-06,
+        "max": 2.96966872287e-05
+      }
+    }
+  }
+}

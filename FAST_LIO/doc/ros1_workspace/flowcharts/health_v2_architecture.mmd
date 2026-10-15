@@ -1,7 +1,15 @@
 flowchart LR
-  Input[数据输入<br/>雷达 · IMU · 定位] --> Adapter[C++ 输入适配<br/>解析消息 · 统一单位]
-  Adapter --> Core[C++ 健康检查<br/>按规则检查每个模块]
-  Core --> Summary[状态汇总<br/>模块等级 · 定位可用性]
-  Summary --> Output[结果输出<br/>RViz · ROS 诊断 · JSONL/CSV]
-  Config[YAML 配置<br/>话题 · 单位 · 阈值] -->|规则| Core
-  Runtime[运行控制<br/>启动 · 停止 · 重启] -->|运行状态| Core
+  YAML[配置 / ConfigLoader] --> Registry[HealthRegistry]
+  Input[ROS 原始消息 / 其他节点输出] --> Adapter[IInputAdapter / 类型和单位适配]
+  Adapter --> Checker[IHealthChecker / 雷达 IMU 定位及扩展]
+  Registry --> Adapter
+  Registry --> Checker
+  Runtime[独立 RuntimeController] --> Lifecycle[LifecycleTracker / 意图 实例 epoch]
+  Lifecycle --> Checker
+  Shared[StreamTracker / Kinematics / Covariance / IClock] --> Checker
+  Checker --> Latch[RuleLatch / 周期最严重事件]
+  Latch --> Aggregate[DependencyAggregator / 等级与业务有效性]
+  Aggregate --> Output[DiagnosticPublisher / 通用 HealthPanel]
+  Latch --> Log[EventRecorder / 可追溯日志]
+  Lifecycle --> Log
+  YAML --> Log

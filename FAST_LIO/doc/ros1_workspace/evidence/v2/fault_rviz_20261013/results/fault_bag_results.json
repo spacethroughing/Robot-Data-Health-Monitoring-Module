@@ -1,0 +1,80 @@
+{
+  "source_unchanged": true,
+  "results": [
+    {
+      "name": "imu_stamp_regression",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "live_rviz_diagnostic_visible": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "STAMP_REGRESSION",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT",
+        "STAMP_REGRESSION"
+      ],
+      "diagnostic_samples": 41,
+      "rviz_screenshot": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/images/imu_stamp_regression_rviz_live.png",
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/runtime_logs/1b21d-18ddf59526a0f34a-f9d74380",
+      "fault_bag_sha256": "37152300e28ee26fa64364f236484f1b46c88fc588ebabf920f5132d80435ea5"
+    },
+    {
+      "name": "lidar_dropout",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "live_rviz_diagnostic_visible": true,
+        "diagnostic_visible": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "RECEIVE_AGE",
+      "triggered_rules": [
+        "FREQUENCY_LOW",
+        "LIDAR_RATIO",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 41,
+      "rviz_screenshot": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/images/lidar_dropout_rviz_live.png",
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/runtime_logs/1b26a-18ddf59722b3f4b9-26ae3ca7",
+      "fault_bag_sha256": "a2e0078b549433cb381578d302fed69ff5f96085996914884a545a913423df57"
+    },
+    {
+      "name": "localization_jump",
+      "passed": true,
+      "checks": {
+        "expected_event": true,
+        "live_rviz_diagnostic_visible": true,
+        "diagnostic_visible": true,
+        "rule_recovers": true,
+        "events_in_order": true,
+        "config_and_binary_hash": true,
+        "log_run_end": true
+      },
+      "expected": "LOC_SPEED",
+      "triggered_rules": [
+        "LIDAR_RATIO",
+        "LOC_ACCELERATION",
+        "LOC_JUMP",
+        "LOC_SPEED",
+        "RECEIVE_AGE",
+        "RUNTIME_FAULT"
+      ],
+      "diagnostic_samples": 40,
+      "rviz_screenshot": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/images/localization_jump_rviz_live.png",
+      "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/fault_rviz_20261013/results/runtime_logs/1b2b5-18ddf5992cd1e087-867d70a0",
+      "fault_bag_sha256": "8efb85868694119966b87f64584b526f7d33d607f4d1d70404b62c2bc7413772"
+    }
+  ],
+  "passed": 3,
+  "total": 3
+}

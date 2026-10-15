@@ -8,8 +8,7 @@ import rospy
 from diagnostic_msgs.msg import DiagnosticArray
 from sensor_msgs.msg import PointCloud2
 from fastlio_health_monitor.srv import ControlModule
-REPO_ROOT=Path(__file__).resolve().parents[2]
-OUT=REPO_ROOT/'FAST_LIO/doc/ros1_workspace/evidence/v2'
+OUT=Path('/home/lmw/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2')
 app=QApplication([])
 def screenshot(name):
     tree=subprocess.run(['xwininfo','-root','-tree'],capture_output=True,text=True).stdout

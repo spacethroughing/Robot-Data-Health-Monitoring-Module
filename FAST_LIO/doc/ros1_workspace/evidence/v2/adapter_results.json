@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "second_localizer_generic_id": true,
+    "organized_cloud_float64_padding": true,
+    "si_imu_not_rescaled": true,
+    "planning_idle_without_path": true,
+    "big_endian_cloud": true,
+    "overflow_dimensions_rejected": true,
+    "cloud_recovers": true,
+    "non_psd_imu_covariance": true,
+    "unknown_covariance_not_zero_noise": true,
+    "required_imu_measurement_missing": true,
+    "imu_recovers": true,
+    "valid_empty_scene_diagnostics": true,
+    "invalid_relay_level_clamped_to_error": true,
+    "invalid_relay_level_recovers": true,
+    "negative_relay_level_rejected": true,
+    "negative_relay_level_recovers": true,
+    "empty_diagnostic_array_rejected": true,
+    "relay_recovers": true,
+    "active_goal_result_timeout": true,
+    "planning_valid_path_recovery": true,
+    "active_goal_requires_id": true,
+    "goal_id_recovers": true,
+    "planning_task_heartbeat_timeout": true,
+    "planning_task_recovers": true
+  },
+  "passed": true,
+  "snapshots": 171
+}

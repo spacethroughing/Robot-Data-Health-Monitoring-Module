@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   pluginlib
   roscpp
+  rosbag
+  rosgraph_msgs
   rviz
   sensor_msgs
   std_msgs
@@ -25,7 +27,7 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include ${EIGEN3_INCLUDE_DIRS}
   LIBRARIES robot_health_core fastlio_health_monitor_panel
-  CATKIN_DEPENDS diagnostic_msgs geometry_msgs message_runtime livox_ros_driver nav_msgs pluginlib roscpp rviz sensor_msgs std_msgs
+  CATKIN_DEPENDS diagnostic_msgs geometry_msgs message_runtime livox_ros_driver nav_msgs pluginlib roscpp rosbag rosgraph_msgs rviz sensor_msgs std_msgs
 )
 
 find_package(yaml-cpp REQUIRED)
@@ -35,6 +37,10 @@ find_package(Threads REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
 include_directories(include ${catkin_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIRS})
 qt5_wrap_cpp(HEALTH_PANEL_MOC include/fastlio_health_monitor/health_panel.h)
+
+add_executable(fastlio_health_monitor_node src/health_monitor_node.cpp)
+add_dependencies(fastlio_health_monitor_node ${catkin_EXPORTED_TARGETS})
+target_link_libraries(fastlio_health_monitor_node ${catkin_LIBRARIES})
 
 add_library(robot_health_core src/health_core.cpp src/event_recorder.cpp)
 target_link_libraries(robot_health_core yaml-cpp ${Boost_LIBRARIES} OpenSSL::Crypto ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS})
@@ -52,7 +58,8 @@ add_executable(robot_runtime_controller_node src/runtime_controller_node.cpp)
 add_dependencies(robot_runtime_controller_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_runtime_controller_node robot_health_core ${catkin_LIBRARIES})
 add_executable(health_bag_playback_node src/bag_playback_node.cpp)
-target_link_libraries(health_bag_playback_node ${catkin_LIBRARIES})
+add_dependencies(health_bag_playback_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(health_bag_playback_node robot_health_core ${catkin_LIBRARIES})
 
 if(CATKIN_ENABLE_TESTING)
   catkin_add_gtest(health_core_test test/health_core_test.cpp)
@@ -66,7 +73,7 @@ add_library(fastlio_health_monitor_panel src/health_panel.cpp ${HEALTH_PANEL_MOC
 add_dependencies(fastlio_health_monitor_panel ${catkin_EXPORTED_TARGETS})
 target_link_libraries(fastlio_health_monitor_panel ${catkin_LIBRARIES} Qt5::Widgets)
 
-install(TARGETS robot_health_monitor_node robot_runtime_controller_node health_bag_playback_node
+install(TARGETS fastlio_health_monitor_node robot_health_monitor_node robot_runtime_controller_node health_bag_playback_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 install(TARGETS fastlio_health_monitor_panel robot_health_core

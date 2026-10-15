@@ -1,0 +1,171 @@
+schema_version: 2
+monitor:
+  data_reference: $HOME/datasets/fastlio/health_fault_cases/lidar_count_mismatch.bag
+  publish_rate_hz: 5.0
+  statistics_window_sec: 5.0
+  min_frequency_samples: 3
+  min_frequency_coverage_sec: 0.5
+  soft_warning_hold_sec: 0.1
+  recovery_hold_sec: 0.3
+  diagnostics_topic: /health_test/diagnostics
+  status_topic: /health_test/status
+control:
+  strict_intent: false
+  state_topic: /robot_runtime/module_state
+  heartbeat_warning_sec: 1.0
+  heartbeat_error_sec: 3.0
+stream_defaults:
+  stamp_domain: device_relative
+  frequency_basis: source
+  stamp:
+    require_positive: true
+    duplicate_level: WARNING
+    regression_level: ERROR
+    max_gap_warning_sec: 0.3
+    max_gap_error_sec: 1.0
+lifecycle_defaults:
+  startup_deadline_sec: 10.0
+  stop_deadline_sec: 5.0
+  ready_consecutive_samples: 5
+logging:
+  enabled: true
+  directory: $HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/runtime_logs
+  metrics_period_sec: 1.0
+  metrics_queue_capacity: 4096
+  critical_event_queue_capacity: 512
+  rotate_size_mb: 20
+  rotate_file_count: 10
+  total_budget_mb: 512
+  flush_period_sec: 1.0
+modules:
+- id: lidar
+  checker: LidarChecker
+  adapter: LivoxCustomAdapter
+  topic: /livox/lidar
+  required: true
+  visualization_topic: /fastlio_health_monitor/lidar_raw_visualization
+  visualization_frame: livox_raw
+  lifecycle:
+    control_binding: sensors
+  stream:
+    receive_age_sec:
+      warning_above: 0.5
+      error_above: 1.5
+    frequency:
+      warning_below_hz: 8.0
+      error_below_hz: 5.0
+      warning_above_hz: 12.0
+      error_above_hz: 20.0
+  quality:
+    points_total:
+      warning_below: 100
+      error_below: 1
+    points_valid:
+      warning_below: 100
+      error_below: 1
+    valid_ratio:
+      warning_below: 0.8
+      error_below: 0.5
+    range_m:
+      minimum: 0.0001
+      maximum: 500.0
+- id: imu
+  checker: ImuChecker
+  adapter: RosImuAdapter
+  topic: /livox/imu
+  required: true
+  lifecycle:
+    control_binding: sensors
+  stream:
+    receive_age_sec:
+      warning_above: 0.15
+      error_above: 0.6
+    frequency:
+      warning_below_hz: 160.0
+      error_below_hz: 50.0
+      warning_above_hz: 260.0
+      error_above_hz: 400.0
+    stamp:
+      max_gap_warning_sec: 0.02
+      max_gap_error_sec: 0.1
+  quality:
+    acceleration_unit: g
+    angular_velocity_unit: radps
+    acceleration_content: specific_force
+    required_measurements:
+      acceleration: true
+      angular_velocity: true
+      orientation: false
+    acceleration_norm_mps2:
+      warning_above: 100.0
+      error_above: 200.0
+    angular_velocity_norm_rps:
+      warning_above: 35.0
+      error_above: 70.0
+    covariance:
+      enabled: true
+      required_for_valid: false
+      unknown_policy: report_only
+      acceleration_unit: input_squared
+      require_symmetric: true
+      require_psd: true
+      numeric_tolerance: 1.0e-09
+- id: localization
+  checker: LocalizationChecker
+  adapter: OdometryAdapter
+  topic: /health_test/odom
+  required: true
+  depends_on:
+  - lidar
+  - imu
+  lifecycle:
+    control_binding: localization
+  stream:
+    receive_age_sec:
+      warning_above: 0.3
+      error_above: 1.0
+    frequency:
+      warning_below_hz: 5.0
+      error_below_hz: 1.0
+      warning_above_hz: 15.0
+      error_above_hz: 30.0
+  quality:
+    expected_pose_frame: camera_init
+    expected_child_frame: body
+    continuity: continuous_odometry
+    quaternion_norm_error:
+      warning_above: 0.02
+      error_above: 0.1
+    kinematics:
+      velocity_source: position_difference
+      dt_min_sec: 0.001
+      dt_max_sec: 1.0
+      speed_mps:
+        warning_above: 15.0
+        error_above: 50.0
+      acceleration_mps2:
+        warning_above: 10.0
+        error_above: 30.0
+      angular_speed_rps:
+        warning_above: 3.0
+        error_above: 10.0
+    covariance:
+      enabled: true
+      required_for_valid: false
+      zero_matrix_policy: unknown_warning
+      require_symmetric: true
+      require_psd: true
+      numeric_tolerance: 1.0e-09
+      position_variance_m2:
+        warning_above: 1.0
+        error_above: 4.0
+      orientation_variance_rad2:
+        warning_above: 0.1
+        error_above: 0.5
+    jump:
+      residual_m:
+        warning_above: 0.5
+        error_above: 2.0
+      rotation_rad:
+        warning_above: 0.3
+        error_above: 1.0

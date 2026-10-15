@@ -1,0 +1,40 @@
+{
+  "source": "$HOME/datasets/fastlio/outdoor_Mainbuilding_10hz_2020-12-24-16-38-00.bag",
+  "source_sha256_before": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+  "source_sha256_after": "e2a96b36a494360d61d1f066b6ac0a385aca346e614cd54b7fc5706a8e3d62e4",
+  "source_unchanged": true,
+  "bag": "$HOME/datasets/fastlio/health_fault_cases/imu_watchdog_20261014/imu_source_scheduled_silence_1s_150ms.bag",
+  "bag_sha256": "788a31648f7d5af721e725d8fb4b054e51a82c80a9b2a55e112bafa6b0ca1316",
+  "bag_start_time_sec": 1608799080.611561,
+  "requested_duration_sec": 18.0,
+  "written_messages": {
+    "/livox/imu": 3410,
+    "/livox/lidar": 181
+  },
+  "faults": [
+    {
+      "id": "long_1s",
+      "topic": "/livox/imu",
+      "interval_sec": [
+        6.0,
+        7.0
+      ],
+      "removed_messages": 203,
+      "source_stamp_before_sec": 603.50278095,
+      "source_stamp_after_sec": 604.51078314
+    },
+    {
+      "id": "short_150ms",
+      "topic": "/livox/imu",
+      "interval_sec": [
+        12.0,
+        12.15
+      ],
+      "removed_messages": 30,
+      "source_stamp_before_sec": 609.50380302,
+      "source_stamp_after_sec": 609.65878885
+    }
+  ],
+  "mutation": "Remove IMU records only; preserve lidar and source header stamps",
+  "imu_bag_record_schedule": "source_stamp_relative_to_first"
+}

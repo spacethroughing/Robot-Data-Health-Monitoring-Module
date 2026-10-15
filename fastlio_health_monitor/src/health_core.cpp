@@ -282,7 +282,7 @@ MonitorConfig ConfigLoader::load(const std::string& path) {
   c.diagnostics_topic =
       get<std::string>(n, "diagnostics_topic", c.diagnostics_topic);
   c.status_topic = get<std::string>(n, "status_topic", c.status_topic);
-  n = root["control"];
+  n.reset(root["control"]);
   keys(n, "control",
        {"strict_intent", "state_topic", "heartbeat_warning_sec",
         "heartbeat_error_sec"});
@@ -292,7 +292,7 @@ MonitorConfig ConfigLoader::load(const std::string& path) {
   c.heartbeat_error = positive(n, "heartbeat_error_sec", 3);
   if (c.heartbeat_warning >= c.heartbeat_error)
     throw std::invalid_argument("heartbeat bounds invalid");
-  n = root["logging"];
+  n.reset(root["logging"]);
   keys(n, "logging",
        {"enabled", "directory", "metrics_period_sec", "metrics_queue_capacity",
         "critical_event_queue_capacity", "rotate_size_mb", "rotate_file_count",
@@ -950,6 +950,8 @@ void ModuleMonitor::receive(const Sample& s) {
   have_data_ = true;
 }
 bool ModuleMonitor::control(const RuntimeUpdate& u, double now) {
+  const auto old = lifecycle_.runtime();
+  const bool was_inactive = old.observed == "PAUSED" || old.observed == "STOPPED";
   bool reset = lifecycle_.control(u, now);
   if (!lifecycle_.controlAccepted()) return false;
   if (reset) {
@@ -962,6 +964,10 @@ bool ModuleMonitor::control(const RuntimeUpdate& u, double now) {
     values_.clear();
     have_data_ = false;
   }
+  // A confirmed planned pause/stop replaces historical data-demand runtime
+  // failures. Current heartbeat/trace failures are evaluated again immediately.
+  if (!reset && !was_inactive && (u.observed == "PAUSED" || u.observed == "STOPPED"))
+    control_rules_.reset();
   if (sink_ && (reset || u.command != last_command_)) {
     Finding f;
     f.id = "LIFECYCLE";
@@ -1031,6 +1037,7 @@ ModuleReport ModuleMonitor::evaluate(double now) {
     r.message = rules_.reasons();
   r.values["data_health_level"] = r.has_data ? levelName(r.data_level) : "N/A";
   r.values["operating_state"] = r.state;
+  r.values["control_reason"] = lifecycle_.runtime().reason;
   r.values["operational_valid"] = r.valid ? "true" : "false";
   r.values["has_data_health"] = r.has_data ? "true" : "false";
   r.values["expected_active"] = r.expected_active ? "true" : "false";

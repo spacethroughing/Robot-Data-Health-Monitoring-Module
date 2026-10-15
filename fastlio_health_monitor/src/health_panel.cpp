@@ -66,6 +66,7 @@ QString details(const diagnostic_msgs::DiagnosticStatus& s) {
   add("goal_id", "规划目标", "");
   add("task_state", "任务状态", "");
   add("module_epoch", "数据代际", "");
+  add("control_reason", "运行状态原因", "");
 
   QString logs_normal = value(s, "logs_normal", "");
   // Older V2 publishers expose only the enabled/incomplete flags.
@@ -84,6 +85,14 @@ QString details(const diagnostic_msgs::DiagnosticStatus& s) {
             (logs_normal == "true"    ? QString("True")
              : logs_normal == "false" ? QString("False")
                                       : QString("N/A"));
+  const QString recording_state = value(s, "log_recording_state", "");
+  if (!recording_state.isEmpty())
+    text += "\n日志记录：" +
+            (recording_state == "FINISHED" ? QString("已结束")
+             : recording_state == "RECORDING" ? QString("记录中")
+             : recording_state == "FINISHING" ? QString("正在封存")
+             : recording_state == "DISABLED" ? QString("未启用")
+                                              : QString("写入异常"));
   return text;
 }
 }  // namespace

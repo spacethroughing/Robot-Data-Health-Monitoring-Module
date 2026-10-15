@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080"><rect width="1920" height="1080" fill="#101827"/>
+<text x="70" y="85" fill="#6ee7b7" font-family="Noto Sans CJK SC" font-size="46">IMU 时间探针｜完整错误 bag 实测汇总</text>
+<text x="70" y="145" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="26">2026-10-14 · 真实 C++ V2 与 RViz · 静态汇总页，数值取自本次诊断记录</text>
+<rect x="65" y="195" width="1790" height="400" rx="12" fill="#1c2b43"/>
+<text x="95" y="248" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="28">配置组</text>
+<text x="485" y="248" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="28">检查频率 / 消抖</text>
+<text x="1010" y="248" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="28">首次 WARNING</text>
+<text x="1425" y="248" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="28">首次 ERROR</text>
+<text x="95" y="330" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">A 旧调度与消抖</text>
+<text x="485" y="330" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">5 Hz / 0.5 s</text>
+<text x="1010" y="330" fill="#ffcf66" font-family="Noto Sans CJK SC" font-size="32">未触发</text>
+<text x="1425" y="330" fill="#ff7788" font-family="Noto Sans CJK SC" font-size="32">369.0 ms</text>
+<text x="95" y="405" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">B 仅提高频率</text>
+<text x="485" y="405" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">100 Hz / 0.5 s</text>
+<text x="1010" y="405" fill="#ffcf66" font-family="Noto Sans CJK SC" font-size="32">未触发</text>
+<text x="1425" y="405" fill="#ff7788" font-family="Noto Sans CJK SC" font-size="32">234.2 ms</text>
+<text x="95" y="480" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">C 当前配置</text>
+<text x="485" y="480" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">100 Hz / 0 s</text>
+<text x="1010" y="480" fill="#ffcf66" font-family="Noto Sans CJK SC" font-size="32">101.6 ms</text>
+<text x="1425" y="480" fill="#ff7788" font-family="Noto Sans CJK SC" font-size="32">202.8 ms</text>
+<text x="95" y="555" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">D 原记录时序</text>
+<text x="485" y="555" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="30">100 Hz / 0 s</text>
+<text x="1010" y="555" fill="#ffcf66" font-family="Noto Sans CJK SC" font-size="32">126.8 ms</text>
+<text x="1425" y="555" fill="#ff7788" font-family="Noto Sans CJK SC" font-size="32">206.9 ms</text>
+<text x="70" y="660" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="27">A/B/C：按原始 IMU 源时间排程；C 在约 1 秒后的下一条 IMU 到来前完成两级告警。</text>
+<text x="70" y="718" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="27">D：保留原 bag 记录时序，约 100 ms 一批；非注入的 2～5 秒也出现接收超时 WARNING。</text>
+<text x="70" y="776" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="27">C：短时空窗实际约 155 ms，约 135.7 ms 报 WARNING；空窗期间没有接收超时 ERROR。</text>
+<text x="70" y="834" fill="#edf3fc" font-family="Noto Sans CJK SC" font-size="27">恢复帧上的 STAMP_GAP 是源时间间隔检查，不能混算为下一帧到来前的断流告警。</text>
+<text x="70" y="892" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="27">100/200 ms 是阈值；包含调度、传输和观察开销，本次结果不构成硬实时保证。</text>
+<text x="70" y="950" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="27">原始 bag 与当前 YAML 未修改；整个实时测试录屏保留，末尾追加本汇总页。</text>
+<text x="70" y="1030" fill="#b9c9df" font-family="Noto Sans CJK SC" font-size="21">结果、诊断序列、JSONL/CSV、配置快照与视频哈希已归档到工程 evidence/v2/imu_watchdog_20261014</text>
+</svg>

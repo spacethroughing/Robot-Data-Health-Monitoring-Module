@@ -1,8 +1,12 @@
 <launch>
   <arg name="config" default="$(find fastlio_health_monitor)/config/health_v2_avia.yaml" />
   <arg name="data_reference" default="" />
+  <arg name="finish_log_on_playback_complete" default="false" />
+  <arg name="playback_state_topic" default="" />
   <node pkg="fastlio_health_monitor" type="robot_health_monitor_node" name="fastlio_health_monitor" output="screen">
     <param name="config_file" value="$(arg config)" />
     <param name="data_reference" value="$(arg data_reference)" />
+    <param name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <param name="playback_state_topic" value="$(arg playback_state_topic)" />
   </node>
 </launch>

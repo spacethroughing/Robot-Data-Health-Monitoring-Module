@@ -1,0 +1,26 @@
+{
+  "video": "$HOME/Desktop/FAST-LIO_健康监控_V2_完整运行测试_2026-10-13.mp4",
+  "size_bytes": 61782308,
+  "sha256": "86c06b260bf160d709aa4877b15be93bf27e14bf54d513e62c6bdb5ab2086964",
+  "width": 1920,
+  "height": 1080,
+  "fps": 15.000699566268914,
+  "frame_count_header": 1501,
+  "decoded_frames": 1501,
+  "duration_seconds": 100.062,
+  "fourcc": "avc1",
+  "managed_restart_passed": true,
+  "managed_checks": {
+    "initial_running": true,
+    "stopped_at_least_30_seconds": true,
+    "no_false_error_during_stop": true,
+    "sensors_keep_running": true,
+    "new_instance": true,
+    "no_cross_instance_jump": true,
+    "map_published": true,
+    "log_files_present": true
+  },
+  "fault_cases_passed": 3,
+  "fault_cases_total": 3,
+  "source_unchanged": true
+}

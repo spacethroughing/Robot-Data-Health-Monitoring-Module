@@ -1,0 +1,32 @@
+{
+  "imu_silence_1s_150ms": {
+    "samples": 607,
+    "record_interval": {
+      "median_ms": 0.027179718017578125,
+      "p99_ms": 101.27115249633789,
+      "max_ms": 105.12661933898926,
+      "zero_count": 0
+    },
+    "source_interval": {
+      "median_ms": 4.998994999994011,
+      "p99_ms": 5.059049999999843,
+      "max_ms": 5.091110000080334,
+      "zero_count": 0
+    }
+  },
+  "imu_source_scheduled_silence_1s_150ms": {
+    "samples": 608,
+    "record_interval": {
+      "median_ms": 4.99725341796875,
+      "p99_ms": 5.059003829956055,
+      "max_ms": 5.091190338134766,
+      "zero_count": 0
+    },
+    "source_interval": {
+      "median_ms": 4.997409999987212,
+      "p99_ms": 5.059049999999843,
+      "max_ms": 5.091110000080334,
+      "zero_count": 0
+    }
+  }
+}

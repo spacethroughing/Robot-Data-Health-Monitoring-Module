@@ -1,0 +1,86 @@
+{
+  "/mavros/imu/data_raw": {
+    "topic": "/mavros/imu/data_raw",
+    "type": "sensor_msgs/Imu",
+    "record_time": 1791962378.492274,
+    "stamp": 1791962378.4919896,
+    "frame": "base_link",
+    "acceleration": [
+      -0.04903325,
+      -0.0490332499999988,
+      9.83606995
+    ],
+    "acceleration_norm": 9.83631437991406,
+    "gyro": [
+      0.0,
+      -0.005,
+      6.123233995736766e-19
+    ],
+    "acceleration_covariance": [
+      8.999999999999999e-08,
+      0.0,
+      0.0,
+      0.0,
+      8.999999999999999e-08,
+      0.0,
+      0.0,
+      0.0,
+      8.999999999999999e-08
+    ]
+  },
+  "/rslidar_points": {
+    "topic": "/rslidar_points",
+    "type": "sensor_msgs/PointCloud2",
+    "record_time": 1791962422.7922182,
+    "stamp": 0.0,
+    "frame": "rslidar",
+    "points": 22173,
+    "fields": [
+      "x",
+      "y",
+      "z",
+      "intensity",
+      "ring",
+      "timestamp"
+    ]
+  },
+  "/Odometry": {
+    "topic": "/Odometry",
+    "type": "nav_msgs/Odometry",
+    "record_time": 1791962442.6251416,
+    "stamp": 1791962442.576653,
+    "frame": "camera_init",
+    "child_frame": "body",
+    "position": [
+      3.5040827919448114,
+      2.8211396684690944,
+      -0.6730394372305196
+    ],
+    "pose_covariance_diagonal": [
+      0.0016939079684422235,
+      2.4711965363107826e-07,
+      2.1528758393013687e-07,
+      1.0326111802129443e-05,
+      1.69248191355668e-05,
+      1.2493348471391581e-05
+    ]
+  },
+  "/cloud_registered": {
+    "topic": "/cloud_registered",
+    "type": "sensor_msgs/PointCloud2",
+    "record_time": 1791962442.6262112,
+    "stamp": 1791962442.576653,
+    "frame": "camera_init",
+    "points": 6386,
+    "fields": [
+      "x",
+      "y",
+      "z",
+      "intensity",
+      "normal_x",
+      "normal_y",
+      "normal_z",
+      "curvature"
+    ]
+  }
+}

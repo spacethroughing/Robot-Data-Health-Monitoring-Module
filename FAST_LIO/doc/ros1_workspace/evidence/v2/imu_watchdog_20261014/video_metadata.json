@@ -1,0 +1,14 @@
+{
+  "video": "$HOME/Desktop/FAST-LIO_V2_IMU时间探针_完整错误Bag测试_2026-10-14.mp4",
+  "codec": "avc1",
+  "width": 1920,
+  "height": 1080,
+  "fps": 20.000459780684615,
+  "frames": 2610,
+  "duration_sec": 130.49699999999999,
+  "full_decode_passed": true,
+  "size_bytes": 73424760,
+  "sha256": "1e834134859065489d9fe03ed7f21a590cc28f15321aa72cfe9beace6901bbd4",
+  "warning_frame_extracted": true,
+  "content": "entire live recording followed by a clean measured-results card; no test segment removed or accelerated"
+}

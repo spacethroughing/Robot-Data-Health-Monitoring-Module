@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="30" failures="0" disabled="0" errors="0" time="0.144" timestamp="2026-10-12T15:21:16" name="AllTests">
+  <testsuite name="Bounds" tests="1" failures="0" disabled="0" errors="0" time="0" timestamp="2026-10-12T15:21:16">
+    <testcase name="EqualityAndDirections" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Bounds" />
+  </testsuite>
+  <testsuite name="Stream" tests="3" failures="0" disabled="0" errors="0" time="0" timestamp="2026-10-12T15:21:16">
+    <testcase name="PruneWithoutInput" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Stream" />
+    <testcase name="RelativeClockAndPlaybackRate" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Stream" />
+    <testcase name="RegressionDoesNotPoisonNextStamp" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Stream" />
+  </testsuite>
+  <testsuite name="Rules" tests="2" failures="0" disabled="0" errors="0" time="0" timestamp="2026-10-12T15:21:16">
+    <testcase name="BriefHardFailureSurvivesNormalSample" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Rules" />
+    <testcase name="SoftDwellAndRecovery" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Rules" />
+  </testsuite>
+  <testsuite name="Motion" tests="8" failures="0" disabled="0" errors="0" time="0.001" timestamp="2026-10-12T15:21:16">
+    <testcase name="FirstSamplesAreNAAndMidpointAcceleration" status="run" result="completed" time="0.001" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="TurnUsesVectorAcceleration" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="QuaternionSignIsEquivalent" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="GapResetAndFrameFailure" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="GlobalFrameUsesTwist" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="SevereSingleFrameJumpIsImmediate" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="UnauthorizedFrameCannotBecomeNewBaseline" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+    <testcase name="GlobalOrientationCorrectionDoesNotFakeAcceleration" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Motion" />
+  </testsuite>
+  <testsuite name="Covariance" tests="1" failures="0" disabled="0" errors="0" time="0" timestamp="2026-10-12T15:21:16">
+    <testcase name="RejectAsymmetricNegativeAndNonPSD" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Covariance" />
+  </testsuite>
+  <testsuite name="Lidar" tests="1" failures="0" disabled="0" errors="0" time="0" timestamp="2026-10-12T15:21:16">
+    <testcase name="EmptyAndRatio" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Lidar" />
+  </testsuite>
+  <testsuite name="Lifecycle" tests="4" failures="0" disabled="0" errors="0" time="0" timestamp="2026-10-12T15:21:16">
+    <testcase name="NormalStopThirtySecondsAndRestart" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Lifecycle" />
+    <testcase name="NoIntentHeartbeatLossAndTimeout" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Lifecycle" />
+    <testcase name="ReplayedHeartbeatCannotExtendStop" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Lifecycle" />
+    <testcase name="RetiredInstanceAndFrameEpochCannotReturn" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Lifecycle" />
+  </testsuite>
+  <testsuite name="Logging" tests="5" failures="0" disabled="0" errors="0" time="0.122" timestamp="2026-10-12T15:21:16">
+    <testcase name="JSONEscapingAndDurableFailure" status="run" result="completed" time="0" timestamp="2026-10-12T15:21:16" classname="Logging" />
+    <testcase name="DurableEventAndManifest" status="run" result="completed" time="0.008" timestamp="2026-10-12T15:21:16" classname="Logging" />
+    <testcase name="QueueOverflowIsVisible" status="run" result="completed" time="0.075" timestamp="2026-10-12T15:21:16" classname="Logging" />
+    <testcase name="RotationRemovalIsDeclared" status="run" result="completed" time="0.034" timestamp="2026-10-12T15:21:16" classname="Logging" />
+    <testcase name="WriteBudgetFailureIsReported" status="run" result="completed" time="0.005" timestamp="2026-10-12T15:21:16" classname="Logging" />
+  </testsuite>
+  <testsuite name="Config" tests="2" failures="0" disabled="0" errors="0" time="0.018" timestamp="2026-10-12T15:21:16">
+    <testcase name="RealConfigAndUnknownFieldRejected" status="run" result="completed" time="0.006" timestamp="2026-10-12T15:21:16" classname="Config" />
+    <testcase name="ThresholdUnitsAndDependencyValidation" status="run" result="completed" time="0.012" timestamp="2026-10-12T15:21:16" classname="Config" />
+  </testsuite>
+  <testsuite name="Module" tests="3" failures="0" disabled="0" errors="0" time="0.003" timestamp="2026-10-12T15:21:16">
+    <testcase name="StartupHardErrorVisibleAndControlHealthSeparate" status="run" result="completed" time="0.001" timestamp="2026-10-12T15:21:16" classname="Module" />
+    <testcase name="PlanningStopSuspendsTaskAndPathDemand" status="run" result="completed" time="0.001" timestamp="2026-10-12T15:21:16" classname="Module" />
+    <testcase name="ConfirmedStopDoesNotReportHistoricalDataErrorForever" status="run" result="completed" time="0.001" timestamp="2026-10-12T15:21:16" classname="Module" />
+  </testsuite>
+</testsuites>

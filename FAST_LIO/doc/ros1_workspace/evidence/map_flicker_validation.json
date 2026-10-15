@@ -1,0 +1,116 @@
+{
+  "playback_rate": 2,
+  "comparison_pairs": [
+    {
+      "index": 0,
+      "before_pixels": 4529,
+      "after_pixels": 4529
+    },
+    {
+      "index": 1,
+      "before_pixels": 0,
+      "after_pixels": 4529
+    },
+    {
+      "index": 2,
+      "before_pixels": 5458,
+      "after_pixels": 5458
+    },
+    {
+      "index": 3,
+      "before_pixels": 0,
+      "after_pixels": 5458
+    },
+    {
+      "index": 4,
+      "before_pixels": 5762,
+      "after_pixels": 5762
+    },
+    {
+      "index": 5,
+      "before_pixels": 0,
+      "after_pixels": 5762
+    },
+    {
+      "index": 6,
+      "before_pixels": 6744,
+      "after_pixels": 6744
+    },
+    {
+      "index": 7,
+      "before_pixels": 0,
+      "after_pixels": 6744
+    },
+    {
+      "index": 8,
+      "before_pixels": 7037,
+      "after_pixels": 7037
+    },
+    {
+      "index": 9,
+      "before_pixels": 0,
+      "after_pixels": 7037
+    },
+    {
+      "index": 10,
+      "before_pixels": 7238,
+      "after_pixels": 7238
+    },
+    {
+      "index": 11,
+      "before_pixels": 0,
+      "after_pixels": 7238
+    },
+    {
+      "index": 12,
+      "before_pixels": 7608,
+      "after_pixels": 7608
+    },
+    {
+      "index": 13,
+      "before_pixels": 0,
+      "after_pixels": 7608
+    },
+    {
+      "index": 14,
+      "before_pixels": 8182,
+      "after_pixels": 8182
+    },
+    {
+      "index": 15,
+      "before_pixels": 0,
+      "after_pixels": 8182
+    },
+    {
+      "index": 16,
+      "before_pixels": 8307,
+      "after_pixels": 8307
+    },
+    {
+      "index": 17,
+      "before_pixels": 0,
+      "after_pixels": 8307
+    },
+    {
+      "index": 18,
+      "before_pixels": 8388,
+      "after_pixels": 8388
+    },
+    {
+      "index": 19,
+      "before_pixels": 0,
+      "after_pixels": 8388
+    }
+  ],
+  "before_empty_frames": 10,
+  "after_empty_frames": 0,
+  "map_messages": 70,
+  "map_frame": "camera_init",
+  "last_map_seq": 69,
+  "last_map_points": 90804,
+  "latching": "1",
+  "health_OK_observed": true,
+  "post_EOF_advanced_ros_seconds": 10,
+  "held_map_pixels": 20253,
+  "expired_map_pixels": 0
+}

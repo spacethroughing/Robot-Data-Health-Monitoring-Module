@@ -8,9 +8,7 @@ from sensor_msgs.msg import PointCloud2,PointField,Imu
 from nav_msgs.msg import Odometry,Path as RosPath
 from geometry_msgs.msg import PoseStamped
 from fastlio_health_monitor.msg import TaskState
-REPO_ROOT=Path(__file__).resolve().parents[2]
-PACKAGE_ROOT=Path(__file__).resolve().parents[1]
-OUT=REPO_ROOT/'FAST_LIO/doc/ros1_workspace/evidence/v2'
+OUT=Path('/home/lmw/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2')
 def stop(p):
     if p.poll() is None:
         os.killpg(p.pid,signal.SIGINT)
@@ -18,7 +16,7 @@ def stop(p):
         except subprocess.TimeoutExpired:os.killpg(p.pid,signal.SIGKILL);p.wait()
 def main():
     rospy.init_node('v2_adapter_acceptance',anonymous=True,disable_signals=True);OUT.mkdir(exist_ok=True,parents=True)
-    root=yaml.safe_load((PACKAGE_ROOT/'config/health_v2_pointcloud2.yaml').read_text());ext=yaml.safe_load((PACKAGE_ROOT/'config/health_v2_extensions.yaml').read_text())
+    root=yaml.safe_load(Path('/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/health_v2_pointcloud2.yaml').read_text());ext=yaml.safe_load(Path('/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/health_v2_extensions.yaml').read_text())
     root['modules'][2]['id']='secondary_localizer';root['modules'][2]['topic']='/alt_odom';root['modules'][2].pop('depends_on');root['modules']+=ext['modules'];root['monitor']['publish_rate_hz']=20;root['monitor']['soft_warning_hold_sec']=.05;root['monitor']['recovery_hold_sec']=.2;root['monitor']['min_frequency_coverage_sec']=.3;root['lifecycle_defaults']['ready_consecutive_samples']=3;root['logging']['directory']=str(OUT/'adapter_runtime_logs')
     for m in root['modules']:
         if m['checker']=='PlanningChecker':m['quality']['result_deadline_sec']=.5;m['quality']['task_state_timeout_sec']=.5

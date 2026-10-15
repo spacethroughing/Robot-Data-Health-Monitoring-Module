@@ -32,7 +32,7 @@ lifecycle_defaults:
   ready_consecutive_samples: 10 # 连续无ERROR样本+频率覆盖+管理进程存活才RUNNING。
 logging:
   enabled: true             # 事件JSONL+指标CSV+配置/版本/二进制hash。
-  directory: "/tmp/robot_health_monitor/robot_health" # 示例目录；部署时改为持久且可写路径。
+  directory: "/home/lmw/fastlio_ws/logs/robot_health" # 每次run新目录。
   metrics_period_sec: 1.0   # s；指标采样周期，不全量复制200Hz IMU。
   metrics_queue_capacity: 4096 # 普通队列上限；满丢弃并计数。
   critical_event_queue_capacity: 512 # 事件独立容量；满计数/日志ERROR。

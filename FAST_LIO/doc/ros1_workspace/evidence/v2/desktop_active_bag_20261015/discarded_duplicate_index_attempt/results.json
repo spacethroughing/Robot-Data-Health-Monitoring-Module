@@ -1,0 +1,242 @@
+{
+  "scope": "all complete readable chunks, original file rb; no FAST-LIO mapping rerun",
+  "native_play_exit_code": 0,
+  "scan_error": {
+    "offset": 5908981611,
+    "error": "ROSBagException('expecting 1065647 bytes, read 18532')"
+  },
+  "duration_sec": 286.36662220954895,
+  "counts": {
+    "/mavros/imu/data_raw": 112976,
+    "/rslidar_points": 4842,
+    "/Odometry": 4446,
+    "/cloud_registered": 4446
+  },
+  "timing": {
+    "/mavros/imu/data_raw": {
+      "messages_published": 112976,
+      "first_stamp": 1791962378.4919896,
+      "last_stamp": 1791962664.8499334,
+      "average_source_hz": 394.52371570823436,
+      "nonpositive_stamps": 0,
+      "stamp_regressions": 1,
+      "duplicate_stamps": 0,
+      "max_stamp_gap_sec": 0.023440837860107422,
+      "average_record_hz": 394.51910986801863,
+      "max_record_gap_sec": 0.0753777027130127
+    },
+    "/rslidar_points": {
+      "messages_published": 4842,
+      "first_stamp": 0.0,
+      "last_stamp": 1791962664.6896384,
+      "average_source_hz": 2.701507177237113e-06,
+      "nonpositive_stamps": 2,
+      "stamp_regressions": 1,
+      "duplicate_stamps": 0,
+      "max_stamp_gap_sec": 1791962422.7878435,
+      "average_record_hz": 20.003176218141682,
+      "max_record_gap_sec": 0.1414172649383545
+    },
+    "/Odometry": {
+      "messages_published": 4446,
+      "first_stamp": 1791962442.576653,
+      "last_stamp": 1791962664.7891905,
+      "average_source_hz": 20.00337176950793,
+      "nonpositive_stamps": 0,
+      "stamp_regressions": 1,
+      "duplicate_stamps": 0,
+      "max_stamp_gap_sec": 0.1170351505279541,
+      "average_record_hz": 20.002082917172697,
+      "max_record_gap_sec": 0.21162819862365723
+    }
+  },
+  "steady_diagnostic_level_samples": {
+    "overall": {
+      "0": 21715,
+      "2": 3671
+    },
+    "imu": {
+      "0": 21715,
+      "2": 3671
+    },
+    "lidar": {
+      "0": 21715,
+      "2": 3671
+    },
+    "localization": {
+      "0": 21715,
+      "2": 3671
+    },
+    "logger": {
+      "0": 25386
+    }
+  },
+  "latest": {
+    "overall": {
+      "level": 2,
+      "message": "ERROR | operational_valid=false",
+      "values": {
+        "all_required_modules_active": "false",
+        "data_reference": "$HOME/Desktop/2026-10-14-15-19-35.bag.active",
+        "data_sha256": "ed0e8c1eb5312a43713df81a8f6c5ea0faf7ba581d1068298a96550792baec5f",
+        "dropped_events": "0",
+        "dropped_metrics": "0",
+        "effective_config_sha256": "52b7625a7cfbbe353b7b6ddd90078382c77fa4bc295585c9c0a5ce4d2a851954",
+        "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/desktop_active_bag_20261015/health_logs/772c5-18de8f890dd017dc-babf6a63",
+        "log_write_failed": "false",
+        "logs_enabled": "true",
+        "logs_incomplete": "false",
+        "logs_normal": "true",
+        "module_id": "overall",
+        "monitor_run_id": "772c5-18de8f890dd017dc-babf6a63",
+        "operational_valid": "false",
+        "rotated_files_removed": "0"
+      }
+    },
+    "imu": {
+      "level": 2,
+      "message": "RECEIVE_AGE: outside configured range; STAMP_DUPLICATE: duplicate source timestamp; STAMP_REGRESSION: unauthorized source timestamp regression; RUNTIME_FAULT: startup/process/output/stop failure",
+      "values": {
+        "ACCEL_covariance": "AVAILABLE",
+        "GYRO_covariance": "AVAILABLE",
+        "age_sec": "7.56595222099",
+        "angular_velocity_norm_rps": "0.447692975151",
+        "checker": "ImuChecker",
+        "checks_available": "finite,units,time,amplitude; noise/stuck/saturation uncalibrated",
+        "control_reason": "TRUNCATED_BAG_READABLE_REGION_ENDED; not verified normal EOF",
+        "data_health_level": "N/A",
+        "expected_active": "true",
+        "frequency_status": "WARMING_UP_OR_STALE",
+        "has_data_health": "false",
+        "imu_acceleration_scale": "1",
+        "imu_acceleration_unit": "mps2",
+        "last_stamp_sec": "1791962664.85",
+        "linear_acceleration_norm_mps2": "10.0819802569",
+        "linear_acceleration_norm_raw": "10.0819802569",
+        "message_count": "110295",
+        "module_epoch": "2",
+        "module_id": "imu",
+        "operating_state": "FAULT",
+        "operational_valid": "false",
+        "producer_instance_id": "desktop-active-readonly-20261015",
+        "rate_hz": "N/A",
+        "receive_rate_hz": "0",
+        "required": "true",
+        "required_checks_available": "true",
+        "sample_message": "RECEIVE_AGE: outside configured range; STAMP_DUPLICATE: duplicate source timestamp; STAMP_REGRESSION: unauthorized source timestamp regression; RUNTIME_FAULT: startup/process/output/stop failure",
+        "sample_status": "ERROR",
+        "source_frame": "base_link",
+        "source_rate_hz": "N/A",
+        "source_stamp_sec": "1791962664.85",
+        "stamp_domain": "device_relative",
+        "topic": "/mavros/imu/data_raw",
+        "transport_delay_sec": "N/A (no verified clock mapping)"
+      }
+    },
+    "lidar": {
+      "level": 2,
+      "message": "RECEIVE_AGE: outside configured range; STAMP_DUPLICATE: duplicate source timestamp; STAMP_REGRESSION: unauthorized source timestamp regression; RUNTIME_FAULT: startup/process/output/stop failure",
+      "values": {
+        "age_sec": "35.259435704",
+        "checker": "LidarChecker",
+        "control_reason": "TRUNCATED_BAG_READABLE_REGION_ENDED; not verified normal EOF",
+        "data_health_level": "N/A",
+        "expected_active": "true",
+        "frequency_status": "WARMING_UP_OR_STALE",
+        "has_data_health": "false",
+        "last_stamp_sec": "1791962664.69",
+        "message_count": "4692",
+        "module_epoch": "2",
+        "module_id": "lidar",
+        "operating_state": "FAULT",
+        "operational_valid": "false",
+        "points_total": "38858",
+        "points_valid": "38858",
+        "producer_instance_id": "desktop-active-readonly-20261015",
+        "rate_hz": "N/A",
+        "receive_rate_hz": "0",
+        "required": "true",
+        "sample_message": "RECEIVE_AGE: outside configured range; STAMP_DUPLICATE: duplicate source timestamp; STAMP_REGRESSION: unauthorized source timestamp regression; RUNTIME_FAULT: startup/process/output/stop failure",
+        "sample_status": "ERROR",
+        "source_frame": "rslidar",
+        "source_rate_hz": "N/A",
+        "source_stamp_sec": "1791962664.69",
+        "stamp_domain": "device_relative",
+        "topic": "/rslidar_points",
+        "transport_delay_sec": "N/A (no verified clock mapping)",
+        "valid_ratio": "1"
+      }
+    },
+    "localization": {
+      "level": 2,
+      "message": "RECEIVE_AGE: outside configured range; STAMP_DUPLICATE: duplicate source timestamp; STAMP_REGRESSION: unauthorized source timestamp regression; RUNTIME_FAULT: startup/process/output/stop failure",
+      "values": {
+        "age_sec": "30.546281271",
+        "angular_speed_rps": "N/A",
+        "checker": "LocalizationChecker",
+        "checks_available": "pose,motion,covariance",
+        "control_reason": "TRUNCATED_BAG_READABLE_REGION_ENDED; not verified normal EOF",
+        "covariance_status": "AVAILABLE",
+        "data_health_level": "N/A",
+        "dependency_imu": "unavailable",
+        "dependency_lidar": "unavailable",
+        "expected_active": "true",
+        "frequency_status": "WARMING_UP_OR_STALE",
+        "has_data_health": "false",
+        "last_stamp_sec": "1791962664.79",
+        "linear_acceleration_mps2": "N/A",
+        "linear_speed_mps": "N/A",
+        "message_count": "4446",
+        "module_epoch": "2",
+        "module_id": "localization",
+        "operating_state": "FAULT",
+        "operational_valid": "false",
+        "orientation_variance_rad2": "1.45514563304e-05",
+        "position_variance_m2": "0.000363261472654",
+        "position_x_m": "21.1353925947",
+        "position_y_m": "-34.1394729681",
+        "position_z_m": "-0.122536095871",
+        "prediction_residual_m": "N/A",
+        "producer_instance_id": "desktop-active-readonly-20261015",
+        "quaternion_norm": "1",
+        "rate_hz": "N/A",
+        "receive_rate_hz": "0",
+        "required": "true",
+        "required_checks_available": "true",
+        "sample_message": "RECEIVE_AGE: outside configured range; STAMP_DUPLICATE: duplicate source timestamp; STAMP_REGRESSION: unauthorized source timestamp regression; RUNTIME_FAULT: startup/process/output/stop failure",
+        "sample_status": "ERROR",
+        "source_frame": "camera_init",
+        "source_rate_hz": "N/A",
+        "source_stamp_sec": "1791962664.79",
+        "stamp_domain": "device_relative",
+        "topic": "/Odometry",
+        "transport_delay_sec": "N/A (no verified clock mapping)"
+      }
+    },
+    "logger": {
+      "level": 0,
+      "message": "trace logging active",
+      "values": {
+        "data_reference": "$HOME/Desktop/2026-10-14-15-19-35.bag.active",
+        "data_sha256": "ed0e8c1eb5312a43713df81a8f6c5ea0faf7ba581d1068298a96550792baec5f",
+        "dropped_events": "0",
+        "dropped_metrics": "0",
+        "effective_config_sha256": "52b7625a7cfbbe353b7b6ddd90078382c77fa4bc295585c9c0a5ce4d2a851954",
+        "log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/desktop_active_bag_20261015/health_logs/772c5-18de8f890dd017dc-babf6a63",
+        "log_write_failed": "false",
+        "logs_enabled": "true",
+        "logs_incomplete": "false",
+        "logs_normal": "true",
+        "monitor_run_id": "772c5-18de8f890dd017dc-babf6a63",
+        "rotated_files_removed": "0"
+      }
+    }
+  },
+  "screenshots": {
+    "startup_missing_inputs": true,
+    "live_inputs": true,
+    "late_live_inputs": true,
+    "truncated_tail": true
+  },
+  "health_log_directory": "$HOME/fastlio_ws/src/FAST_LIO/doc/ros1_workspace/evidence/v2/desktop_active_bag_20261015/health_logs/772c5-18de8f890dd017dc-babf6a63"
+}
