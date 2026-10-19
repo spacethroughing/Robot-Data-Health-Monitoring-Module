@@ -1,3 +1,7 @@
+/**
+ * 受管回放数据流：已加载配置选模块 -> 等待真实消费者 -> rosbag play --clock -> 状态心跳。
+ * 空格和SetBool服务共享确认路径；正常EOF发布STOPPED，异常退出发布FAULT。
+ */
 #include <XmlRpcClient.h>
 #include <XmlRpcValue.h>
 #include <fastlio_health_monitor/RuntimeState.h>
@@ -17,6 +21,7 @@
 #include <unistd.h>
 
 #include <cerrno>
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
 #include <set>
@@ -27,6 +32,7 @@
 // action goes through the same acknowledged service and lifecycle publication.
 class TerminalInput {
  public:
+  // 接管当前终端按键并保存原设置，使空格统一经过有确认的暂停服务。
   TerminalInput() {
     if (!isatty(STDIN_FILENO) || tcgetattr(STDIN_FILENO, &saved_) != 0) return;
     flags_ = fcntl(STDIN_FILENO, F_GETFL);
@@ -39,12 +45,15 @@ class TerminalInput {
     active_ = true;
     if (fcntl(STDIN_FILENO, F_SETFL, flags_ | O_NONBLOCK) < 0) restore();
   }
+  // 退出时恢复终端设置，防止测试结束后终端不能正常回显。
   ~TerminalInput() { restore(); }
+  // 非阻塞读取空格等按键，不阻塞ROS回调和健康心跳。
   int readKey() {
     char c;
     return active_ && read(STDIN_FILENO, &c, 1) == 1 ? static_cast<unsigned char>(c) : -1;
   }
  private:
+  // 幂等恢复终端的回显、行模式与文件状态。
   void restore() {
     if (!active_) return;
     tcsetattr(STDIN_FILENO, TCSANOW, &saved_);
@@ -58,6 +67,7 @@ class TerminalInput {
 
 class BagPlayback {
  public:
+  // 加载参数与同一份已解析健康配置，确认必需消费者，再创建受管rosbag子进程。
   BagPlayback() : private_("~"), started_(robot_health::steadyNow()),
                   id_(robot_health::uniqueId()), instance_(robot_health::uniqueId()),
                   command_(robot_health::uniqueId()), logs_(logConfig(), logTimeline()) {
@@ -86,15 +96,20 @@ class BagPlayback {
     if (direct_) {
       std::string config;
       private_.param<std::string>("lifecycle_config_file", config, "");
-      auto root = YAML::LoadFile(config);
-      state_topic_ = root["control"]["state_topic"].as<std::string>();
+      const auto loaded = robot_health::ConfigLoader::load(config);
+      state_topic_ = loaded.state_topic;
       std::set<std::string> unique;
-      for (const auto& module : root["modules"]) {
-        const auto lifecycle = module["lifecycle"];
-        unique.insert(lifecycle && lifecycle["control_binding"]
-                          ? lifecycle["control_binding"].as<std::string>()
-                          : module["id"].as<std::string>());
+      bool from_config = false;
+      private_.param<bool>("required_inputs_from_config", from_config, false);
+      if (from_config) required_input_topics_.clear();
+      for (const auto& module : loaded.modules) {
+        unique.insert(module.lifecycle.binding);
+        if (from_config && module.required &&
+            std::find(required_input_topics_.begin(), required_input_topics_.end(), module.topic) == required_input_topics_.end())
+          required_input_topics_.push_back(module.topic);
       }
+      if (required_input_topics_.empty())
+        throw std::invalid_argument("no required input topics in replay configuration");
       bindings_.assign(unique.begin(), unique.end());
       runtime_ = nh_.advertise<fastlio_health_monitor::RuntimeState>(state_topic_, 20, false);
     }
@@ -108,6 +123,15 @@ class BagPlayback {
       rosbag::Bag bag(bag_, rosbag::bagmode::Read);
       rosbag::View view(bag);
       if (!view.size()) throw std::runtime_error("empty bag");
+      bool from_config = false;
+      private_.param<bool>("required_inputs_from_config", from_config, false);
+      if (from_config) {
+        std::set<std::string> recorded_topics;
+        for (const auto* connection : view.getConnections()) recorded_topics.insert(connection->topic);
+        for (const auto& topic : required_input_topics_)
+          if (!recorded_topics.count(topic))
+            throw std::runtime_error("bag has no required recorded topic: " + topic);
+      }
       end_clock_ = view.getEndTime().toSec();
     } catch (const std::exception& e) {
       fail(std::string("cannot inspect bag completion boundary: ") + e.what());
@@ -116,6 +140,7 @@ class BagPlayback {
     record("PLAYBACK_STARTING", "waiting for required consumers and live transport");
     publish();
   }
+  // SIGINT停止本对象拥有的rosbag进程组，等待退出；超时再清理并关闭PTY。
   ~BagPlayback() {
     if (pid_ > 0) {
       kill(-pid_, SIGINT);
@@ -129,24 +154,29 @@ class BagPlayback {
     }
     if (pty_ >= 0) close(pty_);
   }
+  // 返回播放器最终结果码，供launch和验收脚本判断退出是否成功。
   int result() const { return result_; }
  private:
+  // 用只读bag元数据和/clock建立三时间字段的可选回放时间线。
   robot_health::LogTimeline logTimeline() {
     std::string path;
     private_.param<std::string>("bag", path, "");
     return robot_health::bagLogTimeline(path);
   }
+  // 只采纳本对象启动的真实播放器/clock，记录验证EOF所需的最后播放位置。
   void playerClock(const ros::MessageEvent<rosgraph_msgs::Clock const>& event) {
     const auto& header = *event.getConnectionHeaderPtr();
     const auto caller = header.find("callerid");
     if (caller != header.end() && caller->second == nh_.resolveName("fastlio_test_bag_player"))
       last_clock_ = event.getMessage()->clock.toSec();
   }
+  // 把实际回放参数和启用的必需模块保存为播放器运行日志配置，不重新要求关闭模块的数据。
   robot_health::MonitorConfig logConfig() {
     robot_health::MonitorConfig c;
     private_.param<std::string>("bag", c.data_reference, "");
-    private_.param<std::string>("log_directory", c.log_directory,
-                               "/home/lmw/fastlio_ws/logs/robot_playback");
+    const char* home = std::getenv("HOME");
+    const std::string default_log = std::string(home ? home : "/tmp") + "/.ros/robot_health/playback";
+    private_.param<std::string>("log_directory", c.log_directory, default_log);
     YAML::Node settings;
     settings["node"] = ros::this_node::getName();
     settings["bag"] = c.data_reference;
@@ -159,9 +189,22 @@ class BagPlayback {
     bool finish_log;
     private_.param<bool>("finish_log_on_playback_complete", finish_log, false);
     settings["finish_log_on_playback_complete"] = finish_log;
+    bool from_config = false;
+    private_.param<bool>("required_inputs_from_config", from_config, false);
+    settings["required_inputs_from_config"] = from_config;
     std::vector<std::string> topics;
     if (private_.getParam("required_input_topics", topics))
       settings["required_input_topics"] = topics;
+    if (from_config) {
+      std::string config;
+      private_.param<std::string>("lifecycle_config_file", config, "");
+      const auto loaded = robot_health::ConfigLoader::load(config);
+      topics.clear();
+      for (const auto& module : loaded.modules)
+        if (module.required) topics.push_back(module.topic);
+      settings["required_input_topics"] = topics;
+      settings["lifecycle_config_file"] = config;
+    }
     settings["state_policy"] = "explicit pause acknowledgement; clean EOF stopped; unexpected exit fault";
     YAML::Emitter text;
     text << settings;
@@ -169,6 +212,7 @@ class BagPlayback {
     c.source_path = "ROS private playback parameters";
     return c;
   }
+  // 记录回放状态变化，并更新本次控制命令标识及原因。
   void record(const std::string& type, const std::string& reason) {
     command_ = robot_health::uniqueId();
     reason_ = reason;
@@ -180,6 +224,7 @@ class BagPlayback {
                 {{"command_id", command_}, {"exit_code", std::to_string(result_)},
                  {"native_player_exit_code", std::to_string(player_exit_code_)}});
   }
+  // 发布播放器私有状态及各binding实时心跳；兼容旧RuntimeState接口但不生成数据哈希。
   void publish() {
     fastlio_health_monitor::RuntimeState m;
     m.header.stamp = ros::Time::now();
@@ -195,7 +240,7 @@ class BagPlayback {
     m.trace_healthy = logs_.healthy() && logs_.enabled();
     const auto status = logs_.status();
     m.data_reference = status.at("data_reference");
-    m.data_sha256 = status.at("data_sha256");
+    m.data_sha256.clear();  // 兼容既有消息接口；新版不计算、不记录数据文件哈希。
     m.binding = "sensors";
     m.sequence = ++sequence_;
     source_state_.publish(m);
@@ -214,6 +259,7 @@ class BagPlayback {
       runtime_.publish(m);
     }
   }
+  // 检查必需节点/订阅连接是否就绪，避免bag先播而健康监控漏掉开头数据。
   bool ready() {
     XmlRpc::XmlRpcValue request, response, payload;
     request[0] = ros::this_node::getName();
@@ -235,6 +281,7 @@ class BagPlayback {
     }
     return true;
   }
+  // 查询指定ROS节点XML-RPC接口，获取当前真实连接或节点状态。
   bool query(const std::string& node, const char* method, XmlRpc::XmlRpcValue& result) {
     XmlRpc::XmlRpcValue request, response, uri;
     request[0] = ros::this_node::getName();
@@ -258,6 +305,7 @@ class BagPlayback {
     return complete && result.getType() == XmlRpc::XmlRpcValue::TypeArray &&
            result.size() >= 3 && static_cast<int>(result[0]) == 1;
   }
+  // 验证节点确实与回放数据建立传输连接；只看到名字不等于消息已能接收。
   bool connected(const std::string& node) {
     XmlRpc::XmlRpcValue result;
     if (!query(node, "getBusInfo", result)) return false;
@@ -278,6 +326,7 @@ class BagPlayback {
     }
     return true;
   }
+  // 请求rosbag暂停/恢复并等待确认，确认后才发布PAUSED/RUNNING。
   bool setPause(bool paused) {
     if (pid_ <= 0 || completed_ || !resumed_) return false;
     if (paused_ == paused) { publish(); return true; }
@@ -295,11 +344,13 @@ class BagPlayback {
     publish();
     return true;
   }
+  // 公开SetBool服务入口；终端空格和外部服务调用走同一暂停逻辑。
   bool pauseRequest(std_srvs::SetBool::Request& req, std_srvs::SetBool::Response& res) {
     res.success = setPause(req.data);
     res.message = res.success ? (req.data ? "PAUSED" : "RUNNING") : "player not ready/completed or acknowledgement failed";
     return true;
   }
+  // 将无法启动、异常退出或连接失效设为FAULT并留日志；不会冒充正常STOPPED。
   void fail(const std::string& reason, int code = 1) {
     result_ = code;
     desired_ = "RUN";
@@ -310,6 +361,7 @@ class BagPlayback {
     ROS_ERROR_STREAM(reason);
     if (!direct_) ros::shutdown();
   }
+  // 创建独立进程组与伪终端，exec rosbag play --clock，便于可靠收键和清理。
   void spawn() {
     pty_ = posix_openpt(O_RDWR | O_NOCTTY | O_CLOEXEC);
     if (pty_ < 0 || grantpt(pty_) != 0 || unlockpt(pty_) != 0)
@@ -337,6 +389,7 @@ class BagPlayback {
     setpgid(pid_, pid_);
     ROS_INFO("Required consumers subscribed; player waiting for actual connections. SPACE: pause/resume.");
   }
+  // 非阻塞主循环：按键、连接就绪、子进程退出、心跳；只有退出码与最终clock同时成立才确认EOF。
   void tick(const ros::SteadyTimerEvent&) {
     const double now = robot_health::steadyNow();
     if (mapper_verified_ && now - last_mapper_check_ >= .5) {
@@ -435,6 +488,7 @@ class BagPlayback {
   bool mapper_verified_ = false, mapper_alive_ = false;
   bool exit_pending_ = false;
 };
+// ROS程序入口：初始化节点、创建业务对象、运行回调循环；初始化失败返回非零退出码。
 int main(int argc, char** argv) {
   ros::init(argc, argv, "fastlio_bag_playback");
   try { BagPlayback playback; ros::spin(); return playback.result(); }

@@ -1,3 +1,5 @@
+// 核心回归测试数据流：构造Sample/YAML -> 直接调用C++对象 -> 核对规则、生命周期、日志。
+// 时间推进使用明确数值，不依赖真实机器人，也不改写原始bag。
 #include <fastlio_health_monitor/event_recorder.h>
 #include <fastlio_health_monitor/health_core.h>
 #include <gtest/gtest.h>
@@ -6,6 +8,7 @@
 #include <fstream>
 using namespace robot_health;
 namespace {
+// 构造连续定位样本：时间、平面位置与有限协方差，用于差分及跳变边界。
 Sample pose(double t, double x, double y = 0) {
   Sample s;
   s.stamp = t;
@@ -15,6 +18,7 @@ Sample pose(double t, double x, double y = 0) {
   s.covariance = Eigen::Matrix<double, 6, 6>::Identity() * .01;
   return s;
 }
+// 提供一组明确启用的运动规则，保证测试不会依赖隐藏默认阈值。
 YAML::Node motion() {
   return YAML::Load(
       "continuity: continuous_odometry\nkinematics: {dt_min_sec: 0.001, "
@@ -25,12 +29,14 @@ YAML::Node motion() {
       "{warning_above: 0.5, error_above: 2}, rotation_rad: {warning_above: "
       "0.3, error_above: 1}}\n");
 }
+// 按规则ID读取结果；-1表示该规则未执行，不能误当成检测正常。
 int findLevel(const Findings& f, const std::string& id) {
   for (const auto& v : f)
     if (v.id == id) return v.level;
   return -1;
 }
 }  // namespace
+// 验收：Bounds / EqualityAndDirections；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Bounds, EqualityAndDirections) {
   Bounds high{1, 2, false}, low{10, 5, true};
   EXPECT_EQ(high.level(1), OK);
@@ -40,6 +46,7 @@ TEST(Bounds, EqualityAndDirections) {
   EXPECT_EQ(low.level(5), WARNING);
   EXPECT_EQ(low.level(4), ERROR);
 }
+// 验收：Stream / PruneWithoutInput；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Stream, PruneWithoutInput) {
   MonitorConfig m;
   m.window = 2;
@@ -57,6 +64,7 @@ TEST(Stream, PruneWithoutInput) {
   EXPECT_EQ(v["receive_rate_hz"], "0");
   EXPECT_EQ(v["source_rate_hz"], "N/A");
 }
+// 验收：Stream / RelativeClockAndPlaybackRate；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Stream, RelativeClockAndPlaybackRate) {
   MonitorConfig m;
   m.frequency_coverage = .5;
@@ -72,6 +80,7 @@ TEST(Stream, RelativeClockAndPlaybackRate) {
   EXPECT_NEAR(std::stod(v["receive_rate_hz"]), 20, 1e-6);
   EXPECT_NE(v["transport_delay_sec"].find("N/A"), std::string::npos);
 }
+// 验收：Stream / RegressionDoesNotPoisonNextStamp；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Stream, RegressionDoesNotPoisonNextStamp) {
   MonitorConfig m;
   StreamConfig c;
@@ -81,6 +90,7 @@ TEST(Stream, RegressionDoesNotPoisonNextStamp) {
   EXPECT_EQ(findLevel(t.receive(3, .1), "STAMP_REGRESSION"), ERROR);
   EXPECT_EQ(findLevel(t.receive(600.1, .2), "STAMP_GAP"), OK);
 }
+// 验收：Rules / BriefHardFailureSurvivesNormalSample；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Rules, BriefHardFailureSurvivesNormalSample) {
   int triggered = 0;
   RuleLatch gate(.5, .0,
@@ -97,6 +107,7 @@ TEST(Rules, BriefHardFailureSurvivesNormalSample) {
   EXPECT_EQ(gate.level(), OK);
   EXPECT_EQ(triggered, 1);
 }
+// 验收：Rules / SoftDwellAndRecovery；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Rules, SoftDwellAndRecovery) {
   RuleLatch g(.5, 1, {});
   Finding f{"RATE", "low", "rate", "Hz", WARNING, 1, 5, false};
@@ -113,6 +124,7 @@ TEST(Rules, SoftDwellAndRecovery) {
   g.published();
   EXPECT_EQ(g.level(), OK);
 }
+// 验收：Motion / FirstSamplesAreNAAndMidpointAcceleration；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, FirstSamplesAreNAAndMidpointAcceleration) {
   KinematicsTracker k;
   auto q = motion();
@@ -125,6 +137,7 @@ TEST(Motion, FirstSamplesAreNAAndMidpointAcceleration) {
   k.update(pose(1.2, .3), q, v);
   EXPECT_NEAR(std::stod(v["linear_acceleration_mps2"]), 10, 1e-7);
 }
+// 验收：Motion / TurnUsesVectorAcceleration；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, TurnUsesVectorAcceleration) {
   KinematicsTracker k;
   auto q = motion();
@@ -135,6 +148,7 @@ TEST(Motion, TurnUsesVectorAcceleration) {
   EXPECT_NEAR(std::stod(v["linear_acceleration_mps2"]), std::sqrt(2.) * 10,
               1e-7);
 }
+// 验收：Motion / QuaternionSignIsEquivalent；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, QuaternionSignIsEquivalent) {
   KinematicsTracker k;
   auto q = motion();
@@ -146,6 +160,7 @@ TEST(Motion, QuaternionSignIsEquivalent) {
   EXPECT_EQ(findLevel(f, "LOC_ROTATION_JUMP"), OK);
   EXPECT_NEAR(std::stod(v["angular_speed_rps"]), 0, 1e-8);
 }
+// 验收：Motion / GapResetAndFrameFailure；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, GapResetAndFrameFailure) {
   KinematicsTracker k;
   auto q = motion();
@@ -160,6 +175,7 @@ TEST(Motion, GapResetAndFrameFailure) {
   k.update(s, q, v);
   EXPECT_EQ(v["linear_speed_mps"], "N/A");
 }
+// 验收：Motion / GlobalFrameUsesTwist；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, GlobalFrameUsesTwist) {
   KinematicsTracker k;
   auto q = motion();
@@ -175,6 +191,7 @@ TEST(Motion, GlobalFrameUsesTwist) {
   EXPECT_NEAR(std::stod(v["linear_speed_mps"]), 1, 1e-7);
   EXPECT_EQ(v["prediction_residual_m"], "N/A");
 }
+// 验收：Covariance / RejectAsymmetricNegativeAndNonPSD；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Covariance, RejectAsymmetricNegativeAndNonPSD) {
   Eigen::Matrix3d m = Eigen::Matrix3d::Identity();
   EXPECT_TRUE(CovarianceChecker::valid(m, 1e-9, true, true));
@@ -188,6 +205,7 @@ TEST(Covariance, RejectAsymmetricNegativeAndNonPSD) {
   m(0, 0) = NAN;
   EXPECT_FALSE(CovarianceChecker::valid(m, 1e-9, true, true));
 }
+// 验收：Lidar / EmptyAndRatio；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Lidar, EmptyAndRatio) {
   auto q = YAML::Load(
       "points_total: {warning_below: 100, error_below: 1}\npoints_valid: "
@@ -203,6 +221,7 @@ TEST(Lidar, EmptyAndRatio) {
   s.valid_points = 400;
   EXPECT_EQ(findLevel(k.check(s, v), "LIDAR_RATIO"), ERROR);
 }
+// 验收：Lifecycle / NormalStopThirtySecondsAndRestart；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Lifecycle, NormalStopThirtySecondsAndRestart) {
   MonitorConfig m;
   m.strict_control = true;
@@ -241,6 +260,7 @@ TEST(Lifecycle, NormalStopThirtySecondsAndRestart) {
   l.sample(true, 33.2);
   EXPECT_EQ(l.evaluate(33.2, true, .1).state, "RUNNING");
 }
+// 验收：Lifecycle / NoIntentHeartbeatLossAndTimeout；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Lifecycle, NoIntentHeartbeatLossAndTimeout) {
   MonitorConfig m;
   m.strict_control = true;
@@ -254,6 +274,7 @@ TEST(Lifecycle, NoIntentHeartbeatLossAndTimeout) {
   EXPECT_EQ(l.evaluate(1.5, false, 0).state, "FAULT");
   EXPECT_EQ(l.evaluate(4, false, 0).state, "UNKNOWN");
 }
+// 验收：Lifecycle / ReplayedHeartbeatCannotExtendStop；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Lifecycle, ReplayedHeartbeatCannotExtendStop) {
   MonitorConfig m;
   m.strict_control = true;
@@ -265,6 +286,7 @@ TEST(Lifecycle, ReplayedHeartbeatCannotExtendStop) {
   EXPECT_FALSE(l.control(u, 2.9));
   EXPECT_EQ(l.evaluate(3.1, false, 0).state, "UNKNOWN");
 }
+// 验收：Logging / JSONEscapingAndDurableFailure；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Logging, JSONEscapingAndDurableFailure) {
   EXPECT_EQ(jsonString("a\n\"b"), "\"a\\n\\\"b\"");
   MonitorConfig c;
@@ -273,6 +295,7 @@ TEST(Logging, JSONEscapingAndDurableFailure) {
   EventRecorder r(c);
   EXPECT_FALSE(r.healthy());
 }
+// 验收：Logging / DurableEventAndManifest；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Logging, DurableEventAndManifest) {
   MonitorConfig c;
   c.log_directory = "/tmp/robot_health_core_tests";
@@ -293,11 +316,11 @@ TEST(Logging, DurableEventAndManifest) {
   EXPECT_NE(all.find("RUN_END"), std::string::npos);
   EXPECT_TRUE(boost::filesystem::exists(folder + "/manifest.json"));
 }
+// 验收：Config / RealConfigAndUnknownFieldRejected；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Config, RealConfigAndUnknownFieldRejected) {
   auto c = ConfigLoader::load(
-      "/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/"
-      "health_v2_avia.yaml");
-  EXPECT_EQ(c.modules.size(), 3u);
+      HEALTH_TEST_CONFIG_DIR "/health_robot.yaml");
+  EXPECT_EQ(c.modules.size(), 5u);
   auto root = YAML::Load(c.source_text);
   root["monitor"]["typo"] = 1;
   std::ofstream out("/tmp/robot_health_bad_config.yaml");
@@ -310,6 +333,7 @@ int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+// 验收：Motion / SevereSingleFrameJumpIsImmediate；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, SevereSingleFrameJumpIsImmediate) {
   KinematicsTracker k;
   auto q = motion();
@@ -321,6 +345,7 @@ TEST(Motion, SevereSingleFrameJumpIsImmediate) {
     if (r.id == "LOC_SPEED") immediate = r.level == ERROR && r.hard;
   EXPECT_TRUE(immediate);
 }
+// 验收：Lifecycle / RetiredInstanceAndFrameEpochCannotReturn；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Lifecycle, RetiredInstanceAndFrameEpochCannotReturn) {
   MonitorConfig m;
   m.strict_control = true;
@@ -346,10 +371,10 @@ TEST(Lifecycle, RetiredInstanceAndFrameEpochCannotReturn) {
   EXPECT_FALSE(l.control(u, 2.1));
   EXPECT_FALSE(l.controlAccepted());
 }
+// 验收：Module / StartupHardErrorVisibleAndControlHealthSeparate；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Module, StartupHardErrorVisibleAndControlHealthSeparate) {
   auto config = ConfigLoader::load(
-      "/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/"
-      "health_v2_avia.yaml");
+      HEALTH_TEST_CONFIG_DIR "/health_robot.yaml");
   config.strict_control = true;
   auto c = config.modules[1];
   ModuleMonitor module(c, config, {}, 0);
@@ -374,6 +399,7 @@ TEST(Module, StartupHardErrorVisibleAndControlHealthSeparate) {
   EXPECT_EQ(r.data_level, ERROR);
   EXPECT_FALSE(r.valid);
 }
+// 验收：Logging / QueueOverflowIsVisible；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Logging, QueueOverflowIsVisible) {
   MonitorConfig c;
   c.log_directory = "/tmp/robot_health_core_tests";
@@ -388,6 +414,7 @@ TEST(Logging, QueueOverflowIsVisible) {
   EXPECT_GT(std::stoull(recorder.status()["dropped_events"]), 0u);
   EXPECT_FALSE(recorder.healthy());
 }
+// 验收：Logging / RotationRemovalIsDeclared；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Logging, RotationRemovalIsDeclared) {
   MonitorConfig c;
   c.log_directory = "/tmp/robot_health_core_tests";
@@ -404,6 +431,7 @@ TEST(Logging, RotationRemovalIsDeclared) {
   EXPECT_GT(std::stoull(recorder.status()["rotated_files_removed"]), 0u);
   EXPECT_EQ(recorder.status()["logs_incomplete"], "true");
 }
+// 验收：Logging / WriteBudgetFailureIsReported；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Logging, WriteBudgetFailureIsReported) {
   MonitorConfig c;
   c.log_directory = "/tmp/robot_health_core_tests";
@@ -416,10 +444,10 @@ TEST(Logging, WriteBudgetFailureIsReported) {
       recorder.event("RULE_TRIGGERED", "test", "A", 1, f, 0, 2, {}, true));
   EXPECT_FALSE(recorder.healthy());
 }
+// 验收：Config / ThresholdUnitsAndDependencyValidation；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Config, ThresholdUnitsAndDependencyValidation) {
   auto base = ConfigLoader::load(
-      "/home/lmw/fastlio_ws/src/fastlio_health_monitor/config/"
-      "health_v2_avia.yaml");
+      HEALTH_TEST_CONFIG_DIR "/health_robot.yaml");
   auto reject = [&](const YAML::Node& root) {
     std::ofstream out("/tmp/robot_health_config_reject.yaml");
     out << root;
@@ -446,6 +474,7 @@ TEST(Config, ThresholdUnitsAndDependencyValidation) {
   root["modules"][2]["adapter"] = "NotAnAdapter";
   reject(root);
 }
+// 验收：Motion / UnauthorizedFrameCannotBecomeNewBaseline；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, UnauthorizedFrameCannotBecomeNewBaseline) {
   KinematicsTracker tracker;
   Values values;
@@ -462,9 +491,10 @@ TEST(Motion, UnauthorizedFrameCannotBecomeNewBaseline) {
   EXPECT_NE(findLevel(tracker.update(changed, q, values), "LOC_FRAME_CHANGE"),
             ERROR);
 }
+// 验收：Module / PlanningStopSuspendsTaskAndPathDemand；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Module, PlanningStopSuspendsTaskAndPathDemand) {
   auto c =
-      ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/health_v2_extensions.yaml");
+      ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/../test/fixtures/health_extensions.yaml");
   c.strict_control = true;
   auto config = c.modules[1];
   ModuleMonitor module(config, c, {}, 0);
@@ -487,6 +517,7 @@ TEST(Module, PlanningStopSuspendsTaskAndPathDemand) {
   EXPECT_EQ(report.level, WARNING);
   EXPECT_FALSE(report.valid);
 }
+// 验收：Motion / GlobalOrientationCorrectionDoesNotFakeAcceleration；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Motion, GlobalOrientationCorrectionDoesNotFakeAcceleration) {
   KinematicsTracker tracker;
   Values values;
@@ -505,8 +536,9 @@ TEST(Motion, GlobalOrientationCorrectionDoesNotFakeAcceleration) {
   EXPECT_EQ(values["linear_acceleration_mps2"], "N/A");
   EXPECT_EQ(findLevel(f, "LOC_ACCELERATION"), -1);
 }
+// 验收：Module / ConfirmedStopDoesNotReportHistoricalDataErrorForever；构造边界输入，核对真实C++结果，失败保留断言位置。
 TEST(Module, ConfirmedStopDoesNotReportHistoricalDataErrorForever) {
-  auto c = ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/health_v2_avia.yaml");
+  auto c = ConfigLoader::load(HEALTH_TEST_CONFIG_DIR "/health_robot.yaml");
   c.strict_control = true;
   ModuleMonitor module(c.modules[1], c, {}, 0);
   RuntimeUpdate runtime{"ctrl", "A",  "run", "RUN", "RUNNING", "", 1,

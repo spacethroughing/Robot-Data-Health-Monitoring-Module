@@ -1,0 +1,661 @@
+# 2026-10-19 显式开关配置：实机健康监控。
+# 主要操作：enabled:true启用，enabled:false关闭；保留原阈值，恢复时只需改回true。
+# 检测规则开关已完整列出；Topic、单位、帧名、发布频率等是运行参数，不放无意义的enabled。
+# 原生布尔项（require_positive/require_psd等）本身就是开关，直接true/false。
+# 修改后重启launch加载；请保留冒号后的空格，写enabled: false，不写enabled:false。
+# 基础结构、NaN/Inf和零四元数守卫仍执行；关闭业务规则不代表数据已通过完整检测。
+# 配置格式版本；目前为2；可省略，默认2；它不是软件发布版本号。
+schema_version: 2
+# 监控程序的运行参数；整个块可省略，采用各项默认值。
+monitor:
+  # 本次关联的bag路径；默认空；实机留空，回放launch会传入实际路径；新版不计算bag哈希。
+  data_reference: ''
+  # 独立单调时钟的检查/诊断发布频率，Hz；V2默认5；100表示理想间隔10ms，实际受调度影响。
+  publish_rate_hz: 100.0
+  # 频率统计窗口，秒；默认5；决定计算频率时保留多少历史。
+  statistics_window_sec: 5.0
+  # 频率可用前最少样本数；默认3，至少2；是统计准备条件，不是最低输入频率。
+  min_frequency_samples: 3
+  # 频率计算所需最短覆盖时间，秒；默认1，不能超过统计窗口；不足时显示N/A。
+  min_frequency_coverage_sec: 1.0
+  # 软规则触发前的持续时间，秒；默认0.5；0表示立即按定时检查结果报警。硬错误不等待。
+  soft_warning_hold_sec: 0.0
+  # 告警恢复前连续满足正常条件的时间，秒；默认1；防止状态来回闪。
+  recovery_hold_sec: 1.0
+  # 完整诊断输出，diagnostic_msgs/DiagnosticArray；默认/fastlio_health_monitor/diagnostics。
+  diagnostics_topic: /fastlio_health_monitor/diagnostics
+  # 简化状态输出，std_msgs/UInt8；默认/fastlio_health_monitor/status，0正常/1警告/2错误。
+  status_topic: /fastlio_health_monitor/status
+# 生命周期控制接口；用于区分正常暂停、正常停止和异常断流。
+control:
+  # 是否必须先收到控制器意图；默认false；true时未收到心跳为UNKNOWN/ERROR。
+  strict_intent: false
+  # 控制器RuntimeState输入Topic；默认/robot_runtime/module_state；必须是实时心跳，不能latched。
+  state_topic: /robot_runtime/module_state
+  # 已接入控制器后，心跳接收年龄超过此值警告；默认1秒；运行参数省略时仍有默认值。
+  heartbeat_warning_sec: 1.0
+  # 控制心跳超时ERROR/UNKNOWN阈值；默认3秒，必须大于warning；不永久相信旧STOP状态。
+  heartbeat_error_sec: 3.0
+# 只共享时间域、频率基准等运行约定；本版检测开关和阈值均完整写在各模块stream中。
+stream_defaults:
+  # 时间戳时钟域说明标签；默认device_relative；不会自动建立时钟同步或算绝对传输延迟。
+  stamp_domain: ros_time
+  # 频率计算基准：source按消息头，receive按单调接收时间；默认source；倍速回放通常选source。
+  frequency_basis: source
+# 生命周期默认参数；模块可用lifecycle覆盖；这里属于运行状态管理，省略采用明确默认值。
+lifecycle_defaults:
+  # 请求RUN后等待数据准备好的期限，默认10秒；初始可选NO_DATA不计时，首条数据才开始。
+  startup_deadline_sec: 10.0
+  # 请求STOP后等待停止确认的期限，默认5秒；超时为STOP_FAILED。
+  stop_deadline_sec: 5.0
+  # 进入RUNNING需要的连续无ERROR样本数，默认10；还需统计准备好及控制状态允许。
+  ready_consecutive_samples: 10
+# 结构化日志设置；默认启用；日志写入失败会进入诊断，历史日志不会被本次升级修改。
+logging:
+  enabled: true
+  # 健康日志根目录；省略默认~/.ros/robot_health/health；每次运行新建run目录；支持~/前缀。
+  directory: ~/.ros/robot_health/health
+  # 指标CSV采样间隔，秒；默认1；不是IMU采样周期，避免把所有原始数据重复写日志。
+  metrics_period_sec: 1.0
+  # 普通指标队列容量，默认4096；满时丢弃并记录计数。
+  metrics_queue_capacity: 4096
+  # 事件独立队列容量，默认512；满时显示日志异常，不能静默丢关键事件。
+  critical_event_queue_capacity: 512
+  # 单文件轮转大小，MiB；默认20；新文件序号递增。
+  rotate_size_mb: 20
+  # 每种日志最多保留的文件数，默认10；删除旧文件会标记日志不完整。
+  rotate_file_count: 10
+  # 单次运行累计写入预算，MiB；默认512，至少一个轮转文件大小；超限停止写入并报错。
+  total_budget_mb: 512
+  # 普通日志flush间隔，秒；默认1；关键启停事件另外执行fsync，等待上限2秒。
+  flush_period_sec: 1.0
+# 模块列表；每个模块都有enabled。使用三模块模式：将imu_attitude和ground_range的enabled改为false。
+modules:
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: lidar
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: LidarChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: PointCloud2Adapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /rslidar_points
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: true
+  # 可选原始点云可视化输出；省略不发布桥接点云；不是定位后的地图。
+  visualization_topic: /fastlio_health_monitor/lidar_raw_visualization
+  # 可视化消息frame_id；空/省略保留源frame；改名不等于坐标变换，必须有真实TF依据。
+  visualization_frame: ''
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: sensors
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 无数据时间探针；定时比较当前单调时间与最后回调时间；没配置不报断流阈值告警。
+    receive_age_sec:
+      enabled: true
+      warning_above: 0.3
+      error_above: 0.5
+    # 频率上下限检查；本块enabled明确启停，下方数值是同一规则的各级阈值。
+    frequency:
+      enabled: true
+      # 频率低于此值WARNING，Hz；省略不检查这一档；有两档时ERROR下限必须更低。
+      warning_below_hz: 8.0
+      # 频率低于此值ERROR，Hz；省略不检查这一档。
+      error_below_hz: 5.0
+      # 频率高于此值WARNING，Hz；省略不检查这一档。
+      warning_above_hz: 12.0
+      # 频率高于此值ERROR，Hz；省略不检查这一档；有两档时必须更高。
+      error_above_hz: 20.0
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        enabled: true
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        enabled: true
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 0.3
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 1.0
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality:
+    # 雷达每帧总点数下限，点/帧；省略关闭；阈值需按雷达型号标定。
+    points_total:
+      enabled: true
+      warning_below: 100
+      error_below: 1
+    # 雷达每帧有效点数下限，点/帧；有效性受有限XYZ与range_m过滤影响；省略关闭。
+    points_valid:
+      enabled: true
+      warning_below: 100
+      error_below: 1
+    # 有效点数/总点数，0到1；省略关闭比例告警；不是FAST-LIO预处理后的可用率。
+    valid_ratio:
+      enabled: true
+      warning_below: 0.8
+      error_below: 0.5
+    # 雷达有效点的距离过滤，米；省略不加人工距离上限，只排除非有限/零距离点；支持enabled:false。
+    range_m:
+      enabled: true
+      # 量测/点距离下限，米；这是物理有效范围，不是最低飞行高度；默认0。
+      minimum: 0.0001
+      # 量测/点距离人工上限，米；省略不加人工上限；测距仍受消息自身max_range限制。
+      maximum: 500.0
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: imu
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: ImuChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: RosImuAdapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /mavros/imu/data_raw
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: true
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: sensors
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 无数据时间探针；定时比较当前单调时间与最后回调时间；没配置不报断流阈值告警。
+    receive_age_sec:
+      enabled: true
+      warning_above: 0.1
+      error_above: 0.2
+    # 频率上下限检查；本块enabled明确启停，下方数值是同一规则的各级阈值。
+    frequency:
+      enabled: true
+      # 频率低于此值WARNING，Hz；省略不检查这一档；有两档时ERROR下限必须更低。
+      warning_below_hz: 160.0
+      # 频率低于此值ERROR，Hz；省略不检查这一档。
+      error_below_hz: 50.0
+      # 频率高于此值WARNING，Hz；省略不检查这一档。
+      warning_above_hz: 260.0
+      # 频率高于此值ERROR，Hz；省略不检查这一档；有两档时必须更高。
+      error_above_hz: 400.0
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        enabled: true
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        enabled: true
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 0.1
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 0.2
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality:
+    # IMU输入加速度单位；g乘9.80665转m/s²；mps2不转换；省略按ROS标准mps2，Livox g输入必须显式写g。
+    acceleration_unit: mps2
+    # IMU角速度输入单位；默认radps（rad/s），当前仅支持radps。
+    angular_velocity_unit: radps
+    # specific_force表示含重力的比力，gravity_removed表示已去重力；默认specific_force；不是自动去重力开关。
+    acceleration_content: specific_force
+    # 必需IMU测量分组；acceleration/angular_velocity/orientation三个原生布尔开关直接用true/false。
+    required_measurements:
+      # 是否要求IMU加速度估计存在；省略false；false不强求存在，存在的非有限数仍不能当正常。
+      acceleration: true
+      # 是否要求陀螺仪估计存在；省略false。
+      angular_velocity: true
+      # 是否要求IMU姿态估计存在；默认false；没有姿态的原始IMU可false。
+      orientation: false
+    # 转换为SI后的加速度模长上限，m/s²；通常含重力；省略关闭幅值规则。
+    acceleration_norm_mps2:
+      enabled: true
+      warning_above: 100.0
+      error_above: 200.0
+    # 陀螺仪角速度模长上限，rad/s；省略关闭幅值规则。
+    angular_velocity_norm_rps:
+      enabled: true
+      warning_above: 35.0
+      error_above: 70.0
+    # 协方差质量规则；省略/设enabled:false关闭；不是噪声大小的替代测量。
+    covariance:
+      enabled: true
+      # 协方差未知是否阻止业务有效，默认false；true时未知数据不能宣称有效。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      required_for_valid: false
+      # IMU全零协方差视为未知时的策略：report_only/warning/error；默认report_only。
+      unknown_policy: report_only
+      # 加速度协方差单位：input_squared随输入平方换算，si_squared已经为SI方差；这是单位约定，不是检测开关。
+      acceleration_unit: input_squared
+      # 是否检查协方差对称；省略false，true才检查（协方差规则启用时）。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_symmetric: true
+      # 是否检查协方差半正定；省略false，true才检查（协方差规则启用时）。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_psd: true
+      # 对称/半正定数值容差，默认1e-9，必须为正数。
+      numeric_tolerance: 1.0e-09
+    # IMU/定位通用姿态规则；省略关闭，存在默认启用；ZYX欧拉角，参考系应重力对齐。
+    attitude:
+      enabled: false
+      # 启用姿态规则后是否必须有姿态；省略false，仅报告不可用状态；缺失时不能伪造roll/pitch。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_available: true
+      # abs(norm(q)-1)上限，无量纲；省略不比较单位模长；零/非有限四元数仍不可用于角度计算。
+      quaternion_norm_error:
+        enabled: true
+        warning_above: 0.02
+        error_above: 0.1
+      # 横滚角绝对值阈值，度；省略关闭；两档需WARNING<ERROR，范围不超过180度。
+      roll_abs_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 45.0
+      # 俯仰角绝对值阈值，度；省略关闭；范围不超过90度；接近±90度时roll不唯一。
+      pitch_abs_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 45.0
+      # 相邻姿态四元数短弧角差阈值，度；省略关闭；不是直接相减欧拉角。
+      rotation_jump_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 60.0
+      # 姿态短弧角差/dt阈值，度/秒；省略关闭，与rad/s阈值注意换算。
+      angular_speed_dps:
+        enabled: true
+        warning_above: 180.0
+        error_above: 360.0
+      # 连续样本差分的最短源时间间隔，秒；太小则跳过差分并重建基线；定位默认.001，姿态.0001，测距.01。
+      dt_min_sec: 0.0001
+      # 连续样本差分的最长源时间间隔，秒；太大则跳过差分；定位/姿态默认1，测距1.2。
+      dt_max_sec: 1.0
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: localization
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: LocalizationChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: OdometryAdapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /Odometry
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: true
+  # 依赖的模块ID列表；默认无依赖；必须存在且不能构成循环；依赖不可用会使业务有效性false。
+  depends_on:
+  - lidar
+  - imu
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: localization
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 无数据时间探针；定时比较当前单调时间与最后回调时间；没配置不报断流阈值告警。
+    receive_age_sec:
+      enabled: true
+      warning_above: 0.3
+      error_above: 1.0
+    # 频率上下限检查；本块enabled明确启停，下方数值是同一规则的各级阈值。
+    frequency:
+      enabled: true
+      # 频率低于此值WARNING，Hz；省略不检查这一档；有两档时ERROR下限必须更低。
+      warning_below_hz: 5.0
+      # 频率低于此值ERROR，Hz；省略不检查这一档。
+      error_below_hz: 1.0
+      # 频率高于此值WARNING，Hz；省略不检查这一档。
+      warning_above_hz: 15.0
+      # 频率高于此值ERROR，Hz；省略不检查这一档；有两档时必须更高。
+      error_above_hz: 30.0
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        enabled: true
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        enabled: true
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 0.3
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 1.0
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality:
+    # 要求的定位参考系；空/省略不限定具体名字；切换参考系做差分时仍需可信重置。
+    expected_pose_frame: camera_init
+    # 要求的定位子坐标系；空/省略不限定；twist通常表达在这个子坐标系。
+    expected_child_frame: body
+    # 定位为continuous_odometry或global_localization，默认前者；测距为连续性检查块；省略测距块则关闭。
+    continuity: continuous_odometry
+    # abs(norm(q)-1)上限，无量纲；省略不比较单位模长；零/非有限四元数仍不可用于角度计算。
+    quaternion_norm_error:
+      enabled: true
+      warning_above: 0.02
+      error_above: 0.1
+    # 定位运动学检查块；省略关闭本块阈值；jump可独立启用并复用同一运动基线。
+    kinematics:
+      enabled: true
+      # position_difference位置差分，或twist可信速度；默认位置差分；global_localization只能用twist。
+      velocity_source: position_difference
+      # 连续样本差分的最短源时间间隔，秒；太小则跳过差分并重建基线；定位默认.001，姿态.0001，测距.01。
+      dt_min_sec: 0.001
+      # 连续样本差分的最长源时间间隔，秒；太大则跳过差分；定位/姿态默认1，测距1.2。
+      dt_max_sec: 1.0
+      # 定位线速度模长上限，m/s；省略关闭；严重ERROR立即记录。
+      speed_mps:
+        enabled: true
+        warning_above: 15.0
+        error_above: 50.0
+      # 定位速度向量变化率模长上限，m/s²；位置差分至少三帧，global模式不伪造地图跳变加速度。
+      acceleration_mps2:
+        enabled: true
+        warning_above: 10.0
+        error_above: 30.0
+      # 定位相邻四元数短弧角差/dt上限，rad/s；省略关闭；q与-q不视为旋转跳变。
+      angular_speed_rps:
+        enabled: true
+        warning_above: 3.0
+        error_above: 10.0
+    # 协方差质量规则；省略/设enabled:false关闭；不是噪声大小的替代测量。
+    covariance:
+      enabled: true
+      # 协方差未知是否阻止业务有效，默认false；true时未知数据不能宣称有效。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      required_for_valid: false
+      # 定位全零协方差处理：unknown_warning/report_only/valid；默认unknown_warning；不是Odometry标准的统一约定。
+      zero_matrix_policy: unknown_warning
+      # 是否检查协方差对称；省略false，true才检查（协方差规则启用时）。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_symmetric: true
+      # 是否检查协方差半正定；省略false，true才检查（协方差规则启用时）。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_psd: true
+      # 对称/半正定数值容差，默认1e-9，必须为正数。
+      numeric_tolerance: 1.0e-09
+      # 定位位置协方差xyz对角线最大值上限，m²；省略不比较大小。
+      position_variance_m2:
+        enabled: true
+        warning_above: 1.0
+        error_above: 4.0
+      # 定位旋转协方差三个对角线最大值上限，rad²；省略不比较大小，不能与m²混用。
+      orientation_variance_rad2:
+        enabled: true
+        warning_above: 0.1
+        error_above: 0.5
+    # 定位跳变规则块；省略/设enabled:false关闭；不用于直接比较不同传感器参考系。
+    jump:
+      enabled: true
+      # 定位预测残差模长上限，米；当前位置减去前位置及前速度预测；省略关闭。
+      residual_m:
+        enabled: true
+        warning_above: 0.5
+        error_above: 2.0
+      # 相邻定位姿态短弧角差上限，弧度；省略关闭。
+      rotation_rad:
+        enabled: true
+        warning_above: 0.3
+        error_above: 1.0
+    # IMU/定位通用姿态规则；省略关闭，存在默认启用；ZYX欧拉角，参考系应重力对齐。
+    attitude:
+      enabled: true
+      # 启用姿态规则后是否必须有姿态；省略false，仅报告不可用状态；缺失时不能伪造roll/pitch。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_available: true
+      # abs(norm(q)-1)上限，无量纲；省略不比较单位模长；零/非有限四元数仍不可用于角度计算。
+      quaternion_norm_error:
+        enabled: true
+        warning_above: 0.02
+        error_above: 0.1
+      # 横滚角绝对值阈值，度；省略关闭；两档需WARNING<ERROR，范围不超过180度。
+      roll_abs_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 45.0
+      # 俯仰角绝对值阈值，度；省略关闭；范围不超过90度；接近±90度时roll不唯一。
+      pitch_abs_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 45.0
+      # 相邻姿态四元数短弧角差阈值，度；省略关闭；不是直接相减欧拉角。
+      rotation_jump_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 60.0
+      # 姿态短弧角差/dt阈值，度/秒；省略关闭，与rad/s阈值注意换算。
+      angular_speed_dps:
+        enabled: true
+        warning_above: 180.0
+        error_above: 360.0
+      # 连续样本差分的最短源时间间隔，秒；太小则跳过差分并重建基线；定位默认.001，姿态.0001，测距.01。
+      dt_min_sec: 0.0001
+      # 连续样本差分的最长源时间间隔，秒；太大则跳过差分；定位/姿态默认1，测距1.2。
+      dt_max_sec: 1.0
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: imu_attitude
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: ImuChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: RosImuAdapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /mavros/imu/data
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: true
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: sensors
+    # 进入RUNNING需要的连续无ERROR样本数，默认10；还需统计准备好及控制状态允许。
+    ready_consecutive_samples: 10
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 无数据时间探针；定时比较当前单调时间与最后回调时间；没配置不报断流阈值告警。
+    receive_age_sec:
+      enabled: true
+      warning_above: 0.1
+      error_above: 0.2
+    # 频率上下限检查；本块enabled明确启停，下方数值是同一规则的各级阈值。
+    frequency:
+      enabled: true
+      # 频率低于此值WARNING，Hz；省略不检查这一档；有两档时ERROR下限必须更低。
+      warning_below_hz: 160.0
+      # 频率低于此值ERROR，Hz；省略不检查这一档。
+      error_below_hz: 50.0
+      # 频率高于此值WARNING，Hz；省略不检查这一档。
+      warning_above_hz: 400.0
+      # 频率高于此值ERROR，Hz；省略不检查这一档；有两档时必须更高。
+      error_above_hz: 800.0
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        enabled: true
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        enabled: true
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 0.1
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 0.2
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality:
+    # IMU输入加速度单位；g乘9.80665转m/s²；mps2不转换；省略按ROS标准mps2，Livox g输入必须显式写g。
+    acceleration_unit: mps2
+    # IMU角速度输入单位；默认radps（rad/s），当前仅支持radps。
+    angular_velocity_unit: radps
+    # specific_force表示含重力的比力，gravity_removed表示已去重力；默认specific_force；不是自动去重力开关。
+    acceleration_content: specific_force
+    # 必需IMU测量分组；acceleration/angular_velocity/orientation三个原生布尔开关直接用true/false。
+    required_measurements:
+      # 是否要求IMU加速度估计存在；省略false；false不强求存在，存在的非有限数仍不能当正常。
+      acceleration: true
+      # 是否要求陀螺仪估计存在；省略false。
+      angular_velocity: true
+      # 是否要求IMU姿态估计存在；默认false；没有姿态的原始IMU可false。
+      orientation: true
+    # 转换为SI后的加速度模长上限，m/s²；通常含重力；省略关闭幅值规则。
+    acceleration_norm_mps2:
+      enabled: true
+      warning_above: 100.0
+      error_above: 200.0
+    # 陀螺仪角速度模长上限，rad/s；省略关闭幅值规则。
+    angular_velocity_norm_rps:
+      enabled: true
+      warning_above: 35.0
+      error_above: 70.0
+    # 协方差质量规则；省略/设enabled:false关闭；不是噪声大小的替代测量。
+    covariance:
+      enabled: true
+      # 协方差未知是否阻止业务有效，默认false；true时未知数据不能宣称有效。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      required_for_valid: false
+      # IMU全零协方差视为未知时的策略：report_only/warning/error；默认report_only。
+      unknown_policy: report_only
+      # 加速度协方差单位：input_squared随输入平方换算，si_squared已经为SI方差；这是单位约定，不是检测开关。
+      acceleration_unit: input_squared
+      # 是否检查协方差对称；省略false，true才检查（协方差规则启用时）。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_symmetric: true
+      # 是否检查协方差半正定；省略false，true才检查（协方差规则启用时）。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_psd: true
+      # 对称/半正定数值容差，默认1e-9，必须为正数。
+      numeric_tolerance: 1.0e-09
+    # IMU/定位通用姿态规则；省略关闭，存在默认启用；ZYX欧拉角，参考系应重力对齐。
+    attitude:
+      enabled: true
+      # 启用姿态规则后是否必须有姿态；省略false，仅报告不可用状态；缺失时不能伪造roll/pitch。 这是原生布尔设置，直接true/false，不再额外包enabled。
+      require_available: true
+      # abs(norm(q)-1)上限，无量纲；省略不比较单位模长；零/非有限四元数仍不可用于角度计算。
+      quaternion_norm_error:
+        enabled: true
+        warning_above: 0.02
+        error_above: 0.1
+      # 横滚角绝对值阈值，度；省略关闭；两档需WARNING<ERROR，范围不超过180度。
+      roll_abs_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 45.0
+      # 俯仰角绝对值阈值，度；省略关闭；范围不超过90度；接近±90度时roll不唯一。
+      pitch_abs_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 45.0
+      # 相邻姿态四元数短弧角差阈值，度；省略关闭；不是直接相减欧拉角。
+      rotation_jump_deg:
+        enabled: true
+        warning_above: 30.0
+        error_above: 60.0
+      # 姿态短弧角差/dt阈值，度/秒；省略关闭，与rad/s阈值注意换算。
+      angular_speed_dps:
+        enabled: true
+        warning_above: 180.0
+        error_above: 360.0
+      # 连续样本差分的最短源时间间隔，秒；太小则跳过差分并重建基线；定位默认.001，姿态.0001，测距.01。
+      dt_min_sec: 0.0001
+      # 连续样本差分的最长源时间间隔，秒；太大则跳过差分；定位/姿态默认1，测距1.2。
+      dt_max_sec: 1.0
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: ground_range
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: RangeChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: RosRangeAdapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /mavros/rangefinder/rangefinder
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: false
+  # 缺数策略，默认fault；no_data_until_first_sample仅用于required:false的非规划流，首帧前灰色NO_DATA。
+  missing_data_policy: no_data_until_first_sample
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: sensors
+    # 进入RUNNING需要的连续无ERROR样本数，默认10；还需统计准备好及控制状态允许。
+    ready_consecutive_samples: 3
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 无数据时间探针；定时比较当前单调时间与最后回调时间；没配置不报断流阈值告警。
+    receive_age_sec:
+      enabled: true
+      warning_above: 0.7
+      error_above: 1.2
+    # 频率上下限检查；本块enabled明确启停，下方数值是同一规则的各级阈值。
+    frequency:
+      enabled: true
+      # 频率低于此值WARNING，Hz；省略不检查这一档；有两档时ERROR下限必须更低。
+      warning_below_hz: 2.5
+      # 频率低于此值ERROR，Hz；省略不检查这一档。
+      error_below_hz: 1.0
+      # 频率高于此值WARNING，Hz；省略不检查这一档。
+      warning_above_hz: 3.5
+      # 频率高于此值ERROR，Hz；省略不检查这一档；有两档时必须更高。
+      error_above_hz: 6.0
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        enabled: true
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        enabled: true
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 0.7
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 1.2
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality:
+    # 对地测距额外有效范围，米；省略不加人工范围；消息自身min_range/max_range仍有效。
+    valid_range_m:
+      enabled: true
+      # 量测/点距离下限，米；这是物理有效范围，不是最低飞行高度；默认0。
+      minimum: 0.0
+      # 量测/点距离人工上限，米；省略不加人工上限；测距仍受消息自身max_range限制。
+      maximum: 1000.0
+    # 测距±Inf的无定量结果告警；enabled开关，level等级；关闭告警也不会把Inf伪造成有效距离。
+    no_return_level:
+      enabled: true
+      level: WARNING
+    # 原始测距任务高低限；省略关闭；无armed/飞行状态门控时地面厘米级读数不应直接当飞行故障。
+    height_limits:
+      enabled: false
+      # 原始测距最低任务限，米；不是已经做倾角补偿的垂直高度；省略关闭。
+      minimum_m:
+        enabled: true
+        warning_below: 0.2
+        error_below: 0.1
+      # 原始测距最高任务限，米；省略关闭，尚未自动识别起飞/落地状态。
+      maximum_m:
+        enabled: true
+        warning_above: 20.0
+        error_above: 30.0
+    # 定位为continuous_odometry或global_localization，默认前者；测距为连续性检查块；省略测距块则关闭。
+    continuity:
+      enabled: true
+      # 连续样本差分的最短源时间间隔，秒；太小则跳过差分并重建基线；定位默认.001，姿态.0001，测距.01。
+      dt_min_sec: 0.01
+      # 连续样本差分的最长源时间间隔，秒；太大则跳过差分；定位/姿态默认1，测距1.2。
+      dt_max_sec: 1.2
+      # 相邻有效测距差绝对值阈值，米；省略关闭；地形/倾角变化也会引起跳变。
+      jump_m:
+        enabled: true
+        warning_above: 1.0
+        error_above: 3.0
+      # 原始测距变化率绝对值阈值，m/s；省略关闭；尚不能直接称为飞机垂直速度。
+      rate_abs_mps:
+        enabled: true
+        warning_above: 3.0
+        error_above: 8.0

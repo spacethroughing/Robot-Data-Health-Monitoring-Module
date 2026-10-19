@@ -1,0 +1,28 @@
+# 2026-10-19 显式开关配置：托管定位进程，先改真实命令。
+# 主要操作：enabled:true启用，enabled:false关闭；保留原阈值，恢复时只需改回true。
+# 检测规则开关已完整列出；Topic、单位、帧名、发布频率等是运行参数，不放无意义的enabled。
+# 原生布尔项（require_positive/require_psd等）本身就是开关，直接true/false。
+# 修改后重启launch加载；请保留冒号后的空格，写enabled: false，不写enabled:false。
+# 基础结构、NaN/Inf和零四元数守卫仍执行；关闭业务规则不代表数据已通过完整检测。
+# 控制器RuntimeState输入Topic；默认/robot_runtime/module_state；必须是实时心跳，不能latched。
+state_topic: /robot_runtime/module_state
+# 控制器日志根目录；每次运行新run；部署版本可由私有ROS参数覆盖。
+log_directory: ~/.ros/robot_health/runtime
+# 控制器管理的进程组列表；每组binding唯一；不是控制已经由别的launch启动的进程。
+groups:
+# 管理组标识，与模块control_binding对应；启用管理组必填。
+- binding: localization
+  enabled: true
+  # 启动命令参数数组；第一项可执行文件，后面每项一个参数；不用shell拼接；真实定位命令需现场填写。
+  command:
+  - rosrun
+  - fastlio_health_monitor
+  - start_localization.sh
+  # 要验证存活的实际ROS节点全名；启动shell存活不能替代真实节点存活。
+  supervised_ros_node: /your_actual_localization_node
+  # 启动控制器时是否自动RUN该组；默认false。
+  autostart: false
+  # SIGINT后等待正常退出的秒数；默认5，超时强制终止并记录。
+  stop_timeout_sec: 5.0
+  # 退出码0是否视为正常任务完成；默认false；只能用于确实有限长度的任务。
+  clean_exit_is_task_completion: false

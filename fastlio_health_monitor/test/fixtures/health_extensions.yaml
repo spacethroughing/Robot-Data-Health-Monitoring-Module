@@ -1,0 +1,202 @@
+# 2026-10-19 显式开关配置：仅用于感知/规划C++测试的夹具。
+# 主要操作：enabled:true启用，enabled:false关闭；保留原阈值，恢复时只需改回true。
+# 检测规则开关已完整列出；Topic、单位、帧名、发布频率等是运行参数，不放无意义的enabled。
+# 原生布尔项（require_positive/require_psd等）本身就是开关，直接true/false。
+# 修改后重启launch加载；请保留冒号后的空格，写enabled: false，不写enabled:false。
+# 基础结构、NaN/Inf和零四元数守卫仍执行；关闭业务规则不代表数据已通过完整检测。
+# 配置格式版本；目前为2；可省略，默认2；它不是软件发布版本号。
+schema_version: 2
+# 监控程序的运行参数；整个块可省略，采用各项默认值。
+monitor:
+  # 本次关联的bag路径；默认空；实机留空，回放launch会传入实际路径；新版不计算bag哈希。
+  data_reference: ''
+  # 独立单调时钟的检查/诊断发布频率，Hz；V2默认5；100表示理想间隔10ms，实际受调度影响。
+  publish_rate_hz: 5.0
+  # 频率统计窗口，秒；默认5；决定计算频率时保留多少历史。
+  statistics_window_sec: 5.0
+  # 频率可用前最少样本数；默认3，至少2；是统计准备条件，不是最低输入频率。
+  min_frequency_samples: 3
+  # 频率计算所需最短覆盖时间，秒；默认1，不能超过统计窗口；不足时显示N/A。
+  min_frequency_coverage_sec: 1.0
+  # 软规则触发前的持续时间，秒；默认0.5；0表示立即按定时检查结果报警。硬错误不等待。
+  soft_warning_hold_sec: 0.5
+  # 告警恢复前连续满足正常条件的时间，秒；默认1；防止状态来回闪。
+  recovery_hold_sec: 1.0
+  # 完整诊断输出，diagnostic_msgs/DiagnosticArray；默认/fastlio_health_monitor/diagnostics。
+  diagnostics_topic: /fastlio_health_monitor/diagnostics
+  # 简化状态输出，std_msgs/UInt8；默认/fastlio_health_monitor/status，0正常/1警告/2错误。
+  status_topic: /fastlio_health_monitor/status
+# 生命周期控制接口；用于区分正常暂停、正常停止和异常断流。
+control:
+  # 是否必须先收到控制器意图；默认false；true时未收到心跳为UNKNOWN/ERROR。
+  strict_intent: false
+  # 控制器RuntimeState输入Topic；默认/robot_runtime/module_state；必须是实时心跳，不能latched。
+  state_topic: /robot_runtime/module_state
+  # 已接入控制器后，心跳接收年龄超过此值警告；默认1秒；运行参数省略时仍有默认值。
+  heartbeat_warning_sec: 1.0
+  # 控制心跳超时ERROR/UNKNOWN阈值；默认3秒，必须大于warning；不永久相信旧STOP状态。
+  heartbeat_error_sec: 3.0
+# 只共享时间域、频率基准等运行约定；本版检测开关和阈值均完整写在各模块stream中。
+stream_defaults:
+  # 时间戳时钟域说明标签；默认device_relative；不会自动建立时钟同步或算绝对传输延迟。
+  stamp_domain: device_relative
+  # 频率计算基准：source按消息头，receive按单调接收时间；默认source；倍速回放通常选source。
+  frequency_basis: source
+# 生命周期默认参数；模块可用lifecycle覆盖；这里属于运行状态管理，省略采用明确默认值。
+lifecycle_defaults:
+  # 请求RUN后等待数据准备好的期限，默认10秒；初始可选NO_DATA不计时，首条数据才开始。
+  startup_deadline_sec: 10.0
+  # 请求STOP后等待停止确认的期限，默认5秒；超时为STOP_FAILED。
+  stop_deadline_sec: 5.0
+  # 进入RUNNING需要的连续无ERROR样本数，默认10；还需统计准备好及控制状态允许。
+  ready_consecutive_samples: 10
+# 结构化日志设置；默认启用；日志写入失败会进入诊断，历史日志不会被本次升级修改。
+logging:
+  # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+  enabled: true
+  # 健康日志根目录；省略默认~/.ros/robot_health/health；每次运行新建run目录；支持~/前缀。
+  directory: ~/.ros/robot_health/health
+  # 指标CSV采样间隔，秒；默认1；不是IMU采样周期，避免把所有原始数据重复写日志。
+  metrics_period_sec: 1.0
+  # 普通指标队列容量，默认4096；满时丢弃并记录计数。
+  metrics_queue_capacity: 4096
+  # 事件独立队列容量，默认512；满时显示日志异常，不能静默丢关键事件。
+  critical_event_queue_capacity: 512
+  # 单文件轮转大小，MiB；默认20；新文件序号递增。
+  rotate_size_mb: 20
+  # 每种日志最多保留的文件数，默认10；删除旧文件会标记日志不完整。
+  rotate_file_count: 10
+  # 单次运行累计写入预算，MiB；默认512，至少一个轮转文件大小；超限停止写入并报错。
+  total_budget_mb: 512
+  # 普通日志flush间隔，秒；默认1；关键启停事件另外执行fsync，等待上限2秒。
+  flush_period_sec: 1.0
+# 模块列表；每个模块都有enabled。使用三模块模式：将imu_attitude和ground_range的enabled改为false。
+modules:
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: perception
+  # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: RelayChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: DiagnosticRelayAdapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /perception/diagnostics
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: true
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: perception
+    # 进入RUNNING需要的连续无ERROR样本数，默认10；还需统计准备好及控制状态允许。
+    ready_consecutive_samples: 3
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 无数据时间探针；定时比较当前单调时间与最后回调时间；没配置不报断流阈值告警。
+    receive_age_sec:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # WARNING上限，严格大于触发；单位由父指标给出；关闭本条规则用同块enabled:false。
+      warning_above: 1.0
+      # ERROR上限，严格大于触发；必须大于WARNING上限；关闭本条规则用同块enabled:false。
+      error_above: 3.0
+    # 频率上下限检查；本块enabled明确启停，下方数值是同一规则的各级阈值。
+    frequency:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # 频率低于此值WARNING，Hz；省略不检查这一档；有两档时ERROR下限必须更低。
+      warning_below_hz: 0.5
+      # 频率低于此值ERROR，Hz；省略不检查这一档。
+      error_below_hz: 0.1
+      # 频率高于此值WARNING，Hz；省略不检查这一档。
+      warning_above_hz: 20.0
+      # 频率高于此值ERROR，Hz；省略不检查这一档；有两档时必须更高。
+      error_above_hz: 50.0
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+        enabled: true
+        # 枚举规则等级，WARNING或ERROR；仅用于{enabled,level}写法。
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+        enabled: true
+        # 枚举规则等级，WARNING或ERROR；仅用于{enabled,level}写法。
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 2.0
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 5.0
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality: {}
+# 模块唯一ID，启用模块必填；用于诊断、依赖与日志关联，仅字母/数字/下划线/短横线。
+- id: planning
+  # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+  enabled: true
+  # C++规则类，启用模块必填；LidarChecker/ImuChecker/LocalizationChecker/RangeChecker/RelayChecker/PlanningChecker。
+  checker: PlanningChecker
+  # ROS消息适配器，启用模块必填；必须与消息类型、checker匹配；具体支持类型见接入接口文档。
+  adapter: PathAndTaskStateAdapter
+  # 原始输入Topic，启用模块必填；与驱动或bag一致；不会修改原始消息。
+  topic: /planner/path
+  # 是否为总体健康必需项，默认true；可选测距须false；不等于停止订阅。
+  required: true
+  # 当前模块生命周期覆盖；省略继承lifecycle_defaults，再使用代码运行默认值。
+  lifecycle:
+    # RuntimeState绑定名；默认模块ID；共享sensors绑定表示传感器受同一个回放/进程控制。
+    control_binding: planning
+    # 进入RUNNING需要的连续无ERROR样本数，默认10；还需统计准备好及控制状态允许。
+    ready_consecutive_samples: 3
+  # 质量规则分组，不是单独开关；请修改各规则内部的enabled；单位等计算约定保留。
+  quality:
+    # 规划任务状态Topic，fastlio_health_monitor/TaskState；PlanningChecker启用时必填；无目标也应发状态心跳。
+    task_state_topic: /planner/task_state
+    # 规划任务状态最大接收年龄，秒；省略关闭告警；可写{enabled:false,value:2}；不将IDLE当丢路径。
+    task_state_timeout_sec:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # 标量规则的阈值；仅用于{enabled,value}写法；单位由所在规则定义。
+      value: 2.0
+    # 有目标时等待新路径的期限，秒；省略关闭；可写{enabled:false,value:2}；无目标不要求持续出路径。
+    result_deadline_sec:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # 标量规则的阈值；仅用于{enabled,value}写法；单位由所在规则定义。
+      value: 2.0
+    # 相邻规划路径点最大距离，米；省略关闭；可写{enabled:false,value:2}；只查几何连续，不判断碰撞安全。
+    maximum_segment_m:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # 标量规则的阈值；仅用于{enabled,value}写法；单位由所在规则定义。
+      value: 2.0
+  # 本模块数据流规则；分别用receive_age_sec、frequency、stamp内的enabled控制。
+  stream:
+    # 源时间戳检查总开关；enabled:false关闭重复、倒退、非正和间隔告警；不能代替receive_age_sec探针。
+    stamp:
+      # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+      enabled: true
+      # 零/非正时间戳检查本身的布尔开关；true检查、false关闭；还受stamp.enabled控制。
+      require_positive: true
+      # 时间戳重复检查；enabled为独立开关，level为启用后的WARNING或ERROR等级。
+      duplicate_level:
+        # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+        enabled: true
+        # 枚举规则等级，WARNING或ERROR；仅用于{enabled,level}写法。
+        level: WARNING
+      # 源时间戳倒退检查；enabled为独立开关，level为告警等级；计算器仍拒绝无效差分。
+      regression_level:
+        # 规则/模块开关，true启用、false关闭并保留参数。若父规则为false，子规则即使true也不执行。
+        enabled: true
+        # 枚举规则等级，WARNING或ERROR；仅用于{enabled,level}写法。
+        level: ERROR
+      # 相邻源时间戳间隔的WARNING阈值，秒；省略就没有这一档；要等下一条数据才知道间隔。
+      max_gap_warning_sec: 0.3
+      # 相邻源时间戳间隔的ERROR阈值，秒；省略就没有这一档；与接收年龄探针不同。
+      max_gap_error_sec: 1.0

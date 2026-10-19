@@ -1,0 +1,303 @@
+# 实机RViz布局；健康参数只改config/health_robot.yaml，显示设置不参与健康判断。
+# 侧栏插件列表，包含健康诊断面板。
+Panels:
+# 显示/插件类型，由RViz插件系统加载。
+- Class: fastlio_health_monitor/HealthPanel
+  # 界面中的可读名称，不是ROS节点名。
+  Name: 机器人健康检测台 V2
+# RViz交互偏好。
+Preferences:
+  # 退出RViz时是否提示保存布局。
+  PromptSaveOnExit: false
+# 三维显示、工具、全局设置和视角的根配置。
+Visualization Manager:
+  # 显示/插件类型，由RViz插件系统加载。
+  Class: ''
+  # 三维显示图层列表。
+  Displays:
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Grid
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: true
+    # 界面中的可读名称，不是ROS节点名。
+    Name: Grid
+    # RViz Plane显示属性，不参与健康规则。
+    Plane: XY
+    # RViz Plane Cell Count显示属性，不参与健康规则。
+    Plane Cell Count: 40
+    # RViz Cell Size显示属性，不参与健康规则。
+    Cell Size: 1
+    # 图层RGB颜色；不表示传感器健康等级。
+    Color: 85; 91; 101
+    # 透明度，0透明、1不透明。
+    Alpha: 0.5
+    # 该图层参照坐标系，<Fixed Frame>使用全局设置。
+    Reference Frame: <Fixed Frame>
+    # RViz保存的当前启用/选择状态。
+    Value: true
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/TF
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: false
+    # 界面中的可读名称，不是ROS节点名。
+    Name: TF
+    # RViz Frame Timeout显示属性，不参与健康规则。
+    Frame Timeout: 15
+    # RViz Marker Scale显示属性，不参与健康规则。
+    Marker Scale: 0.5
+    # RViz Show Arrows显示属性，不参与健康规则。
+    Show Arrows: true
+    # RViz Show Axes显示属性，不参与健康规则。
+    Show Axes: true
+    # RViz Show Names显示属性，不参与健康规则。
+    Show Names: true
+    # RViz Update Interval显示属性，不参与健康规则。
+    Update Interval: 0
+    # RViz保存的当前启用/选择状态。
+    Value: false
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/PointCloud2
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: false
+    # 界面中的可读名称，不是ROS节点名。
+    Name: 原始雷达（rslidar坐标，无TF时关闭）
+    # 此显示项订阅的ROS Topic。
+    Topic: /fastlio_health_monitor/lidar_raw_visualization
+    # 该显示项消息队列长度；过大增加延迟与内存。
+    Queue Size: 2
+    # 点/方块等绘图样式。
+    Style: Points
+    # 点显示像素大小。
+    Size (Pixels): 2
+    # 点的世界坐标显示尺寸，米。
+    Size (m): 0.03
+    # 点云着色来源，如Intensity使用反射强度。
+    Color Transformer: Intensity
+    # 强度着色读取的字段名。
+    Channel Name: intensity
+    # 自动根据点云强度选择着色范围，可能随帧变化。
+    Autocompute Intensity Bounds: true
+    # 是否采用彩虹强度配色。
+    Use rainbow: true
+    # 是否反转强度配色方向。
+    Invert Rainbow: false
+    # 透明度，0透明、1不透明。
+    Alpha: 1
+    # 点云保留秒数；0只显示最新数据，不等于累计建图。
+    Decay Time: 0
+    # 点云坐标解析方式，XYZ读取三维位置。
+    Position Transformer: XYZ
+    # 是否使用全局固定坐标系。
+    Use Fixed Frame: true
+    # 是否允许鼠标选中该图层对象。
+    Selectable: false
+    # RViz保存的当前启用/选择状态。
+    Value: false
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/PointCloud2
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: true
+    # 界面中的可读名称，不是ROS节点名。
+    Name: 外部定位节点的配准点云
+    # 此显示项订阅的ROS Topic。
+    Topic: /cloud_registered
+    # 该显示项消息队列长度；过大增加延迟与内存。
+    Queue Size: 2
+    # 点/方块等绘图样式。
+    Style: Points
+    # 点显示像素大小。
+    Size (Pixels): 2
+    # 点的世界坐标显示尺寸，米。
+    Size (m): 0.03
+    # 点云着色来源，如Intensity使用反射强度。
+    Color Transformer: Intensity
+    # 强度着色读取的字段名。
+    Channel Name: intensity
+    # 自动根据点云强度选择着色范围，可能随帧变化。
+    Autocompute Intensity Bounds: true
+    # 是否采用彩虹强度配色。
+    Use rainbow: true
+    # 是否反转强度配色方向。
+    Invert Rainbow: false
+    # 透明度，0透明、1不透明。
+    Alpha: 1
+    # 点云保留秒数；0只显示最新数据，不等于累计建图。
+    Decay Time: 0
+    # 点云坐标解析方式，XYZ读取三维位置。
+    Position Transformer: XYZ
+    # 是否使用全局固定坐标系。
+    Use Fixed Frame: true
+    # 是否允许鼠标选中该图层对象。
+    Selectable: false
+    # RViz保存的当前启用/选择状态。
+    Value: true
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/PointCloud2
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: false
+    # 界面中的可读名称，不是ROS节点名。
+    Name: FAST-LIO 累积地图
+    # 此显示项订阅的ROS Topic。
+    Topic: /Laser_map
+    # 该显示项消息队列长度；过大增加延迟与内存。
+    Queue Size: 1
+    # 点/方块等绘图样式。
+    Style: Points
+    # 点显示像素大小。
+    Size (Pixels): 1
+    # 点的世界坐标显示尺寸，米。
+    Size (m): 0.03
+    # 点云着色来源，如Intensity使用反射强度。
+    Color Transformer: Intensity
+    # 强度着色读取的字段名。
+    Channel Name: intensity
+    # 自动根据点云强度选择着色范围，可能随帧变化。
+    Autocompute Intensity Bounds: false
+    # 是否采用彩虹强度配色。
+    Use rainbow: true
+    # 是否反转强度配色方向。
+    Invert Rainbow: false
+    # RViz Min Intensity显示属性，不参与健康规则。
+    Min Intensity: 0
+    # RViz Max Intensity显示属性，不参与健康规则。
+    Max Intensity: 152
+    # 透明度，0透明、1不透明。
+    Alpha: 1
+    # 点云保留秒数；0只显示最新数据，不等于累计建图。
+    Decay Time: 0
+    # 点云坐标解析方式，XYZ读取三维位置。
+    Position Transformer: XYZ
+    # 是否使用全局固定坐标系。
+    Use Fixed Frame: true
+    # 是否允许鼠标选中该图层对象。
+    Selectable: false
+    # RViz保存的当前启用/选择状态。
+    Value: false
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Odometry
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: true
+    # 界面中的可读名称，不是ROS节点名。
+    Name: 定位输出
+    # 此显示项订阅的ROS Topic。
+    Topic: /Odometry
+    # RViz Keep显示属性，不参与健康规则。
+    Keep: 20
+    # 位姿或箭头的形状。
+    Shape:
+      # RViz保存的当前启用/选择状态。
+      Value: Axes
+      # RViz Axes Length显示属性，不参与健康规则。
+      Axes Length: 0.5
+      # RViz Axes Radius显示属性，不参与健康规则。
+      Axes Radius: 0.04
+      # 图层RGB颜色；不表示传感器健康等级。
+      Color: 70; 180; 255
+      # 透明度，0透明、1不透明。
+      Alpha: 1
+    # RViz Covariance显示属性，不参与健康规则。
+    Covariance:
+      # RViz保存的当前启用/选择状态。
+      Value: false
+    # RViz保存的当前启用/选择状态。
+    Value: true
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Path
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: false
+    # 界面中的可读名称，不是ROS节点名。
+    Name: 定位轨迹
+    # 此显示项订阅的ROS Topic。
+    Topic: /path
+    # 透明度，0透明、1不透明。
+    Alpha: 1
+    # 轨迹缓存长度，影响可见历史。
+    Buffer Length: 1
+    # 图层RGB颜色；不表示传感器健康等级。
+    Color: 255; 180; 30
+    # 轨迹线绘制样式。
+    Line Style: Lines
+    # 轨迹线显示宽度。
+    Line Width: 0.05
+    # RViz Pose Style显示属性，不参与健康规则。
+    Pose Style: None
+    # RViz保存的当前启用/选择状态。
+    Value: false
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Axes
+    # 是否启用此显示项；false不会停止监控节点。
+    Enabled: true
+    # 界面中的可读名称，不是ROS节点名。
+    Name: 世界坐标系
+    # 该图层参照坐标系，<Fixed Frame>使用全局设置。
+    Reference Frame: camera_init
+    # RViz Length显示属性，不参与健康规则。
+    Length: 1
+    # RViz Radius显示属性，不参与健康规则。
+    Radius: 0.05
+    # RViz保存的当前启用/选择状态。
+    Value: true
+  # 是否启用此显示项；false不会停止监控节点。
+  Enabled: true
+  # 全局坐标系、背景和渲染设置。
+  Global Options:
+    # 三维视图背景RGB颜色。
+    Background Color: 34; 38; 45
+    # RViz Default Light显示属性，不参与健康规则。
+    Default Light: true
+    # 绘图使用的固定坐标系；必须与消息frame/真实TF一致。
+    Fixed Frame: camera_init
+    # RViz渲染频率上限，Hz；不是输入消息频率。
+    Frame Rate: 30
+  # 界面中的可读名称，不是ROS节点名。
+  Name: root
+  # 鼠标交互与发布目标等工具列表。
+  Tools:
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Interact
+    # RViz Hide Inactive Objects显示属性，不参与健康规则。
+    Hide Inactive Objects: true
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/MoveCamera
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Select
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/FocusCamera
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/Measure
+  # RViz保存的当前启用/选择状态。
+  Value: true
+  # 相机视角和保存的观察位置。
+  Views:
+    # 当前相机控制器和视角。
+    Current:
+      # 显示/插件类型，由RViz插件系统加载。
+      Class: rviz/Orbit
+      # 相机到观察目标的距离，米。
+      Distance: 60
+      # 相机观察中心的三维位置。
+      Focal Point:
+        # 窗口或视图X位置。
+        X: 0
+        # 窗口或视图Y位置。
+        Y: 0
+        # RViz Z显示属性，不参与健康规则。
+        Z: 0
+      # 相机俯仰角，弧度；不是健康阈值中的pitch。
+      Pitch: 0.5
+      # 相机跟随的坐标系。
+      Target Frame: camera_init
+      # RViz保存的当前启用/选择状态。
+      Value: Orbit (rviz)
+      # 相机航向角，弧度；不是机器人航向测量。
+      Yaw: 1.0
+# 窗口大小、侧栏展开状态及Qt布局。
+Window Geometry:
+  # 窗口高度，像素。
+  Height: 1040
+  # 窗口宽度，像素。
+  Width: 1900
+  # RViz Hide Left Dock显示属性，不参与健康规则。
+  Hide Left Dock: false
+  # RViz Hide Right Dock显示属性，不参与健康规则。
+  Hide Right Dock: false

@@ -1,7 +1,15 @@
+# ROS接口数据流：控制器/任务生产者 -> 消息或服务 -> 健康生命周期/规划适配器。
+# 请求管理的组名，必须与控制器配置一致。
 string binding
+# 请求动作：RUN/STOP/RESET_FRAME等；由控制器校验并执行。
 string command
+# 以下为服务响应；accepted=false时不应假定操作已经发生。
 ---
+# 请求是否真正被控制器接受。
 bool accepted
+# 本次请求的因果标识。
 string command_id
+# 内部实例身份返回值；协议兼容保留，新日志不输出。
 string producer_instance_id
+# 接受/拒绝请求的原因。
 string reason

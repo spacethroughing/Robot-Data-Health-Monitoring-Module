@@ -1,0 +1,19 @@
+<launch>
+  <!-- Receives existing robot topics; never starts or fakes hardware/localization. -->
+  <!-- 当前入口所用配置路径；V2读完整YAML，V1入口读旧平面rosparam。 -->
+  <arg name="config" default="$(find fastlio_health_monitor)/config/health_robot.yaml" />
+  <!-- true打开RViz检测台，false适合机器人无界面运行。 -->
+  <arg name="rviz" default="true" />
+  <!-- RViz布局路径；决定地图、轨迹和诊断面板的显示。 -->
+  <arg name="rviz_config" default="$(find fastlio_health_monitor)/rviz/robot_health.rviz" />
+  <include file="$(find fastlio_health_monitor)/launch/monitor.launch">
+    <!-- 当前入口所用配置路径；V2读完整YAML，V1入口读旧平面rosparam。 -->
+    <arg name="config" value="$(arg config)" />
+    <!-- 回放使用/clock，实机通常false；健康接收年龄仍使用单调时钟。 -->
+    <arg name="use_sim_time" value="false" />
+  </include>
+  <include if="$(arg rviz)" file="$(find fastlio_health_monitor)/launch/rviz.launch">
+    <!-- RViz布局路径；决定地图、轨迹和诊断面板的显示。 -->
+    <arg name="rviz_config" value="$(arg rviz_config)" />
+  </include>
+</launch>

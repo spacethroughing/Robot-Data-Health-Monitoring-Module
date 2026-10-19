@@ -1,0 +1,5 @@
+<launch>
+  <!-- RViz布局路径；决定地图、轨迹和诊断面板的显示。 -->
+  <arg name="rviz_config" default="$(find fastlio_health_monitor)/rviz/robot_health.rviz" />
+  <node pkg="rviz" type="rviz" name="robot_health_rviz" args="-d $(arg rviz_config)" output="screen" />
+</launch>

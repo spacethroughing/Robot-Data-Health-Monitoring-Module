@@ -1,0 +1,22 @@
+<launch>
+  <!-- 当前入口所用配置路径；V2读完整YAML，V1入口读旧平面rosparam。 -->
+  <arg name="config" default="$(find fastlio_health_monitor)/config/health_robot.yaml" />
+  <!-- 受管进程的命令/节点存活/启停配置，不是健康阈值配置。 -->
+  <arg name="runtime_config" default="$(find fastlio_health_monitor)/config/runtime_localization.example.yaml" />
+  <!-- true打开RViz检测台，false适合机器人无界面运行。 -->
+  <arg name="rviz" default="true" />
+  <!-- 受管进程控制器日志根目录；与健康日志、播放器日志分开。 -->
+  <arg name="runtime_log_directory" default="$(env HOME)/.ros/robot_health/runtime" />
+  <include file="$(find fastlio_health_monitor)/launch/live.launch">
+    <!-- 当前入口所用配置路径；V2读完整YAML，V1入口读旧平面rosparam。 -->
+    <arg name="config" value="$(arg config)" />
+    <!-- true打开RViz检测台，false适合机器人无界面运行。 -->
+    <arg name="rviz" value="$(arg rviz)" />
+  </include>
+  <node pkg="fastlio_health_monitor" type="robot_runtime_controller_node" name="robot_runtime_controller" output="screen">
+    <!-- 传给C++节点的配置文件路径。 -->
+    <param name="config_file" value="$(arg runtime_config)" />
+    <!-- 该节点本次日志的根目录，每次run使用新子目录。 -->
+    <param name="log_directory" value="$(arg runtime_log_directory)" />
+  </node>
+</launch>

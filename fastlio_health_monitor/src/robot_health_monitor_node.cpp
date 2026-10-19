@@ -1,3 +1,7 @@
+/**
+ * V2 ROS节点数据流：加载配置 -> 注册Adapter和ModuleMonitor -> 收样本/控制意图 -> SteadyTimer。
+ * 定时输出标准诊断及UInt8状态，记录事件/指标；验证回放结束后封存，界面诊断继续。
+ */
 #include <diagnostic_msgs/DiagnosticArray.h>
 #include <fastlio_health_monitor/RuntimeState.h>
 #include <fastlio_health_monitor/bag_log_timeline.h>
@@ -10,6 +14,7 @@
 namespace robot_health {
 class HealthRegistry {
  public:
+  // 按配置创建模块、适配器和事件回调；ROS消息 -> Sample -> ModuleMonitor -> 事件记录。
   HealthRegistry(ros::NodeHandle& nh, const MonitorConfig& config,
                  EventRecorder& logs)
       : nh_(nh), config_(config), logs_(logs) {
@@ -28,12 +33,20 @@ class HealthRegistry {
           context["controller_log_directory"] =
               runtime.controller_log_directory;
           context["data_reference"] = runtime.data_reference;
-          context["data_sha256"] = runtime.data_sha256;
         }
         auto sc = sample_context_.find(id);
         if (sc != sample_context_.end() && type != "INSTANCE_RESET" &&
             type != "CONTROL_INTENT")
           context.insert(sc->second.begin(), sc->second.end());
+        if (m && type != "INSTANCE_RESET" && type != "CONTROL_INTENT") {
+          const auto& values = m->sampleValues();
+          for (const auto* key : {"roll_deg", "pitch_deg", "attitude_status",
+               "attitude_rotation_jump_deg", "attitude_angular_speed_dps",
+               "range_m", "range_status", "range_delta_m", "range_rate_mps"}) {
+            auto it = values.find(key);
+            if (it != values.end()) context[it->first] = it->second;
+          }
+        }
         context["soft_warning_hold_sec"] = number(config_.soft_hold);
         context["recovery_hold_sec"] = number(config_.recovery_hold);
         logs_.event(type, id, m ? m->instance() : "", m ? m->epoch() : 1, f,
@@ -49,6 +62,7 @@ class HealthRegistry {
     control_sub_ =
         nh_.subscribe(config.state_topic, 100, &HealthRegistry::control, this);
   }
+  // 轮询任务型适配器并收集模块报告，再沿无环依赖图传播业务不可用状态。
   std::vector<ModuleReport> evaluate(double now) {
     for (auto& kv : adapters_) kv.second->poll(now);
     std::vector<ModuleReport> reports;
@@ -69,11 +83,12 @@ class HealthRegistry {
     for (auto& r : reports) dependencies(r);
     return reports;
   }
+  // 封存前确认所有参与模块都属于本次播放器且已确认STOPPED，防止错误的EOF信号关闭日志。
   bool ownedByPlayback(const std::string& controller, const std::string& run,
                        const std::string& instance) const {
     bool have_required = false;
     for (const auto& kv : modules_) {
-      if (!kv.second->config().required) continue;
+      if (!kv.second->contributesToOverall()) continue;
       have_required = true;
       const auto& u = kv.second->runtime();
       if (u.controller != controller || u.controller_run_id != run ||
@@ -84,6 +99,7 @@ class HealthRegistry {
   }
 
  private:
+  // 接收非latched RuntimeState，更新对应binding模块；可信重置时重连订阅以清除旧队列。
   void control(
       const ros::MessageEvent<fastlio_health_monitor::RuntimeState const>&
           event) {
@@ -127,6 +143,7 @@ class HealthRegistry {
 };
 class RobotHealthMonitor {
  public:
+  // 加载配置、建立日志与模块注册表，发布标准诊断，并创建独立SteadyTimer时间探针。
   RobotHealthMonitor()
       : private_("~"),
         config_(load()),
@@ -153,6 +170,7 @@ class RobotHealthMonitor {
   }
 
  private:
+  // 只接受指定播放器的新鲜完成状态，核对来源/实例/关联bag后安排封存。
   void playbackState(const ros::MessageEvent<fastlio_health_monitor::RuntimeState const>& event) {
     if (logs_.finished()) return;
     const auto& header = *event.getConnectionHeaderPtr();
@@ -172,6 +190,7 @@ class RobotHealthMonitor {
       finish_pending_ = true;
     } else finish_pending_ = false;
   }
+  // 读取配置并应用launch传入的数据引用，保存对应的有效配置快照。
   MonitorConfig load() {
     std::string file;
     private_.param<std::string>("config_file", file, "");
@@ -192,6 +211,7 @@ class RobotHealthMonitor {
       throw;
     }
   }
+  // 把ModuleReport转换为标准DiagnosticStatus，保留module_id等稳定接入键。
   diagnostic_msgs::DiagnosticStatus diagnostic(const ModuleReport& r) {
     diagnostic_msgs::DiagnosticStatus s;
     s.name = "Robot health/" + r.id;
@@ -211,25 +231,32 @@ class RobotHealthMonitor {
     }
     return s;
   }
+  // 定时评估全部模块 -> 汇总OK/WARNING/ERROR -> 发布诊断 -> 周期采样指标 -> 验证EOF后封存。
   void tick(const ros::SteadyTimerEvent&) {
     double now = steadyNow();
     auto reports = registry_.evaluate(now);
     diagnostic_msgs::DiagnosticArray array;
     array.header.stamp = ros::Time::now();
     int overall = OK;
-    bool valid = true, all_active = true;
+    bool valid = true, all_active = true, all_participating_active = true;
     bool all_paused = true, all_stopped = true;
-    unsigned required_count = 0;
+    unsigned participating_count = 0, optional_no_data_count = 0;
     Values summary = logs_.status();
     for (const auto& r : reports) {
       array.status.push_back(diagnostic(r));
-      if (r.required) {
-        ++required_count;
+      if (r.required)
+        all_active = all_active && (r.state == "RUNNING" || r.state == "IDLE");
+      if (!r.contributes_to_overall &&
+          r.values.at("missing_data_policy") == "no_data_until_first_sample" &&
+          r.values.at("data_presence") == "NO_DATA") ++optional_no_data_count;
+      if (r.contributes_to_overall) {
+        ++participating_count;
         all_paused = all_paused && r.state == "PAUSED";
         all_stopped = all_stopped && r.state == "STOPPED";
         overall = std::max(overall, r.level);
         valid = valid && r.valid;
-        all_active = all_active && (r.state == "RUNNING" || r.state == "IDLE");
+        all_participating_active = all_participating_active &&
+                                  (r.state == "RUNNING" || r.state == "IDLE");
       }
     }
     if (!logs_.healthy()) {
@@ -240,7 +267,10 @@ class RobotHealthMonitor {
     summary["module_id"] = "overall";
     summary["operational_valid"] = valid ? "true" : "false";
     summary["all_required_modules_active"] = all_active ? "true" : "false";
-    if (required_count && (all_paused || all_stopped))
+    summary["all_participating_modules_active"] = all_participating_active ? "true" : "false";
+    summary["participating_module_count"] = std::to_string(participating_count);
+    summary["optional_no_data_count"] = std::to_string(optional_no_data_count);
+    if (participating_count && (all_paused || all_stopped))
       summary["operating_state"] = all_paused ? "PAUSED" : "STOPPED";
     diagnostic_msgs::DiagnosticStatus s;
     s.name = "Robot health/overall";
@@ -248,6 +278,8 @@ class RobotHealthMonitor {
     s.level = overall;
     s.message = std::string(levelName(overall)) +
                 " | operational_valid=" + (valid ? "true" : "false");
+    if (optional_no_data_count)
+      s.message += " | optional_no_data=" + std::to_string(optional_no_data_count);
     for (const auto& kv : summary) {
       diagnostic_msgs::KeyValue v;
       v.key = kv.first;
@@ -277,7 +309,7 @@ class RobotHealthMonitor {
     bool seal = finish_on_complete_ && finish_pending_ && !logs_.finished() &&
                 registry_.ownedByPlayback(completed_controller_, completed_run_, completed_instance_);
     for (const auto& r : reports)
-      if (r.required && (r.state != "STOPPED" || r.instance != completed_instance_)) seal = false;
+      if (r.contributes_to_overall && (r.state != "STOPPED" || r.instance != completed_instance_)) seal = false;
     if (!logs_.finished() && (seal || now - last_metrics_ >= config_.metrics_period)) {
       for (const auto& r : reports) logs_.metrics(r, now);
       last_metrics_ = now;
@@ -305,6 +337,7 @@ class RobotHealthMonitor {
   double last_metrics_ = 0;
 };
 }  // namespace robot_health
+// ROS程序入口：初始化节点、创建业务对象、运行回调循环；初始化失败返回非零退出码。
 int main(int argc, char** argv) {
   ros::init(argc, argv, "fastlio_health_monitor");
   try {

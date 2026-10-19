@@ -1,3 +1,7 @@
+/**
+ * 日志实现：事件/指标排队 -> writer线程序列化落盘 -> 关键事件fsync -> EOF/退出封存。
+ * 用户删除的字段在统一JSON出口过滤，CSV也移除实例/代际列；历史日志不改写。
+ */
 #include <dlfcn.h>
 #include <fastlio_health_monitor/event_recorder.h>
 #include <fcntl.h>
@@ -15,6 +19,7 @@
 #include "source_build_manifest.h"
 
 namespace robot_health {
+// 正确转义引号、反斜杠及控制字符，保证事件JSONL逐行可被解析。
 std::string jsonString(const std::string& v) {
   std::ostringstream s;
   s << '"';
@@ -45,16 +50,22 @@ std::string jsonString(const std::string& v) {
   s << '"';
   return s.str();
 }
+// 把键值上下文编码为JSON，并在统一出口排除本版删除的日志字段。
 std::string jsonValues(const Values& v) {
   std::string s = "{";
   bool first = true;
   for (const auto& p : v) {
+    // 唯一日志出口过滤：防止上下文或后续新增调用把已删除字段重新写回。
+    if (p.first == "producer_instance_id" || p.first == "module_epoch" ||
+        p.first == "metric" || p.first == "effective_config_sha256" ||
+        p.first == "data_sha256" || p.first == "epoch") continue;
     if (!first) s += ',';
     first = false;
     s += jsonString(p.first) + ":" + jsonString(p.second);
   }
   return s + "}";
 }
+// 读取UTC墙钟文字，仅供静态辅助信息使用；事件记录时间仍只用用户指定的三项。
 std::string utcNow() {
   auto now = std::chrono::system_clock::now();
   auto t = std::chrono::system_clock::to_time_t(now);
@@ -64,6 +75,7 @@ std::string utcNow() {
   std::strftime(buf, sizeof(buf), "%Y-%m-%dT%H:%M:%SZ", &tm);
   return buf;
 }
+// 对源码/配置文字做摘要以辅助版本追溯；本版不输出effective_config_sha256字段。
 std::string sha256Text(const std::string& v) {
   unsigned char d[SHA256_DIGEST_LENGTH];
   SHA256(reinterpret_cast<const unsigned char*>(v.data()), v.size(), d);
@@ -72,6 +84,7 @@ std::string sha256Text(const std::string& v) {
     out << std::hex << std::setw(2) << std::setfill('0') << int(c);
   return out.str();
 }
+// 流式计算程序或核心库文件摘要；本版不再为了日志启动而读取整个bag做哈希。
 std::string sha256File(const std::string& path) {
   std::ifstream in(path, std::ios::binary);
   if (!in) return "unavailable";
@@ -90,6 +103,7 @@ std::string sha256File(const std::string& path) {
   return out.str();
 }
 namespace {
+// 转义CSV中的逗号、引号和换行，使一行指标可以正确导入表格。
 std::string csv(const std::string& text) {
   std::string s = "\"";
   for (char c : text) {
@@ -100,15 +114,17 @@ std::string csv(const std::string& text) {
 }
 const char* header =
     "bag_elapsed_sec,source_stamp_sec,steady_elapsed_sec,module_id,"
-    "producer_instance_id,epoch,operating_state,health_level,operational_valid,metrics_json\n";
+    "operating_state,health_level,operational_valid,values_json\n";
 // Source nanoseconds remain internal for exact decimal formatting. Only the
 // three selected time fields are serialized; diagnostic durations stay intact.
+// 从日志上下文中去掉重复的源时间字段；精确纳秒只在内部用于格式化。
 Values loggedValues(Values values) {
   values.erase("last_stamp_sec");
   values.erase("source_stamp_ns");
   values.erase("source_stamp_sec");
   return values;
 }
+// 使用整数拆分纳秒为秒和9位小数，避免Unix大时间戳被低精度格式化。
 std::string nsSeconds(uint64_t ns) {
   std::ostringstream out;
   out << ns / 1000000000ULL << '.' << std::setw(9) << std::setfill('0')
@@ -119,6 +135,7 @@ struct BagFields {
   bool valid = false;
   std::string elapsed;
 };
+// 从可选时间线读取/clock并计算相对bag起点秒数；未就绪/超边界时记录null。
 BagFields bagFields(const LogTimeline& timeline) {
   BagFields fields;
   if (!timeline.current_ns) return fields;
@@ -128,6 +145,7 @@ BagFields bagFields(const LogTimeline& timeline) {
   fields.elapsed = nsSeconds(ns - timeline.begin_ns);
   return fields;
 }
+// 优先用适配器保存的精确源时间戳；无关联样本时返回null，不拿当前时间顶替。
 std::pair<std::string, std::string> sourceFields(const Values& values) {
   auto ns = values.find("source_stamp_ns");
   if (ns != values.end()) {
@@ -152,6 +170,7 @@ std::pair<std::string, std::string> sourceFields(const Values& values) {
   }
   return {"null", ""};
 }
+// 执行fsync确保关键记录交给系统持久化；失败会进入日志异常状态。
 bool syncFile(const std::string& path) {
   int fd = open(path.c_str(), O_RDONLY | O_CLOEXEC);
   if (fd < 0) return false;
@@ -160,11 +179,11 @@ bool syncFile(const std::string& path) {
   return ok;
 }
 }  // namespace
+// 建立本次run目录、保存配置/程序版本，启动单写入线程，提交RUN_BEGIN。
 EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline)
     : config_(c),
       timeline_(timeline),
       run_id_(uniqueId()),
-      config_hash_(sha256Text(c.effective_text)),
       started_(steadyNow()) {
   if (!c.logging) return;
   try {
@@ -182,10 +201,10 @@ EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline
     auto len = readlink("/proc/self/exe", exe, sizeof(exe) - 1);
     if (len > 0) exe[len] = 0;
     Values manifest{
+        {"log_schema_version", "3"},
         {"monitor_run_id", run_id_},
         {"config_source_path", c.source_path},
         {"config_source_sha256", sha256Text(c.source_text)},
-        {"effective_config_sha256", config_hash_},
         {"binary_sha256", len > 0 ? sha256File(exe) : "unavailable"},
         {"binary_path", len > 0 ? exe : "unavailable"},
         {"time_policy",
@@ -204,9 +223,6 @@ EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline
     if (uname(&system) == 0) manifest["kernel"] = system.release;
     manifest["compiler"] = __VERSION__;
     manifest["data_reference"] = c.data_reference;
-    data_hash_ =
-        c.data_reference.empty() ? "unspecified" : sha256File(c.data_reference);
-    manifest["data_sha256"] = data_hash_;
     manifest["bag_time_available"] = timeline_.current_ns ? "true" : "false";
     manifest["bag_start_time_sec"] = timeline_.current_ns ? nsSeconds(timeline_.begin_ns) : "unavailable";
     manifest["bag_end_time_sec"] = timeline_.current_ns ? nsSeconds(timeline_.end_ns) : "unavailable";
@@ -223,9 +239,11 @@ EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline
     std::cerr << "LOG_WRITE_FAILED: " << e.what() << std::endl;
   }
 }
+// 析构时幂等封存日志，确保正常关节点仍写RUN_END并排空队列。
 EventRecorder::~EventRecorder() {
   finish("node shutdown");
 }
+// 提交唯一RUN_END，等待写线程排空、flush/fsync并关闭；结束后不再追加。
 bool EventRecorder::finish(const std::string& reason, const Values& context) {
   std::lock_guard<std::mutex> finish_lock(finish_mutex_);
   if (finished_) return healthy();
@@ -247,6 +265,7 @@ bool EventRecorder::finish(const std::string& reason, const Values& context) {
   finished_ = true;
   return queued && healthy();
 }
+// 线程安全的事件入口；将业务线程与磁盘写入分离，封存后忽略追加。
 bool EventRecorder::event(const std::string& type, const std::string& module,
                           const std::string& instance, uint64_t epoch,
                           const Finding& f, int before, int after,
@@ -257,11 +276,14 @@ bool EventRecorder::event(const std::string& type, const std::string& module,
   return enqueueEvent(type, module, instance, epoch, f, before, after,
                       context, durable, lock);
 }
+// 生成三时间字段事件、删除精简字段、进入关键队列；必要时等待持久化确认。
 bool EventRecorder::enqueueEvent(const std::string& type, const std::string& module,
                                 const std::string& instance, uint64_t epoch,
                                 const Finding& f, int before, int after,
                                 const Values& context, bool durable,
                                 std::unique_lock<std::mutex>& lock) {
+  (void)instance;
+  (void)epoch;
   if (failed_ || !writer_.joinable()) {
     ++dropped_events_;
     return false;
@@ -278,10 +300,8 @@ bool EventRecorder::enqueueEvent(const std::string& type, const std::string& mod
       ",\"steady_elapsed_sec\":" + number(steadyNow() - started_) +
       ",\"event_type\":" + jsonString(type) +
       ",\"module_id\":" + jsonString(module) +
-      ",\"producer_instance_id\":" + jsonString(instance) +
-      ",\"module_epoch\":" + std::to_string(epoch) +
       ",\"rule_id\":" + jsonString(f.id) +
-      ",\"metric\":" + jsonString(f.metric) + ",\"value\":" + value +
+      ",\"value\":" + value +
       ",\"raw_value_text\":" +
       jsonString(std::isfinite(f.value)
                      ? number(f.value)
@@ -291,7 +311,6 @@ bool EventRecorder::enqueueEvent(const std::string& type, const std::string& mod
       ",\"from_level\":" + jsonString(levelName(before)) +
       ",\"to_level\":" + jsonString(levelName(after)) +
       ",\"reason\":" + jsonString(f.reason) +
-      ",\"effective_config_sha256\":" + jsonString(config_hash_) +
       ",\"context\":" + jsonValues(loggedValues(context)) + "}\n";
   if (events_.size() >= config_.event_capacity) {
     ++dropped_events_;
@@ -311,6 +330,7 @@ bool EventRecorder::enqueueEvent(const std::string& type, const std::string& mod
   }
   return true;
 }
+// 定期把模块报告写入CSV队列；去掉实例/代际列及嵌套旧字段，保留有用指标值。
 void EventRecorder::metrics(const ModuleReport& r, double now) {
   if (!config_.logging || failed_) return;
   std::lock_guard<std::mutex> lock(mutex_);
@@ -320,7 +340,7 @@ void EventRecorder::metrics(const ModuleReport& r, double now) {
   std::ostringstream out;
   out << bag.elapsed << ',' << (source.first == "null" ? "" : source.first)
       << ',' << number(now - started_) << ',' << csv(r.id)
-      << ',' << csv(r.instance) << ',' << r.epoch << ',' << csv(r.state) << ','
+      << ',' << csv(r.state) << ','
       << r.level << ',' << (r.valid ? "true" : "false") << ','
       << csv(jsonValues(loggedValues(r.values))) << '\n';
   if (metrics_.size() >= config_.metrics_capacity) {
@@ -330,12 +350,12 @@ void EventRecorder::metrics(const ModuleReport& r, double now) {
   metrics_.push_back(out.str());
   available_.notify_one();
 }
+// 提供日志健康、目录、丢弃计数、封存状态；供总体诊断和界面显示。
 Values EventRecorder::status() const {
   std::lock_guard<std::mutex> lock(mutex_);
   const bool incomplete =
       failed_ || dropped_events_ || dropped_metrics_ || rotated_files_;
   return {{"data_reference", config_.data_reference},
-          {"data_sha256", data_hash_},
           {"monitor_run_id", run_id_},
           {"log_directory", directory_},
           {"logs_enabled", config_.logging ? "true" : "false"},
@@ -348,9 +368,9 @@ Values EventRecorder::status() const {
           {"log_write_failed", failed_ ? "true" : "false"},
           {"dropped_events", std::to_string(dropped_events_)},
           {"dropped_metrics", std::to_string(dropped_metrics_)},
-          {"rotated_files_removed", std::to_string(rotated_files_)},
-          {"effective_config_sha256", config_hash_}};
+          {"rotated_files_removed", std::to_string(rotated_files_)}};
 }
+// 按大小切换新文件，超保留数量删除最老文件并明确标记日志不完整。
 void EventRecorder::rotate(std::ofstream& out, const std::string& stem,
                            unsigned& index, size_t& bytes, bool is_csv) {
   out.close();
@@ -367,6 +387,7 @@ void EventRecorder::rotate(std::ofstream& out, const std::string& stem,
     ++rotated_files_;
   }
 }
+// 唯一磁盘写线程：关键事件优先、指标后写，检查预算/写失败，最终flush/fsync封存。
 void EventRecorder::worker() {
   try {
     std::ofstream events(directory_ + "/events.0.jsonl"),

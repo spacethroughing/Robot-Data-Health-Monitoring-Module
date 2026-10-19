@@ -1,0 +1,36 @@
+<launch>
+  <!-- 2026-10-19：先加载配置，再创建监控/显示/受管回放；暂停与结束通过实时状态同步。 -->
+  <!-- Range is optional until its first sample; the existing four topics remain required. -->
+  <!-- 要只读回放的bag路径；不会自动修复或改写原文件。 -->
+  <arg name="bag" />
+  <!-- 回放倍率；1.0为原速；接收年龄按真实单调时间，源频率按YAML基准。 -->
+  <arg name="rate" default="1.0" />
+  <!-- true打开RViz检测台，false适合机器人无界面运行。 -->
+  <arg name="rviz" default="true" />
+  <!-- 是否启动健康节点；分终端时可只启动监控。 -->
+  <arg name="start_monitor" default="true" />
+  <!-- 是否启动受管回放器；分终端时可只启动播放器。 -->
+  <arg name="start_playback" default="true" />
+  <!-- 健康检测YAML路径；阈值和输入Topic在该文件修改，重启生效。 -->
+  <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_bag.yaml" />
+  <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
+  <arg name="finish_log_on_playback_complete" default="true" />
+  <include file="$(find fastlio_health_monitor)/launch/recorded_bag_health.launch">
+    <!-- 要只读回放的bag路径；不会自动修复或改写原文件。 -->
+    <arg name="bag" value="$(arg bag)" />
+    <!-- 回放倍率；1.0为原速；接收年龄按真实单调时间，源频率按YAML基准。 -->
+    <arg name="rate" value="$(arg rate)" />
+    <!-- true打开RViz检测台，false适合机器人无界面运行。 -->
+    <arg name="rviz" value="$(arg rviz)" />
+    <!-- 是否启动健康节点；分终端时可只启动监控。 -->
+    <arg name="start_monitor" value="$(arg start_monitor)" />
+    <!-- 是否启动受管回放器；分终端时可只启动播放器。 -->
+    <arg name="start_playback" value="$(arg start_playback)" />
+    <!-- 健康检测YAML路径；阈值和输入Topic在该文件修改，重启生效。 -->
+    <arg name="health_config" value="$(arg health_config)" />
+    <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
+    <arg name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <!-- 从解析后的启用/required模块选择必需输入；关闭模块和初始可选测距不会阻塞。 -->
+    <arg name="required_inputs_from_config" value="true" />
+  </include>
+</launch>

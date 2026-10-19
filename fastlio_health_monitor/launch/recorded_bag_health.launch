@@ -1,38 +1,75 @@
 <launch>
+  <!-- 2026-10-19：先加载配置，再创建监控/显示/受管回放；暂停与结束通过实时状态同步。 -->
   <!-- Review recorded sensor/localization outputs; no mapping process or invented extrinsics. -->
-  <arg name="bag" default="/home/lmw/Desktop/2026-10-14-15-19-35_修复副本/2026-10-14-15-19-35.recovered.bag" />
+  <!-- 要只读回放的bag路径；不会自动修复或改写原文件。 -->
+  <arg name="bag" />
+  <!-- 回放倍率；1.0为原速；接收年龄按真实单调时间，源频率按YAML基准。 -->
   <arg name="rate" default="1.0" />
+  <!-- true打开RViz检测台，false适合机器人无界面运行。 -->
   <arg name="rviz" default="true" />
+  <!-- Split-terminal use keeps the same owned player and state protocol. -->
+  <!-- 是否启动健康节点；分终端时可只启动监控。 -->
+  <arg name="start_monitor" default="true" />
+  <!-- 是否启动受管回放器；分终端时可只启动播放器。 -->
+  <arg name="start_playback" default="true" />
   <!-- Finish this run's JSONL/CSV after verified EOF; keep the UI and heartbeat. -->
+  <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
   <arg name="finish_log_on_playback_complete" default="true" />
-  <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_v2_rslidar_mavros.yaml" />
+  <!-- 健康检测YAML路径；阈值和输入Topic在该文件修改，重启生效。 -->
+  <arg name="health_config" default="$(find fastlio_health_monitor)/config/health_bag.yaml" />
+  <!-- RViz布局路径；决定地图、轨迹和诊断面板的显示。 -->
   <arg name="rviz_config" default="$(find fastlio_health_monitor)/rviz/rslidar_recorded_health.rviz" />
   <!-- If topic names are changed in YAML, update these readiness arguments as well. -->
+  <!-- 旧入口手工指定的必需雷达Topic；按配置推导输入时以YAML为准。 -->
   <arg name="lidar_topic" default="/rslidar_points" />
+  <!-- 旧入口手工指定的必需IMU Topic；按配置推导输入时以YAML为准。 -->
   <arg name="imu_topic" default="/mavros/imu/data_raw" />
+  <!-- 旧入口手工指定的必需定位Topic；录制结果回放不会重新运行定位算法。 -->
   <arg name="localization_topic" default="/Odometry" />
-  <arg name="playback_log_directory" default="/home/lmw/fastlio_ws/logs/robot_playback" />
+  <!-- New multi-sensor profiles derive readiness topics from required modules. -->
+  <!-- 从解析后的启用/required模块选择必需输入；关闭模块和初始可选测距不会阻塞。 -->
+  <arg name="required_inputs_from_config" default="true" />
+  <!-- 回放器日志根目录；与健康规则事件目录分开保存。 -->
+  <arg name="playback_log_directory" default="$(env HOME)/.ros/robot_health/playback" />
 
+  <!-- 全局ROS时钟选择；回放为true，实机一般false。 -->
   <param name="/use_sim_time" value="true" />
-  <include file="$(find fastlio_health_monitor)/launch/health_monitor_v2.launch">
+  <include if="$(arg start_monitor)" file="$(find fastlio_health_monitor)/launch/health_monitor_v2.launch">
+    <!-- 当前入口所用配置路径；V2读完整YAML，V1入口读旧平面rosparam。 -->
     <arg name="config" value="$(arg health_config)" />
+    <!-- 日志关联的bag引用；实机留空，回放传入实际bag路径。 -->
     <arg name="data_reference" value="$(arg bag)" />
+    <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
     <arg name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <!-- 回放器私有RuntimeState输出，用于核验正常结束来源。 -->
     <arg name="playback_state_topic" value="/recorded_bag_playback/state" />
   </include>
   <node if="$(arg rviz)" pkg="rviz" type="rviz" name="recorded_bag_health_rviz"
         args="-d $(arg rviz_config)" output="screen" />
-  <node pkg="fastlio_health_monitor" type="health_bag_playback_node" name="recorded_bag_playback" output="screen">
+  <node if="$(arg start_playback)" pkg="fastlio_health_monitor" type="health_bag_playback_node" name="recorded_bag_playback" output="screen">
+    <!-- 要只读回放的bag路径；不会自动修复或改写原文件。 -->
     <param name="bag" value="$(arg bag)" />
+    <!-- 回放倍率；1.0为原速；接收年龄按真实单调时间，源频率按YAML基准。 -->
     <param name="rate" value="$(arg rate)" />
+    <!-- 回放器是否直接发控制绑定心跳，供正常暂停/停止处理。 -->
     <param name="publish_lifecycle" value="true" />
+    <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
     <param name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <!-- 与健康节点同一份YAML；播放器复用ConfigLoader，避免两边规则选择不同。 -->
     <param name="lifecycle_config_file" value="$(arg health_config)" />
+    <!-- 是否等待真实FAST-LIO节点；只回放已录定位结果时必须false。 -->
     <param name="require_mapping_node" value="false" />
+    <!-- 从解析后的启用/required模块选择必需输入；关闭模块和初始可选测距不会阻塞。 -->
+    <param name="required_inputs_from_config" value="$(arg required_inputs_from_config)" />
+    <!-- 手工指定的必需输入列表；启用from_config后由已解析配置替代。 -->
     <rosparam param="required_input_topics" subst_value="true">["$(arg lidar_topic)", "$(arg imu_topic)", "$(arg localization_topic)"]</rosparam>
+    <!-- 必须就绪的健康节点全名，防止bag先播而漏记录开头。 -->
     <param name="monitor_node" value="/fastlio_health_monitor" />
+    <!-- 等待必需消费者的期限，秒；超时为FAULT，不假装已经正常播放。 -->
     <param name="startup_timeout_sec" value="60.0" />
+    <!-- 启动实际rosbag播放器前的连接等待，秒。 -->
     <param name="connection_delay_sec" value="1.0" />
+    <!-- 该节点本次日志的根目录，每次run使用新子目录。 -->
     <param name="log_directory" value="$(arg playback_log_directory)" />
   </node>
 </launch>

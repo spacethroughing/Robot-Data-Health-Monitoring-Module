@@ -1,3 +1,4 @@
+<!-- RViz插件入口：加载C++ HealthPanel；只订阅诊断，阈值判断在robot_health_core。 -->
 <library path="lib/libfastlio_health_monitor_panel">
   <class name="fastlio_health_monitor/HealthPanel"
          type="fastlio_health_monitor::HealthPanel"

@@ -1,0 +1,24 @@
+<launch>
+  <!-- 当前入口所用配置路径；V2读完整YAML，V1入口读旧平面rosparam。 -->
+  <arg name="config" default="$(find fastlio_health_monitor)/config/health_robot.yaml" />
+  <!-- 回放使用/clock，实机通常false；健康接收年龄仍使用单调时钟。 -->
+  <arg name="use_sim_time" default="false" />
+  <!-- 日志关联的bag引用；实机留空，回放传入实际bag路径。 -->
+  <arg name="data_reference" default="" />
+  <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
+  <arg name="finish_log_on_playback_complete" default="false" />
+  <!-- 回放器私有RuntimeState输出，用于核验正常结束来源。 -->
+  <arg name="playback_state_topic" default="" />
+  <!-- 全局ROS时钟选择；回放为true，实机一般false。 -->
+  <param name="/use_sim_time" value="$(arg use_sim_time)" />
+  <node pkg="fastlio_health_monitor" type="robot_health_monitor_node" name="fastlio_health_monitor" output="screen">
+    <!-- 传给C++节点的配置文件路径。 -->
+    <param name="config_file" value="$(arg config)" />
+    <!-- 日志关联的bag引用；实机留空，回放传入实际bag路径。 -->
+    <param name="data_reference" value="$(arg data_reference)" />
+    <!-- 确认正常EOF后封存JSONL/CSV，诊断和状态心跳继续发布。 -->
+    <param name="finish_log_on_playback_complete" value="$(arg finish_log_on_playback_complete)" />
+    <!-- 回放器私有RuntimeState输出，用于核验正常结束来源。 -->
+    <param name="playback_state_topic" value="$(arg playback_state_topic)" />
+  </node>
+</launch>

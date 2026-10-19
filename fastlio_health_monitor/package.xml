@@ -1,37 +1,22 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>fastlio_health_monitor</name>
-  <version>0.2.0</version>
-  <description>Reusable C++ ROS1 health monitoring, lifecycle control and trace logging.</description>
-  <maintainer email="dev@example.com">FAST-LIO workspace maintainer</maintainer>
+  <version>0.4.0</version>
+  <description>Standalone C++ ROS1 module health monitor: attitude, optional range, lifecycle and trace logging.</description>
+  <maintainer email="dev@example.com">Robot health monitor maintainer</maintainer>
   <license>BSD-3-Clause</license>
-
+  <!-- 标准ROS消息为必需依赖；RViz/Qt为图形构建所需，头部核心无图形依赖。 -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>qtbase5-dev</build_depend>
-  <build_export_depend>qtbase5-dev</build_export_depend>
-  <exec_depend>libqt5-widgets</exec_depend>
-  <exec_depend>fast_lio</exec_depend>
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
-  <depend>geometry_msgs</depend>
-  <depend>yaml-cpp</depend>
-  <depend>eigen</depend>
-  <depend>libssl-dev</depend>
-  <depend>boost</depend>
-  <depend>roscpp</depend>
-  <depend>sensor_msgs</depend>
-  <depend>nav_msgs</depend>
-  <depend>diagnostic_msgs</depend>
-  <depend>std_msgs</depend>
-  <depend>std_srvs</depend>
-  <depend>livox_ros_driver</depend>
-  <depend>pluginlib</depend>
-  <depend>rviz</depend>
-  <depend>rosbag</depend>
-  <depend>rosgraph_msgs</depend>
-  <exec_depend>tf2_ros</exec_depend>
-
-  <export>
-    <rviz plugin="${prefix}/health_panel_plugin.xml" />
-  </export>
+  <exec_depend>roslaunch</exec_depend><exec_depend>rosbash</exec_depend>
+  <depend>roscpp</depend><depend>rosbag</depend><depend>rosgraph_msgs</depend>
+  <depend>std_msgs</depend><depend>std_srvs</depend><depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend><depend>geometry_msgs</depend><depend>diagnostic_msgs</depend>
+  <depend>yaml-cpp</depend><depend>eigen</depend><depend>boost</depend><depend>libssl-dev</depend>
+  <!-- The explicit installer can omit GUI dependencies for a headless CMake build. -->
+  <depend>pluginlib</depend><depend>rviz</depend>
+  <build_depend>qtbase5-dev</build_depend><build_export_depend>qtbase5-dev</build_export_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
+  <export><rviz plugin="${prefix}/health_panel_plugin.xml" /></export>
 </package>
