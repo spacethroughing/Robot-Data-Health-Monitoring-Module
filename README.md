@@ -8,6 +8,7 @@ ROS 1 Noetic / C++14 工程，包含 FAST-LIO、Livox ROS Driver 和可独立接
 - livox_ros_driver：Livox ROS 驱动源码。
 - fastlio_health_monitor：健康检测模块。支持雷达、IMU、姿态、定位、可选测距及其他 ROS 模块的适配；提供诊断 Topic、JSONL/CSV 日志和可选 RViz 面板。
 - docs/代码目录树与文件说明.md：健康检测包逐文件目录树、代码职责、配置和数据流说明。
+- [日志 event_type 与 rule_id 字段说明](docs/日志event_type与rule_id字段说明.md)：JSONL事件类型、检测规则编号、源码位置与含义。
 
 ## 环境和编译
 
