@@ -38,6 +38,20 @@ catkin_make -j2
 source devel/setup.bash
 ~~~
 
+也可以使用仓库内的安装脚本，在已安装 ROS Noetic 的 Ubuntu 20.04 上安装依赖并把健康检测包编译到一个新工作区：
+
+~~~bash
+# gui 会安装 RViz；无图形机器人用 headless
+bash scripts/install_dependencies.sh gui
+bash scripts/install_workspace.sh --workspace "$HOME/robot_health_ws" --gui
+
+# 无图形版本：
+# bash scripts/install_dependencies.sh headless
+# bash scripts/install_workspace.sh --workspace "$HOME/robot_health_ws_headless" --headless
+~~~
+
+`install_workspace.sh` 只复制 `fastlio_health_monitor` 包，不覆盖目标工作区中已有的同名源码。仓库根目录和桌面部署包两种目录结构均可作为脚本来源。
+
 Livox 驱动还需要系统中安装 Livox-SDK。按 livox_ros_driver/README_CN.md 安装 SDK 和驱动依赖；使用标准 PointCloud2 输入时，健康检测本身不要求编译 Livox CustomMsg 适配器。
 
 每个新终端先加载环境：
