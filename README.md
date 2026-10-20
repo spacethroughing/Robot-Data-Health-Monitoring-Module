@@ -135,6 +135,7 @@ RViz 面板展示诊断消息；无界面机器人可用 rostopic echo、rostopi
 ## 文档
 
 - [健康监控包完整代码目录树与文件说明](docs/代码目录树与文件说明.md)
+- [健康检测模块真实安装使用指南](docs/真实安装使用指南.md)
 - [ROS 包使用说明](fastlio_health_monitor/README.md)
 - [FAST-LIO 与 ROS1 工程文档](FAST_LIO/doc/ros1_workspace/README.md)
 - [真实机器人安装与配置文档](FAST_LIO/doc/ros1_workspace/09_真实设备安装与配置.md)
