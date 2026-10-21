@@ -179,7 +179,7 @@ bool syncFile(const std::string& path) {
   return ok;
 }
 }  // namespace
-// 建立本次run目录、保存配置/程序版本，启动单写入线程，提交RUN_BEGIN。
+// 建立本次run目录、保存配置/程序版本，启动单写入线程，按策略选择RUN_BEGIN。
 EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline)
     : config_(c),
       timeline_(timeline),
@@ -227,6 +227,9 @@ EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline
     manifest["bag_start_time_sec"] = timeline_.current_ns ? nsSeconds(timeline_.begin_ns) : "unavailable";
     manifest["bag_end_time_sec"] = timeline_.current_ns ? nsSeconds(timeline_.end_ns) : "unavailable";
     manifest["log_time_fields"] = "bag_elapsed_sec,source_stamp_sec,steady_elapsed_sec";
+    manifest["event_filter_active"] = c.event_filter.active() ? "true" : "false";
+    manifest["event_filter_policy"] =
+        "logging.events: empty include allows all; rule/module exclusions win; exact case-sensitive names; applies to every JSONL event including RUN_BEGIN/RUN_END";
     write("manifest.json", jsonValues(manifest));
     write("source_build_manifest.json", robot_health_source_manifest);
     writer_ = std::thread(&EventRecorder::worker, this);
@@ -243,7 +246,7 @@ EventRecorder::EventRecorder(const MonitorConfig& c, const LogTimeline& timeline
 EventRecorder::~EventRecorder() {
   finish("node shutdown");
 }
-// 提交唯一RUN_END，等待写线程排空、flush/fsync并关闭；结束后不再追加。
+// 按同一策略选择RUN_END，等待写线程排空、flush/fsync并关闭；筛掉结束事件仍正常封存。
 bool EventRecorder::finish(const std::string& reason, const Values& context) {
   std::lock_guard<std::mutex> finish_lock(finish_mutex_);
   if (finished_) return healthy();
@@ -287,6 +290,13 @@ bool EventRecorder::enqueueEvent(const std::string& type, const std::string& mod
   if (failed_ || !writer_.joinable()) {
     ++dropped_events_;
     return false;
+  }
+  // 统一出口筛选：普通规则、控制事件以及构造/封存时的RUN事件均经过这里。
+  // 在分配序号和入队前决定；durable事件被主动排除时，不等待不存在的写入确认。
+  // 仅筛掉写文件的副本，Finding、ModuleReport、健康判断和ROS诊断保持独立。
+  if (!config_.event_filter.allows(type, module, f.id)) {
+    ++filtered_events_;
+    return healthy();
   }
   uint64_t seq = ++sequence_;
   const auto bag = bagFields(timeline_);
@@ -365,6 +375,8 @@ Values EventRecorder::status() const {
           {"log_finish_reason", finish_reason_},
           {"logs_normal", config_.logging && !incomplete ? "true" : "false"},
           {"logs_incomplete", incomplete ? "true" : "false"},
+          {"event_filter_active", config_.event_filter.active() ? "true" : "false"},
+          {"filtered_events", std::to_string(filtered_events_)},
           {"log_write_failed", failed_ ? "true" : "false"},
           {"dropped_events", std::to_string(dropped_events_)},
           {"dropped_metrics", std::to_string(dropped_metrics_)},

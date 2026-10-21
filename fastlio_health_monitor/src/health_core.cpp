@@ -16,6 +16,7 @@
 #include <Eigen/Eigenvalues>
 #include <algorithm>
 #include <chrono>
+#include <cctype>
 #include <cmath>
 #include <cstdlib>
 #include <fstream>
@@ -459,8 +460,36 @@ MonitorConfig ConfigLoader::load(const std::string& path) {
   keys(n, "logging",
        {"enabled", "directory", "metrics_period_sec", "metrics_queue_capacity",
         "critical_event_queue_capacity", "rotate_size_mb", "rotate_file_count",
-        "total_budget_mb", "flush_period_sec"});
+        "total_budget_mb", "flush_period_sec", "events"});
   c.logging = get<bool>(n, "enabled", true);
+  // 独立解析事件文件策略；删除/注释某个列表、写null或[]均表示该项不筛选。
+  // 整个logging.events缺失时仍记录全部事件，兼容旧配置。
+  const YAML::Node events = n && n["events"] ? n["events"] : YAML::Node();
+  keys(events, "logging.events",
+       {"include_event_types", "exclude_rule_ids", "exclude_module_ids"});
+  auto event_names = [&](const char* key) {
+    std::set<std::string> result;
+    const auto list = events && events[key] ? events[key] : YAML::Node();
+    const std::string path = std::string("logging.events.") + key;
+    if (!list || list.IsNull()) return result;
+    if (!list.IsSequence())
+      throw std::invalid_argument(path + " must be a list, e.g. [] or [RULE_TRIGGERED]");
+    for (const auto& item : list) {
+      if (!item.IsScalar())
+        throw std::invalid_argument(path + " entries must be nonempty names");
+      const auto name = item.as<std::string>();
+      if (name.empty() || name.find_first_of("*?[]") != std::string::npos ||
+          std::any_of(name.begin(), name.end(), [](unsigned char ch) {
+            return std::isspace(ch) || std::iscntrl(ch);
+          }))
+        throw std::invalid_argument(path + " entries require exact names without whitespace or wildcards");
+      result.insert(name);  // 重复名称只保留一份，匹配结果不受顺序影响。
+    }
+    return result;
+  };
+  c.event_filter.include_event_types = event_names("include_event_types");
+  c.event_filter.exclude_rule_ids = event_names("exclude_rule_ids");
+  c.event_filter.exclude_module_ids = event_names("exclude_module_ids");
   const char* home = std::getenv("HOME");
   const std::string default_log = std::string(home ? home : "/tmp") + "/.ros/robot_health/health";
   c.log_directory = get<std::string>(n, "directory", default_log);
@@ -634,6 +663,16 @@ MonitorConfig ConfigLoader::load(const std::string& path) {
   root["control"]["heartbeat_warning_sec"] = c.heartbeat_warning;
   root["control"]["heartbeat_error_sec"] = c.heartbeat_error;
   root["logging"]["enabled"] = c.logging;
+  // 有效配置始终展开三个列表，便于追溯本次筛选；原始配置文本保持用户写法。
+  root["logging"]["events"]["include_event_types"] =
+      std::vector<std::string>(c.event_filter.include_event_types.begin(),
+                               c.event_filter.include_event_types.end());
+  root["logging"]["events"]["exclude_rule_ids"] =
+      std::vector<std::string>(c.event_filter.exclude_rule_ids.begin(),
+                               c.event_filter.exclude_rule_ids.end());
+  root["logging"]["events"]["exclude_module_ids"] =
+      std::vector<std::string>(c.event_filter.exclude_module_ids.begin(),
+                               c.event_filter.exclude_module_ids.end());
   root["logging"]["directory"] = c.log_directory;
   root["logging"]["metrics_period_sec"] = c.metrics_period;
   root["logging"]["metrics_queue_capacity"] = c.metrics_capacity;

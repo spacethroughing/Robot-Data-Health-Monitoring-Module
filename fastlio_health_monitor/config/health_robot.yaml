@@ -16,12 +16,12 @@ monitor:
   statistics_window_sec: 5.0
   # 频率可用前最少样本数；默认3，至少2；是统计准备条件，不是最低输入频率。
   min_frequency_samples: 3
-  # 频率计算所需最短覆盖时间，秒；默认1，不能超过统计窗口；不足时显示N/A。
-  min_frequency_coverage_sec: 1.0
-  # 软规则触发前的持续时间，秒；默认0.5；0表示立即按定时检查结果报警。硬错误不等待。
+  # 频率计算所需最短覆盖时间，秒；省略默认1，当前配置0.5；不能超过统计窗口，不足时显示N/A。
+  min_frequency_coverage_sec: 0.5
+  # 软规则触发前的持续时间，秒；0表示立即按定时检查结果报警。硬错误不等待。
   soft_warning_hold_sec: 0.0
   # 告警恢复前连续满足正常条件的时间，秒；默认1；防止状态来回闪。
-  recovery_hold_sec: 1.0
+  recovery_hold_sec: 0.5
   # 完整诊断输出，diagnostic_msgs/DiagnosticArray；默认/fastlio_health_monitor/diagnostics。
   diagnostics_topic: /fastlio_health_monitor/diagnostics
   # 简化状态输出，std_msgs/UInt8；默认/fastlio_health_monitor/status，0正常/1警告/2错误。
@@ -53,6 +53,14 @@ lifecycle_defaults:
 # 结构化日志设置；默认启用；日志写入失败会进入诊断，历史日志不会被本次升级修改。
 logging:
   enabled: true
+  # 以下只筛选本节点events.*.jsonl，不关闭检测、ROS诊断或CSV指标；重启后加载。
+  events:
+    # 事件类型白名单；[]或省略表示全部；例如[RULE_TRIGGERED]只写触发事件。
+    include_event_types: []
+    # 规则ID黑名单；[]表示不排除；例如[IMU_ATTITUDE_RATE]排除该规则的事件。
+    exclude_rule_ids: []
+    # 模块ID黑名单；[]表示不排除；例如[imu_attitude]排除该模块的事件。
+    exclude_module_ids: []
   # 健康日志根目录；省略默认~/.ros/robot_health/health；每次运行新建run目录；支持~/前缀。
   directory: ~/.ros/robot_health/health
   # 指标CSV采样间隔，秒；默认1；不是IMU采样周期，避免把所有原始数据重复写日志。
@@ -381,13 +389,13 @@ modules:
       # 定位位置协方差xyz对角线最大值上限，m²；省略不比较大小。
       position_variance_m2:
         enabled: true
-        warning_above: 1.0
-        error_above: 4.0
+        warning_above: 0.01
+        error_above: 0.04
       # 定位旋转协方差三个对角线最大值上限，rad²；省略不比较大小，不能与m²混用。
       orientation_variance_rad2:
         enabled: true
-        warning_above: 0.1
-        error_above: 0.5
+        warning_above: 0.002
+        error_above: 0.008
     # 定位跳变规则块；省略/设enabled:false关闭；不用于直接比较不同传感器参考系。
     jump:
       enabled: true

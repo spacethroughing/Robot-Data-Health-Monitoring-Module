@@ -11,6 +11,8 @@ ROS 1 Noetic / C++14 工程，包含 FAST-LIO、Livox ROS Driver 和可独立接
 - [新增核心数据与雷达控制链路改造说明](docs/新增核心数据与雷达控制链路改造说明.md)：说明新增核心数据和检测规则的修改位置，以及通过话题控制雷达驱动 RUN/STOP 的实现骨架。
 - [日志 event_type 与 rule_id 字段说明](docs/日志event_type与rule_id字段说明.md)：JSONL事件类型、检测规则编号、源码位置与含义。
 
+- [日志事件过滤配置](docs/日志事件过滤配置.md)：按事件类型、规则或模块筛选事件文件；当前实机配置记录全部，回放仅记录RULE_TRIGGERED。
+
 ## 环境和编译
 
 适用环境：Ubuntu 20.04、ROS Noetic、Catkin、C++14。下面假设工作区在 ~/fastlio_ws：
@@ -140,3 +142,12 @@ RViz 面板展示诊断消息；无界面机器人可用 rostopic echo、rostopi
 - [ROS 包使用说明](fastlio_health_monitor/README.md)
 - [FAST-LIO 与 ROS1 工程文档](FAST_LIO/doc/ros1_workspace/README.md)
 - [真实机器人安装与配置文档](FAST_LIO/doc/ros1_workspace/09_真实设备安装与配置.md)
+
+## 2026-10-21 更新
+
+- 增加独立事件日志过滤：类型白名单、规则ID与模块ID黑名单。按桌面当前配置发布：health_robot.yaml记录全部，health_bag.yaml仅记录RULE_TRIGGERED，两份配置的规则/模块黑名单均为空。
+- 过滤仅影响健康节点events JSONL，检测、ROS诊断及CSV继续输出；主动排除以filtered_events计数，不算非预期日志丢失。
+- 回放RViz布局增加Displays侧栏、当前帧和最近5秒配准点云缓存，固定强度范围0～255。
+- 本次C++代码已编译通过，未新增或运行过滤功能的单元/回放测试；此前测试记录保留原有时间和适用范围。
+
+[更新详情](docs/2026-10-21更新说明.md) · [过滤配置示例](docs/日志事件过滤配置.md)。已有安装更新源码后需要重新编译，再重启节点。

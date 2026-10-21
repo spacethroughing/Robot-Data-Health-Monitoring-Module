@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-21",
+  "baseline_playback_rate": 1.0,
+  "improved_playback_rate": 2.0,
+  "checks": {
+    "baseline_full_playback_verified_eof": true,
+    "improved_full_playback_verified_eof": true,
+    "registered_cloud_all_2223_nonempty": true,
+    "registered_cloud_no_nonfinite_xyz": true,
+    "registered_cloud_single_camera_init_frame": true,
+    "improved_observer_received_all_2223_registered": true,
+    "improved_observer_received_all_2421_raw": true,
+    "improved_lifecycle_stopped": true,
+    "improved_health_log_finished_without_loss": true,
+    "recovered_bag_size_and_mtime_unchanged": true
+  },
+  "health_yaml_modified": false,
+  "cpp_modified": false,
+  "scope": "Read-only repaired bag; visualization and message structure checks, not localization accuracy or all-health-OK certification.",
+  "known_conditions": [
+    "registered cloud begins at bag_elapsed_sec 64.13458919525146",
+    "bag contains no /tf, /tf_static, /Laser_map or /path",
+    "first raw LiDAR header stamp is zero",
+    "normal STOPPED overall status is WARNING/operational_valid=false; this is not a RUNNING precision result"
+  ],
+  "screenshots": [
+    "baseline_initial.png",
+    "baseline_120.png",
+    "improved_50.png",
+    "improved_75.png",
+    "improved_200.png",
+    "improved_stopped.png"
+  ],
+  "checks_all_passed": true
+}

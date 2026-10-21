@@ -1,21 +1,21 @@
 # 日志中的 event_type 与 rule_id
 
-本文列出 V2 工程 JSONL 事件日志里由现有 C++ 代码产生的 `event_type` 和 `rule_id`，并给出源码位置和含义。范围包括健康监控节点、运行控制器和 bag 播放器。新增适配器或规则后，列表也需要相应更新。
+本文适用于2026-10-21更新后的仓库版本，列出 V2 工程 JSONL 事件日志里由现有 C++ 代码产生的 `event_type` 和 `rule_id`，并给出源码位置和含义。范围包括健康监控节点、运行控制器和 bag 播放器。新增适配器或规则后，列表也需要相应更新。
 
 ## 1. 两个字段的区别
 
 - `event_type` 表示这条日志记录发生了什么，例如告警触发、状态改变或进程退出。
 - `rule_id` 表示这条记录关联哪个检测规则或事件来源，例如 `IMU_ACCEL_NORM` 或 `LIFECYCLE`。
 - 同一个 `rule_id` 可以出现在不同 `event_type` 中。例如同一检测规则可依次产生 `WARNING_CANDIDATE`、`RULE_TRIGGERED`、`RULE_RECOVERED`。
-- 这些名称是代码里的稳定编号，不是在 YAML 里逐个填写。YAML 控制对应模块或检查项是否启用、阈值是多少。
+- 这些名称由C++代码定义。YAML中的模块/检测规则控制启用和阈值；logging.events的过滤列表直接引用这些稳定编号来选择写入哪些事件。
 
-日志字段由 [`EventRecorder::enqueueEvent()`](../fastlio_health_monitor/src/event_recorder.cpp#L280) 写入。健康规则状态事件由 [`RuleLatch::apply()`](../fastlio_health_monitor/src/health_core.cpp#L750) 生成。
+日志字段由 [`EventRecorder::enqueueEvent()`](../fastlio_health_monitor/src/event_recorder.cpp) 写入。健康规则状态事件由 [`RuleLatch::apply()`](../fastlio_health_monitor/src/health_core.cpp) 生成。
 
 ## 2. 全部 event_type
 
 ### 健康监控与日志生命周期
 
-位置：[`event_recorder.cpp`](../fastlio_health_monitor/src/event_recorder.cpp#L230)、[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp#L750) 和 [`robot_health_monitor_node.cpp`](../fastlio_health_monitor/src/robot_health_monitor_node.cpp#L25)。
+位置：[`event_recorder.cpp`](../fastlio_health_monitor/src/event_recorder.cpp)、[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp) 和 [`robot_health_monitor_node.cpp`](../fastlio_health_monitor/src/robot_health_monitor_node.cpp)。
 
 | event_type | 含义 |
 | --- | --- |
@@ -31,7 +31,7 @@
 
 ### 运行控制器
 
-位置：[`runtime_controller_node.cpp`](../fastlio_health_monitor/src/runtime_controller_node.cpp#L160)。这些事件的 `rule_id` 固定为 `RUNTIME_CONTROL`。
+位置：[`runtime_controller_node.cpp`](../fastlio_health_monitor/src/runtime_controller_node.cpp)。这些事件的 `rule_id` 固定为 `RUNTIME_CONTROL`。
 
 | event_type | 含义 |
 | --- | --- |
@@ -49,7 +49,7 @@
 
 ### bag 播放器
 
-位置：[`bag_playback_node.cpp`](../fastlio_health_monitor/src/bag_playback_node.cpp#L135)。这些事件的 `rule_id` 固定为 `PLAYBACK_STATE`。
+位置：[`bag_playback_node.cpp`](../fastlio_health_monitor/src/bag_playback_node.cpp)。这些事件的 `rule_id` 固定为 `PLAYBACK_STATE`。
 
 | event_type | 含义 |
 | --- | --- |
@@ -68,7 +68,7 @@
 
 ### 日志、控制和生命周期
 
-位置：日志 ID 在 [`event_recorder.cpp`](../fastlio_health_monitor/src/event_recorder.cpp#L230)、控制器 ID 在 [`runtime_controller_node.cpp`](../fastlio_health_monitor/src/runtime_controller_node.cpp#L166)、播放器 ID 在 [`bag_playback_node.cpp`](../fastlio_health_monitor/src/bag_playback_node.cpp#L216)、生命周期 ID 在 [`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp#L1317)。
+位置：日志 ID 在 [`event_recorder.cpp`](../fastlio_health_monitor/src/event_recorder.cpp)、控制器 ID 在 [`runtime_controller_node.cpp`](../fastlio_health_monitor/src/runtime_controller_node.cpp)、播放器 ID 在 [`bag_playback_node.cpp`](../fastlio_health_monitor/src/bag_playback_node.cpp)、生命周期 ID 在 [`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -87,7 +87,7 @@
 
 ### 时间戳、数据年龄与频率
 
-位置：[`StreamTracker::receive()` 和 `StreamTracker::evaluate()`](../fastlio_health_monitor/src/health_core.cpp#L670)。
+位置：[`StreamTracker::receive()` 和 `StreamTracker::evaluate()`](../fastlio_health_monitor/src/health_core.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -101,7 +101,7 @@
 
 ### 雷达
 
-适配器结构检查位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp#L100)；点数和有效率检查位置：[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp#L838)。
+适配器结构检查位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp)；点数和有效率检查位置：[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -113,7 +113,7 @@
 
 ### IMU
 
-适配器规则位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp#L285)；幅值规则位置：[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp#L960)。
+适配器规则位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp)；幅值规则位置：[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -134,7 +134,7 @@
 
 ### 姿态角：IMU 和定位共用
 
-位置：[`AttitudeTracker::update()`](../fastlio_health_monitor/src/health_core.cpp#L864)。代码用 `IMU_` 或 `LOC_` 前缀区分数据来源，因此例如 `IMU_ROLL_LIMIT` 与 `LOC_ROLL_LIMIT` 是两个独立 ID。
+位置：[`AttitudeTracker::update()`](../fastlio_health_monitor/src/health_core.cpp)。代码用 `IMU_` 或 `LOC_` 前缀区分数据来源，因此例如 `IMU_ROLL_LIMIT` 与 `LOC_ROLL_LIMIT` 是两个独立 ID。
 
 | ID 后缀 | 含义 |
 | --- | --- |
@@ -151,7 +151,7 @@
 
 ### 测距
 
-消息视场检查位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp#L490)；距离和连续性检查位置：[`RangeChecker::check()`](../fastlio_health_monitor/src/health_core.cpp#L980)。
+消息视场检查位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp)；距离和连续性检查位置：[`RangeChecker::check()`](../fastlio_health_monitor/src/health_core.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -168,7 +168,7 @@
 
 ### 定位
 
-消息结构检查位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp#L408)；运动学、跳变与协方差检查位置：[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp#L1088)。
+消息结构检查位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp)；运动学、跳变与协方差检查位置：[`health_core.cpp`](../fastlio_health_monitor/src/health_core.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -191,7 +191,7 @@
 
 ### 诊断转发与规划
 
-位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp#L518)。
+位置：[`input_adapters.cpp`](../fastlio_health_monitor/src/input_adapters.cpp)。
 
 | rule_id | 含义 |
 | --- | --- |
@@ -227,6 +227,6 @@
 - 数据时间、接收年龄和频率规则在每个模块的 `stream` 区域。
 - 雷达、IMU、姿态、定位、测距、规划的业务规则在对应模块的 `quality` 区域。
 - 控制心跳在根级 `control` 区域；启动／停止期限和连续就绪样本数在 `lifecycle_defaults` 或模块的 `lifecycle` 覆盖项中。
-- `logging.enabled` 控制整体日志记录。当前配置没有为某个 `event_type` 或 `rule_id` 单独设置的 YAML 开关。
+- `logging.enabled`控制整体日志记录。当前更新版支持`logging.events`中的事件类型白名单、规则ID和模块ID黑名单；空列表表示记录全部；当前实机配置全部记录，回放只记录RULE_TRIGGERED。详见[事件过滤配置](日志事件过滤配置.md)。
 
 字段的阈值、默认值及每项 `enabled` 的具体说明见 [`health_robot.yaml`](../fastlio_health_monitor/config/health_robot.yaml) 和 [`health_bag.yaml`](../fastlio_health_monitor/config/health_bag.yaml) 中的配置注释。

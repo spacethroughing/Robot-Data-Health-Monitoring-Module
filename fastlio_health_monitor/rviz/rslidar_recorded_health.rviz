@@ -1,6 +1,15 @@
 # RViz可视化配置；只影响显示。健康规则请修改config/health_robot.yaml或health_bag.yaml。
 # 侧栏插件列表，包含健康诊断面板。
 Panels:
+# 显示设置侧栏：可直接检查Topic、Fixed Frame和每个图层的状态。
+- Class: rviz/Displays
+  Name: Displays
+  Property Tree Widget:
+    Expanded:
+    - /Global Options1
+    - /Status1
+    Splitter Ratio: 0.48
+  Tree Height: 240
 # 显示/插件类型，由RViz插件系统加载。
 - Class: fastlio_health_monitor/HealthPanel
   # 界面中的可读名称，不是ROS节点名。
@@ -98,7 +107,7 @@ Visualization Manager:
     # 是否启用此显示项；false不会停止监控节点。
     Enabled: true
     # 界面中的可读名称，不是ROS节点名。
-    Name: 包内已配准点云（非本次重新建图）
+    Name: 当前配准点云（最新一帧）
     # 此显示项订阅的ROS Topic。
     Topic: /cloud_registered
     # 该显示项消息队列长度；过大增加延迟与内存。
@@ -113,8 +122,10 @@ Visualization Manager:
     Color Transformer: Intensity
     # 强度着色读取的字段名。
     Channel Name: intensity
-    # 自动根据点云强度选择着色范围，可能随帧变化。
-    Autocompute Intensity Bounds: true
+    # 固定使用此bag真实反射强度范围0~255，避免不同帧自动拉伸造成颜色变化。
+    Autocompute Intensity Bounds: false
+    Min Intensity: 0
+    Max Intensity: 255
     # 是否采用彩虹强度配色。
     Use rainbow: true
     # 是否反转强度配色方向。
@@ -134,9 +145,49 @@ Visualization Manager:
   # 显示/插件类型，由RViz插件系统加载。
   - Class: rviz/PointCloud2
     # 是否启用此显示项；false不会停止监控节点。
+    Enabled: true
+    # 界面中的可读名称，不是ROS节点名。
+    Name: 配准点云历史（最近5秒，显示缓存）
+    # 此显示项订阅的ROS Topic。
+    Topic: /cloud_registered
+    # 该显示项消息队列长度；过大增加延迟与内存。
+    Queue Size: 2
+    # 点/方块等绘图样式。
+    Style: Points
+    # 点显示像素大小。
+    Size (Pixels): 1
+    # 点的世界坐标显示尺寸，米。
+    Size (m): 0.03
+    # 点云着色来源，如Intensity使用反射强度。
+    Color Transformer: Intensity
+    # 强度着色读取的字段名。
+    Channel Name: intensity
+    # 固定使用此bag真实反射强度范围0~255，避免不同帧自动拉伸造成颜色变化。
+    Autocompute Intensity Bounds: false
+    Min Intensity: 0
+    Max Intensity: 255
+    # 是否采用彩虹强度配色。
+    Use rainbow: true
+    # 是否反转强度配色方向。
+    Invert Rainbow: false
+    # 透明度，0透明、1不透明。
+    Alpha: 0.6
+    # 仅叠加最近5秒已配准扫描；有时间上限，不是完整地图或新的定位结果。
+    Decay Time: 5
+    # 点云坐标解析方式，XYZ读取三维位置。
+    Position Transformer: XYZ
+    # 是否使用全局固定坐标系。
+    Use Fixed Frame: true
+    # 是否允许鼠标选中该图层对象。
+    Selectable: false
+    # RViz保存的当前启用/选择状态。
+    Value: true
+  # 显示/插件类型，由RViz插件系统加载。
+  - Class: rviz/PointCloud2
+    # 是否启用此显示项；false不会停止监控节点。
     Enabled: false
     # 界面中的可读名称，不是ROS节点名。
-    Name: FAST-LIO 累积地图
+    Name: 完整地图（本bag未录制，默认关闭）
     # 此显示项订阅的ROS Topic。
     Topic: /Laser_map
     # 该显示项消息队列长度；过大增加延迟与内存。
@@ -278,11 +329,11 @@ Visualization Manager:
       # 相机观察中心的三维位置。
       Focal Point:
         # 窗口或视图X位置。
-        X: 0
+        X: 8
         # 窗口或视图Y位置。
-        Y: 0
+        Y: -12
         # RViz“Z”显示/布局属性；由对应插件读取，不参与C++健康阈值判断。
-        Z: 0
+        Z: 2
       # 相机俯仰角，弧度；不是健康阈值中的pitch。
       Pitch: 0.5
       # 相机跟随的坐标系。

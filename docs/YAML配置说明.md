@@ -10,7 +10,7 @@
 | health_bag.yaml | replay.launch | 回放五模块，测距可选 |
 | runtime_localization.example.yaml | live_managed.launch | 真实定位进程启动命令、ROS节点名、启停管理 |
 
-主目录只有上表三份。两份健康配置初始阈值相同，但分别维护；模块和规则开关已经写全。入口的config参数决定实际加载哪个文件；启动日志和每次run的config_source/effective_config用于核对。桌面安装材料不会自动更新安装后的文件。
+主目录只有上表三份。两份健康配置分别维护，当前阈值可能不同；模块和规则开关已经写全。入口的config参数决定实际加载哪个文件；启动日志和每次run的config_source/effective_config用于核对。桌面安装材料不会自动更新安装后的文件。
 
 ## 2. 最常改的字段
 
@@ -167,3 +167,7 @@ receive_age_sec:
 - 修改后重启launch；如果只改YAML不用重新编译。NaN、坏结构等基础守卫仍执行。
 
 详细清单见[配置精简与enabled开关](配置精简与enabled开关.md)，逐项参数含义见[全部配置项说明](全部配置项说明.md)。
+
+## 9. 事件日志独立过滤（2026-10-21）
+
+logging.events新增include_event_types、exclude_rule_ids、exclude_module_ids三个列表，空列表表示记录全部；当前实机配置三个列表为空，回放类型白名单为[RULE_TRIGGERED]。修改后重启加载，仅影响健康节点的events JSONL，不关闭任何检测，也不筛选CSV或诊断。语法、示例和作用范围见[日志事件过滤配置](日志事件过滤配置.md)。

@@ -53,6 +53,14 @@ lifecycle_defaults:
 # 结构化日志设置；默认启用；日志写入失败会进入诊断，历史日志不会被本次升级修改。
 logging:
   enabled: true
+  # 以下只筛选本节点events.*.jsonl，不关闭检测、ROS诊断或CSV指标；重启后加载。
+  events:
+    # 事件类型白名单；[]或省略表示全部；例如[RULE_TRIGGERED]只写触发事件。
+    include_event_types: [RULE_TRIGGERED]
+    # 规则ID黑名单；[]表示不排除；例如[IMU_ATTITUDE_RATE]排除该规则的事件。
+    exclude_rule_ids: []
+    # 模块ID黑名单；[]表示不排除；例如[imu_attitude]排除该模块的事件。
+    exclude_module_ids: []
   # 健康日志根目录；省略默认~/.ros/robot_health/health；每次运行新建run目录；支持~/前缀。
   directory: ~/.ros/robot_health/health
   # 指标CSV采样间隔，秒；默认1；不是IMU采样周期，避免把所有原始数据重复写日志。

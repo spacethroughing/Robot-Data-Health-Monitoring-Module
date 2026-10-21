@@ -1,8 +1,8 @@
 /**
  * 可追溯运行日志的公共接口。
  *
- * 数据流：健康规则变化/模块报告 -> EventRecorder入队 -> 专用写线程 -> JSONL事件
- * 和CSV指标文件。健康检测线程不直接执行普通磁盘写入，避免日志I/O拖住消息回调。
+ * 数据流：健康规则变化 -> EventLogFilter选择 -> EventRecorder入队 -> 专用写线程 -> JSONL事件
+ * 文件；模块报告独立进入CSV指标队列。健康检测线程不直接执行普通磁盘写入。
  * 关键启停事件可选择等待写入确认；队列溢出、磁盘失败和日志封存状态可由status()
  * 查询并反馈到诊断。
  *
@@ -43,7 +43,7 @@ struct LogTimeline {
 /**
  * 单次运行的线程安全日志记录器。
  * 构造时创建唯一run目录并保存源配置/有效配置/程序清单，然后启动写线程。
- * event()记录离散状态变化；metrics()记录周期性模块快照；finish()写入结束事件、
+ * event()按策略选择离散状态变化；metrics()记录周期性模块快照；finish()按策略提交结束事件、
  * 等待待写队列排空并封存文件。对象析构也会安全调用finish()。
  * 事件和指标队列有界，容量来自MonitorConfig；可通过healthy()/status()发现写入失败。
  */
@@ -58,6 +58,7 @@ class EventRecorder {
    * 提交一条规则/控制事件。
    * type是事件类型，module是模块ID，finding包含规则等级和值，before/after是状态变化；
    * context附加可追溯数据。durable=true时等待写线程确认提交，适合启停等关键事件。
+   * 按配置主动筛掉的事件不入队、不等待durable写入，也不算丢日志；返回当前日志健康状态。
    * 返回false表示日志关闭、写入失败、队列满或关键事件未能确认。
    */
   bool event(const std::string& type, const std::string& module,
@@ -67,7 +68,7 @@ class EventRecorder {
   // 把一个模块的本轮报告加入CSV指标队列；调用方负责按metrics_period_sec节流。
   void metrics(const ModuleReport& report, double now);
   /**
-   * 封存本次run：写RUN_END、排空事件/指标队列、flush并关闭文件。
+   * 封存本次run：按策略选择是否写RUN_END，排空事件/指标队列、flush并关闭文件。
    * @param reason 结束原因，例如bag正常播完或节点关闭。
    * @param context 可附加最终统计信息。
    * 返回封存及日志健康结果；重复调用保持幂等，封存后的event/metrics不会重开文件。
@@ -130,5 +131,7 @@ class EventRecorder {
   std::atomic<bool> failed_{false};
   std::atomic<uint64_t> dropped_events_{0}, dropped_metrics_{0},
       rotated_files_{0};
+  // 用户主动筛掉的事件数，独立于意外丢失；不会使logs_normal变false。
+  std::atomic<uint64_t> filtered_events_{0};
 };
 }  // namespace robot_health

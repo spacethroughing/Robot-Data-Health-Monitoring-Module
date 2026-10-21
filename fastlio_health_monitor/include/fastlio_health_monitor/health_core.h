@@ -124,6 +124,29 @@ struct ModuleConfig {
   YAML::Node quality;                     // checker专用阈值；由对应Checker解释。
 };
 /**
+ * 事件文件的独立筛选策略；不参与健康判定，也不筛选CSV指标或ROS诊断。
+ * 空白名单允许所有事件类型；两种黑名单优先，命中任意一项便不写该条事件。
+ * 使用集合进行大小写敏感的完整名称匹配，不解释通配符或正则表达式。
+ * 省略整个配置块时三个集合均为空，保持原来的全部事件记录行为。
+ */
+struct EventLogFilter {
+  std::set<std::string> include_event_types;
+  std::set<std::string> exclude_rule_ids;
+  std::set<std::string> exclude_module_ids;
+
+  // 查询是否启用了筛选；全部为空时为false，不表示日志被关闭。
+  bool active() const {
+    return !include_event_types.empty() || !exclude_rule_ids.empty() ||
+           !exclude_module_ids.empty();
+  }
+  // 事件必须通过类型白名单，并没有命中规则/模块黑名单，才允许进入写入队列。
+  bool allows(const std::string& type, const std::string& module,
+              const std::string& rule) const {
+    return (include_event_types.empty() || include_event_types.count(type)) &&
+           !exclude_rule_ids.count(rule) && !exclude_module_ids.count(module);
+  }
+};
+/**
  * 运行一次健康监控所需的完整有效配置。
  * ConfigLoader将YAML中的可选项、默认值和模块设置汇总到这里，节点据此创建各模块、
  * 诊断发布器和日志器。source_text/effective_text用于记录用户原配置与本次生效配置。
@@ -143,6 +166,7 @@ struct MonitorConfig {
   std::string status_topic = "/fastlio_health_monitor/status";
   // 日志开关、目录、CSV采样/flush周期、队列及文件轮转/总预算限制。
   bool logging = true;
+  EventLogFilter event_filter;  // 仅控制events.*.jsonl；默认不筛选任何事件。
   std::string log_directory;
   double metrics_period = 1, flush_period = 1;
   size_t metrics_capacity = 4096, event_capacity = 512,
